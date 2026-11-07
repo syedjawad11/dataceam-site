@@ -17,7 +17,7 @@ Owner/approver: **Jawad**. Implementer: **Codex CLI**. Full spec: `../dataceam-d
 
 ## Dispatching to Codex
 ```
-codex exec -C "$(git rev-parse --show-toplevel)" -s workspace-write "<task spec>"
+codex exec -C "$(git rev-parse --show-toplevel)" -s workspace-write "<task spec>" < /dev/null   # stdin must be closed or codex waits forever
 ```
 - Codex has no network; CC runs `npm install` itself before/after dispatch when deps change.
 - Paste the full task spec from `ops/TASKS.md` plus any review feedback.

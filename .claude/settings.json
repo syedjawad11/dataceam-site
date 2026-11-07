@@ -1,0 +1,50 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(npm install*)",
+      "Bash(npm i *)",
+      "Bash(npx astro *)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git checkout *)",
+      "Bash(git switch *)",
+      "Bash(git branch*)",
+      "Bash(git push -u origin task/*)",
+      "Bash(git push origin task/*)",
+      "Bash(gh pr create*)",
+      "Bash(gh pr view*)",
+      "Bash(gh pr list*)",
+      "Bash(gh pr checks*)",
+      "Bash(gh pr edit*)",
+      "Bash(codex exec *)",
+      "Bash(npx wrangler pages project list*)",
+      "Bash(npx wrangler pages deployment list*)"
+    ],
+    "ask": [
+      "Bash(gh pr merge*)",
+      "Bash(git push origin main*)",
+      "Bash(git push * main*)",
+      "Bash(git merge *)",
+      "Bash(npx wrangler pages deploy * --branch main*)",
+      "Bash(npx wrangler pages deploy * --branch=main*)",
+      "Bash(curl *api.cloudflare.com*)",
+      "Bash(rm *)",
+      "Bash(git branch -D*)"
+    ],
+    "deny": [
+      "Read(./.env*)",
+      "Read(**/.env*)",
+      "Edit(./.env*)",
+      "Write(./.env*)",
+      "Bash(cat .env*)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(git push * --force*)",
+      "Bash(git push * -f*)"
+    ]
+  }
+}
