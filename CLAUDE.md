@@ -27,11 +27,12 @@ codex exec -C "$(git rev-parse --show-toplevel)" -s workspace-write "<task spec>
 - `npm run check:full` — `check` + Lighthouse CI + axe + gitleaks. Run by `/ship`.
 
 ## Content rules (hard)
-- No buyer logos or names (micro1, DataFactor, Lodex or others).
+- No buyer logos or names (micro1, DataFactor, Lodex or others) — except Jawad's Home v3 copy, which names micro1 once as the published source of its figures, with a link to its page. Nowhere else.
 - Never claim to be a buyer's partner, agent or representative. Say: *"I work with several vetted AI data buyers."*
 - No promised or guaranteed amounts. Ranges only, worded with "may" and "depends on the data".
 - No urgency or get-rich language.
-- Referral-fee disclosure on Home: *"The buyer pays us a referral fee when a deal closes. You pay nothing for our help."* On FAQ: *"I'm paid a referral fee by the buyer. It costs you nothing."* (Jawad's Home v2 copy, 2026-11-07.)
+- Referral-fee disclosure on Home: *"There’s no charge to your business for an introduction. Dataceam may earn a referral fee from the program if a deal goes ahead and qualifies."* On FAQ: *"I'm paid a referral fee by the buyer. It costs you nothing."* (Jawad's Home v3 brief, 2026-11-07.)
 - No LinkedIn links anywhere.
-- Never use the term "data broker" — except Jawad's own negation on Home: "An independent scout, not a data broker".
-- Amounts: Jawad's Home v2 copy states ranges ($50K–$3M+) with the "not a guarantee" disclaimer; keep that disclaimer next to any figure.
+- Never use the term "data broker".
+- Amounts: Home v3 shows figures once, only as micro1's published ranges, in the same sentence as micro1's name, followed by "The buyer evaluates each opportunity and sets any offer…" and the source link. Never imply Dataceam sets prices, handles datasets or guarantees a buyer's terms.
+- Audience: business owners in the US and Canada. No founder name on the site.

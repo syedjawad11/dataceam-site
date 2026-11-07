@@ -1,5 +1,6 @@
 ---
 import Footer from '../components/Footer.astro';
+import EmailDialog from '../components/EmailDialog.astro';
 import Header from '../components/Header.astro';
 import Seo, { type Props as SeoProps } from '../components/Seo.astro';
 import '../styles/global.css';
@@ -40,6 +41,7 @@ const beaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN?.trim();
       <slot />
     </main>
     <Footer />
+    <EmailDialog />
     {beaconToken && (
       <script
         is:inline

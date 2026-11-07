@@ -103,3 +103,36 @@ Acceptance:
 - [ ] Responsive: no horizontal scroll at 360px; grids collapse as described; AA contrast on all text pairs; visible focus states.
 - [ ] `npm run check` passes (CC runs `check:full`).
 Out of scope: FAQ, privacy, header/footer.
+
+---
+
+## T-009 — Home page v3: licensing brief, expandable examples, email dialog
+Goal: Replace the homepage with `content/home.md` (v3, verbatim — copy every sentence exactly, including the typographic apostrophes ’). Audience: business owners in the US and Canada. No founder name.
+Files to change:
+- `src/pages/index.astro` — rebuild with ONLY these sections in order: (1) hero, (2) `id="examples"` expandable rows, (3) value section, (4) `id="how-it-works"` role, (5) `id="contact"` final CTA. Delete everything else from v2 (tool mosaic, 8 data cards, 4 steps, 3 tiers, privacy, who qualifies, about). Update title/description from the frontmatter. Keep Organization JSON-LD (update its description).
+  - Hero: h1, supporting paragraph, short benefit line, primary button "Explore data examples" as `<a href="#examples">`.
+  - Examples: native `<details>`/`<summary>`, three rows, first has `open`. Summary shows the category (as a heading-styled span) and the always-visible examples line; the body holds the expanded detail. Add a visible chevron/plus that rotates when open; full row is the click target; visible focus ring.
+  - Value: separated from the previous section by a thin `<hr>`-style rule. Heading, then one ordinary paragraph with the two figures in `<strong>`. Then the link "See micro1’s published ranges" → `https://www.micro1.ai/data-partnerships` (`rel="noopener"`, opens in a new tab with `target="_blank"`; add visually-hidden text "(opens in a new tab)"). The figures must appear nowhere else on the site.
+  - Role: heading, paragraph, then the disclosure line as a normal paragraph (not small/muted fine print).
+  - Contact: heading, copy, "Get in touch" button that opens the email dialog.
+- `src/components/Header.astro` — Dataceam wordmark (existing `site-name`) + two links "Data examples" → `/#examples`, "How it works" → `/#how-it-works`, plus a "Get in touch" button that opens the email dialog. Remove Home/Insights/FAQ from the header nav. Must fit at 375px without horizontal scroll (shrink gaps/fonts on small screens; the button stays visible).
+- `src/components/Footer.astro` — add "FAQ" (`/faq/`) and "Insights" (`/insights/`) links so those pages stay reachable.
+- New `src/components/EmailDialog.astro`, rendered once in `src/layouts/Base.astro` so the header button works on every page. Native `<dialog>` opened with `showModal()`:
+  - `aria-labelledby` the title "Email Dataceam"; the dialog copy paragraph from `content/home.md`; a close button (aria-label "Close"); Escape closes (native).
+  - Primary action "Open email draft" → `<a>` with `href="mailto:${site.email}?subject=Business%20data%20licensing%20inquiry"`.
+  - The address as selectable text (`user-select: all` on a `<code>`-ish span) + "Copy email address" button using `navigator.clipboard.writeText`, falling back to selecting the text; announce "Email address copied" in an `aria-live="polite"` region.
+  - When `site.email` is a placeholder (empty or starts with `TODO_`): show `[TO FILL: contact email]` in place of the address, render "Open email draft" and "Copy email address" as disabled buttons. Nothing else changes when the email is set.
+  - Openers: any element with `data-email-dialog-open` (header button + final CTA button; use `<button type="button">`). On close, return focus to the exact opener. Clicking the backdrop closes. Small inline `<script>` (Astro bundles it); no dependencies. Without JS, openers fall back gracefully: render them as `<a href="/#contact" data-email-dialog-open>` styled as buttons, and the script calls `preventDefault()` and opens the dialog.
+  - Mobile: width `min(32rem, calc(100vw - 2rem))`, scrolls internally if tall; respects `prefers-reduced-motion`.
+- `src/components/EmailCta.astro` — delete if no longer used; remove references.
+- `src/styles/global.css` — remove v2-only styles (mosaic, data cards, steps, tiers, etc.), add styles for the above in the existing tokens (ink/blue/grey). Clean, calm, generous whitespace; hero on dark ink as now. `html { scroll-behavior: smooth }` only under `prefers-reduced-motion: no-preference`; add `scroll-margin-top` to section anchors.
+- `scripts/content-lint.mjs`:
+  - Home disclosure becomes exactly: `There’s no charge to your business for an introduction. Dataceam may earn a referral fee from the program if a deal goes ahead and qualifies.` (FAQ unchanged.)
+  - The buyer-name rule still applies everywhere, except that `micro1` (case-sensitive, exactly that token) is allowed in `dist/index.html` and `content/home.md` only. DataFactor/Lodex stay forbidden everywhere; micro1 stays forbidden on every other page.
+  - Remove the now-unused allowed phrases `not a data broker` and `for a limited time before the software accounts are shut down` (keep `not a guarantee` harmlessly or remove it; update self-tests accordingly).
+  - Update/extend self-tests: micro1 allowed on home, rejected on faq/privacy; new home disclosure required.
+- New `tests/home.spec.ts` (Playwright, runs in `check:full` against the existing config): first `<details>` is open, the others closed and open on click; `#examples` link scrolls/targets; header "Get in touch" opens the dialog, Escape closes it and focus returns to the header button; final "Get in touch" opens the same dialog; source link has the exact micro1 href.
+Acceptance:
+- [ ] `npm run check` green (CC runs `check:full` + screenshots, since the sandbox can't run Chromium/linkinator).
+- [ ] Copy matches `content/home.md` word for word; no v2 copy left on the home page; no founder name; no "$50K", "guarantee", "data broker", "partner" wording on home.
+- [ ] No horizontal scroll at 375px; dialog usable by keyboard and on mobile.
