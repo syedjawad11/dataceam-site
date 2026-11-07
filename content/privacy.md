@@ -19,28 +19,27 @@ ICO registration number: [TO FILL: if registered with the Information Commission
 ## What we collect
 
 - **Email correspondence.** If you email us, we keep your name, email address and what you tell us.
-- **Booking details.** If you book a call through our booking provider ([TO FILL: Cal.com]), we receive your name, email, chosen time and any notes you add. The booking provider processes this under its own privacy policy.
 - **Website analytics.** We use Cloudflare Web Analytics, which doesn't use cookies or collect personal data to identify you. It records aggregate figures such as page views, referrers and country.
 
 This site sets no cookies.
 
 ## Why we use it, and on what legal basis
 
-- To reply to you and arrange calls — **legitimate interests** in responding to enquiries, or steps **before entering a contract** with you.
+- To reply to you — **legitimate interests** in responding to enquiries, or steps **before entering a contract** with you.
 - To understand how the site is used, in aggregate — **legitimate interests**.
 
 We don't sell your personal data, and we don't use it for automated decision-making.
 
 ## Who we share it with
 
-- Service providers that run the site, email and booking: [TO FILL: Cloudflare, email provider, Cal.com].
+- Service providers that run the site and email: [TO FILL: Cloudflare, email provider].
 - With your agreement only: an AI data buyer, when you've asked to be introduced.
 
 Some providers may process data outside the UK. Where they do, they rely on appropriate safeguards such as the UK International Data Transfer Agreement or adequacy regulations.
 
 ## How long we keep it
 
-- Enquiries and booking details: [TO FILL: e.g. 24 months] after our last contact, unless we start working together.
+- Enquiries: [TO FILL: e.g. 24 months] after our last contact, unless we start working together.
 - Analytics: aggregate only, retained by Cloudflare under its own policy.
 
 ## Your rights

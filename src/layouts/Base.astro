@@ -32,7 +32,11 @@ const beaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN?.trim();
       Skip to content
     </a>
     <Header />
-    <main id="main" class="shell prose" tabindex="-1">
+    <main
+      id="main"
+      class={page === 'home' ? 'home-main' : 'shell prose'}
+      tabindex="-1"
+    >
       <slot />
     </main>
     <Footer />

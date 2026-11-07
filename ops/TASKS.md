@@ -11,6 +11,7 @@ Status: `todo` · `in-progress` · `review` · `blocked` · `done`
 | T-004 | Privacy page (placeholders live) | done | task/004-privacy | #7 |
 | T-005 | 404, robots.txt, sitemap, OG image | done | task/005-seo-basics | #3 |
 | T-006 | Insights skeleton + RSS | done | task/006-insights | #4 |
+| T-007 | Blue/grey/black restyle + email-only contact | review | task/007-restyle-email-only | #8 |
 
 ---
 
@@ -72,3 +73,8 @@ Files: `src/pages/404.astro`, `public/robots.txt` (allow all, `Sitemap: https://
 
 ## T-006 — Insights skeleton + RSS
 Files: `src/content.config.ts` (collection `insights`: title, description, pubDate, updatedDate?, draft, tags), `src/content/insights/.gitkeep`, `src/pages/insights/index.astro`, `src/pages/insights/[...slug].astro`, `src/layouts/Article.astro`, `src/pages/rss.xml.ts` (`@astrojs/rss`). Acceptance: index shows "coming soon" when no non-draft posts; one `draft: true` sample post excluded from build, index and RSS; Article JSON-LD on posts; `check:full` passes.
+
+## T-007 — Blue/grey/black restyle + email-only contact
+Goal: Jawad doesn't do calls. All contact is by email. New visual direction: blue, grey and black, modern and clean.
+Copy source: updated `content/home.md`, `content/faq.md`, `content/privacy.md` (all booking/call wording removed).
+Acceptance: no "call", "Cal.com" or booking link anywhere in `dist`; `calUrl` removed from `src/config/site.ts`; tokens in `@theme` switched to the palette below with AA contrast; OG image regenerated in the new palette; `check:full` passes.

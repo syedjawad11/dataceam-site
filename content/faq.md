@@ -34,7 +34,7 @@ It depends on the data: type, volume, age, quality and current buyer demand. Som
 
 ## How long does it take?
 
-The first call is 15 minutes. If there's a fit, the introduction usually follows within [TO FILL: e.g. 1–2 weeks]. Contract and data delivery timing depends on the buyer and the size of the data set.
+I reply to every email within [TO FILL: e.g. 2 working days]. If there's a fit, the introduction usually follows within [TO FILL: e.g. 1–2 weeks]. Contract and data delivery timing depends on the buyer and the size of the data set.
 
 ## Do I have to sell my company?
 
@@ -50,4 +50,4 @@ I work with several vetted AI data buyers. I don't name them publicly; once ther
 
 ## How do I start?
 
-[Book a 15-minute call → TO FILL: Cal.com URL] or email [TO FILL: jawad@dataceam.com].
+Email [TO FILL: jawad@dataceam.com] with a line about your company and the records you hold. Everything happens by email until you decide to go ahead.
