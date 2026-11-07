@@ -1,8 +1,119 @@
 ---
+import { frontmatter, rawContent } from '../../content/faq.md';
 import Base from '../layouts/Base.astro';
+import { site } from '../config/site';
+
+const [heading, ...sections] = rawContent().trim().split(/^## /m);
+const callPending = site.calUrl.startsWith('TODO_');
+const emailPending = site.email.startsWith('TODO_');
+const callNote = '[TO FILL: Cal.com URL]';
+const emailNote = '[TO FILL: jawad@dataceam.com]';
+const callLabel = 'Book a 15-minute call';
+const startAnswer = `${callLabel}${callPending ? ` ${callNote}` : ''} or email ${emailPending ? emailNote : site.email}.`;
+const questions = sections.map((section) => {
+  const [question, ...lines] = section.trim().split('\n');
+  const answer = lines.join('\n').trim();
+  const isStart = question === 'How do I start?';
+
+  return {
+    question,
+    isStart,
+    blocks: answer.split(/\n\s*\n/).map((block) => ({
+      isList: block.startsWith('- '),
+      items: block.startsWith('- ')
+        ? block.split('\n').map((line) => line.replace(/^- /, ''))
+        : [block],
+    })),
+    plainText: isStart ? startAnswer : answer.replace(/^- /gm, ''),
+  };
+});
+const placeholderParts = (text: string) => text.split(/(\[TO FILL: [^\]]+\])/g);
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: questions.map(({ question, plainText }) => ({
+    '@type': 'Question',
+    name: question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: plainText,
+    },
+  })),
+};
 ---
 
-<Base title="FAQ | Dataceam" description="Dataceam FAQ. Coming soon.">
-  <h1>FAQ</h1>
-  <p>Coming soon.</p>
+<Base
+  page="faq"
+  title={frontmatter.title}
+  description={frontmatter.description}
+  jsonLd={jsonLd}
+>
+  <h1>{heading.replace(/^# /, '').trim()}</h1>
+  <p class="home-disclosure">
+    I'm paid a referral fee by the buyer. It costs you nothing.
+  </p>
+  <div class="faq-list">
+    {questions.map(({ question, isStart, blocks }) => (
+      <details>
+        <summary>{question}</summary>
+        <div class="faq-answer">
+          {isStart ? (
+            <p>
+              <a
+                href={callPending ? '/#contact' : site.calUrl}
+                aria-describedby={callPending ? 'faq-call-note' : undefined}
+              >
+                {callLabel}
+              </a>
+              {callPending && (
+                <Fragment>
+                  {' '}
+                  <span id="faq-call-note" class="placeholder">
+                    {callNote}
+                  </span>
+                </Fragment>
+              )}{' '}
+              or email{' '}
+              <a href={emailPending ? '/#contact' : `mailto:${site.email}`}>
+                {emailPending ? (
+                  <span class="placeholder">{emailNote}</span>
+                ) : (
+                  site.email
+                )}
+              </a>
+              .
+            </p>
+          ) : (
+            blocks.map(({ isList, items }) =>
+              isList ? (
+                <ul>
+                  {items.map((item) => (
+                    <li>
+                      {placeholderParts(item).map((part) =>
+                        part.startsWith('[TO FILL:') ? (
+                          <span class="placeholder">{part}</span>
+                        ) : (
+                          part
+                        ),
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p>
+                  {placeholderParts(items[0]).map((part) =>
+                    part.startsWith('[TO FILL:') ? (
+                      <span class="placeholder">{part}</span>
+                    ) : (
+                      part
+                    ),
+                  )}
+                </p>
+              ),
+            )
+          )}
+        </div>
+      </details>
+    ))}
+  </div>
 </Base>

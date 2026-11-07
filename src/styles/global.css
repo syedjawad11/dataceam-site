@@ -241,6 +241,48 @@
     border-radius: 0.5rem;
   }
 
+  .faq-list details {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .faq-list details:first-child {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .faq-list summary {
+    display: list-item;
+    padding: 1.25rem 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 650;
+    cursor: pointer;
+    list-style: disclosure-closed inside;
+  }
+
+  .faq-list details[open] > summary {
+    list-style-type: disclosure-open;
+  }
+
+  .faq-list summary::marker {
+    color: var(--color-accent);
+  }
+
+  .faq-list summary:hover,
+  .faq-list summary:focus-visible {
+    background: var(--color-surface);
+  }
+
+  .faq-answer {
+    padding: 0.25rem 0.5rem 1.5rem;
+  }
+
+  .faq-answer > * + * {
+    margin-block-start: 1rem;
+  }
+
+  .faq-answer li + li {
+    margin-block-start: 0.5rem;
+  }
+
   .site-footer {
     color: var(--color-muted);
     background: var(--color-surface);
