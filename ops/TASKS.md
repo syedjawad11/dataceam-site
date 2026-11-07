@@ -4,13 +4,13 @@ Status: `todo` · `in-progress` · `review` · `blocked` · `done`
 
 | ID | Title | Status | Branch | PR |
 |---|---|---|---|---|
-| T-000 | Tooling, quality gates, hello world | review | task/000-tooling | #1 |
-| T-001 | Base layout, header, footer, tokens, SEO head | review | task/001-layout | #2 |
+| T-000 | Tooling, quality gates, hello world | done | task/000-tooling | #1 |
+| T-001 | Base layout, header, footer, tokens, SEO head | done | task/001-layout | #2 |
 | T-002 | Home page | blocked (copy approval) | — | — |
 | T-003 | FAQ page | blocked (copy approval) | — | — |
 | T-004 | Privacy page | blocked (copy approval) | — | — |
-| T-005 | 404, robots.txt, sitemap, OG image | review | task/005-seo-basics | #3 |
-| T-006 | Insights skeleton + RSS | todo | — | — |
+| T-005 | 404, robots.txt, sitemap, OG image | done | task/005-seo-basics | #3 |
+| T-006 | Insights skeleton + RSS | done | task/006-insights | #4 |
 
 ---
 
