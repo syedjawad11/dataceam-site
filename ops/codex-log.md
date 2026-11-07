@@ -14,3 +14,5 @@ Escalate to Jawad if first-pass rate < ~60% or the same failure type repeats 3+ 
 | 2026-11-07 | T-002 | 1 | all | footer still emitted `TODO_` values in hrefs (out of task scope; Codex flagged it) | 222s | retry |
 | 2026-11-07 | T-002 | 2 | all | md section labels (Hero / Disclosure / Call to action) rendered as visible headings — spec ambiguity, CC's fault | 37s | retry |
 | 2026-11-07 | T-002 | 3 | all (`check:full` green, screenshot reviewed) | none | 49s | pass |
+| 2026-11-07 | T-003 | 1 | all | disclosure only inside a collapsed `<details>` (not visible by default) — spec gap, CC's fault | 144s | retry |
+| 2026-11-07 | T-003 | 2 | all (`check:full` green, screenshot reviewed) | none | 38s | pass |
