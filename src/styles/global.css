@@ -136,6 +136,18 @@
     list-style: decimal;
   }
 
+  .privacy-policy > * + * {
+    margin-block-start: 1.5rem;
+  }
+
+  .privacy-policy > h2 {
+    margin-block-start: 3rem;
+  }
+
+  .privacy-policy li + li {
+    margin-block-start: 0.75rem;
+  }
+
   .home-section {
     scroll-margin-block-start: 2rem;
   }

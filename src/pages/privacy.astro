@@ -1,8 +1,117 @@
 ---
+import { frontmatter } from '../../content/privacy.md';
 import Base from '../layouts/Base.astro';
 ---
 
-<Base title="Privacy | Dataceam" description="Dataceam privacy. Coming soon.">
-  <h1>Privacy</h1>
-  <p>Coming soon.</p>
+<Base title={frontmatter.title} description={frontmatter.description}>
+  <article class="privacy-policy">
+    <h1>Privacy policy</h1>
+    <p>
+      Last updated: <span class="placeholder">[TO FILL: date]</span>
+    </p>
+
+    <h2>Who we are</h2>
+    <p>
+      This website is run by{' '}
+      <span class="placeholder">[TO FILL: full legal name / trading name]</span>
+      , <span class="placeholder">[TO FILL: postal address]</span>, the data
+      controller for the personal data described here. Contact:{' '}
+      <span class="placeholder">
+        [TO FILL: privacy@dataceam.com or jawad@dataceam.com]
+      </span>
+      . ICO registration number:{' '}
+      <span class="placeholder">
+        [TO FILL: if registered with the Information Commissioner's Office]
+      </span>
+      .
+    </p>
+
+    <h2>What we collect</h2>
+    <ul>
+      <li>
+        <strong>Email correspondence.</strong> If you email us, we keep your
+        name, email address and what you tell us.
+      </li>
+      <li>
+        <strong>Booking details.</strong> If you book a call through our booking
+        provider (<span class="placeholder">[TO FILL: Cal.com]</span>), we
+        receive your name, email, chosen time and any notes you add. The booking
+        provider processes this under its own privacy policy.
+      </li>
+      <li>
+        <strong>Website analytics.</strong> We use Cloudflare Web Analytics,
+        which doesn't use cookies or collect personal data to identify you. It
+        records aggregate figures such as page views, referrers and country.
+      </li>
+    </ul>
+    <p>This site sets no cookies.</p>
+
+    <h2>Why we use it, and on what legal basis</h2>
+    <ul>
+      <li>
+        To reply to you and arrange calls —{' '}
+        <strong>legitimate interests</strong> in responding to enquiries, or
+        steps <strong>before entering a contract</strong> with you.
+      </li>
+      <li>
+        To understand how the site is used, in aggregate —{' '}
+        <strong>legitimate interests</strong>.
+      </li>
+    </ul>
+    <p>
+      We don't sell your personal data, and we don't use it for automated
+      decision-making.
+    </p>
+
+    <h2>Who we share it with</h2>
+    <ul>
+      <li>
+        Service providers that run the site, email and booking:{' '}
+        <span class="placeholder">
+          [TO FILL: Cloudflare, email provider, Cal.com]
+        </span>
+        .
+      </li>
+      <li>
+        With your agreement only: an AI data buyer, when you've asked to be
+        introduced.
+      </li>
+    </ul>
+    <p>
+      Some providers may process data outside the UK. Where they do, they rely
+      on appropriate safeguards such as the UK International Data Transfer
+      Agreement or adequacy regulations.
+    </p>
+
+    <h2>How long we keep it</h2>
+    <ul>
+      <li>
+        Enquiries and booking details:{' '}
+        <span class="placeholder">[TO FILL: e.g. 24 months]</span> after our
+        last contact, unless we start working together.
+      </li>
+      <li>
+        Analytics: aggregate only, retained by Cloudflare under its own policy.
+      </li>
+    </ul>
+
+    <h2>Your rights</h2>
+    <p>
+      You can ask to access, correct or delete your personal data, to restrict
+      or object to how we use it, and to receive a copy in a portable format.
+      Email <span class="placeholder">[TO FILL: contact email]</span>. We'll
+      reply within one month.
+    </p>
+    <p>
+      If you're unhappy with how we've handled your data, you can complain to
+      the Information Commissioner's Office (
+      <a href="https://ico.org.uk/make-a-complaint/">ico.org.uk</a>).
+    </p>
+
+    <h2>Changes</h2>
+    <p>
+      We'll update this page if anything changes and revise the "last updated"
+      date.
+    </p>
+  </article>
 </Base>
