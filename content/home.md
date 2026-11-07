@@ -1,135 +1,72 @@
 ---
 page: home
-status: APPROVED — copy supplied by Jawad 2026-11-07 (verbatim)
-title: "Dataceam — What your company's records could be worth to AI developers"
-description: "Dataceam connects companies that hold years of business records with vetted AI data buyers who review, clean and license them. Free to you."
+status: APPROVED — v3 brief supplied by Jawad 2026-11-07 (verbatim; US & Canada audience)
+title: "Dataceam — Could your company’s records be licensed for AI?"
+description: "Dataceam helps businesses in the US and Canada explore AI licensing opportunities for the records they already own. No charge to your business for an introduction."
 ---
 
-<!-- Copy is Jawad's own wording. Use it verbatim. Layout notes are in [brackets]. -->
+<!-- Copy is Jawad's own wording. Use it verbatim. Layout notes are in [brackets]. No founder name anywhere. -->
 
-## Hero
+## Header
 
-# Your company's records could be worth $50K to $3M+ to AI developers
+[Dataceam logo] · Nav: "Data examples" → #examples · "How it works" → #how-it-works · Button: "Get in touch" → opens email dialog
 
-AI labs have run out of public internet to learn from. What they need now is the record of how real businesses work. Dataceam connects companies that hold that data with vetted buyers who review it, clean it and license it.
+## 1. Opening section
 
-[Button: See what your data could be worth → #contact]
+# Could your company’s records be licensed for AI?
 
-Free to you. You keep your data, your business and the final say.
+The guides your team writes, the problems it solves and the processes it documents can be useful to AI developers. Dataceam helps businesses in the US and Canada explore licensing opportunities for records they already own.
 
-[Visual: a mosaic of square tiles naming typical source tools — Slack, GitHub, Salesforce, Zendesk, Google Drive, QuickBooks, Jira, Notion, HubSpot — decorative, aria-hidden.]
+A licensing agreement can create a new source of revenue from work your team has already done.
 
-## Why your data has value
+[Button: Explore data examples → scrolls to #examples]
 
-Eyebrow: Why your data has value
+## 2. Data types and examples (id: examples)
 
-### The trail is what's worth paying for
+### What does your team already document?
 
-Every ticket closed, deal logged and decision made in a thread leaves a record: what was asked, the steps someone took, what they checked, and how it ended. Your tools have been keeping that trail for years.
+You may recognize some of these records in your own business. Select a category to see an example.
 
-AI developers turn those records into worked examples. A model studies thousands of them, practises the same tasks, and is then tested on real work it has never seen. That kind of data doesn't exist on the public web, which is why buyers pay for it.
+[Three expandable rows; first open by default. Category + examples always visible; detail revealed on click.]
 
-You're selling a licensed, cleaned copy. Your original data stays where it is, and nothing about how you work changes.
-
-## What kinds of data qualify
-
-Eyebrow: What kinds of data qualify
-
-### Data from almost every part of a business can count
-
-If your team has worked in the same tools for years, you likely already hold what buyers look for.
-
-[8 cards: title / what it covers / typical sources]
-
-| Card title | What it covers | Typical sources |
+| Category | Always-visible examples | Expanded detail |
 |---|---|---|
-| Conversations | Team threads and email where work gets agreed, with the reasoning along the way | Slack, Microsoft Teams, Gmail, Outlook |
-| Code and engineering | Repositories with their history, pull requests, bug tracking and technical docs | GitHub, GitLab, Bitbucket, Linear |
-| Documents and files | Contracts, reports, SOPs, policies, decks and knowledge bases | Google Drive, SharePoint, Notion, Dropbox |
-| Sales and CRM | Deals, pipelines, playbooks and the customer lifecycle | Salesforce, HubSpot |
-| Finance and accounting | Invoices, ledgers, reconciliations, approvals and reporting workflows | QuickBooks, NetSuite |
-| Support and tickets | Each request from first message to resolution, with every step in between | Zendesk, Jira, ServiceNow |
-| Operations and logistics | Fulfilment, inventory, orders and internal process docs | ERP and order systems |
-| Legal and compliance | Contract review, governance and compliance procedures | Document and contract tools |
+| Software and engineering | Bug reports, test cases, technical guides | A bug report becomes more useful when it connects the original problem to the fix and the test that confirmed it worked. A history of those decisions shows how your engineers solve problems. |
+| Operations and logistics | Inspection records, production procedures, exception reports | A delivery exception log might show what went wrong, which options a dispatcher considered and how the shipment was recovered. Those details capture decisions that a standard procedure can miss. |
+| Support and troubleshooting | Knowledge articles, repair guides, resolved issues | A troubleshooting history can connect a reported fault to the checks a technician ran and the repair that worked. That sequence shows how an experienced team moves from symptoms to a solution. |
 
-Closed or liquidated company? Its archives can still qualify, often for a limited time before the software accounts are shut down.
+## 3. Value (after a thin rule; plain body text, figures bold; figures appear only here)
 
-## How it works
+### What could a licensing agreement be worth?
 
-Eyebrow: How it works
+One example is micro1, an AI data licensing program. It lists **US$100,000–$500,000** for qualifying enterprise data partnerships and **US$3 million or more** for exceptionally distinctive datasets. The buyer evaluates each opportunity and sets any offer based on the records’ quality, scale and usefulness.
 
-### From first email to payment, in four steps
+[Link: "See micro1’s published ranges" → https://www.micro1.ai/data-partnerships — verified 2026-11-07: page lists "$100K-500K" Qualified Enterprise Data Partnerships and "$3M+" highly unique proprietary data.]
 
-1. **A free review by email.** Tell us which tools you use, how many years of records you hold and roughly how big your team is. No data changes hands.
-2. **An introduction to the right buyer.** We match you with a vetted AI data buyer whose requirements fit your company, and introduce you directly.
-3. **The buyer reviews, cleans and packages your data.** They connect read-only to the sources you approve, strip out names, contact details and other identifiers, and package the data so AI labs can judge its quality. You get an offer before you commit to anything.
-4. **You approve, sign and get paid.** Nothing is licensed without your written sign-off. Once a deal closes, the buyer pays you directly.
+## 4. Dataceam’s role (id: how-it-works)
 
-## What it could be worth
+### From a first question to a buyer conversation
 
-Eyebrow: What it could be worth
+Tell us what your company does and what kinds of records your team has built up. If a licensing program looks relevant, we’ll explain what the buyer is looking for and how to get in touch. You decide whether to take the next step. From there, you and the buyer discuss the records, the terms and any payment directly.
 
-### Payouts range from $50K to $3M+
+There’s no charge to your business for an introduction. Dataceam may earn a referral fee from the program if a deal goes ahead and qualifies.
 
-Buyers price data on its quality, how unique it is, and how much of it there is.
+[Closing line in normal readable body text — this is the Home referral disclosure.]
 
-[3 cards: name / range / typical profile]
+## 5. Final contact (id: contact)
 
-| Card | Range | Typical profile |
-|---|---|---|
-| Starter | $50K – $500K | A focused set of records from one or two systems, often a 20–50 person company |
-| Established | $500K – $3M | Years of records across several teams and business functions |
-| Exceptional | $3M+ | Rare, proprietary operational data of high value to frontier AI |
+### Have a particular set of records in mind?
 
-These are typical ranges from current buyers, not a guarantee. The final figure depends on your data and is agreed with the buyer before you sign.
+A couple of sentences about your business and the records you have are enough to start.
 
-## Privacy and control
+[Button: Get in touch → opens email dialog]
 
-Eyebrow: Privacy and control
+## Email dialog (shared by header button and final button)
 
-### You decide what goes, and it's all in writing
+Title: Email Dataceam
 
-We only introduce companies to buyers who commit to the protections below. Each one is confirmed in your contract before anything is shared.
+What does your company do, what kinds of records does it own, and roughly how many years do they cover? A brief description is all we need for the first conversation. Please leave out files and confidential details.
 
-- **You choose the sources.** You approve every system and dataset, and sign the terms first.
-- **Read-only, encrypted access.** Buyers copy data; they never change anything in your tools.
-- **Personal details removed.** Names, emails, customer details and account numbers are stripped before data leaves processing.
-- **Nothing released unpaid.** Buyers see redacted samples only until a deal is paid.
-- **Never sold to competitors.** Data is licensed to AI labs and research teams under contract, and never published.
-- **Kept separate, then deleted.** Your data is stored apart from other companies' data, and raw copies are deleted on an agreed schedule.
+[Primary action: "Open email draft" → mailto:`site.email`?subject=Business data licensing inquiry]
 
-## Who qualifies
-
-Eyebrow: Who qualifies
-
-### A good fit usually looks like this
-
-- **Team size:** 20+ staff is ideal; some buyers accept teams from 10.
-- **History:** several years of records, ideally 5+, spread across more than one system.
-- **Language:** mainly English, though some buyers accept other European languages.
-- **Ownership:** the data is yours to license, not held for clients under contract.
-- **Strong sectors:** software and IT services, agencies, logistics, manufacturing, wholesale and B2B services.
-
-Not sure? Send us a short email and we'll tell you.
-
-## About Dataceam
-
-Eyebrow: About Dataceam
-
-### An independent scout, not a data broker
-
-We at Dataceam help companies find value in data they're already sitting on. We research AI data buyers, check their terms, and only introduce you to buyers we've vetted. We're independent and don't represent any single buyer, so we can point you to whichever one fits your company best.
-
-**How we're paid:** The buyer pays us a referral fee when a deal closes. You pay nothing for our help.
-
-[Keep this disclosure visible — not fine print.]
-
-## Final call to action
-
-### Find out what your data is worth
-
-Email us a few lines about your company. We'll reply with whether your company qualifies, which buyers fit, and roughly what range to expect. No commitment, and no data shared.
-
-[Button: Email us → mailto]
-
-Or write directly to [contact email — `site.email`, placeholder until supplied]
+[Address shown as selectable text + "Copy email address" button. Address = `site.email` — placeholder until Jawad supplies it.]
