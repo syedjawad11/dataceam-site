@@ -12,6 +12,7 @@ Status: `todo` · `in-progress` · `review` · `blocked` · `done`
 | T-005 | 404, robots.txt, sitemap, OG image | done | task/005-seo-basics | #3 |
 | T-006 | Insights skeleton + RSS | done | task/006-insights | #4 |
 | T-007 | Blue/grey/black restyle + email-only contact | done | task/007-restyle-email-only | #8 |
+| T-008 | Home page v2: Jawad's new copy + tile design | in-progress | task/008-home-copy-v2 | — |
 
 ---
 
@@ -78,3 +79,27 @@ Files: `src/content.config.ts` (collection `insights`: title, description, pubDa
 Goal: Jawad doesn't do calls. All contact is by email. New visual direction: blue, grey and black, modern and clean.
 Copy source: updated `content/home.md`, `content/faq.md`, `content/privacy.md` (all booking/call wording removed).
 Acceptance: no "call", "Cal.com" or booking link anywhere in `dist`; `calUrl` removed from `src/config/site.ts`; tokens in `@theme` switched to the palette below with AA contrast; OG image regenerated in the new palette; `check:full` passes.
+
+## T-008 — Home page v2: new copy + tile/card design
+Goal: Replace the whole Home page with Jawad's new copy (`content/home.md`, use it VERBATIM — do not reword, add or drop sentences) and give the page a modern tiled look: square/rounded cards and grids, still the blue / grey / black palette in `@theme`.
+Files: `src/pages/index.astro`, `src/styles/global.css`, `src/components/EmailCta.astro` (button label + href props), `scripts/content-lint.mjs` (rules below). No new dependencies, no client JS.
+Sections, in order (each a `<section>` with `aria-labelledby`; every section after the hero has a small blue uppercase eyebrow line above its h2 — the "Eyebrow:" lines in home.md; the eyebrow is a `<p>`, the "###" line is the `<h2>`):
+1. **Hero** (dark band). Two columns on ≥64rem: left = h1, lead paragraph, primary button "See what your data could be worth" linking to `#contact`, small line under it. Right = decorative mosaic of ~9 square tiles (3×3 grid, aspect-ratio 1, rounded, subtle borders/blue tints of varying opacity) each showing a tool name: Slack, GitHub, Salesforce, Zendesk, Google Drive, QuickBooks, Jira, Notion, HubSpot. Mosaic is `aria-hidden="true"`; hide it below 48rem or show it below the text — your choice, no horizontal scroll at 360px.
+2. **Why your data has value**: three paragraphs; on desktop a 2-column layout (heading left, text right) or three paragraphs as three tiles — keep readable.
+3. **What kinds of data qualify**: 8 cards in a responsive grid (1 col mobile, 2 tablet, 4 desktop). Each card: title as `<h3>`, "What it covers" text, then a "Typical sources" line rendered as small grey pills/chips. Give each card a small decorative inline SVG or monogram square in the corner (aria-hidden). Then the "Closed or liquidated company?" line as a highlighted callout box.
+4. **How it works**: 4 numbered step tiles (01–04) in a grid (1 / 2 / 4 columns), bold title + text, matching the existing `.home-steps` style.
+5. **What it could be worth**: 3 pricing-style cards side by side (stack on mobile): name, large range figure, typical profile. "Established" card visually emphasised (blue border or dark fill). Under them the disclaimer line in muted text, visible (not hidden).
+6. **Privacy and control**: intro paragraph, then the 6 protections as a 3×2 grid of tiles (1 col mobile, 2 tablet, 3 desktop), each with a small check/shield icon (inline SVG, aria-hidden), bold title + text. Keep the list semantics (`<ul role="list">`).
+7. **Who qualifies**: the 5 criteria as tiles/rows (label bold), then "Not sure? Send us a short email and we'll tell you." where "Send us a short email" links to `#contact`.
+8. **About Dataceam**: paragraph, then the "How we're paid" disclosure in a clearly visible bordered box (not fine print).
+9. **Final CTA** (`id="contact"`, dark band, `tabindex="-1"` as now): h2, paragraph, primary button "Email us" (mailto when `site.email` is set, otherwise `#contact` + visible placeholder as today), and the "Or write directly to …" line showing the email or the visible `[TO FILL: contact email]` placeholder.
+Remove the old sections entirely: liquidators, "Who I am", the standalone disclosure band. Keep Organization JSON-LD; drop the Person JSON-LD block (no person section any more). Update `title`/`description` from the home.md front matter.
+Content-lint changes (`scripts/content-lint.mjs`, keep and extend the self-test):
+- Home (`data-page="home"`) must now contain `The buyer pays us a referral fee when a deal closes. You pay nothing for our help.` instead of the old disclosure; FAQ still requires `I'm paid a referral fee by the buyer. It costs you nothing.`
+- Allow-list (must not trigger) exactly these phrases: `not a data broker`, `not a guarantee`, `for a limited time before the software accounts are shut down`. Every other occurrence of those words still fails. Add self-test cases for both the allowed phrase and a still-forbidden variant.
+Acceptance:
+- [ ] All copy in home.md appears verbatim in `dist/index.html` in order; no old Home copy remains.
+- [ ] No "call"/booking wording, no buyer names, no LinkedIn.
+- [ ] Responsive: no horizontal scroll at 360px; grids collapse as described; AA contrast on all text pairs; visible focus states.
+- [ ] `npm run check` passes (CC runs `check:full`).
+Out of scope: FAQ, privacy, header/footer.

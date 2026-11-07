@@ -11,8 +11,15 @@ const rules = [
   /official\s+partner/gi,
   /act\s+now|limited\s+time|don't\s+miss|get\s+rich/gi,
 ];
-const disclosure =
-  "I'm paid a referral fee by the buyer. It costs you nothing.";
+const disclosures = {
+  home: 'The buyer pays us a referral fee when a deal closes. You pay nothing for our help.',
+  faq: "I'm paid a referral fee by the buyer. It costs you nothing.",
+};
+const allowedPhrases = [
+  'not a data broker',
+  'not a guarantee',
+  'for a limited time before the software accounts are shut down',
+];
 
 async function findFiles(directory, extension, optional = false) {
   let entries;
@@ -35,8 +42,16 @@ async function findFiles(directory, extension, optional = false) {
 
 function lintSource(filename, source) {
   const errors = [];
+  // Mask only complete, exact phrases, preserving offsets and line numbers.
+  const checkedSource = allowedPhrases.reduce(
+    (text, phrase) =>
+      text.replaceAll(new RegExp(`\\b${phrase}\\b`, 'g'), (match) =>
+        ' '.repeat(match.length),
+      ),
+    source,
+  );
   for (const rule of rules) {
-    for (const match of source.matchAll(rule)) {
+    for (const match of checkedSource.matchAll(rule)) {
       const line = source.slice(0, match.index).split('\n').length;
       errors.push(
         `${filename}:${line}: forbidden match ${JSON.stringify(match[0])}`,
@@ -48,6 +63,7 @@ function lintSource(filename, source) {
     [path.join('dist', 'index.html'), 'home'],
     [path.join('dist', 'faq', 'index.html'), 'faq'],
   ]).get(filename);
+  const disclosure = disclosures[page];
   if (
     page &&
     new RegExp(`\\bdata-page\\s*=\\s*["']${page}["']`).test(source) &&
@@ -149,6 +165,18 @@ function selfTest() {
   }
   assert.equal(lintSource(filename, 'guarantee guarantee').length, 2);
   assert.deepEqual(lintSource(filename, 'Independent referral service.'), []);
+  for (const [allowed, forbiddenVariant] of [
+    [allowedPhrases[0], 'not a data brokerage'],
+    [allowedPhrases[1], 'not a guaranteed payout'],
+    [allowedPhrases[2], 'for a limited time before accounts close'],
+  ]) {
+    assert.deepEqual(lintSource(filename, `Safe copy. ${allowed}.`), []);
+    assert.equal(lintSource(filename, forbiddenVariant).length, 1);
+    assert.equal(lintSource(filename, allowed.toUpperCase()).length, 1);
+    const errors = lintSource(filename, `${allowed}\n${forbiddenVariant}`);
+    assert.equal(errors.length, 1);
+    assert.ok(errors[0].startsWith(`${filename}:2:`));
+  }
   for (const page of ['home', 'faq']) {
     const file = path.join(
       'dist',
@@ -158,7 +186,12 @@ function selfTest() {
     for (const quote of ['"', "'"]) {
       const marker = `<main data-page=${quote}${page}${quote}>`;
       assert.equal(lintSource(file, marker).length, 1);
-      assert.deepEqual(lintSource(file, `${marker}${disclosure}`), []);
+      assert.deepEqual(lintSource(file, `${marker}${disclosures[page]}`), []);
+      const otherPage = page === 'home' ? 'faq' : 'home';
+      assert.equal(
+        lintSource(file, `${marker}${disclosures[otherPage]}`).length,
+        1,
+      );
     }
     assert.deepEqual(lintSource(file, '<main>Placeholder</main>'), []);
   }
