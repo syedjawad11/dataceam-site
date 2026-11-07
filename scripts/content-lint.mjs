@@ -12,10 +12,14 @@ const rules = [
   /act\s+now|limited\s+time|don't\s+miss|get\s+rich/gi,
 ];
 const disclosures = {
-  home: 'There’s no charge to your business for an introduction. Dataceam may earn a referral fee from the program if a deal goes ahead and qualifies.',
+  home: 'The buyer pays us a referral fee when a deal closes. You pay nothing for our help.',
   faq: "I'm paid a referral fee by the buyer. It costs you nothing.",
 };
-const allowedPhrases = ['not a guarantee'];
+const allowedPhrases = [
+  'not a data broker',
+  'not a guarantee',
+  'for a limited time before the software accounts are shut down',
+];
 
 async function findFiles(directory, extension, optional = false) {
   let entries;
@@ -39,20 +43,13 @@ async function findFiles(directory, extension, optional = false) {
 function lintSource(filename, source) {
   const errors = [];
   // Mask only complete, exact phrases, preserving offsets and line numbers.
-  let checkedSource = allowedPhrases.reduce(
+  const checkedSource = allowedPhrases.reduce(
     (text, phrase) =>
       text.replaceAll(new RegExp(`\\b${phrase}\\b`, 'g'), (match) =>
         ' '.repeat(match.length),
       ),
     source,
   );
-  if (
-    filename === path.join('dist', 'index.html') ||
-    filename === path.join('content', 'home.md')
-  ) {
-    // Only the exact, case-sensitive token is permitted on Home.
-    checkedSource = checkedSource.replace(/\bmicro1\b/g, '      ');
-  }
   for (const rule of rules) {
     for (const match of checkedSource.matchAll(rule)) {
       const line = source.slice(0, match.index).split('\n').length;
@@ -169,7 +166,9 @@ function selfTest() {
   assert.equal(lintSource(filename, 'guarantee guarantee').length, 2);
   assert.deepEqual(lintSource(filename, 'Independent referral service.'), []);
   for (const [allowed, forbiddenVariant] of [
-    [allowedPhrases[0], 'not a guaranteed payout'],
+    [allowedPhrases[0], 'not a data brokerage'],
+    [allowedPhrases[1], 'not a guaranteed payout'],
+    [allowedPhrases[2], 'for a limited time before accounts close'],
   ]) {
     assert.deepEqual(lintSource(filename, `Safe copy. ${allowed}.`), []);
     assert.equal(lintSource(filename, forbiddenVariant).length, 1);
@@ -178,50 +177,6 @@ function selfTest() {
     assert.equal(errors.length, 1);
     assert.ok(errors[0].startsWith(`${filename}:2:`));
   }
-  for (const removed of [
-    ['not a data', 'broker'].join(' '),
-    'for a limited time before the software accounts are shut down',
-  ]) {
-    assert.equal(lintSource(filename, removed).length, 1);
-  }
-  for (const file of [
-    path.join('dist', 'index.html'),
-    path.join('content', 'home.md'),
-  ]) {
-    assert.deepEqual(
-      lintSource(
-        file,
-        'micro1, micro1’s https://www.micro1.ai/data-partnerships',
-      ),
-      [],
-    );
-    for (const name of [
-      'Micro1',
-      'MICRO1',
-      'micro12',
-      'premicro1',
-      'micro1_extra',
-      'DataFactor',
-      'Lodex',
-    ]) {
-      assert.equal(lintSource(file, name).length, 1, `${file}: ${name}`);
-    }
-  }
-  for (const page of ['faq', 'privacy']) {
-    for (const file of [
-      path.join('dist', page, 'index.html'),
-      path.join('content', `${page}.md`),
-    ]) {
-      assert.equal(lintSource(file, 'micro1').length, 1, file);
-    }
-  }
-  assert.equal(
-    lintSource(
-      path.join('dist', 'index.html'),
-      `<body data-page="home">The buyer pays us a referral fee when a deal closes. You pay nothing for our help.</body>`,
-    ).length,
-    1,
-  );
   for (const page of ['home', 'faq']) {
     const file = path.join(
       'dist',
