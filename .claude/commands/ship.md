@@ -5,7 +5,7 @@ description: Run all gates, push the task branch, open/update the PR, post the p
 Ship the current task branch. Follow these steps exactly and stop on any failure.
 
 1. Confirm the current branch matches `task/*`. If it's `main`, stop and tell Jawad.
-2. Run `npm run check:full`. If anything fails, stop, report the failing gate and output, and send the fix to Codex (do not fix it yourself).
+2. Stage everything (`git add -A`, then `git status` to confirm no `.env*` file is staged), then run `npm run check:full` (gitleaks scans staged changes). If anything fails, stop, report the failing gate and output, and send the fix to Codex (do not fix it yourself).
 3. Commit outstanding changes with a conventional commit message (`feat:`, `fix:`, `chore:` …), then `git push -u origin <branch>`.
 4. Open or update the PR: `gh pr create --fill` (or `gh pr view` if one already exists).
 5. Wait for the Cloudflare Pages preview deploy (`gh pr checks --watch`, or `npx wrangler pages deployment list --project-name dataceam`), then post the preview URL with a 2–3 line summary.

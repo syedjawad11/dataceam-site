@@ -4,7 +4,7 @@ Status: `todo` · `in-progress` · `review` · `blocked` · `done`
 
 | ID | Title | Status | Branch | PR |
 |---|---|---|---|---|
-| T-000 | Tooling, quality gates, hello world | in-progress | task/000-tooling | — |
+| T-000 | Tooling, quality gates, hello world | review | task/000-tooling | — |
 | T-001 | Base layout, header, footer, tokens, SEO head | todo | — | — |
 | T-002 | Home page | blocked (copy approval) | — | — |
 | T-003 | FAQ page | blocked (copy approval) | — | — |

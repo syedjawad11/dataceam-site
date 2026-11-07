@@ -9,7 +9,14 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "eslint . && prettier --check .",
+    "format": "prettier --write .",
+    "content-lint": "node scripts/content-lint.mjs",
+    "content-lint:test": "node scripts/content-lint.mjs --self-test",
+    "links": "linkinator dist --recurse --skip '^https?://(?!(localhost|127\\.0\\.0\\.1|\\[::1\\]))'",
+    "check": "astro check && astro build && npm run lint && npm run content-lint:test && npm run content-lint && npm run links",
+    "check:full": "npm run check && lhci autorun && playwright test && gitleaks git --no-banner --redact && gitleaks git --staged --no-banner --redact"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",
