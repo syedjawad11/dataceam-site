@@ -32,6 +32,7 @@ Last updated: 2026-11-07
 - [ ] Privacy: legal or trading name, postal address, ICO registration number, retention period, last-updated date
 - [ ] Email provider (Zoho or Google Workspace), and whether cold outreach uses a secondary domain. This blocks Phase 2.
 - [ ] Cloudflare Web Analytics token: set `PUBLIC_CF_BEACON_TOKEN` in the Pages env vars to turn the beacon on
+- [ ] **Revisit later (Jawad, 2026-11-07):** T-011 closed-company callout on Home. CC added this sentence on its own: "In a bankruptcy or liquidation, the trustee or liquidator usually needs to approve the deal." Reason: when a business is bankrupt or liquidated, the owner usually can't sign a deal alone. Jawad to decide whether to keep it or leave it out.
 
 ## Next
 1. Fill placeholders as details arrive. Edit `content/*.md` (CC) → Codex updates the pages → preview → "approve" → merge.
