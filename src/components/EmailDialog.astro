@@ -1,0 +1,130 @@
+---
+import { site } from '../config/site';
+
+const pending = !site.email.trim() || site.email.startsWith('TODO_');
+---
+
+<dialog
+  id="email-dialog"
+  class="email-dialog"
+  aria-labelledby="email-dialog-title"
+  aria-describedby="email-dialog-copy"
+>
+  <button type="button" class="email-dialog-close" aria-label="Close" autofocus>
+    <span aria-hidden="true">×</span>
+  </button>
+  <div class="home-stack">
+    <h2 id="email-dialog-title">Email Dataceam</h2>
+    <p id="email-dialog-copy">
+      What does your company do, what kinds of records does it own, and roughly
+      how many years do they cover? A brief description is all we need for the
+      first conversation. Please leave out files and confidential details.
+    </p>
+    {pending ? (
+      <button type="button" class="button button-primary" disabled>
+        Open email draft
+      </button>
+    ) : (
+      <a
+        class="button button-primary"
+        href={`mailto:${site.email}?subject=Business%20data%20licensing%20inquiry`}
+      >
+        Open email draft
+      </a>
+    )}
+    <div class="email-dialog-address">
+      <span class="email-address" id="email-address">
+        {pending ? '[TO FILL: contact email]' : site.email}
+      </span>
+      <button
+        type="button"
+        class="button button-secondary"
+        data-copy-email
+        disabled={pending}
+      >
+        Copy email address
+      </button>
+    </div>
+    <p class="email-dialog-status" aria-live="polite" aria-atomic="true"></p>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('#email-dialog');
+  const address = document.querySelector<HTMLElement>('#email-address');
+  const status = dialog?.querySelector<HTMLElement>('[aria-live]');
+  let opener: HTMLElement | null = null;
+
+  if (dialog && typeof dialog.showModal === 'function') {
+    // Keep links useful without JavaScript; enhance them to native buttons.
+    document
+      .querySelectorAll<HTMLAnchorElement>('a[data-email-dialog-open]')
+      .forEach((link) => {
+        const button = document.createElement('button');
+        for (const attribute of link.attributes) {
+          if (attribute.name !== 'href')
+            button.setAttribute(attribute.name, attribute.value);
+        }
+        button.type = 'button';
+        button.append(...link.childNodes);
+        link.replaceWith(button);
+      });
+
+    document
+      .querySelectorAll<HTMLElement>('[data-email-dialog-open]')
+      .forEach((trigger) => {
+        trigger.setAttribute('aria-haspopup', 'dialog');
+        trigger.setAttribute('aria-controls', dialog.id);
+        trigger.addEventListener('click', (event) => {
+          event.preventDefault();
+          opener = trigger;
+          if (status) status.textContent = '';
+          dialog.showModal();
+        });
+      });
+
+    dialog
+      .querySelector('.email-dialog-close')
+      ?.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('close', () => opener?.focus());
+    const isBackdrop = (event: PointerEvent) => {
+      const rect = dialog.getBoundingClientRect();
+      return (
+        event.target === dialog &&
+        (event.clientX < rect.left ||
+          event.clientX > rect.right ||
+          event.clientY < rect.top ||
+          event.clientY > rect.bottom)
+      );
+    };
+    let backdropPressed = false;
+    dialog.addEventListener('pointerdown', (event) => {
+      backdropPressed = isBackdrop(event);
+    });
+    dialog.addEventListener('click', (event) => {
+      if (backdropPressed && isBackdrop(event)) dialog.close();
+      backdropPressed = false;
+    });
+
+    dialog
+      .querySelector('[data-copy-email]')
+      ?.addEventListener('click', async () => {
+        if (!address || !status) return;
+        status.textContent = '';
+        try {
+          await navigator.clipboard.writeText(
+            address.textContent?.trim() ?? '',
+          );
+          status.textContent = 'Email address copied';
+        } catch {
+          const range = document.createRange();
+          range.selectNodeContents(address);
+          const selection = window.getSelection();
+          selection?.removeAllRanges();
+          selection?.addRange(range);
+          status.textContent =
+            'Email address selected. Copy it using your device’s copy command.';
+        }
+      });
+  }
+</script>
