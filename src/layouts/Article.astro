@@ -1,0 +1,50 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { site } from '../config/site';
+import Base from './Base.astro';
+
+type Props = CollectionEntry<'insights'>['data'];
+
+const { title, description, pubDate, updatedDate } = Astro.props;
+const dateFormat = new Intl.DateTimeFormat('en', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  datePublished: pubDate.toISOString(),
+  dateModified: (updatedDate ?? pubDate).toISOString(),
+  ...(site.personName.startsWith('TODO_')
+    ? {}
+    : { author: { '@type': 'Person', name: site.personName } }),
+  publisher: { '@type': 'Organization', name: 'Dataceam' },
+};
+---
+
+<Base title={`${title} | Dataceam`} description={description} jsonLd={jsonLd}>
+  <article>
+    <header>
+      <h1>{title}</h1>
+      <p>
+        Published{' '}
+        <time datetime={pubDate.toISOString()}>
+          {dateFormat.format(pubDate)}
+        </time>
+      </p>
+      {updatedDate && (
+        <p>
+          Updated{' '}
+          <time datetime={updatedDate.toISOString()}>
+            {dateFormat.format(updatedDate)}
+          </time>
+        </p>
+      )}
+    </header>
+    <slot />
+  </article>
+</Base>

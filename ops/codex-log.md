@@ -10,3 +10,4 @@ Escalate to Jawad if first-pass rate < ~60% or the same failure type repeats 3+ 
 | 2026-11-07 | T-001 | 1 | build, types, lint, content-lint | linkinator 404s: nav/footer linked to /faq/, /privacy/, /insights/ which didn't exist; no `data-page` hook on Base | ~3m | retry |
 | 2026-11-07 | T-001 | 2 | all (`check:full` green, run by CC) | first dispatch hung: `codex exec` waits on stdin unless given `< /dev/null` (CC fix) | 36s | pass |
 | 2026-11-07 | T-005 | 1 | all (`check:full` green, run by CC) | none | 116s | pass |
+| 2026-11-07 | T-006 | 1 | all (`check:full` green, run by CC) | none | 96s | pass |
