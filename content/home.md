@@ -13,13 +13,13 @@ description: "Your company's records may have value to AI data buyers. I review 
 
 Years of tickets, documents, code and project history can help train AI systems. I help companies license that data to vetted AI data buyers, without selling the business and at no cost to you.
 
-[Book a 15-minute call] [Email me]
+[Email me]
 
 > I'm paid a referral fee by the buyer. It costs you nothing.
 
 ## How it works
 
-1. **Review what you have.** A short call about the kinds of records you hold and how far back they go. No data changes hands at this stage.
+1. **Tell me what you have.** Email me a few lines about the kinds of records you hold and how far back they go. No data changes hands at this stage.
 2. **Introduction to vetted AI data buyers.** I work with several vetted AI data buyers. If your data fits what they need, I introduce you to the right one.
 3. **License the data, not the business.** You agree terms directly with the buyer. You keep your company, your systems and your customers.
 
@@ -39,7 +39,7 @@ The best fit is usually:
   - Project boards
   - Invoices
 
-Not sure? Book a call and we'll find out in 15 minutes.
+Not sure? Email me and I'll tell you honestly whether it's a fit.
 
 ## For liquidators and insolvency practitioners
 
@@ -66,8 +66,8 @@ I'm paid a referral fee by the buyer. It costs you nothing.
 
 ## Call to action
 
-### Let's see what your data could do
+### Interested? Email me
 
-Book a 15-minute call, or email me with a line about your company.
+Send a line about your company, the kinds of records you hold and roughly how many years they cover. I'll reply with an honest view of whether there's a fit.
 
-[Book a 15-minute call → TO FILL: Cal.com URL] [Email me]
+[Email me → TO FILL: email address]

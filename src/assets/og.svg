@@ -2,12 +2,12 @@
   <title>Dataceam</title>
   <desc>License the data your company already holds</desc>
   <!-- Colours and font stack mirror src/styles/global.css brand tokens. -->
-  <rect width="1200" height="630" fill="#f4f7f6" />
-  <rect x="64" y="64" width="1072" height="502" rx="24" fill="#ffffff" stroke="#d5dfdc" stroke-width="2" />
-  <rect x="112" y="124" width="72" height="8" rx="4" fill="#0f6663" />
+  <rect width="1200" height="630" fill="#0B0F17" />
+  <rect x="64" y="64" width="1072" height="502" rx="24" fill="#111827" stroke="#1F2937" stroke-width="2" />
+  <rect x="112" y="124" width="72" height="8" rx="4" fill="#2563EB" />
   <g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
-    <text x="112" y="272" font-size="92" font-weight="700" letter-spacing="-3" fill="#0f6663">Dataceam</text>
-    <text x="112" y="378" font-size="44" font-weight="400" fill="#1f2937">
+    <text x="112" y="272" font-size="92" font-weight="700" letter-spacing="-3" fill="#FFFFFF">Dataceam</text>
+    <text x="112" y="378" font-size="44" font-weight="400" fill="#CBD5E1">
       <tspan x="112">License the data your</tspan>
       <tspan x="112" dy="60">company already holds</tspan>
     </text>

@@ -1,28 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
+import EmailCta from '../components/EmailCta.astro';
 import { site } from '../config/site';
 
 const title = 'Dataceam — License the data your company already holds';
 const description =
   "Your company's records may have value to AI data buyers. I review what you hold and introduce you to vetted buyers. Free to you — the buyer pays my referral fee.";
-const actions = [
-  {
-    label: 'Book a 15-minute call',
-    href: site.calUrl.startsWith('TODO_') ? '#contact' : site.calUrl,
-    placeholder: site.calUrl.startsWith('TODO_')
-      ? '[TO FILL: Cal.com URL]'
-      : undefined,
-    className: 'button button-primary',
-  },
-  {
-    label: 'Email me',
-    href: site.email.startsWith('TODO_') ? '#contact' : `mailto:${site.email}`,
-    placeholder: site.email.startsWith('TODO_')
-      ? '[TO FILL: jawad@dataceam.com]'
-      : undefined,
-    className: 'button button-secondary',
-  },
-];
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -49,140 +32,133 @@ const jsonLd = {
 
 <Base page="home" title={title} description={description} jsonLd={jsonLd}>
   <section class="home-section home-hero" aria-labelledby="hero-heading">
-    <h1 id="hero-heading">
-      Your company's data may be worth more than you think
-    </h1>
-    <p class="home-lead">
-      Years of tickets, documents, code and project history can help train AI
-      systems. I help companies license that data to vetted AI data buyers,
-      without selling the business and at no cost to you.
-    </p>
-    <div class="home-actions">
-      {actions.map((action, index) => (
-        <div class="home-action">
-          <a
-            class={action.className}
-            href={action.href}
-            aria-describedby={
-              action.placeholder ? `hero-action-${index}` : undefined
-            }
-          >
-            {action.label}
-          </a>
-          {action.placeholder && (
-            <span id={`hero-action-${index}`} class="placeholder">
-              {action.placeholder}
-            </span>
-          )}
-        </div>
-      ))}
+    <div class="shell home-inner">
+      <h1 id="hero-heading">
+        Your company's data may be worth more than you think
+      </h1>
+      <p class="home-lead">
+        Years of tickets, documents, code and project history can help train AI
+        systems. I help companies license that data to vetted AI data buyers,
+        without selling the business and at no cost to you.
+      </p>
+      <EmailCta noteId="hero-email-note" />
+      <p class="home-disclosure">
+        I'm paid a referral fee by the buyer. It costs you nothing.
+      </p>
     </div>
-    <p class="home-disclosure">
-      I'm paid a referral fee by the buyer. It costs you nothing.
-    </p>
   </section>
 
   <section class="home-section" aria-labelledby="how-it-works">
-    <h2 id="how-it-works">How it works</h2>
-    <ol class="home-steps">
-      <li>
-        <strong>Review what you have.</strong> A short call about the kinds of
-        records you hold and how far back they go. No data changes hands at this
-        stage.
-      </li>
-      <li>
-        <strong>Introduction to vetted AI data buyers.</strong> I work with
-        several vetted AI data buyers. If your data fits what they need, I
-        introduce you to the right one.
-      </li>
-      <li>
-        <strong>License the data, not the business.</strong> You agree terms
-        directly with the buyer. You keep your company, your systems and your
-        customers.
-      </li>
-    </ol>
-    <p>
-      What a license may be worth depends on the data: its type, volume, age and
-      quality. I'll give you an honest view early, including when it's not a
-      fit.
-    </p>
+    <div class="shell home-inner">
+      <h2 id="how-it-works">How it works</h2>
+      <ol class="home-steps" role="list">
+        <li>
+          <strong>Tell me what you have.</strong> Email me a few lines about the
+          kinds of records you hold and how far back they go. No data changes
+          hands at this stage.
+        </li>
+        <li>
+          <strong>Introduction to vetted AI data buyers.</strong> I work with
+          several vetted AI data buyers. If your data fits what they need, I
+          introduce you to the right one.
+        </li>
+        <li>
+          <strong>License the data, not the business.</strong> You agree terms
+          directly with the buyer. You keep your company, your systems and your
+          customers.
+        </li>
+      </ol>
+      <p>
+        What a license may be worth depends on the data: its type, volume, age
+        and quality. I'll give you an honest view early, including when it's not
+        a fit.
+      </p>
+    </div>
   </section>
 
   <section class="home-section" aria-labelledby="who-qualifies">
-    <h2 id="who-qualifies">Who qualifies</h2>
-    <p>The best fit is usually:</p>
-    <ul>
-      <li>
-        <strong>Company size:</strong>{' '}
-        <span class="placeholder">
-          [TO FILL: e.g. 10+ staff, or a smaller team with deep records]
-        </span>
-      </li>
-      <li>
-        <strong>History:</strong>{' '}
-        <span class="placeholder">[TO FILL: e.g. 3+ years of records]</span>
-      </li>
-      <li>
-        <strong>Data types:</strong>
-        <ul>
-          <li>CRM records</li>
-          <li>Support tickets</li>
-          <li>Internal documents and SOPs</li>
-          <li>Source code</li>
-          <li>Project boards</li>
-          <li>Invoices</li>
-        </ul>
-      </li>
-    </ul>
-    <p>Not sure? Book a call and we'll find out in 15 minutes.</p>
+    <div class="shell home-inner">
+      <h2 id="who-qualifies">Who qualifies</h2>
+      <p>The best fit is usually:</p>
+      <ul>
+        <li>
+          <strong>Company size:</strong>{' '}
+          <span class="placeholder">
+            [TO FILL: e.g. 10+ staff, or a smaller team with deep records]
+          </span>
+        </li>
+        <li>
+          <strong>History:</strong>{' '}
+          <span class="placeholder">[TO FILL: e.g. 3+ years of records]</span>
+        </li>
+        <li>
+          <strong>Data types:</strong>
+          <ul class="data-pills" role="list">
+            <li>CRM records</li>
+            <li>Support tickets</li>
+            <li>Internal documents and SOPs</li>
+            <li>Source code</li>
+            <li>Project boards</li>
+            <li>Invoices</li>
+          </ul>
+        </li>
+      </ul>
+      <p>Not sure? Email me and I'll tell you honestly whether it's a fit.</p>
+    </div>
   </section>
 
   <section class="home-section" aria-labelledby="liquidators">
-    <h2 id="liquidators">For liquidators and insolvency practitioners</h2>
-    <p>
-      A closed company's data can be one more asset to realise for creditors.
-    </p>
-    <ul>
-      <li>
-        <strong>No cost to the estate.</strong> The buyer pays my fee.
-      </li>
-      <li>
-        <strong>Minimal time from you.</strong> I handle the buyer side; you
-        approve what's shared.
-      </li>
-      <li>
-        <strong>Contract first.</strong> Nothing is shared until a contract is
-        signed, and de-identification is agreed in that contract.
-      </li>
-    </ul>
+    <div class="shell home-inner">
+      <h2 id="liquidators">For liquidators and insolvency practitioners</h2>
+      <p>
+        A closed company's data can be one more asset to realise for creditors.
+      </p>
+      <ul>
+        <li>
+          <strong>No cost to the estate.</strong> The buyer pays my fee.
+        </li>
+        <li>
+          <strong>Minimal time from you.</strong> I handle the buyer side; you
+          approve what's shared.
+        </li>
+        <li>
+          <strong>Contract first.</strong> Nothing is shared until a contract is
+          signed, and de-identification is agreed in that contract.
+        </li>
+      </ul>
+    </div>
   </section>
 
   <section class="home-section" aria-labelledby="who-i-am">
-    <h2 id="who-i-am">Who I am</h2>
-    <div class="placeholder home-photo">[TO FILL: photo]</div>
-    <p>
-      <strong class="placeholder">[TO FILL: full name]</strong>
-    </p>
-    <p>
-      <span class="placeholder">
-        [TO FILL: 3–4 line bio — background, why you do this work, where you're
-        based.]
-      </span>
-    </p>
-    <ul>
-      <li>
-        X: <span class="placeholder">[TO FILL: @handle]</span>
-      </li>
-      <li>
-        Email: <span class="placeholder">[TO FILL: jawad@dataceam.com]</span>
-      </li>
-    </ul>
+    <div class="shell home-inner">
+      <h2 id="who-i-am">Who I am</h2>
+      <div class="placeholder home-photo">[TO FILL: photo]</div>
+      <p>
+        <strong class="placeholder">[TO FILL: full name]</strong>
+      </p>
+      <p>
+        <span class="placeholder">
+          [TO FILL: 3–4 line bio — background, why you do this work, where
+          you're based.]
+        </span>
+      </p>
+      <ul>
+        <li>
+          X: <span class="placeholder">[TO FILL: @handle]</span>
+        </li>
+        <li>
+          Email: <span class="placeholder">[TO FILL: jawad@dataceam.com]</span>
+        </li>
+      </ul>
+    </div>
   </section>
 
   <div class="home-section">
-    <p class="home-disclosure">
-      I'm paid a referral fee by the buyer. It costs you nothing.
-    </p>
+    <div class="shell home-inner">
+      <p class="home-disclosure">
+        I'm paid a referral fee by the buyer. It costs you nothing.
+      </p>
+    </div>
   </div>
 
   <section
@@ -191,27 +167,14 @@ const jsonLd = {
     aria-labelledby="contact-heading"
     tabindex="-1"
   >
-    <h2 id="contact-heading">Let's see what your data could do</h2>
-    <p>Book a 15-minute call, or email me with a line about your company.</p>
-    <div class="home-actions">
-      {actions.map((action, index) => (
-        <div class="home-action">
-          <a
-            class={action.className}
-            href={action.href}
-            aria-describedby={
-              action.placeholder ? `contact-action-${index}` : undefined
-            }
-          >
-            {action.label}
-          </a>
-          {action.placeholder && (
-            <span id={`contact-action-${index}`} class="placeholder">
-              {action.placeholder}
-            </span>
-          )}
-        </div>
-      ))}
+    <div class="shell home-inner">
+      <h2 id="contact-heading">Interested? Email me</h2>
+      <p>
+        Send a line about your company, the kinds of records you hold and
+        roughly how many years they cover. I'll reply with an honest view of
+        whether there's a fit.
+      </p>
+      <EmailCta noteId="contact-email-note" prominent />
     </div>
   </section>
 </Base>
