@@ -1,0 +1,25 @@
+---
+import { site } from '../config/site';
+
+const year = new Date().getUTCFullYear();
+const xUrl = `https://x.com/${site.xHandle.replace(/^@/, '')}`;
+---
+
+<footer class="site-footer">
+  <div class="shell footer-content">
+    <ul class="footer-links">
+      <li>
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+      </li>
+      <li>
+        <a href={xUrl}>X</a>
+      </li>
+      <li>
+        <a href="/privacy/">Privacy</a>
+      </li>
+    </ul>
+    <p>
+      © {year} {site.name}
+    </p>
+  </div>
+</footer>

@@ -1,0 +1,36 @@
+---
+import { site } from '../config/site';
+
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/insights/', label: 'Insights' },
+  { href: '/faq/', label: 'FAQ' },
+];
+const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
+---
+
+<header class="site-header">
+  <div class="shell header-content">
+    <a class="site-name" href="/">
+      {site.name}
+    </a>
+    <nav aria-label="Main navigation">
+      <ul class="nav-links">
+        {links.map(({ href, label }) => (
+          <li>
+            <a
+              href={href}
+              aria-current={
+                pathname === (href.replace(/\/+$/, '') || '/')
+                  ? 'page'
+                  : undefined
+              }
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>

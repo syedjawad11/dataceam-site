@@ -1,20 +1,26 @@
 ---
-import '../styles/global.css';
+import Base from '../layouts/Base.astro';
+import { site } from '../config/site';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${site.url}/#organization`,
+      name: site.name,
+      url: site.url,
+    },
+    {
+      '@type': 'Person',
+      '@id': `${site.url}/#person`,
+      name: site.personName,
+    },
+  ],
+};
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Dataceam. Hello world." />
-    <title>Dataceam</title>
-  </head>
-  <body>
-    <main>
-      <h1>Dataceam</h1>
-      <p>Hello world.</p>
-    </main>
-  </body>
-</html>
+<Base title="Dataceam" description="Dataceam. Hello world." jsonLd={jsonLd}>
+  <h1>Dataceam</h1>
+  <p>Hello world.</p>
+</Base>

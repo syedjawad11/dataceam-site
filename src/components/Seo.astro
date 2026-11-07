@@ -1,0 +1,45 @@
+---
+import { site } from '../config/site';
+
+export interface Props {
+  title: string;
+  description: string;
+  canonical?: string | URL;
+  ogImage?: string | URL;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const { title, description, canonical, ogImage, jsonLd } = Astro.props;
+const siteUrl = Astro.site ?? new URL(site.url);
+const canonicalUrl = new URL(canonical ?? Astro.url.pathname, siteUrl);
+canonicalUrl.hash = '';
+const imageUrl = ogImage ? new URL(ogImage, siteUrl).href : undefined;
+const xHandle = site.xHandle.startsWith('TODO_')
+  ? undefined
+  : `@${site.xHandle.replace(/^@/, '')}`;
+// Keep supplied structured data from terminating the script element.
+const structuredData = jsonLd
+  ? JSON.stringify(jsonLd).replace(/</g, '\\u003c')
+  : undefined;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl.href} />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl.href} />
+{imageUrl && <meta property="og:image" content={imageUrl} />}
+<meta
+  name="twitter:card"
+  content={imageUrl ? 'summary_large_image' : 'summary'}
+/>
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+{imageUrl && <meta name="twitter:image" content={imageUrl} />}
+{xHandle && <meta name="twitter:site" content={xHandle} />}
+{structuredData && (
+  <script type="application/ld+json" is:inline set:html={structuredData} />
+)}
