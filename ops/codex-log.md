@@ -23,3 +23,4 @@ Escalate to Jawad if first-pass rate < ~60% or the same failure type repeats 3+ 
 | 2026-11-07 | T-009 | 2 | astro check | playwright: mobile focus-trap test too strict for native dialog | ~120s | fail |
 | 2026-11-07 | T-009 | 3 | all (check:full green, 12/12 Playwright) | screenshot review: missing space "It lists**US$…**" (JSX whitespace before <strong>, index.astro:102) | ~250s | blocked — 3-attempt limit |
 | 2026-11-07 | T-009 | CC | check:full green | none — Jawad authorised CC to apply the one-line whitespace fix past the 3-attempt limit | — | pass |
+| 2026-11-07 | T-010 | CC | check:full | none — git revert of #12 at Jawad's request (no Codex run) | — | pass |
