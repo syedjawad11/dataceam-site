@@ -214,6 +214,21 @@
     font-size: clamp(2.5rem, 6vw, 4.25rem);
   }
 
+  .home-hero-answer {
+    color: var(--color-text-on-dark);
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    font-weight: 600;
+  }
+
+  .home-hero-amount {
+    color: var(--color-muted-on-dark);
+    font-size: 1.125rem;
+  }
+
+  .home-hero-amount strong {
+    color: var(--color-text-on-dark);
+  }
+
   .home-lead {
     font-size: 1.125rem;
     line-height: 1.75;
