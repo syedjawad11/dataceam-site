@@ -136,3 +136,20 @@ Acceptance:
 - [ ] `npm run check` green (CC runs `check:full` + screenshots, since the sandbox can't run Chromium/linkinator).
 - [ ] Copy matches `content/home.md` word for word; no v2 copy left on the home page; no founder name; no "$50K", "guarantee", "data broker", "partner" wording on home.
 - [ ] No horizontal scroll at 375px; dialog usable by keyboard and on mobile.
+
+---
+
+## T-011 — Home v2: licensing hero + closed-company callout
+Goal: Two copy edits on the live Home v2. Everything else on the page stays exactly as it is. Copy comes verbatim from `content/home.md` (use straight apostrophes, matching the rest of the page).
+Files to change: `src/pages/index.astro`, `src/styles/global.css` (only if a new class is needed).
+1. Hero (`#hero-heading` block):
+   - h1 text becomes: `Could your company's records be licensed for AI?`
+   - Directly below the h1 add a large answer line (class `home-hero-answer`; ~1.5rem desktop/1.25rem mobile, semibold, white on the dark hero): `Yes, and they can earn your company new revenue.`
+   - Then an amount line (class `home-hero-amount`; slightly larger than body, muted-on-dark, figure in `<strong>` in white or blue-on-dark): `Depending on the data, a licensing deal may be worth <strong>$50K to $3M+</strong>.` Mind JSX whitespace: there must be a real space before `<strong>` (use `{' '}` if the line breaks).
+   - Keep the existing lead paragraph, the "See what your data could be worth" button, the "Free to you…" line and the tool mosaic unchanged, in the same order after the new lines.
+2. Replace the `.home-callout` paragraph under the data cards with: `<strong>It doesn't have to be a company that's still trading.</strong>` followed by `Records from a business that has shut down, closed, gone bankrupt or been liquidated can also qualify, as long as they meet the buyer's criteria and data-protection rules such as GDPR. In a bankruptcy or liquidation, the trustee or liquidator usually needs to approve the deal. These archives are often available for a limited time before the software accounts are shut down.` Keep it in the existing `.home-callout` box; again ensure a space after `</strong>`.
+Do not change the page title/description, JSON-LD, any other section, components or content-lint.
+Acceptance:
+- [ ] `npm run check` green; built `dist/index.html` contains each new sentence exactly (with correct spaces around `<strong>`).
+- [ ] No other text on the page changed (`git diff` touches only those two blocks plus any new CSS).
+- [ ] No horizontal scroll at 375px.

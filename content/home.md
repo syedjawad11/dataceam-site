@@ -1,6 +1,6 @@
 ---
 page: home
-status: APPROVED — copy supplied by Jawad 2026-11-07 (verbatim)
+status: APPROVED — copy supplied by Jawad 2026-11-07 (verbatim); hero + closed-company callout revised per Jawad 2026-11-07 (T-011)
 title: "Dataceam — What your company's records could be worth to AI developers"
 description: "Dataceam connects companies that hold years of business records with vetted AI data buyers who review, clean and license them. Free to you."
 ---
@@ -9,7 +9,11 @@ description: "Dataceam connects companies that hold years of business records wi
 
 ## Hero
 
-# Your company's records could be worth $50K to $3M+ to AI developers
+# Could your company's records be licensed for AI?
+
+[Answer line — large, directly under the h1:] Yes, and they can earn your company new revenue.
+
+[Amount line — figures in bold:] Depending on the data, a licensing deal may be worth **$50K to $3M+**.
 
 AI labs have run out of public internet to learn from. What they need now is the record of how real businesses work. Dataceam connects companies that hold that data with vetted buyers who review it, clean it and license it.
 
@@ -52,7 +56,7 @@ If your team has worked in the same tools for years, you likely already hold wha
 | Operations and logistics | Fulfilment, inventory, orders and internal process docs | ERP and order systems |
 | Legal and compliance | Contract review, governance and compliance procedures | Document and contract tools |
 
-Closed or liquidated company? Its archives can still qualify, often for a limited time before the software accounts are shut down.
+[Callout box:] **It doesn't have to be a company that's still trading.** Records from a business that has shut down, closed, gone bankrupt or been liquidated can also qualify, as long as they meet the buyer's criteria and data-protection rules such as GDPR. In a bankruptcy or liquidation, the trustee or liquidator usually needs to approve the deal. These archives are often available for a limited time before the software accounts are shut down.
 
 ## How it works
 
