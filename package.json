@@ -12,6 +12,7 @@
     "astro": "astro",
     "lint": "eslint . && prettier --check .",
     "format": "prettier --write .",
+    "og": "node scripts/build-og.mjs",
     "content-lint": "node scripts/content-lint.mjs",
     "content-lint:test": "node scripts/content-lint.mjs --self-test",
     "links": "linkinator dist --recurse --skip '^https?://(?!(localhost|127\\.0\\.0\\.1|\\[::1\\]))'",
