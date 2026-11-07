@@ -9,7 +9,13 @@ export interface Props {
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { title, description, canonical, ogImage, jsonLd } = Astro.props;
+const {
+  title,
+  description,
+  canonical,
+  ogImage = '/og-default.png',
+  jsonLd,
+} = Astro.props;
 const siteUrl = Astro.site ?? new URL(site.url);
 const canonicalUrl = new URL(canonical ?? Astro.url.pathname, siteUrl);
 canonicalUrl.hash = '';

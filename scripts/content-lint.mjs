@@ -60,6 +60,67 @@ function lintSource(filename, source) {
   return errors;
 }
 
+function metadataText(value) {
+  const entities = {
+    amp: '&',
+    quot: '"',
+    apos: "'",
+    lt: '<',
+    gt: '>',
+    nbsp: ' ',
+  };
+  return value
+    .replace(
+      /&(#x[\da-f]+|#\d+|amp|quot|apos|lt|gt|nbsp);/gi,
+      (match, entity) => {
+        if (!entity.startsWith('#')) return entities[entity.toLowerCase()];
+        const hex = entity[1].toLowerCase() === 'x';
+        const code = Number.parseInt(entity.slice(hex ? 2 : 1), hex ? 16 : 10);
+        return code <= 0x10ffff ? String.fromCodePoint(code) : match;
+      },
+    )
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function lintMetadata(filename, source, seen) {
+  const errors = [];
+  const title = source.match(/<title\b[^>]*>([\s\S]*?)<\/title\s*>/i)?.[1];
+  let description;
+  for (const tag of source.matchAll(/<meta\b[^>]*>/gi)) {
+    const attributes = new Map(
+      [
+        ...tag[0].matchAll(/([\w-]+)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/g),
+      ].map(([, name, doubleQuoted, singleQuoted, unquoted]) => [
+        name.toLowerCase(),
+        doubleQuoted ?? singleQuoted ?? unquoted,
+      ]),
+    );
+    if (attributes.get('name')?.toLowerCase() === 'description') {
+      description = attributes.get('content');
+      break;
+    }
+  }
+
+  for (const [kind, value] of [
+    ['title', title],
+    ['description', description],
+  ]) {
+    if (value === undefined) continue;
+    const text = metadataText(value);
+    const key = `${kind}:${text}`;
+    const previous = seen.get(key);
+    if (previous && previous !== filename) {
+      errors.push(
+        `${filename}: duplicate ${kind} ${JSON.stringify(text)} (also in ${previous})`,
+      );
+    } else {
+      seen.set(key, filename);
+    }
+  }
+  return errors;
+}
+
 function selfTest() {
   const filename = path.join('content', 'fixture.md');
   const forbidden = [
@@ -101,6 +162,51 @@ function selfTest() {
     }
     assert.deepEqual(lintSource(file, '<main>Placeholder</main>'), []);
   }
+  const seen = new Map();
+  const home = path.join('dist', 'index.html');
+  const missing = path.join('dist', '404.html');
+  assert.deepEqual(
+    lintMetadata(
+      home,
+      '<title>Home &amp; Dataceam</title><meta name="description" content="Home description.">',
+      seen,
+    ),
+    [],
+  );
+  const duplicates = lintMetadata(
+    missing,
+    "<title> Home &#38; Dataceam </title><meta content='Home description.' name='description'>",
+    seen,
+  );
+  assert.equal(duplicates.length, 2);
+  for (const [index, kind] of ['title', 'description'].entries()) {
+    assert.ok(duplicates[index].startsWith(`${missing}: duplicate ${kind}`));
+    assert.ok(duplicates[index].includes(home));
+  }
+  assert.equal(
+    lintMetadata(
+      missing,
+      '<title>Home &amp; Dataceam</title><meta name="description" content="Unique description.">',
+      new Map(seen),
+    ).length,
+    1,
+  );
+  assert.equal(
+    lintMetadata(
+      missing,
+      '<title>Unique title</title><meta name="description" content="Home description.">',
+      new Map(seen),
+    ).length,
+    1,
+  );
+  assert.deepEqual(
+    lintMetadata(
+      missing,
+      '<title>Page not found</title><meta name="description" content="Page not found description.">',
+      seen,
+    ),
+    [],
+  );
   console.log('Content lint self-tests passed.');
 }
 
@@ -114,9 +220,14 @@ async function main() {
     ...(await findFiles('content', '.md', true)),
   ];
   let failures = 0;
+  const seenMetadata = new Map();
 
   for (const filename of files) {
-    const errors = lintSource(filename, await readFile(filename, 'utf8'));
+    const source = await readFile(filename, 'utf8');
+    const errors = lintSource(filename, source);
+    if (filename.endsWith('.html')) {
+      errors.push(...lintMetadata(filename, source, seenMetadata));
+    }
     for (const error of errors) console.error(error);
     failures += errors.length;
   }

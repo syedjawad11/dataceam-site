@@ -9,7 +9,7 @@ Status: `todo` · `in-progress` · `review` · `blocked` · `done`
 | T-002 | Home page | blocked (copy approval) | — | — |
 | T-003 | FAQ page | blocked (copy approval) | — | — |
 | T-004 | Privacy page | blocked (copy approval) | — | — |
-| T-005 | 404, robots.txt, sitemap, OG image | todo | — | — |
+| T-005 | 404, robots.txt, sitemap, OG image | review | task/005-seo-basics | #3 |
 | T-006 | Insights skeleton + RSS | todo | — | — |
 
 ---
