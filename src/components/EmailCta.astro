@@ -2,32 +2,41 @@
 import { site } from '../config/site';
 
 interface Props {
-  noteId: string;
+  label: string;
+  href?: string;
+  noteId?: string;
   prominent?: boolean;
 }
 
-const { noteId, prominent = false } = Astro.props;
-const pending = site.email.startsWith('TODO_');
+const { label, href, noteId, prominent = false } = Astro.props;
+const pending = !site.email.trim() || site.email.startsWith('TODO_');
+const showPending = pending && !href;
 ---
 
 <div class="home-action">
   <a
     class="button button-primary"
-    href={pending ? '#contact' : `mailto:${site.email}`}
-    aria-describedby={pending ? noteId : undefined}
+    href={href ?? (pending ? '#contact' : `mailto:${site.email}`)}
+    aria-describedby={showPending ? noteId : undefined}
   >
-    Email me
+    {label}
   </a>
-  {pending ? (
-    <span
-      id={noteId}
-      class:list={['placeholder', { 'contact-email': prominent }]}
-    >
-      [TO FILL: jawad@dataceam.com]
+  {prominent ? (
+    <p>
+      Or write directly to{' '}
+      {pending ? (
+        <span id={noteId} class="placeholder contact-email">
+          [TO FILL: contact email]
+        </span>
+      ) : (
+        <a class="contact-email" href={`mailto:${site.email}`}>
+          {site.email}
+        </a>
+      )}
+    </p>
+  ) : showPending ? (
+    <span id={noteId} class="placeholder">
+      [TO FILL: contact email]
     </span>
-  ) : prominent ? (
-    <a class="contact-email" href={`mailto:${site.email}`}>
-      {site.email}
-    </a>
   ) : null}
 </div>

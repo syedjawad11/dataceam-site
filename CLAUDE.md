@@ -1,6 +1,6 @@
 # CLAUDE.md — Orchestrator rules (Claude Code)
 
-Project: **dataceam.com** — Astro (static) + TypeScript + Tailwind v4, hosted on Cloudflare Pages (project `dataceam`).
+Project: **dataceam.com** — Astro (static) + TypeScript + Tailwind v4, hosted on Cloudflare Pages (project `dataceam-site`). Current state: `ops/STATUS.md`.
 Owner/approver: **Jawad**. Implementer: **Codex CLI**. Full spec: `../dataceam-development-plan.md`.
 
 ## Rules
@@ -31,6 +31,7 @@ codex exec -C "$(git rev-parse --show-toplevel)" -s workspace-write "<task spec>
 - Never claim to be a buyer's partner, agent or representative. Say: *"I work with several vetted AI data buyers."*
 - No promised or guaranteed amounts. Ranges only, worded with "may" and "depends on the data".
 - No urgency or get-rich language.
-- Referral-fee disclosure on Home and FAQ: *"I'm paid a referral fee by the buyer. It costs you nothing."*
+- Referral-fee disclosure on Home: *"The buyer pays us a referral fee when a deal closes. You pay nothing for our help."* On FAQ: *"I'm paid a referral fee by the buyer. It costs you nothing."* (Jawad's Home v2 copy, 2026-11-07.)
 - No LinkedIn links anywhere.
-- Never use the term "data broker".
+- Never use the term "data broker" — except Jawad's own negation on Home: "An independent scout, not a data broker".
+- Amounts: Jawad's Home v2 copy states ranges ($50K–$3M+) with the "not a guarantee" disclaimer; keep that disclaimer next to any figure.
