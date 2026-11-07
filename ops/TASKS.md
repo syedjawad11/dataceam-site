@@ -11,7 +11,7 @@ Status: `todo` · `in-progress` · `review` · `blocked` · `done`
 | T-004 | Privacy page (placeholders live) | done | task/004-privacy | #7 |
 | T-005 | 404, robots.txt, sitemap, OG image | done | task/005-seo-basics | #3 |
 | T-006 | Insights skeleton + RSS | done | task/006-insights | #4 |
-| T-007 | Blue/grey/black restyle + email-only contact | review | task/007-restyle-email-only | #8 |
+| T-007 | Blue/grey/black restyle + email-only contact | done | task/007-restyle-email-only | #8 |
 
 ---
 

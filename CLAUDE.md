@@ -1,6 +1,6 @@
 # CLAUDE.md — Orchestrator rules (Claude Code)
 
-Project: **dataceam.com** — Astro (static) + TypeScript + Tailwind v4, hosted on Cloudflare Pages (project `dataceam`).
+Project: **dataceam.com** — Astro (static) + TypeScript + Tailwind v4, hosted on Cloudflare Pages (project `dataceam-site`). Current state: `ops/STATUS.md`.
 Owner/approver: **Jawad**. Implementer: **Codex CLI**. Full spec: `../dataceam-development-plan.md`.
 
 ## Rules
