@@ -45,8 +45,6 @@ We keep emails only for as long as we need them to reply to you and follow up on
 
 You can ask us to access, correct or delete your personal data, to restrict or object to how we use it, or to send you a copy in a portable format. Email [hello@dataceam.com](mailto:hello@dataceam.com) and we'll reply within one month.
 
-If you're unhappy with how we've handled your data, you can complain to the Information Commissioner's Office ([ico.org.uk](https://ico.org.uk/make-a-complaint/)).
-
 ## Changes
 
 If anything changes, we'll update this page and the "last updated" date.
