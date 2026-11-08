@@ -13,7 +13,7 @@ Last updated: [TO FILL: date]
 ## Who we are
 
 This website is run by [TO FILL: full legal name / trading name], [TO FILL: postal address], the data controller for the personal data described here.
-Contact: [TO FILL: privacy@dataceam.com or jawad@dataceam.com].
+Contact: hello@dataceam.com.
 ICO registration number: [TO FILL: if registered with the Information Commissioner's Office].
 
 ## What we collect
@@ -32,7 +32,7 @@ We don't sell your personal data, and we don't use it for automated decision-mak
 
 ## Who we share it with
 
-- Service providers that run the site and email: [TO FILL: Cloudflare, email provider].
+- Service providers that run the site and email: Cloudflare and Google Workspace.
 - With your agreement only: an AI data buyer, when you've asked to be introduced.
 
 Some providers may process data outside the UK. Where they do, they rely on appropriate safeguards such as the UK International Data Transfer Agreement or adequacy regulations.
@@ -44,7 +44,7 @@ Some providers may process data outside the UK. Where they do, they rely on appr
 
 ## Your rights
 
-You can ask to access, correct or delete your personal data, to restrict or object to how we use it, and to receive a copy in a portable format. Email [TO FILL: contact email]. We'll reply within one month.
+You can ask to access, correct or delete your personal data, to restrict or object to how we use it, and to receive a copy in a portable format. Email hello@dataceam.com. We'll reply within one month.
 
 If you're unhappy with how we've handled your data, you can complain to the Information Commissioner's Office (ico.org.uk).
 

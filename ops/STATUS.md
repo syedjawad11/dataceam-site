@@ -1,6 +1,6 @@
 # Project status — dataceam.com
 
-Last updated: 2026-11-07
+Last updated: 2026-11-08
 
 ## Live
 - https://dataceam.com: Cloudflare Pages project `dataceam-site`, built from `main` via the GitHub integration.
@@ -24,13 +24,13 @@ Last updated: 2026-11-07
 - Visual direction: blue / grey / black, modern SaaS look. Never name or copy any buyer's brand.
 
 ## Waiting on Jawad (all placeholders on the live site)
-- [ ] Contact email: the most important item, since it's the only CTA (`site.email` in `src/config/site.ts`)
+- [x] Contact email: `hello@dataceam.com` (Google Workspace), filled in T-012 (2026-11-08)
 - [ ] Full name, photo, 3–4 line bio (Who I am; adding the name also adds Person JSON-LD)
 - [ ] X handle
 - [ ] Who qualifies: company size, years of records
 - [ ] Reply time and intro timing (FAQ "How long does it take?")
 - [ ] Privacy: legal or trading name, postal address, ICO registration number, retention period, last-updated date
-- [ ] Email provider (Zoho or Google Workspace), and whether cold outreach uses a secondary domain. This blocks Phase 2.
+- [x] Email provider: Google Workspace (2026-11-08). Still open: whether cold outreach uses a secondary domain. Phase 2 DNS (MX/SPF/DKIM/DMARC) is next and needs approval.
 - [ ] Cloudflare Web Analytics token: set `PUBLIC_CF_BEACON_TOKEN` in the Pages env vars to turn the beacon on
 - [ ] **Revisit later (Jawad, 2026-11-07):** T-011 closed-company callout on Home. CC added this sentence on its own: "In a bankruptcy or liquidation, the trustee or liquidator usually needs to approve the deal." Reason: when a business is bankrupt or liquidated, the owner usually can't sign a deal alone. Jawad to decide whether to keep it or leave it out.
 

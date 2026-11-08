@@ -153,3 +153,16 @@ Acceptance:
 - [ ] `npm run check` green; built `dist/index.html` contains each new sentence exactly (with correct spaces around `<strong>`).
 - [ ] No other text on the page changed (`git diff` touches only those two blocks plus any new CSS).
 - [ ] No horizontal scroll at 375px.
+
+## T-012 — Contact email `hello@dataceam.com` + Google Workspace
+Goal: Replace every contact-email placeholder with `hello@dataceam.com` (Google Workspace). CC has already updated `content/faq.md` and `content/privacy.md`.
+Files to change: `src/config/site.ts`, `src/pages/faq.astro`, `src/pages/privacy.astro`.
+1. `src/config/site.ts`: set `email: 'hello@dataceam.com'`. Leave the other `TODO_` values alone.
+2. `src/pages/faq.astro`: `content/faq.md` now says `Email hello@dataceam.com with a line…`. The "How do I start?" answer must still render the address as a `mailto:` link built from `site.email`. Update `emailNote` or simplify the replace/split logic so it works with the new copy. No `[TO FILL: …email…]` text may remain on the page.
+3. `src/pages/privacy.astro`: replace `<span class="placeholder">[TO FILL: Cloudflare, email provider]</span>` with the plain text `Cloudflare and Google Workspace`. Replace `<span class="placeholder">[TO FILL: contact email]</span>` with `<a href={`mailto:${site.email}`}>{site.email}</a>` (import `site` if needed). Leave every other placeholder (retention, legal name, address, ICO, etc.) unchanged.
+EmailCta.astro and Footer.astro already switch to `mailto:` once `site.email` is set, so don't change them. Don't touch any other copy.
+Acceptance:
+- [ ] `npm run check` green.
+- [ ] `grep -rnE "TODO_EMAIL|TO FILL: (contact )?email|jawad@dataceam|email provider" dist/` returns nothing.
+- [ ] `dist/index.html`, `dist/faq/index.html`, `dist/privacy/index.html` each contain `mailto:hello@dataceam.com`.
+- [ ] `git diff` touches only the three files above.

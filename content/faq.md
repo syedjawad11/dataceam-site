@@ -50,4 +50,4 @@ I work with several vetted AI data buyers. I don't name them publicly; once ther
 
 ## How do I start?
 
-Email [TO FILL: jawad@dataceam.com] with a line about your company and the records you hold. Everything happens by email until you decide to go ahead.
+Email hello@dataceam.com with a line about your company and the records you hold. Everything happens by email until you decide to go ahead.
