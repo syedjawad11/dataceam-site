@@ -338,3 +338,13 @@ Acceptance:
 - [ ] `dist/insights/index.html` lists 3 cards. `dist/rss.xml` has 3 items. The sitemap lists the 3 URLs.
 - [ ] `sample-draft.md` removed.
 - [ ] The rendered article HTML passes content-lint rules (the lint scans dist).
+
+## T-014 — X handle @dataceam + privacy page rewrite
+Goal: Go live with Jawad's X account and replace the privacy page with his approved copy (2026-11-08). Branch `task/014-x-handle-privacy`.
+
+1. `src/config/site.ts`: set `xHandle: '@dataceam'`. The footer "X" link then points to https://x.com/dataceam, and `twitter:site` is `@dataceam`.
+2. `src/pages/index.astro`: add `sameAs: ['https://x.com/dataceam']` to the Organization JSON-LD. Build the URL from `site.xHandle`.
+3. `src/pages/privacy.astro`: replace the hard-coded copy so the page renders the body of `content/privacy.md` (use its `Content` export), keeping the `Base` layout, the `privacy-policy` article wrapper, and the `title`/`description` from the frontmatter. The markdown supplies the only h1. Turn the email address and `ico.org.uk` in the markdown into links (`mailto:hello@dataceam.com`, `https://ico.org.uk/make-a-complaint/`), either by editing the markdown links or in the page.
+   - The rendered page must contain no `[TO FILL` placeholders, no "run by", and no name, postal address or ICO number.
+   - Don't change any other copy in `content/privacy.md`.
+4. `npm run check` must pass.
