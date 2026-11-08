@@ -1,6 +1,7 @@
 ---
 import { frontmatter } from '../../content/privacy.md';
 import Base from '../layouts/Base.astro';
+import { site } from '../config/site';
 ---
 
 <Base title={frontmatter.title} description={frontmatter.description}>
@@ -16,10 +17,8 @@ import Base from '../layouts/Base.astro';
       <span class="placeholder">[TO FILL: full legal name / trading name]</span>
       , <span class="placeholder">[TO FILL: postal address]</span>, the data
       controller for the personal data described here. Contact:{' '}
-      <span class="placeholder">
-        [TO FILL: privacy@dataceam.com or jawad@dataceam.com]
-      </span>
-      . ICO registration number:{' '}
+      <a href={`mailto:${site.email}`}>{site.email}</a>. ICO registration
+      number:{' '}
       <span class="placeholder">
         [TO FILL: if registered with the Information Commissioner's Office]
       </span>
@@ -60,8 +59,8 @@ import Base from '../layouts/Base.astro';
     <h2>Who we share it with</h2>
     <ul>
       <li>
-        Service providers that run the site and email:{' '}
-        <span class="placeholder">[TO FILL: Cloudflare, email provider]</span>.
+        Service providers that run the site and email: Cloudflare and Google
+        Workspace.
       </li>
       <li>
         With your agreement only: an AI data buyer, when you've asked to be
@@ -89,8 +88,8 @@ import Base from '../layouts/Base.astro';
     <p>
       You can ask to access, correct or delete your personal data, to restrict
       or object to how we use it, and to receive a copy in a portable format.
-      Email <span class="placeholder">[TO FILL: contact email]</span>. We'll
-      reply within one month.
+      Email <a href={`mailto:${site.email}`}>{site.email}</a>. We'll reply
+      within one month.
     </p>
     <p>
       If you're unhappy with how we've handled your data, you can complain to

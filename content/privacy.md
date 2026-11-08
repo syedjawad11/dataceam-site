@@ -13,7 +13,7 @@ Last updated: [TO FILL: date]
 ## Who we are
 
 This website is run by [TO FILL: full legal name / trading name], [TO FILL: postal address], the data controller for the personal data described here.
-Contact: [TO FILL: privacy@dataceam.com or jawad@dataceam.com].
+Contact: hello@dataceam.com.
 ICO registration number: [TO FILL: if registered with the Information Commissioner's Office].
 
 ## What we collect

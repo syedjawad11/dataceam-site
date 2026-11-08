@@ -4,21 +4,14 @@ import Base from '../layouts/Base.astro';
 import { site } from '../config/site';
 
 const [heading, ...sections] = rawContent().trim().split(/^## /m);
-const emailPending = site.email.startsWith('TODO_');
-const emailNote = '[TO FILL: jawad@dataceam.com]';
 const questions = sections.map((section) => {
   const [question, ...lines] = section.trim().split('\n');
-  const answer = lines
-    .join('\n')
-    .trim()
-    .replace(emailNote, emailPending ? emailNote : site.email);
+  const answer = lines.join('\n').trim();
 
   return {
     question,
     emailParts:
-      question === 'How do I start?'
-        ? answer.split(emailPending ? emailNote : site.email)
-        : undefined,
+      question === 'How do I start?' ? answer.split(site.email) : undefined,
     blocks: answer.split(/\n\s*\n/).map((block) => ({
       isList: block.startsWith('- '),
       items: block.startsWith('- ')
@@ -61,13 +54,7 @@ const jsonLd = {
           {emailParts ? (
             <p>
               {emailParts[0]}
-              <a href={emailPending ? '/#contact' : `mailto:${site.email}`}>
-                {emailPending ? (
-                  <span class="placeholder">{emailNote}</span>
-                ) : (
-                  site.email
-                )}
-              </a>
+              <a href={`mailto:${site.email}`}>{site.email}</a>
               {emailParts[1]}
             </p>
           ) : (
