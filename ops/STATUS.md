@@ -13,7 +13,7 @@ Last updated: 2026-11-08
 |---|---|
 | Home `/` | Hero, How it works (3 cards), Who qualifies, Liquidators, Who I am, disclosure, "Interested? Email me" (`#contact`) |
 | FAQ `/faq/` | 9 `<details>` items, disclosure visible under the h1, FAQPage JSON-LD |
-| Privacy `/privacy/` | UK GDPR / ICO style |
+| Privacy `/privacy/` | Live — renders content/privacy.md (T-014) |
 | Insights `/insights/` | 3 articles (T-013, 2026-11-08) with SVG infographics, per-article OG PNGs (`npm run og`), Article/BreadcrumbList/FAQPage JSON-LD, card index, `/rss.xml` |
 | SEO basics | 404, robots.txt, sitemap, OG image (`npm run og`), duplicate title/description lint |
 | Design | Blue / grey / black palette: near-black header, hero, CTA and footer; blue `#2563EB` primary; grey alternating bands |
@@ -26,10 +26,10 @@ Last updated: 2026-11-08
 ## Waiting on Jawad (all placeholders on the live site)
 - [x] Contact email: `hello@dataceam.com` (Google Workspace), filled in T-012 (2026-11-08)
 - [ ] Full name, photo, 3–4 line bio (Who I am; adding the name also adds Person JSON-LD)
-- [ ] X handle
+- [x] X handle — @dataceam (T-014)
 - [ ] Who qualifies: company size, years of records
 - [ ] Reply time and intro timing (FAQ "How long does it take?")
-- [ ] Privacy: legal or trading name, postal address, ICO registration number, retention period, last-updated date
+- [x] Privacy — rewritten without personal details; intro-only role and buyer–seller disclaimer (T-014)
 - [x] Email provider: Google Workspace (2026-11-08). Still open: whether cold outreach uses a secondary domain. Phase 2 DNS (MX/SPF/DKIM/DMARC) is next and needs approval.
 - [ ] Cloudflare Web Analytics token: set `PUBLIC_CF_BEACON_TOKEN` in the Pages env vars to turn the beacon on
 - [ ] **Revisit later (Jawad, 2026-11-07):** T-011 closed-company callout on Home. CC added this sentence on its own: "In a bankruptcy or liquidation, the trustee or liquidator usually needs to approve the deal." Reason: when a business is bankrupt or liquidated, the owner usually can't sign a deal alone. Jawad to decide whether to keep it or leave it out.
