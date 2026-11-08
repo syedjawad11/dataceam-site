@@ -1,50 +1,198 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import { site } from '../config/site';
+import EmailCta from '../components/EmailCta.astro';
 import Base from './Base.astro';
 
-type Props = CollectionEntry<'insights'>['data'];
+interface Props {
+  post: CollectionEntry<'insights'>;
+}
 
-const { title, description, pubDate, updatedDate } = Astro.props;
-const dateFormat = new Intl.DateTimeFormat('en', {
+const { post } = Astro.props;
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  heroImage,
+  heroAlt,
+  ogImage,
+  keywords,
+  faq,
+} = post.data;
+const related = (
+  await getCollection(
+    'insights',
+    ({ id, data }) => !data.draft && id !== post.id,
+  )
+)
+  .sort(
+    (a, b) =>
+      b.data.pubDate.getTime() - a.data.pubDate.getTime() ||
+      a.id.localeCompare(b.id),
+  )
+  .slice(0, 2);
+const words =
+  (post.body ?? '')
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .match(/[\p{L}\p{N}]+(?:['’–-][\p{L}\p{N}]+)*/gu)?.length ?? 0;
+const readingTime = Math.max(1, Math.ceil(words / 220));
+const dateFormat = new Intl.DateTimeFormat('en-GB', {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
   timeZone: 'UTC',
 });
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Article',
-  headline: title,
-  description,
-  datePublished: pubDate.toISOString(),
-  dateModified: (updatedDate ?? pubDate).toISOString(),
-  ...(site.personName.startsWith('TODO_')
-    ? {}
-    : { author: { '@type': 'Person', name: site.personName } }),
-  publisher: { '@type': 'Organization', name: 'Dataceam' },
-};
+const siteUrl = Astro.site ?? new URL(site.url);
+const canonical = new URL(`/insights/${post.id}/`, siteUrl).href;
+const publishedTime = pubDate.toISOString();
+const modifiedTime = (updatedDate ?? pubDate).toISOString();
+const jsonLd: Record<string, unknown>[] = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description,
+    image: new URL(ogImage ?? '/og-default.png', siteUrl).href,
+    datePublished: publishedTime,
+    dateModified: modifiedTime,
+    mainEntityOfPage: canonical,
+    keywords: keywords ?? [],
+    ...(site.personName.startsWith('TODO_')
+      ? {}
+      : { author: { '@type': 'Person', name: site.personName } }),
+    publisher: {
+      '@type': 'Organization',
+      name: 'Dataceam',
+      logo: {
+        '@type': 'ImageObject',
+        url: new URL('/favicon.svg', siteUrl).href,
+      },
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl.href },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Insights',
+        item: new URL('/insights/', siteUrl).href,
+      },
+      { '@type': 'ListItem', position: 3, name: title, item: canonical },
+    ],
+  },
+  ...(faq?.length
+    ? [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: faq.map(({ q, a }) => ({
+            '@type': 'Question',
+            name: q,
+            acceptedAnswer: { '@type': 'Answer', text: a },
+          })),
+        },
+      ]
+    : []),
+];
 ---
 
-<Base title={`${title} | Dataceam`} description={description} jsonLd={jsonLd}>
-  <article>
-    <header>
+<Base
+  page="article"
+  title={`${title} | Dataceam`}
+  description={description}
+  canonical={canonical}
+  jsonLd={jsonLd}
+  ogType="article"
+  publishedTime={publishedTime}
+  modifiedTime={modifiedTime}
+  ogImage={ogImage}
+  ogImageAlt={`Insights: ${title}`}
+>
+  <article class="insight-article">
+    <header class="article-header">
+      <nav aria-label="Breadcrumb" class="breadcrumbs">
+        <ol>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/insights/">Insights</a>
+          </li>
+          <li aria-current="page">{title}</li>
+        </ol>
+      </nav>
       <h1>{title}</h1>
-      <p>
-        Published{' '}
-        <time datetime={pubDate.toISOString()}>
-          {dateFormat.format(pubDate)}
-        </time>
+      <p class="article-lede">{description}</p>
+      <p class="article-meta">
+        <span>
+          Published{' '}
+          <time datetime={publishedTime}>{dateFormat.format(pubDate)}</time>
+        </span>
+        {updatedDate && (
+          <span>
+            Updated{' '}
+            <time datetime={modifiedTime}>
+              {dateFormat.format(updatedDate)}
+            </time>
+          </span>
+        )}
+        <span>{readingTime} min read</span>
       </p>
-      {updatedDate && (
-        <p>
-          Updated{' '}
-          <time datetime={updatedDate.toISOString()}>
-            {dateFormat.format(updatedDate)}
-          </time>
-        </p>
-      )}
     </header>
-    <slot />
+    {heroImage && (
+      <Image
+        class="article-hero"
+        src={heroImage}
+        alt={heroAlt ?? title}
+        loading="eager"
+        fetchpriority="high"
+      />
+    )}
+    <div class="prose article-body">
+      <slot />
+    </div>
+    {faq && faq.length > 0 && (
+      <section class="article-section" aria-labelledby="article-faq">
+        <h2 id="article-faq">Frequently asked questions</h2>
+        <div class="faq-list">
+          {faq.map(({ q, a }) => (
+            <details>
+              <summary>{q}</summary>
+              <div class="faq-answer">
+                <p>{a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+    )}
   </article>
+  {related.length > 0 && (
+    <section
+      class="article-section related-articles"
+      aria-labelledby="related-heading"
+    >
+      <h2 id="related-heading">Related articles</h2>
+      <ul class="insights-grid">
+        {related.map(({ id, data }) => (
+          <li class="insight-card">
+            <h3>
+              <a href={`/insights/${id}/`}>{data.title}</a>
+            </h3>
+            <p>{data.description}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+  <section class="article-cta" aria-labelledby="article-cta-heading">
+    <h2 id="article-cta-heading">Want to know if your records qualify?</h2>
+    <EmailCta label="Email me about your records" href="/#contact" />
+  </section>
 </Base>

@@ -26,3 +26,4 @@ Escalate to Jawad if first-pass rate < ~60% or the same failure type repeats 3+ 
 | 2026-11-07 | T-010 | CC | check:full | none — git revert of #12 at Jawad's request (no Codex run) | — | pass |
 | 2026-11-07 | T-011 | 1 | all (check:full green; screenshots on preview) | none | 51s | pass |
 | 2026-11-08 | T-012 | 1 | all (check:full green) | none — Codex also filled the privacy controller contact placeholder (in scope) | 52s | pass |
+| 2026-11-08 | T-013 | 1 | all (check green; linkinator re-run outside sandbox) | CC fixed 2 ungrammatical meta descriptions (copy only) | ~15m | pass |

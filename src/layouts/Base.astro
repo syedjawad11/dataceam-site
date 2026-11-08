@@ -34,7 +34,13 @@ const beaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN?.trim();
     <Header />
     <main
       id="main"
-      class={page === 'home' ? 'home-main' : 'shell prose'}
+      class={
+        page === 'home'
+          ? 'home-main'
+          : page === 'insights' || page === 'article'
+            ? 'shell insights-main'
+            : 'shell prose'
+      }
       tabindex="-1"
     >
       <slot />
