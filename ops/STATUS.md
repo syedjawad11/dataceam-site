@@ -14,7 +14,7 @@ Last updated: 2026-11-08
 | Home `/` | Hero, How it works (3 cards), Who qualifies, Liquidators, Who I am, disclosure, "Interested? Email me" (`#contact`) |
 | FAQ `/faq/` | 9 `<details>` items, disclosure visible under the h1, FAQPage JSON-LD |
 | Privacy `/privacy/` | UK GDPR / ICO style |
-| Insights `/insights/` | Content collection, "Coming soon" while there are no posts, Article layout, `/rss.xml` |
+| Insights `/insights/` | 3 articles (T-013, 2026-11-08) with SVG infographics, per-article OG PNGs (`npm run og`), Article/BreadcrumbList/FAQPage JSON-LD, card index, `/rss.xml` |
 | SEO basics | 404, robots.txt, sitemap, OG image (`npm run og`), duplicate title/description lint |
 | Design | Blue / grey / black palette: near-black header, hero, CTA and footer; blue `#2563EB` primary; grey alternating bands |
 
@@ -37,7 +37,7 @@ Last updated: 2026-11-08
 ## Next
 1. Fill placeholders as details arrive. Edit `content/*.md` (CC) → Codex updates the pages → preview → "approve" → merge.
 2. Phase 2: email DNS (MX / SPF / DKIM / DMARC). Every DNS change needs approval.
-3. Insights articles, once Jawad wants to start publishing.
+3. Insights: 3 articles live (T-013). Jawad to submit sitemap + request indexing in Google Search Console.
 
 ## Gotchas learned
 - `codex exec` hangs waiting on stdin unless it is run with `< /dev/null`.

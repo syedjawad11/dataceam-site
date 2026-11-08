@@ -166,3 +166,175 @@ Acceptance:
 - [ ] `grep -rnE "TODO_EMAIL|TO FILL: (contact )?email|jawad@dataceam|email provider" dist/` returns nothing.
 - [ ] `dist/index.html`, `dist/faq/index.html`, `dist/privacy/index.html` each contain `mailto:hello@dataceam.com`.
 - [ ] `git diff` touches only the three files above.
+
+## T-013 — Insights: three articles + SVG infographics + article SEO
+Goal: Publish three original, SEO-optimised Insights articles with infographics, and upgrade the article template for Google Search. Codex writes both the article copy and the code. Branch `task/013-insights-articles`.
+
+### A. Articles (`src/content/insights/<slug>.md`; delete `sample-draft.md`)
+Shared brief for all three:
+- 1,400–1,900 words. UK English. Plain, calm, practical. First person, as an independent scout: "I work with several vetted AI data buyers." Write original prose; don't copy any outside source.
+- Open with a 40–60 word paragraph that answers the search query directly. Then use 6–9 H2s (several phrased as questions) with H3s where useful. Use short paragraphs, bullet lists, and at least one table.
+- Embed 2 infographics per article as markdown images (`![alt](../../assets/insights/<slug>/<name>.svg)`). The alt text must be descriptive. Put a one-line italic caption under each.
+- Internal links: `/` (home), `/faq/`, and both other articles (`/insights/<slug>/`). End with a short "Want to know if your records qualify?" section that links to `/#contact` ("Email me").
+- Include this sentence verbatim once: "I'm paid a referral fee by the buyer. It costs you nothing."
+- Frontmatter: `title` (≤60 chars), `description` (140–158 chars, containing the keyword), `pubDate: 2026-11-08`, `tags`, `keywords` (3–6), `heroImage` (relative path to the article's hero SVG), `heroAlt`, `ogImage: /og/<slug>.png`, `faq` (4–5 `{q, a}` items, each answer 1–3 sentences). The FAQ is rendered by the layout, so don't repeat it in the body.
+- HARD RULES (content-lint enforces most; also check the rendered HTML):
+  - Never name any buyer or vendor (no micro1, DataFactor, Lodex or others).
+  - Never write "partner/agent/representative of/for/to …".
+  - The word "guarantee"/"guaranteed" is allowed only inside "not a guarantee".
+  - No urgency or get-rich wording ("act now", "limited time", "don't miss").
+  - No LinkedIn.
+  - Never "data broker".
+  - Money only as ranges, with "may" and "depends on the data".
+  - No invented statistics, studies, quotes or named sources.
+  - Tool names (Slack, GitHub, Google Workspace, Microsoft 365, Jira, Confluence, Notion, Salesforce, HubSpot, Zendesk, QuickBooks) are fine as plain text.
+  - Keep platform facts hedged ("usually", "on most paid plans", "check your plan").
+
+1. `prepare-company-data-for-ai-licensing`
+   - **Title:** "How to Prepare Company Data for AI Licensing: A Checklist"
+   - **Keyword:** prepare company data for AI training
+   - **Cover:**
+     - what preparing actually involves (3 jobs: agree scope, export each tool, hand over / review)
+     - **Step 1 — scope:**
+       - list every tool, past and present, including retired systems and old archives
+       - mark exclusions: client-owned systems, HR/payroll/medical, NDA-restricted material, national ID numbers
+     - **Step 2 — export tool by tool.** For each tool, in a short subsection or a table row, cover who runs the export and what to watch out for:
+       - Slack: free and lower plans may export public channels only
+       - Microsoft 365: eDiscovery / admin export
+       - Google Workspace: admin data export, which can take days and needs a super admin
+       - Jira/Confluence: site export
+       - GitHub: org repos with issues and PRs
+       - Notion: workspace export
+       - CRMs and help desks
+     - **Step 3 — upload or hand to IT,** then review a cleaned sample before signing anything
+     - **What not to do while preparing:**
+       - don't delete old history
+       - don't downgrade plans or cancel subscriptions before exports finish
+       - don't scrub names by hand
+       - don't shorten retention settings
+     - **How client and employee data is protected:**
+       - names, emails, phone numbers, addresses and account numbers are replaced with consistent placeholders within a thread
+       - secrets and API keys are removed
+       - no re-identification key is kept
+       - a GDPR lawful basis is needed
+     - **Typical timeline:** a few weeks
+   - **Infographics:**
+     - `hero.svg`: a "3 steps" process flow (Scope → Export → Review sample)
+     - `dos-and-donts.svg`: a two-column checklist card
+2. `license-company-data-before-selling-business`
+   - **Title:** "Selling Your Business? License Its Data Before the LOI"
+   - **Keyword:** license company data before selling business
+   - **Cover:**
+     - **The idea:** a non-exclusive licence over a de-identified copy. The company keeps its originals and the sale goes ahead as normal.
+     - **Does it lower the sale price?**
+       - Acquirers usually price on normalised/recurring earnings, so a one-off licence fee is treated as non-recurring and usually doesn't change the multiple.
+       - The exception is businesses whose product is the data itself.
+     - **When to do it,** stage by stage:
+       - preparing to sell: best
+       - first talks
+       - LOI signed: needs the buyer's consent
+       - due diligence: harder
+       - after closing: it's the new owner's decision
+       - Recommend before the LOI, disclosed openly.
+     - **Due diligence:** what goes in the data room (licence agreement, DPA, exclusions list, sample sign-off, payment record)
+     - **Warranties:** disclose against IP, material contracts and data-protection warranties
+     - **Deal structure:**
+       - share sale: the agreement stays with the company
+       - asset sale: the agreement may need consent to transfer
+     - **Who keeps the fee:** say so in the purchase agreement
+     - **GDPR** for customer and employee data
+     - **Checklist:** questions for your M&A adviser and lawyer
+   - Include the sentence: "This is general information, not legal or tax advice."
+   - **Infographics:**
+     - `hero.svg`: a sale timeline with 5 stages, the "best window" highlighted before the LOI
+     - `data-room-checklist.svg`: a checklist card
+3. `what-business-data-ai-companies-buy`
+   - **Title:** "What Business Data Do AI Companies Buy? And What It's Worth"
+   - **Keyword:** what data do AI companies buy
+   - **Cover:**
+     - **Why AI developers want private work records:** public web text is largely used up, and they need worked examples of real tasks from request to outcome
+     - **The 8 categories,** from `content/home.md`: Conversations, Code and engineering, Documents and files, Sales and CRM, Finance and accounting, Support and tickets, Operations and logistics, Legal and compliance (each with typical sources)
+     - **What raises value:**
+       - years of continuous history
+       - full threads with outcomes
+       - several connected tools
+       - clear ownership
+       - consistent structure
+     - **What lowers value:**
+       - short history
+       - gaps
+       - mostly client-owned data
+       - heavy sensitive personal data
+       - unclear rights
+     - **What it may be worth:** use exactly this framing: "Depending on the data, a licensing deal may be worth $50K to $3M+. That range is not a guarantee; it depends on the data, its volume and the buyer." No other figures.
+     - **Closed companies:** one neutral sentence saying records from a business that has closed can sometimes qualify. Don't mention trustees or liquidators.
+     - **How a buyer evaluates a sample**
+   - **Infographics:**
+     - `hero.svg`: a 4×2 grid of the 8 categories with simple geometric icons
+     - `value-drivers.svg`: raises vs lowers value, as qualitative meters/bars. No numbers.
+
+### B. Infographics (`src/assets/insights/<slug>/*.svg`)
+- Hand-authored SVG with `viewBox="0 0 1200 675"` for heroes and 1200×(600–900) for the others, plus explicit `width`/`height` attributes. Include `role="img"`, `<title>` and `<desc>`.
+- Use the site palette only: near-black `#0B0F19`/`#111827`, blue `#2563EB` (with lighter tints `#3B82F6`/`#DBEAFE`), greys `#F3F4F6`/`#E5E7EB`/`#6B7280`, white.
+- Modern SaaS look: rounded cards, clear hierarchy, big readable labels (≥22px at 1200 wide), and system font stack `font-family="Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"`. Text must be real `<text>`, not paths.
+- No logos, no buyer names, no fake numbers. A small "dataceam.com" wordmark in a corner is fine.
+
+### C. Code
+1. `src/content.config.ts`: switch the schema to `({ image }) => z.object({...})` and add these optional fields:
+   - `heroImage: image()`
+   - `heroAlt: z.string()`
+   - `ogImage: z.string()`
+   - `keywords: z.array(z.string())`
+   - `faq: z.array(z.object({ q: z.string(), a: z.string() }))`
+2. `src/components/Seo.astro`: add optional props:
+   - `ogType` (default `'website'`)
+   - `publishedTime`, `modifiedTime`: emit `article:published_time` / `article:modified_time` when set
+   - `ogImageAlt`: emit `og:image:alt`
+   - Also emit `og:image:width`=1200 and `og:image:height`=630.
+   - Thread these props through `Base.astro` if needed.
+3. `src/layouts/Article.astro` (take the full entry or its data + id):
+   - **Header:** breadcrumb nav (Home › Insights › title), h1, the description as a lede, published/updated date, and reading time (words/220, rounded up, e.g. "7 min read").
+   - **Hero image:** use `<Image>` from `astro:assets` with `heroAlt`, `loading="eager"` and `fetchpriority="high"`.
+   - **Body:** wrapped in `.prose`. Add article prose styles in `global.css`:
+     - h2/h3 spacing
+     - tables: bordered, striped, horizontally scrollable on mobile
+     - images: full width, rounded, with a light border
+     - captions (`em` directly after an image paragraph): muted, small
+     - links: blue, underlined
+   - **FAQ:** render frontmatter `faq` as an "Frequently asked questions" h2 with `<details>`/`<summary>` items, matching the `/faq/` style.
+   - **Related articles:** up to 2 other non-draft posts, as cards with title and description.
+   - **Closing CTA band:** reuse `EmailCta.astro` (label "Email me about your records").
+   - **JSON-LD array:**
+     - Article: `headline`, `description`, `image` (absolute og URL), `datePublished`, `dateModified`, `mainEntityOfPage` (canonical URL), `keywords`, `publisher` Organization with a `logo` (`/favicon.svg` absolute URL), and the existing conditional author
+     - BreadcrumbList with 3 items
+     - FAQPage when `faq` exists
+   - Pass `ogType="article"`, published/modified times, `ogImage` and `ogImageAlt` to the Seo component.
+4. `src/pages/insights/[...slug].astro`: pass what the layout needs.
+5. `src/pages/insights/index.astro`:
+   - **Title:** "Insights: Licensing Company Data for AI | Dataceam"
+   - **Meta description (140–158 chars):** "Practical guides for business owners on preparing, valuing and licensing company records to AI developers, including what to do before selling a business."
+   - **h1:** Insights, with a short intro paragraph.
+   - **Posts:** a responsive card grid (1 col mobile, 2–3 desktop). Each card has the hero thumbnail (`<Image>`, lazy), date, reading time, title (h2 link) and description.
+   - Keep the "Coming soon" fallback for zero posts.
+6. `scripts/build-og.mjs`: keep the default card. For each non-draft markdown file in `src/content/insights/`:
+   - parse `title` from the frontmatter (simple regex is fine)
+   - build a 1200×630 SVG on the brand background: near-black, blue accent bar, "INSIGHTS" eyebrow, the title wrapped to ≤3 lines at ~64px bold white, and "dataceam.com"
+   - render it with sharp to `public/og/<slug>.png`
+   - Escape XML. Run `npm run og` and commit the PNGs.
+7. Sitemap: in `astro.config.mjs`, keep `sitemap()` as-is unless adding `lastmod` is trivial. Don't add a dependency.
+
+Acceptance:
+- [ ] `npm run check` green. Prettier-format the new md/astro/mjs files.
+- [ ] For each `dist/insights/<slug>/index.html`, check:
+  - exactly one `<h1>`
+  - `<title>` = frontmatter title + " | Dataceam"
+  - meta description of 140–158 chars
+  - canonical URL
+  - `og:type` article
+  - `og:image` = `https://dataceam.com/og/<slug>.png`
+  - JSON-LD parses and contains Article, BreadcrumbList and FAQPage
+  - every `<img>` has a non-empty alt
+- [ ] `public/og/<slug>.png` exists for all 3.
+- [ ] `dist/insights/index.html` lists 3 cards. `dist/rss.xml` has 3 items. The sitemap lists the 3 URLs.
+- [ ] `sample-draft.md` removed.
+- [ ] The rendered article HTML passes content-lint rules (the lint scans dist).

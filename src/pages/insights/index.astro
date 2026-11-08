@@ -1,11 +1,24 @@
 ---
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 
 const posts = (await getCollection('insights', ({ data }) => !data.draft)).sort(
-  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+  (a, b) =>
+    b.data.pubDate.getTime() - a.data.pubDate.getTime() ||
+    a.id.localeCompare(b.id),
 );
-const dateFormat = new Intl.DateTimeFormat('en', {
+const readingTime = (body: string | undefined) =>
+  Math.max(
+    1,
+    Math.ceil(
+      ((body ?? '')
+        .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+        .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+        .match(/[\p{L}\p{N}]+(?:['’–-][\p{L}\p{N}]+)*/gu)?.length ?? 0) / 220,
+    ),
+  );
+const dateFormat = new Intl.DateTimeFormat('en-GB', {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
@@ -13,20 +26,40 @@ const dateFormat = new Intl.DateTimeFormat('en', {
 });
 ---
 
-<Base title="Insights | Dataceam" description="Dataceam insights. Coming soon.">
-  <h1>Insights</h1>
+<Base
+  page="insights"
+  title="Insights: Licensing Company Data for AI | Dataceam"
+  description="Practical guides for business owners on preparing, valuing and licensing company records to AI developers, including what to do before selling a business."
+>
+  <header class="insights-header">
+    <h1>Insights</h1>
+    <p class="article-lede">
+      Practical guides to preparing your company records, understanding their
+      potential value and exploring a licence before selling your business.
+    </p>
+  </header>
   {posts.length === 0 ? (
     <p>Coming soon.</p>
   ) : (
-    <ul>
-      {posts.map(({ id, data }) => (
-        <li>
+    <ul class="insights-grid">
+      {posts.map(({ id, data, body }) => (
+        <li class="insight-card">
+          {data.heroImage && (
+            <Image
+              src={data.heroImage}
+              alt={data.heroAlt ?? data.title}
+              loading="lazy"
+            />
+          )}
+          <p class="article-meta">
+            <time datetime={data.pubDate.toISOString()}>
+              {dateFormat.format(data.pubDate)}
+            </time>
+            <span>{readingTime(body)} min read</span>
+          </p>
           <h2>
             <a href={`/insights/${id}/`}>{data.title}</a>
           </h2>
-          <time datetime={data.pubDate.toISOString()}>
-            {dateFormat.format(data.pubDate)}
-          </time>
           <p>{data.description}</p>
         </li>
       ))}
