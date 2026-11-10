@@ -348,3 +348,6 @@ Goal: Go live with Jawad's X account and replace the privacy page with his appro
    - The rendered page must contain no `[TO FILL` placeholders, no "run by", and no name, postal address or ICO number.
    - Don't change any other copy in `content/privacy.md`.
 4. `npm run check` must pass.
+
+## T-016 — Home pricing: Starter tier company size "30+"
+In `src/pages/index.astro` (pricing array, Starter row), change the description text `often a 20–50 person company` to `often a 30+ person company`. Change nothing else. `content/home.md` already updated by CC.
