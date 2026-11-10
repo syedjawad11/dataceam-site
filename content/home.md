@@ -81,7 +81,7 @@ Buyers price data on its quality, how unique it is, and how much of it there is.
 
 | Card | Range | Typical profile |
 |---|---|---|
-| Starter | $50K – $500K | A focused set of records from one or two systems, often a 20–50 person company |
+| Starter | $50K – $500K | A focused set of records from one or two systems, often a 30+ person company |
 | Established | $500K – $3M | Years of records across several teams and business functions |
 | Exceptional | $3M+ | Rare, proprietary operational data of high value to frontier AI |
 
