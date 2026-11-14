@@ -7,27 +7,27 @@ const xUrl = `https://x.com/${site.xHandle.replace(/^@/, '')}`;
 
 <footer class="site-footer">
   <div class="shell footer-content">
-    <ul class="footer-links">
-      <li>
-        {site.email.startsWith('TODO_') ? (
-          <span class="placeholder">[TO FILL: email]</span>
-        ) : (
-          <a href={`mailto:${site.email}`}>{site.email}</a>
-        )}
-      </li>
-      <li>
-        {site.xHandle.startsWith('TODO_') ? (
-          <span class="placeholder">[TO FILL: X handle]</span>
-        ) : (
-          <a href={xUrl}>X</a>
-        )}
-      </li>
-      <li>
-        <a href="/privacy/">Privacy</a>
-      </li>
-    </ul>
-    <p>
-      © {year} {site.name}
+    <p class="footer-disclosure">
+      Dataceam is a referrer only, run independently by {site.personName} in{' '}
+      {site.personLocation}. It is not affiliated with, employed by or acting on
+      behalf of any AI-data buyer or AI-training platform. Some links on this
+      site are referral links.
     </p>
+    <div class="footer-row">
+      <ul class="footer-links">
+        <li>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </li>
+        <li>
+          <a href={xUrl}>X</a>
+        </li>
+        <li>
+          <a href="/privacy/">Privacy</a>
+        </li>
+      </ul>
+      <p>
+        © {year} {site.name}
+      </p>
+    </div>
   </div>
 </footer>

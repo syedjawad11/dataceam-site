@@ -7,7 +7,7 @@ You are the implementer for dataceam.com. Claude Code writes task specs and revi
 - Add no new dependency unless your task output says why. You have no network: if a dependency is needed, list the exact `npm i` command under "open questions" and Claude Code will install it.
 
 ## Defaults
-- **Static by default:** no client-side JavaScript unless the spec asks for it.
+- **Static by default:** no client-side JavaScript unless the spec asks for it. Exception: the /experts/ consent box (`src/scripts/consent-links.ts`), which only toggles the referral links and must never store or send anything.
 - **Accessibility:** semantic HTML, alt text, form labels, visible focus states, WCAG AA colour contrast.
 - **Performance:** images via Astro `<Image>`; no layout shift; no third-party scripts except Cloudflare Web Analytics.
 - **Scope:** only touch the files the task names. Don't reformat unrelated files.
@@ -21,6 +21,6 @@ You are the implementer for dataceam.com. Claude Code writes task specs and revi
 ## Never
 - commit, push, or edit `.env*`
 - add tracking scripts
-- add buyer logos or names
+- add buyer or platform logos or names in visible copy (URLs in links/data are fine)
 - add LinkedIn links
 - use the term "data broker"

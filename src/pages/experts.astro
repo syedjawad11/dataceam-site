@@ -1,0 +1,233 @@
+---
+import Base from '../layouts/Base.astro';
+import Ledger from '../components/Ledger.astro';
+import { expertPlatforms, site } from '../config/site';
+
+// Copy source: content/experts.md
+const title =
+  'AI-training work for experts: what it pays and where to apply | Dataceam';
+const description =
+  "Remote AI-training contract work for lawyers, engineers, doctors, analysts and other specialists: the kinds of work on offer, typical pay, and links to the platforms' role boards.";
+
+const ledgerRows: [string, string][] = [
+  ['Run by', `${site.personName}, independently, from ${site.personLocation}`],
+  [
+    'What I do',
+    "Explain the kinds of AI-training work on offer and link to the platforms' role boards",
+  ],
+  ["What I don't do", 'Hire, screen or pay anyone, or collect your résumé'],
+  ['Who pays me', "The platform: a referral bonus, only if you're hired"],
+  ['What you pay', 'Nothing'],
+];
+
+const areas = [
+  [
+    'Law',
+    'Review and write legal analysis in areas such as employment, antitrust, environmental and civil rights law, and contracts.',
+    '$60–130/hr, some specialist roles up to $400/hr',
+  ],
+  [
+    'Software',
+    'Write, review and grade code across backend, full-stack, frontend and open-source work.',
+    '$50–150/hr',
+  ],
+  [
+    'AI and data',
+    'Evaluate model output, analyse data, and review or label training data.',
+    '$20–120/hr',
+  ],
+  [
+    'Finance and accounting',
+    'Turn real finance work, such as reconciliations, modelling, due diligence and research, into tasks, and grade the answers.',
+    '$30–160/hr',
+  ],
+  [
+    'Medicine',
+    'Physicians review clinical reasoning; medical coders and chart reviewers check documentation.',
+    '$50–350/hr',
+  ],
+  [
+    'Engineering',
+    'Mechanical, electrical, systems and quality engineering problems and reviews.',
+    '$40–120/hr',
+  ],
+  [
+    'Science and maths',
+    'Graduate-level physics, maths and statistics problems, solutions and proofs.',
+    '$60–170/hr',
+  ],
+  [
+    'Language and writing',
+    'Native-speaker review of dialect, style and clarity.',
+    '$20–45/hr',
+  ],
+  [
+    'Business and media',
+    'Sales, marketing, strategy, and film and video expertise.',
+    '$25–120/hr',
+  ],
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: title,
+  description,
+  url: new URL('/experts/', site.url).href,
+  isPartOf: { '@id': `${site.url}/#organization` },
+};
+---
+
+<Base page="experts" title={title} description={description} jsonLd={jsonLd}>
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="shell hero-grid">
+      <div class="hero-copy">
+        <p class="badge">For experts</p>
+        <h1 id="hero-heading">
+          Find paid AI-training work that fits what you already know
+        </h1>
+        <p class="lead">
+          AI labs pay lawyers, engineers, doctors, analysts, linguists and other
+          specialists, usually through training platforms, to write, review and
+          grade the work their models learn from. Below are the kinds of work on
+          offer and what they typically pay. When you're ready, open a
+          platform's role board and apply there.
+        </p>
+        <div class="button-row">
+          <a class="button button-primary" href="#browse">
+            Browse open roles
+          </a>
+          <a class="button button-quiet" href="#areas">
+            See what it pays
+          </a>
+        </div>
+      </div>
+      <Ledger
+        headingId="ledger-heading"
+        rows={ledgerRows}
+        foot="Dataceam is a referrer only. You apply, and work, directly with the platform."
+      />
+    </div>
+  </section>
+
+  <section id="areas" class="band" aria-labelledby="areas-heading">
+    <div class="shell split">
+      <div class="section-head">
+        <p class="kicker">Kinds of work</p>
+        <h2 id="areas-heading">What experts do, and what it pays</h2>
+        <p>
+          The work is remote and paid by the hour or by the task. You use what
+          you already know to write examples, check answers and judge whether a
+          model got something right.
+        </p>
+        <p class="note">
+          Pay ranges seen on the platforms' public listings in November 2026.
+          Each listing sets its own rate, and rates change.
+        </p>
+      </div>
+      <ul class="kinds" role="list">
+        {areas.map(([name, work, pay]) => (
+          <li class="kind">
+            <h3>{name}</h3>
+            <p>{work}</p>
+            <p class="area-pay">
+              <span class="sr-only">Typical pay: </span>
+              {pay}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section
+    id="browse"
+    class="band"
+    aria-labelledby="browse-heading"
+    tabindex="-1"
+  >
+    <div class="shell stack">
+      <div class="section-head">
+        <h2 id="browse-heading">Browse open roles</h2>
+        <p>
+          Both platforms list hundreds of remote roles. Open a role board, find
+          a role that fits and apply there.
+        </p>
+      </div>
+      <div class="consent-panel">
+        <div class="consent">
+          <input
+            id="consent"
+            name="consent"
+            type="checkbox"
+            aria-describedby="consent-hint"
+          />
+          <label for="consent">
+            I've read the <a href="/privacy/">privacy policy</a>. I understand
+            these are referral links: if I'm hired through one, Dataceam may
+            earn a referral bonus from the platform, at no cost to me.
+          </label>
+        </div>
+        <p class="hint" id="consent-hint">
+          Tick the box to open the links. Nothing is recorded when you tick it.
+        </p>
+      </div>
+      <ul class="platforms" role="list">
+        {expertPlatforms.map((platform) => (
+          <li class="platform">
+            <h3>{platform.label}</h3>
+            <p>{platform.summary}</p>
+            <a
+              class="button button-primary"
+              href={platform.href}
+              target="_blank"
+              rel="sponsored noopener"
+              data-consent-link
+            >
+              Open the role board
+              <span class="sr-only">
+                : {platform.label} (opens in a new tab)
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="how-heading">
+    <div class="shell stack">
+      <div class="section-head">
+        <h2 id="how-heading">How it works</h2>
+      </div>
+      <ol class="steps steps-3" role="list">
+        <li>
+          <strong>Tick the box and pick a platform.</strong>
+          Its role board opens in a new tab, with my referral code in the link.
+        </li>
+        <li>
+          <strong>Find a role and apply there.</strong>
+          You create your account on the platform, under its own terms.
+        </li>
+        <li>
+          <strong>The platform decides.</strong>
+          It screens, hires and pays you. I'm not involved after the link.
+        </li>
+      </ol>
+      <p class="disclosure">
+        Dataceam doesn't hire anyone. The roles are posted by third-party
+        AI-training platforms, which run all screening, hiring and payment. The
+        links on this page are referral links. If you're hired through one, the
+        platform may pay me a referral bonus. The platform pays it; it costs you
+        nothing. Pay figures come from the platforms' public listings and can
+        change, and nothing here promises an interview, a role or a rate.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  import { initConsentLinks } from '../scripts/consent-links';
+
+  initConsentLinks();
+</script>

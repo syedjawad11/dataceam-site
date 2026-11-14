@@ -13,6 +13,7 @@ Status: `todo` · `in-progress` · `review` · `blocked` · `done`
 | T-006 | Insights skeleton + RSS | done | task/006-insights | #4 |
 | T-007 | Blue/grey/black restyle + email-only contact | done | task/007-restyle-email-only | #8 |
 | T-008 | Home page v2: Jawad's new copy + tile design | review | task/008-home-copy-v2 | #10 |
+| T-017 | Referrer-only relaunch + /experts/ page | shipping | task/017-referrer-relaunch | — |
 
 ---
 
@@ -351,3 +352,16 @@ Goal: Go live with Jawad's X account and replace the privacy page with his appro
 
 ## T-016 — Home pricing: Starter tier company size "30+"
 In `src/pages/index.astro` (pricing array, Starter row), change the description text `often a 20–50 person company` to `often a 30+ person company`. Change nothing else. `content/home.md` already updated by CC.
+
+## T-017 — Referrer-only relaunch + /experts/ page
+Status: **shipping** · Branch `task/017-referrer-relaunch` · Implemented directly by Claude (claude.ai cloud session, 2026-11-14) at Jawad's request in chat, not via Codex. Jawad chose "straight to live" once checks pass.
+Goal: present Dataceam openly as a referrer only, run by a named person (Syed Jawad, Malta), with no buyer or platform names; add a job-referral side for experts.
+Changes:
+- New dark design ("plainly stated"): navy page, one blue signal colour, self-hosted Bricolage Grotesque headings, and a paper "Referral statement" card (`src/components/Ledger.astro`) on Home and /experts/.
+- Home rewritten (`content/home.md` → `src/pages/index.astro`): referrer-only statement, published buyer tiers framed as the buyers' own ranges, "Get these in writing" checklist replaces the old protections list, "Who runs Dataceam" with name and fee disclosure.
+- New `/experts/` (Jawad's decision: info and links only): work areas with typical pay from public listings (Nov 2026), a consent box that switches on the two referral links (`src/scripts/consent-links.ts`, nothing recorded), "Platform 1"/"Platform 2" cards using the general referral links in `src/config/site.ts`. No job list, no résumé collection.
+- FAQ and privacy rewritten (controller named, experts page, referral links, legal basis, IDPC complaint line). Insights: "vetted buyers" and "$3M+" lines replaced.
+- Header nav: For companies / For experts / Insights / FAQ. Footer: referrer-only disclosure. Security headers in `public/_headers`.
+- content-lint: new disclosures, "referrer only" check on Home/experts/FAQ, Mercor and "vetted" added, URLs masked for the name rule.
+- An earlier draft with an in-browser résumé matcher and a 59-role list was built and then removed at Jawad's request.
+Waiting on Jawad: confirm hello@dataceam.com; fill FAQ timing placeholders.

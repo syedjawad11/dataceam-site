@@ -2,18 +2,26 @@ import assert from 'node:assert/strict';
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 
+// Buyer and platform names may appear inside URLs (referral and listing
+// links), never in visible copy, so URLs are masked for that rule only.
+const NAME_RULE = /micro1|datafactor|lodex|mercor/gi;
+const URL_PATTERN = /https?:\/\/[^\s"'<>()]+/gi;
 const rules = [
   /linkedin/gi,
-  /micro1|datafactor|lodex/gi,
+  NAME_RULE,
   /data\s+broker/gi,
   /guarantee(?:d)?/gi,
+  /\bvetted\b/gi,
   /\b(?:partner|agent|representative)\s+(?:of|for|to)\s+\w+/gi,
   /official\s+partner/gi,
   /act\s+now|limited\s+time|don't\s+miss|get\s+rich/gi,
 ];
+const REFERRER_ONLY = 'Dataceam is a referrer only.';
 const disclosures = {
-  home: 'The buyer pays us a referral fee when a deal closes. You pay nothing for our help.',
-  faq: "I'm paid a referral fee by the buyer. It costs you nothing.",
+  home: 'If a company I introduce signs with a buyer, the buyer may pay me a referral fee. You pay nothing for my help.',
+  faq: 'If a deal or a hire happens, the buyer or platform may pay me a referral fee. It costs you nothing.',
+  experts:
+    "If you're hired through one, the platform may pay me a referral bonus.",
 };
 const allowedPhrases = [
   'not a data broker',
@@ -50,8 +58,12 @@ function lintSource(filename, source) {
       ),
     source,
   );
+  const urlMasked = checkedSource.replace(URL_PATTERN, (match) =>
+    ' '.repeat(match.length),
+  );
   for (const rule of rules) {
-    for (const match of checkedSource.matchAll(rule)) {
+    const text = rule === NAME_RULE ? urlMasked : checkedSource;
+    for (const match of text.matchAll(rule)) {
       const line = source.slice(0, match.index).split('\n').length;
       errors.push(
         `${filename}:${line}: forbidden match ${JSON.stringify(match[0])}`,
@@ -62,16 +74,17 @@ function lintSource(filename, source) {
   const page = new Map([
     [path.join('dist', 'index.html'), 'home'],
     [path.join('dist', 'faq', 'index.html'), 'faq'],
+    [path.join('dist', 'experts', 'index.html'), 'experts'],
   ]).get(filename);
   const disclosure = disclosures[page];
-  if (
-    page &&
-    new RegExp(`\\bdata-page\\s*=\\s*["']${page}["']`).test(source) &&
-    !source.includes(disclosure)
-  ) {
-    errors.push(
-      `${filename}: missing required disclosure ${JSON.stringify(disclosure)}`,
-    );
+  if (page && new RegExp(`\\bdata-page\\s*=\\s*["']${page}["']`).test(source)) {
+    for (const required of [disclosure, REFERRER_ONLY]) {
+      if (!source.includes(required)) {
+        errors.push(
+          `${filename}: missing required disclosure ${JSON.stringify(required)}`,
+        );
+      }
+    }
   }
   return errors;
 }
@@ -144,6 +157,8 @@ function selfTest() {
     'micro1',
     'datafactor',
     'lodex',
+    'mercor',
+    'vetted',
     ['data', 'broker'].join(' '),
     'guarantee',
     'guaranteed',
@@ -165,6 +180,23 @@ function selfTest() {
   }
   assert.equal(lintSource(filename, 'guarantee guarantee').length, 2);
   assert.deepEqual(lintSource(filename, 'Independent referral service.'), []);
+  // Names inside URLs are allowed; visible names are not.
+  assert.deepEqual(
+    lintSource(filename, '<a href="https://jobs.micro1.ai/post/1">Apply</a>'),
+    [],
+  );
+  assert.deepEqual(
+    lintSource(filename, 'See https://work.mercor.com/jobs/list_1 today'),
+    [],
+  );
+  assert.equal(
+    lintSource(filename, '<a href="https://example.com">micro1</a>').length,
+    1,
+  );
+  assert.equal(
+    lintSource(filename, '<a href="https://linkedin.com/in/x">X</a>').length,
+    1,
+  );
   for (const [allowed, forbiddenVariant] of [
     [allowedPhrases[0], 'not a data brokerage'],
     [allowedPhrases[1], 'not a guaranteed payout'],
@@ -177,19 +209,24 @@ function selfTest() {
     assert.equal(errors.length, 1);
     assert.ok(errors[0].startsWith(`${filename}:2:`));
   }
-  for (const page of ['home', 'faq']) {
+  for (const page of ['home', 'faq', 'experts']) {
     const file = path.join(
       'dist',
-      ...(page === 'faq' ? ['faq'] : []),
+      ...(page === 'home' ? [] : [page]),
       'index.html',
     );
     for (const quote of ['"', "'"]) {
       const marker = `<main data-page=${quote}${page}${quote}>`;
-      assert.equal(lintSource(file, marker).length, 1);
-      assert.deepEqual(lintSource(file, `${marker}${disclosures[page]}`), []);
+      assert.equal(lintSource(file, marker).length, 2);
+      assert.deepEqual(
+        lintSource(file, `${marker}${REFERRER_ONLY}${disclosures[page]}`),
+        [],
+      );
+      assert.equal(lintSource(file, `${marker}${disclosures[page]}`).length, 1);
       const otherPage = page === 'home' ? 'faq' : 'home';
       assert.equal(
-        lintSource(file, `${marker}${disclosures[otherPage]}`).length,
+        lintSource(file, `${marker}${REFERRER_ONLY}${disclosures[otherPage]}`)
+          .length,
         1,
       );
     }

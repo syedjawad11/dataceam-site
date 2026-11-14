@@ -28,7 +28,7 @@ You can explore a non-exclusive licence over a de-identified copy of company rec
 
 ## What are you licensing before a business sale?
 
-I work with several vetted AI data buyers. As an independent scout, I help owners assess whether their existing work records could fit a buyer's needs. This is separate from selling the company: the proposed licence covers a cleaned copy of approved records for agreed uses.
+I take part in the referral programmes of a small number of AI-data buyers. As an independent referrer, I help owners assess whether their existing work records could fit a buyer's needs. This is separate from selling the company: the proposed licence covers a cleaned copy of approved records for agreed uses.
 
 The company keeps its original records and continues operating. A non-exclusive licence is intended to let the sale go ahead as normal, subject to the sale documents and any required consent. It should not transfer control of the company's systems or prevent staff from using their own information.
 

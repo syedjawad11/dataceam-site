@@ -6,10 +6,14 @@ import '../styles/global.css';
 
 type Props = SeoProps & {
   page?: string;
+  /** Set false to keep analytics off a page. */
+  analytics?: boolean;
 };
 
-const { page, ...seoProps } = Astro.props;
-const beaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN?.trim();
+const { page, analytics = true, ...seoProps } = Astro.props;
+const beaconToken = analytics
+  ? import.meta.env.PUBLIC_CF_BEACON_TOKEN?.trim()
+  : undefined;
 ---
 
 <!doctype html>
@@ -17,6 +21,7 @@ const beaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN?.trim();
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b1222" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <link
@@ -35,8 +40,8 @@ const beaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN?.trim();
     <main
       id="main"
       class={
-        page === 'home'
-          ? 'home-main'
+        page === 'home' || page === 'experts'
+          ? 'page-main'
           : page === 'insights' || page === 'article'
             ? 'shell insights-main'
             : 'shell prose'
