@@ -28,7 +28,7 @@ codex exec -C "$(git rev-parse --show-toplevel)" -s workspace-write "<task spec>
 
 ## Content rules (hard)
 Positioning (Jawad, 2026-11-14, T-017): **Dataceam is a referrer only**, run openly by a named person (Syed Jawad, Malta), with no buyer or platform named on the site.
-- No buyer or platform logos or names (micro1, Mercor, DataFactor, Lodex or others) in visible copy. Referral and listing URLs in links and in `src/data/roles.json` are fine; content-lint masks URLs for this rule only.
+- No buyer or platform logos or names (micro1, Mercor, DataFactor, Lodex or others) in visible copy. Referral URLs in links and in `src/config/site.ts` (`expertPlatforms`) are fine; content-lint masks URLs for this rule only. On /experts/ the platforms are labelled "Platform 1" and "Platform 2".
 - Never claim to be a buyer's or platform's partner, agent or representative, and never imply Dataceam hires, screens or pays anyone. Say: *"I take part in the referral programmes of a small number of AI-data buyers and AI-training platforms."*
 - Never describe buyers as "vetted", "our buyers" or "current buyers", and never describe data handling Dataceam doesn't do (cleaning, PII stripping, encrypted access). Buyer commitments are framed as "get these in writing".
 - "Dataceam is a referrer only." must appear on Home, /experts/ and FAQ.
@@ -37,5 +37,5 @@ Positioning (Jawad, 2026-11-14, T-017): **Dataceam is a referrer only**, run ope
   - /experts/: *"If you're hired through one, the platform may pay me a referral bonus."*
   - FAQ: *"If a deal or a hire happens, the buyer or platform may pay me a referral fee. It costs you nothing."*
 - Amounts: only the buyers' published tiers ($50K+ / $500K+ / $1M+; "from around $50,000 to over $1 million"), always next to "not a promise" / "each buyer prices each company itself". No promised or guaranteed amounts.
-- /experts/: role pay comes from the platforms' public listings; say it can change. The résumé matcher must stay fully client-side (no network calls, no analytics on that page, CSP in `public/_headers`); the privacy policy describes this, so keep them in sync.
+- /experts/ (Jawad, 2026-11-14): info and links only — work areas with typical pay (from the platforms' public listings, dated, "rates change"), one general referral link per platform, and a consent box that must be ticked before the links work (nothing recorded). No job list, no per-job links, and never collect résumés or candidate data (GDPR controller duties; Malta employment-agency licensing risk).
 - No urgency or get-rich language. No LinkedIn links anywhere. Never use the term "data broker".

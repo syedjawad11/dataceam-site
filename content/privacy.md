@@ -1,8 +1,8 @@
 ---
 page: privacy
-status: DRAFT v2 — referrer-only relaunch (T-017, 2026-11-14), awaiting Jawad's approval (not legal advice)
+status: APPROVED to ship by Jawad 2026-11-14 (T-017) (not legal advice)
 title: "Privacy policy — Dataceam"
-description: "How dataceam.com handles your information. Dataceam is a referrer only, run by Syed Jawad in Malta. The résumé matcher runs in your browser and never uploads your résumé."
+description: "How dataceam.com handles your information. Dataceam is a referrer only, run by Syed Jawad in Malta. No résumés or candidate details are collected."
 lastUpdated: "14 November 2026"
 ---
 
@@ -21,16 +21,12 @@ Dataceam is a referrer only. I introduce companies that hold business records to
 ## What I don't do
 
 - I never receive, store, clean or sell your company's data. If a deal goes ahead, the data goes from you straight to the buyer.
-- I never receive your résumé. The matcher runs in your browser (see below).
+- I never collect résumés or job applications. You apply directly on the platform's site.
 - I don't sell your personal data, and I don't use it for automated decision-making.
 
-## The résumé matcher
+## The experts page
 
-When you add a résumé on the [experts page](/experts/), it's read by code running in your own browser. The text is compared with a list of open roles that your browser downloads from this site, and the results are shown on the page. Your résumé, and anything taken from it, is never sent to me, to my hosting provider or to anyone else. It's held in your browser's memory and discarded when you close or reload the tab.
-
-If you choose a PDF, your browser uses an open-source PDF reader (PDF.js) served from this site to extract the text on your device. The page's security policy blocks it from sending data to any other site, and analytics aren't loaded on that page.
-
-The checkbox you tick before matching is only checked on the page. It isn't recorded or sent anywhere.
+The [experts page](/experts/) has no forms or uploads. Before its referral links work, you tick a box to confirm you've read this policy and understand how referral links work. The box is only checked by your browser; it isn't recorded or sent anywhere.
 
 ## Deals are between you and the buyer or platform
 
@@ -39,7 +35,7 @@ Any deal is agreed directly between the buyer and the seller, and any work is ag
 ## What I collect
 
 - **Emails you send me.** Your name, your email address and what you tell me. I use them only to reply and, if you ask, to arrange an introduction.
-- **Website analytics.** On pages other than the experts page, I may use Cloudflare Web Analytics. It sets no cookies and doesn't identify you. It records only aggregate figures, such as page views, referrers and country.
+- **Website analytics.** I may use Cloudflare Web Analytics. It sets no cookies and doesn't identify you. It records only aggregate figures, such as page views, referrers and country.
 - **Server logs.** My hosting provider, Cloudflare, automatically records standard request information (such as IP address, time, browser type and the page requested) to keep the site secure and online.
 
 This site sets no cookies.

@@ -1,8 +1,8 @@
 ---
 page: faq
-status: DRAFT v2 — referrer-only relaunch (T-017, 2026-11-14), awaiting Jawad's approval
+status: DRAFT v2 — referrer-only relaunch (T-017, 2026-11-14), approved to ship by Jawad 2026-11-14
 title: "FAQ — Dataceam"
-description: "What Dataceam does and doesn't do, what data counts, who pays, how closed companies take part, and how the private résumé matcher for AI-training roles works."
+description: "What Dataceam does and doesn't do, what data counts, who pays, how closed companies take part, and how the AI-training work referrals for experts work."
 ---
 
 # Frequently asked questions
@@ -56,9 +56,9 @@ Yes. For liquidators and insolvency practitioners, a company's records can be an
 
 I take part in the referral programmes of a small number of AI-data buyers. I don't list them here because programmes open and close. Before any introduction I tell you exactly which buyer it is, and nothing happens without your OK.
 
-## Is the résumé matcher private?
+## Do you collect my résumé?
 
-Yes. Your résumé is read and matched in your own browser. It isn't uploaded, stored or sent anywhere, and the page's security settings block it from sending data to other sites. Close the tab and it's gone.
+No. The experts page has no forms or uploads. You open a platform's role board, create your account there and apply directly. I never see your résumé or application.
 
 ## Does Dataceam hire for the AI-training roles?
 

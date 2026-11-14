@@ -1,6 +1,6 @@
 ---
 page: home
-status: DRAFT v3 — referrer-only relaunch (T-017, 2026-11-14), awaiting Jawad's approval
+status: DRAFT v3 — referrer-only relaunch (T-017, 2026-11-14), approved to ship by Jawad 2026-11-14
 title: "Dataceam — License your company's records to AI-data buyers"
 description: "Dataceam is a referral service run by Syed Jawad. I introduce companies that hold years of business records to AI-data buyers who pay to license them. Free to you."
 ---
@@ -110,9 +110,9 @@ I don't name the buyers on this site because the list changes as programmes open
 
 ## Experts band
 
-Not here for a company? If you're a lawyer, engineer, doctor, analyst or other specialist, see which paid AI-training roles fit your background.
+Not here for a company? If you're a lawyer, engineer, doctor, analyst or other specialist, see what paid AI-training work is on offer and what it pays.
 
-[Button: Match my résumé → /experts/]
+[Button: See AI-training work → /experts/]
 
 ## Contact
 

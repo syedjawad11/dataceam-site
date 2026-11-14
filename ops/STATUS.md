@@ -23,10 +23,10 @@ Last updated: 2026-11-14
 - Go live with visible `[TO FILL: …]` placeholders. Jawad will supply the details one by one.
 - Visual direction: blue / grey / black, modern SaaS look. Never name or copy any buyer's brand.
 
-## In review — T-017 (2026-11-14)
-Referrer-only relaunch on branch `task/017-referrer-relaunch`: new dark design, named operator (Syed Jawad, Malta), no buyer/platform names, and a new `/experts/` page with an in-browser résumé matcher and 59 open AI-training roles. See `ops/TASKS.md` T-017.
-- Referral links: add your link to each role's `referralUrl` in `src/data/roles.json`. Empty = button goes to the public listing (no referral credit).
-- Refresh roles: update `roles.json` and `rolesCheckedOn` in `src/data/roles.ts` at least weekly; remove closed roles.
+## T-017 (2026-11-14) — referrer-only relaunch
+New dark design, named operator (Syed Jawad, Malta), no buyer/platform names, and a new `/experts/` page: work areas with typical pay, a consent box, and one general referral link per platform (`src/config/site.ts` → `expertPlatforms`). See `ops/TASKS.md` T-017.
+- To change a referral link, edit `expertPlatforms` in `src/config/site.ts`.
+- Pay ranges on /experts/ are dated November 2026; refresh them every few months.
 - Repo visibility: GitHub reports `syedjawad11/dataceam-site` as **public** (this file used to say private). `ops/` notes are visible to anyone.
 
 ## Waiting on Jawad (all placeholders on the live site)

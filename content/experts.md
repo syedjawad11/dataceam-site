@@ -1,11 +1,11 @@
 ---
 page: experts
-status: DRAFT — referrer-only relaunch (T-017, 2026-11-14), awaiting Jawad's approval
-title: "AI-training jobs for experts: match your résumé to open roles | Dataceam"
-description: "Paste or upload your résumé and see which open remote AI-training contract roles fit your background. Matching runs in your browser. Your résumé is never uploaded."
+status: APPROVED by Jawad 2026-11-14 (T-017): info and links only, one referral link per platform, consent box
+title: "AI-training work for experts: what it pays and where to apply | Dataceam"
+description: "Remote AI-training contract work for lawyers, engineers, doctors, analysts and other specialists: the kinds of work on offer, typical pay, and links to the platforms' role boards."
 ---
 
-<!-- Source of truth for /experts/ copy. Layout notes are in [brackets]. Roles live in src/data/roles.json. -->
+<!-- Source of truth for /experts/ copy. Layout notes are in [brackets]. Referral links live in src/config/site.ts (expertPlatforms). Platforms are never named on the page. -->
 
 ## Hero
 
@@ -13,59 +13,61 @@ description: "Paste or upload your résumé and see which open remote AI-trainin
 
 # Find paid AI-training work that fits what you already know
 
-AI labs pay lawyers, engineers, doctors, analysts and other specialists, usually through training platforms, to write, review and grade the work their models learn from. Paste or upload your résumé to see which open roles fit, each with a link to apply.
+AI labs pay lawyers, engineers, doctors, analysts, linguists and other specialists, usually through training platforms, to write, review and grade the work their models learn from. Below are the kinds of work on offer and what they typically pay. When you're ready, open a platform's role board and apply there.
 
-[Stats:] {N} open roles · {D} areas of expertise · Remote contract work · List checked {date}
-
-[Privacy note:] **Your résumé never leaves this page.** It's read and matched in your browser. Nothing is uploaded, stored or emailed, and this page's security settings block it from sending data to any other site.
+[Buttons:] Browse open roles (#browse) · See what it pays (#areas)
 
 ## Ledger card — "Dataceam, plainly"
 
 | Row | Text |
 |---|---|
 | Run by | Syed Jawad, independently, from Malta |
-| What I do | List open roles and match them to your résumé |
-| What I don't do | Hire, screen or pay anyone, or see your résumé |
+| What I do | Explain the kinds of AI-training work on offer and link to the platforms' role boards |
+| What I don't do | Hire, screen or pay anyone, or collect your résumé |
 | Who pays me | The platform: a referral bonus, only if you're hired |
 | What you pay | Nothing |
 
 [Card footer, bold:] Dataceam is a referrer only. You apply, and work, directly with the platform.
 
-## Matcher
+## Kinds of work
 
-### Match your résumé
+### What experts do, and what it pays
 
-1. **Your résumé** — [file input] Choose a PDF or text file, or drop it here. [textarea] Or paste your résumé text. Note: Word files aren't supported yet. Paste the text instead.
-2. **Referral links** — [checkbox] I understand the apply links are referral links. If I'm hired through one, Dataceam may earn a referral bonus from the platform, at no cost to me.
+The work is remote and paid by the hour or by the task. You use what you already know to write examples, check answers and judge whether a model got something right.
 
-[Button:] Show matching roles
+| Area | Work | Typical pay |
+|---|---|---|
+| Law | Review and write legal analysis in areas such as employment, antitrust, environmental and civil rights law, and contracts. | $60–130/hr, some specialist roles up to $400/hr |
+| Software | Write, review and grade code across backend, full-stack, frontend and open-source work. | $50–150/hr |
+| AI and data | Evaluate model output, analyse data, and review or label training data. | $20–120/hr |
+| Finance and accounting | Turn real finance work, such as reconciliations, modelling, due diligence and research, into tasks, and grade the answers. | $30–160/hr |
+| Medicine | Physicians review clinical reasoning; medical coders and chart reviewers check documentation. | $50–350/hr |
+| Engineering | Mechanical, electrical, systems and quality engineering problems and reviews. | $40–120/hr |
+| Science and maths | Graduate-level physics, maths and statistics problems, solutions and proofs. | $60–170/hr |
+| Language and writing | Native-speaker review of dialect, style and clarity. | $20–45/hr |
+| Business and media | Sales, marketing, strategy, and film and video expertise. | $25–120/hr |
 
-Results heading: Roles that fit your résumé
-Results summary: Top {k} of {N} roles, ranked by how many of the skills each role asks for appear in your résumé.
-Strength labels: Strong fit / Good fit / Possible fit
-Result line: Matched: {terms}
-Result button: View and apply
+Pay ranges seen on the platforms' public listings in November 2026. Each listing sets its own rate, and rates change.
 
-Empty state: No close matches in the current list. Browse all roles below, or check back: the list is updated as roles open and close.
+## Browse open roles
 
-Errors:
-- Add your résumé first: choose a file or paste the text.
-- Tick the box to confirm you've read how the referral links work.
-- That file couldn't be read. Try a PDF with selectable text or a .txt file, or paste the text.
-- That file type isn't supported. Choose a PDF or .txt file, or paste the text.
+Both platforms list hundreds of remote roles. Open a role board, find a role that fits and apply there.
 
-## All open roles
+[Consent box, required before the links work:] I've read the privacy policy. I understand these are referral links: if I'm hired through one, Dataceam may earn a referral bonus from the platform, at no cost to me.
 
-[Filter buttons by area: All, Law, Software, AI and data, Finance, Medicine, Engineering, Science and maths, Language, Business and media]
+[Hint:] Tick the box to open the links. Nothing is recorded when you tick it.
 
-Each role: title, area, pay ("Pay shown on the listing" when none is published), skills, [link: View and apply — opens the platform's listing in a new tab]
+| Card | Text | Button |
+|---|---|---|
+| Platform 1 | Hourly contract roles for lawyers, doctors, engineers, scientists, finance specialists, linguists and more. | Open the role board |
+| Platform 2 | Hourly and per-task projects for software engineers, doctors, researchers, economists and sales experts. | Open the role board |
 
 ## How it works
 
-1. **You add your résumé.** It's read in your browser and scored against the skills each role asks for.
-2. **You pick a role.** Each link opens the role on the hiring platform's own site.
-3. **You apply there.** The platform screens, hires and pays you under its own terms.
+1. **Tick the box and pick a platform.** Its role board opens in a new tab, with my referral code in the link.
+2. **Find a role and apply there.** You create your account on the platform, under its own terms.
+3. **The platform decides.** It screens, hires and pays you. I'm not involved after the link.
 
 ## Disclosure
 
-Dataceam doesn't hire anyone. These roles are posted by third-party AI-training platforms, which run all screening, hiring and payment. The links on this page are referral links. If you're hired through one, the platform may pay me a referral bonus. The platform pays it; it costs you nothing. Pay figures come from the platforms' public listings and can change, and nothing here promises an interview, a role or a rate.
+Dataceam doesn't hire anyone. The roles are posted by third-party AI-training platforms, which run all screening, hiring and payment. The links on this page are referral links. If you're hired through one, the platform may pay me a referral bonus. The platform pays it; it costs you nothing. Pay figures come from the platforms' public listings and can change, and nothing here promises an interview, a role or a rate.
