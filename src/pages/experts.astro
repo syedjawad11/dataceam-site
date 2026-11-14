@@ -1,6 +1,5 @@
 ---
 import Base from '../layouts/Base.astro';
-import Ledger from '../components/Ledger.astro';
 import { expertPlatforms, site } from '../config/site';
 
 // Copy source: content/experts.md
@@ -8,17 +7,6 @@ const title =
   'AI-training work for experts: what it pays and where to apply | Dataceam';
 const description =
   "Remote AI-training contract work for lawyers, engineers, doctors, analysts and other specialists: the kinds of work on offer, typical pay, and links to the platforms' role boards.";
-
-const ledgerRows: [string, string][] = [
-  ['Run by', `${site.personName}, independently, from ${site.personLocation}`],
-  [
-    'What I do',
-    "Explain the kinds of AI-training work on offer and link to the platforms' role boards",
-  ],
-  ["What I don't do", 'Hire, screen or pay anyone, or collect your résumé'],
-  ['Who pays me', "The platform: a referral bonus, only if you're hired"],
-  ['What you pay', 'Nothing'],
-];
 
 const areas = [
   [
@@ -80,9 +68,9 @@ const jsonLd = {
 
 <Base page="experts" title={title} description={description} jsonLd={jsonLd}>
   <section class="hero" aria-labelledby="hero-heading">
-    <div class="shell hero-grid">
+    <div class="shell">
       <div class="hero-copy">
-        <p class="badge">For experts</p>
+        <p class="badge">Independent referrer</p>
         <h1 id="hero-heading">
           Find paid AI-training work that fits what you already know
         </h1>
@@ -102,11 +90,6 @@ const jsonLd = {
           </a>
         </div>
       </div>
-      <Ledger
-        headingId="ledger-heading"
-        rows={ledgerRows}
-        foot="Dataceam is a referrer only. You apply, and work, directly with the platform."
-      />
     </div>
   </section>
 

@@ -1,27 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
 import EmailCta from '../components/EmailCta.astro';
-import Ledger from '../components/Ledger.astro';
 import { site } from '../config/site';
 
 // Copy source: content/home.md
 const title = "Dataceam — License your company's records to AI-data buyers";
 const description =
   'Dataceam is a referral service run by Syed Jawad. I introduce companies that hold years of business records to AI-data buyers who pay to license them. Free to you.';
-
-const ledgerRows: [string, string][] = [
-  ['Run by', `${site.personName}, independently, from ${site.personLocation}`],
-  [
-    'What I do',
-    "Check whether your company fits a buyer's published criteria, then introduce you",
-  ],
-  [
-    "What I don't do",
-    'Buy, store, clean or sell data, or sign anything for a buyer',
-  ],
-  ['Who pays me', 'The buyer: a referral fee, only if a deal goes ahead'],
-  ['What you pay', 'Nothing'],
-];
 
 const kinds = [
   [
@@ -133,7 +118,6 @@ const jsonLd = [
     '@type': 'Person',
     '@id': `${site.url}/#person`,
     name: site.personName,
-    homeLocation: { '@type': 'Place', name: site.personLocation },
     worksFor: { '@id': `${site.url}/#organization` },
   },
 ];
@@ -141,9 +125,9 @@ const jsonLd = [
 
 <Base page="home" title={title} description={description} jsonLd={jsonLd}>
   <section class="hero" aria-labelledby="hero-heading">
-    <div class="shell hero-grid">
+    <div class="shell">
       <div class="hero-copy">
-        <p class="badge">Independent referral service</p>
+        <p class="badge">Independent referrer</p>
         <h1 id="hero-heading">
           Your company's records may be worth money to an AI lab
         </h1>
@@ -168,11 +152,6 @@ const jsonLd = [
           </a>
         </div>
       </div>
-      <Ledger
-        headingId="ledger-heading"
-        rows={ledgerRows}
-        foot="Dataceam is a referrer only. Every deal is made directly between you and the buyer."
-      />
     </div>
   </section>
 
@@ -301,11 +280,10 @@ const jsonLd = [
       </div>
       <div class="stack">
         <p>
-          I'm {site.personName}, based in {site.personLocation}, and I run
-          Dataceam on my own. I take part in the referral programmes of a small
-          number of AI-data buyers and AI-training platforms. I'm not employed
-          by any of them, I don't speak or sign for them, and I can't promise
-          you anything on their behalf.
+          I'm {site.personName}, and I run Dataceam on my own. I take part in
+          the referral programmes of a small number of AI-data buyers and
+          AI-training platforms. I'm not employed by any of them, I don't speak
+          or sign for them, and I can't promise you anything on their behalf.
         </p>
         <p>
           I don't name the buyers on this site because the list changes as

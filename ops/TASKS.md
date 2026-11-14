@@ -13,7 +13,8 @@ Status: `todo` · `in-progress` · `review` · `blocked` · `done`
 | T-006 | Insights skeleton + RSS | done | task/006-insights | #4 |
 | T-007 | Blue/grey/black restyle + email-only contact | done | task/007-restyle-email-only | #8 |
 | T-008 | Home page v2: Jawad's new copy + tile design | review | task/008-home-copy-v2 | #10 |
-| T-017 | Referrer-only relaunch + /experts/ page | shipping | task/017-referrer-relaunch | — |
+| T-017 | Referrer-only relaunch + /experts/ page | done | task/017-referrer-relaunch | #20 |
+| T-018 | Simpler hero + footer disclosure | review | task/018-simple-disclosure | — |
 
 ---
 
@@ -354,7 +355,7 @@ Goal: Go live with Jawad's X account and replace the privacy page with his appro
 In `src/pages/index.astro` (pricing array, Starter row), change the description text `often a 20–50 person company` to `often a 30+ person company`. Change nothing else. `content/home.md` already updated by CC.
 
 ## T-017 — Referrer-only relaunch + /experts/ page
-Status: **shipping** · Branch `task/017-referrer-relaunch` · Implemented directly by Claude (claude.ai cloud session, 2026-11-14) at Jawad's request in chat, not via Codex. Jawad chose "straight to live" once checks pass.
+Status: **done** (PR #20, merged 2026-11-14) · Branch `task/017-referrer-relaunch` · Implemented directly by Claude (claude.ai cloud session, 2026-11-14) at Jawad's request in chat, not via Codex. Jawad chose "straight to live" once checks pass.
 Goal: present Dataceam openly as a referrer only, run by a named person (Syed Jawad, Malta), with no buyer or platform names; add a job-referral side for experts.
 Changes:
 - New dark design ("plainly stated"): navy page, one blue signal colour, self-hosted Bricolage Grotesque headings, and a paper "Referral statement" card (`src/components/Ledger.astro`) on Home and /experts/.
@@ -365,3 +366,7 @@ Changes:
 - content-lint: new disclosures, "referrer only" check on Home/experts/FAQ, Mercor and "vetted" added, URLs masked for the name rule.
 - An earlier draft with an in-browser résumé matcher and a 59-role list was built and then removed at Jawad's request.
 Waiting on Jawad: confirm hello@dataceam.com; fill FAQ timing placeholders.
+
+## T-018 — Simpler hero + footer disclosure (like hkrefer.online)
+Status: **review** · Branch `task/018-simple-disclosure` · Implemented directly by Claude (claude.ai cloud session, 2026-11-14) at Jawad's request.
+Changes: removed the "Dataceam, plainly" statement box from the Home and /experts/ heroes (and `Ledger.astro`); badge on both pages now reads "Independent referrer"; footer on every page now carries the full "Independent referrer disclosure" (run independently by Syed Jawad, not affiliated with any buyer or platform, referral fee at no cost to you, decisions made by the buyers/platforms, figures not a promise); location removed from visible copy (kept only in the privacy policy as controller identity).
