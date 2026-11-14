@@ -9,25 +9,13 @@ description: "Remote AI-training contract work for lawyers, engineers, doctors, 
 
 ## Hero
 
-[Badge:] For experts
+[Badge:] Independent referrer
 
 # Find paid AI-training work that fits what you already know
 
 AI labs pay lawyers, engineers, doctors, analysts, linguists and other specialists, usually through training platforms, to write, review and grade the work their models learn from. Below are the kinds of work on offer and what they typically pay. When you're ready, open a platform's role board and apply there.
 
 [Buttons:] Browse open roles (#browse) · See what it pays (#areas)
-
-## Ledger card — "Dataceam, plainly"
-
-| Row | Text |
-|---|---|
-| Run by | Syed Jawad, independently, from Malta |
-| What I do | Explain the kinds of AI-training work on offer and link to the platforms' role boards |
-| What I don't do | Hire, screen or pay anyone, or collect your résumé |
-| Who pays me | The platform: a referral bonus, only if you're hired |
-| What you pay | Nothing |
-
-[Card footer, bold:] Dataceam is a referrer only. You apply, and work, directly with the platform.
 
 ## Kinds of work
 
@@ -71,3 +59,11 @@ Both platforms list hundreds of remote roles. Open a role board, find a role tha
 ## Disclosure
 
 Dataceam doesn't hire anyone. The roles are posted by third-party AI-training platforms, which run all screening, hiring and payment. The links on this page are referral links. If you're hired through one, the platform may pay me a referral bonus. The platform pays it; it costs you nothing. Pay figures come from the platforms' public listings and can change, and nothing here promises an interview, a role or a rate.
+
+## Footer disclosure (every page, from src/components/Footer.astro)
+
+**Independent referrer disclosure**
+
+Dataceam is a referrer only. This website is run independently by Syed Jawad and is not affiliated with, endorsed by, sponsored by or acting on behalf of any AI-data buyer, AI-training platform or other company it refers to. I take part in open referral programmes and may earn a referral fee if you sign up, are hired or sign a deal through my links or introductions, at no cost to you.
+
+All applications, screening, hiring, pricing and payment decisions are made solely by the buyers and platforms, under their own terms. Nothing on this site promises an interview, a placement, a pay rate, a deal or a price. Pay and payout figures come from the buyers' and platforms' own public pages and are not a promise of earnings.

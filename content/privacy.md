@@ -2,7 +2,7 @@
 page: privacy
 status: APPROVED to ship by Jawad 2026-11-14 (T-017) (not legal advice)
 title: "Privacy policy — Dataceam"
-description: "How dataceam.com handles your information. Dataceam is a referrer only, run by Syed Jawad in Malta. No résumés or candidate details are collected."
+description: "How dataceam.com handles your information. Dataceam is a referrer only, run independently by Syed Jawad. No résumés or candidate details are collected."
 lastUpdated: "14 November 2026"
 ---
 

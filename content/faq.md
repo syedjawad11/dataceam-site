@@ -13,7 +13,7 @@ Dataceam is a referrer only. I introduce companies to AI-data buyers, and point 
 
 ## Who are you?
 
-I'm Syed Jawad, based in Malta. I run Dataceam on my own. I'm not employed by any buyer or platform, and I can't sign or promise anything on their behalf.
+I'm Syed Jawad. I run Dataceam on my own. I'm not employed by any buyer or platform, and I can't sign or promise anything on their behalf.
 
 ## What data counts?
 

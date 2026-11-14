@@ -9,7 +9,7 @@ description: "Dataceam is a referral service run by Syed Jawad. I introduce comp
 
 ## Hero
 
-[Badge:] Independent referral service
+[Badge:] Independent referrer
 
 # Your company's records may be worth money to an AI lab
 
@@ -18,18 +18,6 @@ AI developers have used up most of the public web. Now they pay to license somet
 [Figures line:] The buyers I refer to publish payouts from around **$50,000 to over $1 million** per company. That's their range, not a promise: each buyer prices each company itself.
 
 [Buttons:] Email me about your company (mailto) · Looking for AI-training work? (/experts/)
-
-## Ledger card — "Dataceam, plainly"
-
-| Row | Text |
-|---|---|
-| Run by | Syed Jawad, independently, from Malta |
-| What I do | Check whether your company fits a buyer's published criteria, then introduce you |
-| What I don't do | Buy, store, clean or sell data, or sign anything for a buyer |
-| Who pays me | The buyer: a referral fee, only if a deal goes ahead |
-| What you pay | Nothing |
-
-[Card footer, bold:] Dataceam is a referrer only. Every deal is made directly between you and the buyer.
 
 ## What buyers pay for
 
@@ -102,7 +90,7 @@ Take your own legal and data-protection advice before you sign.
 
 ### One person, working independently
 
-I'm Syed Jawad, based in Malta, and I run Dataceam on my own. I take part in the referral programmes of a small number of AI-data buyers and AI-training platforms. I'm not employed by any of them, I don't speak or sign for them, and I can't promise you anything on their behalf.
+I'm Syed Jawad, and I run Dataceam on my own. I take part in the referral programmes of a small number of AI-data buyers and AI-training platforms. I'm not employed by any of them, I don't speak or sign for them, and I can't promise you anything on their behalf.
 
 I don't name the buyers on this site because the list changes as programmes open and close. Before any introduction I'll tell you exactly which company it is, and you decide.
 
@@ -121,3 +109,11 @@ Not here for a company? If you're a lawyer, engineer, doctor, analyst or other s
 Email me a few lines about your company. I'll reply with whether a buyer is likely to fit, which one, and what it publishes. No commitment, and no data shared.
 
 [Button: Email me] Or write directly to [site.email]
+
+## Footer disclosure (every page, from src/components/Footer.astro)
+
+**Independent referrer disclosure**
+
+Dataceam is a referrer only. This website is run independently by Syed Jawad and is not affiliated with, endorsed by, sponsored by or acting on behalf of any AI-data buyer, AI-training platform or other company it refers to. I take part in open referral programmes and may earn a referral fee if you sign up, are hired or sign a deal through my links or introductions, at no cost to you.
+
+All applications, screening, hiring, pricing and payment decisions are made solely by the buyers and platforms, under their own terms. Nothing on this site promises an interview, a placement, a pay rate, a deal or a price. Pay and payout figures come from the buyers' and platforms' own public pages and are not a promise of earnings.

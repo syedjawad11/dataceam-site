@@ -4,7 +4,6 @@ export const site = {
   xHandle: '@dataceam',
   email: 'hello@dataceam.com',
   personName: 'Syed Jawad',
-  personLocation: 'Malta',
 } as const;
 
 /**

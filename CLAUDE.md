@@ -27,11 +27,11 @@ codex exec -C "$(git rev-parse --show-toplevel)" -s workspace-write "<task spec>
 - `npm run check:full` — `check` + Lighthouse CI + axe + gitleaks. Run by `/ship`.
 
 ## Content rules (hard)
-Positioning (Jawad, 2026-11-14, T-017): **Dataceam is a referrer only**, run openly by a named person (Syed Jawad, Malta), with no buyer or platform named on the site.
+Positioning (Jawad, 2026-11-14, T-017/T-018): **Dataceam is a referrer only**, run openly by a named person (Syed Jawad), with no buyer or platform named on the site. Keep it simple like hkrefer.online: a two-word "Independent referrer" badge at the top of Home and /experts/, no statement box in the hero, and the full "Independent referrer disclosure" in the footer of every page (`src/components/Footer.astro`). No location in visible copy; Malta appears only in the privacy policy (controller identity).
 - No buyer or platform logos or names (micro1, Mercor, DataFactor, Lodex or others) in visible copy. Referral URLs in links and in `src/config/site.ts` (`expertPlatforms`) are fine; content-lint masks URLs for this rule only. On /experts/ the platforms are labelled "Platform 1" and "Platform 2".
 - Never claim to be a buyer's or platform's partner, agent or representative, and never imply Dataceam hires, screens or pays anyone. Say: *"I take part in the referral programmes of a small number of AI-data buyers and AI-training platforms."*
 - Never describe buyers as "vetted", "our buyers" or "current buyers", and never describe data handling Dataceam doesn't do (cleaning, PII stripping, encrypted access). Buyer commitments are framed as "get these in writing".
-- "Dataceam is a referrer only." must appear on Home, /experts/ and FAQ.
+- "Dataceam is a referrer only." must appear on Home, /experts/ and FAQ (the footer disclosure covers this).
 - Referral disclosures (exact, enforced by content-lint):
   - Home: *"If a company I introduce signs with a buyer, the buyer may pay me a referral fee. You pay nothing for my help."*
   - /experts/: *"If you're hired through one, the platform may pay me a referral bonus."*

@@ -3,9 +3,8 @@
 
 /*
   Dataceam v3 — "plainly stated".
-  Dark navy page, one blue signal colour, and a paper "statement" card
-  (the Ledger) as the single bold element that says what Dataceam does,
-  doesn't do, and how it's paid.
+  Dark navy page, one blue signal colour, expressive headings, and a plain
+  independent-referrer disclosure in the footer of every page.
 */
 
 @theme {
@@ -22,12 +21,6 @@
   --color-signal: #5b9bff;
   --color-signal-strong: #8bb8ff;
   --color-on-signal: #07111f;
-
-  /* Ledger (paper statement card) */
-  --color-sheet: #eef2f8;
-  --color-sheet-ink: #0f1a2e;
-  --color-sheet-muted: #46536b;
-  --color-sheet-rule: #c9d3e3;
 
   --container-prose: 70ch;
   --container-shell: 72rem;
@@ -193,7 +186,18 @@
   }
 
   .footer-disclosure {
-    max-width: 62ch;
+    max-width: 75ch;
+  }
+
+  .footer-disclosure h2 {
+    margin-block-end: 0.5rem;
+    color: var(--color-paper);
+    font-size: 1rem;
+    letter-spacing: 0;
+  }
+
+  .footer-disclosure p + p {
+    margin-block-start: 0.6rem;
   }
 
   .footer-row {
@@ -353,21 +357,8 @@
     padding-block: clamp(3rem, 7vw, 5.5rem) clamp(3.5rem, 8vw, 6rem);
   }
 
-  .hero-grid {
-    display: grid;
-    gap: 3rem;
-    align-items: start;
-  }
-
-  .hero-grid > * {
-    min-width: 0;
-  }
-
-  @media (min-width: 64rem) {
-    .hero-grid {
-      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-      gap: 4.5rem;
-    }
+  .hero-copy {
+    max-width: 48rem;
   }
 
   .hero-copy > * + * {
@@ -403,101 +394,6 @@
 
   .hero-figures strong {
     font-variant-numeric: tabular-nums;
-  }
-
-  /* ---------- Ledger: the paper statement card ---------- */
-
-  .ledger {
-    position: relative;
-    padding: 1.6rem 1.5rem 1.4rem;
-    border-radius: 0.35rem;
-    color: var(--color-sheet-ink);
-    background: var(--color-sheet);
-    box-shadow:
-      0 1px 0 #ffffff inset,
-      0 24px 60px -24px #000000b3;
-  }
-
-  .ledger::before {
-    position: absolute;
-    inset: 0 0 auto;
-    height: 6px;
-    border-radius: 0.35rem 0.35rem 0 0;
-    background: repeating-linear-gradient(
-      90deg,
-      var(--color-sheet-ink) 0 10px,
-      transparent 10px 16px
-    );
-    opacity: 0.85;
-    content: '';
-  }
-
-  .ledger-title {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
-    padding-block-end: 0.85rem;
-    border-bottom: 2px solid var(--color-sheet-ink);
-  }
-
-  .ledger-title h2 {
-    color: var(--color-sheet-ink);
-    font-size: 1.3rem;
-    letter-spacing: -0.01em;
-  }
-
-  .ledger-title span {
-    color: var(--color-sheet-muted);
-    font-size: 0.85rem;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .ledger dl {
-    margin: 0;
-  }
-
-  .ledger-row {
-    display: grid;
-    gap: 0.15rem 1rem;
-    padding-block: 0.8rem;
-    border-bottom: 1px dashed var(--color-sheet-rule);
-  }
-
-  @media (min-width: 30rem) {
-    .ledger-row {
-      grid-template-columns: 8.5rem minmax(0, 1fr);
-    }
-  }
-
-  .ledger-row dt {
-    color: var(--color-sheet-muted);
-    font-size: 0.88rem;
-    font-weight: 600;
-  }
-
-  .ledger-row dd {
-    margin: 0;
-    color: var(--color-sheet-ink);
-    font-size: 0.98rem;
-    line-height: 1.5;
-  }
-
-  .ledger-row.is-total dd {
-    font-family: var(--font-display);
-    font-size: 1.15rem;
-    font-weight: 700;
-  }
-
-  .ledger-foot {
-    margin-block-start: 1rem;
-    color: var(--color-sheet-ink);
-    font-weight: 650;
-    line-height: 1.5;
-  }
-
-  .ledger a {
-    color: #1d4fd8;
   }
 
   /* ---------- Data kinds (definition grid, not cards) ---------- */
