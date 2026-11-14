@@ -1,6 +1,6 @@
 # Project status — dataceam.com
 
-Last updated: 2026-11-08
+Last updated: 2026-11-14
 
 ## Live
 - https://dataceam.com: Cloudflare Pages project `dataceam-site`, built from `main` via the GitHub integration.
@@ -23,9 +23,15 @@ Last updated: 2026-11-08
 - Go live with visible `[TO FILL: …]` placeholders. Jawad will supply the details one by one.
 - Visual direction: blue / grey / black, modern SaaS look. Never name or copy any buyer's brand.
 
+## In review — T-017 (2026-11-14)
+Referrer-only relaunch on branch `task/017-referrer-relaunch`: new dark design, named operator (Syed Jawad, Malta), no buyer/platform names, and a new `/experts/` page with an in-browser résumé matcher and 59 open AI-training roles. See `ops/TASKS.md` T-017.
+- Referral links: add your link to each role's `referralUrl` in `src/data/roles.json`. Empty = button goes to the public listing (no referral credit).
+- Refresh roles: update `roles.json` and `rolesCheckedOn` in `src/data/roles.ts` at least weekly; remove closed roles.
+- Repo visibility: GitHub reports `syedjawad11/dataceam-site` as **public** (this file used to say private). `ops/` notes are visible to anyone.
+
 ## Waiting on Jawad (all placeholders on the live site)
 - [x] Contact email: `hello@dataceam.com` (Google Workspace), filled in T-012 (2026-11-08)
-- [ ] Full name, photo, 3–4 line bio (Who I am; adding the name also adds Person JSON-LD)
+- [x] Full name: Syed Jawad, Malta (T-017; Person JSON-LD added). Photo and longer bio still optional.
 - [x] X handle — @dataceam (T-014)
 - [ ] Who qualifies: company size, years of records
 - [ ] Reply time and intro timing (FAQ "How long does it take?")

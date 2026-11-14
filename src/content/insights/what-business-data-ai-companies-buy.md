@@ -32,7 +32,7 @@ Public web text has largely been used already in training, and more of the same 
 
 That distinction matters. A published help article explains a process. A complete support thread can show how someone recognised the problem, asked for missing information, tried an approach and checked whether it worked. Both contain language, but the thread also contains the path through a task.
 
-I work with several vetted AI data buyers. As an independent scout, I look for a possible fit between the records a company owns and the kind of work a buyer wants to study. An initial description is enough to start that conversation; there is no need to send a raw archive.
+I take part in the referral programmes of a small number of AI-data buyers. As an independent referrer, I look for a possible fit between the records a company owns and the kind of work a buyer wants to study. An initial description is enough to start that conversation; there is no need to send a raw archive.
 
 The [home page](/) explains the wider process. The proposed arrangement is a licence over an approved, cleaned copy. You keep your original records and your business. Qualification is about the usefulness and permissions of that copy, rather than simply how many files exist in your accounts.
 
@@ -109,7 +109,7 @@ Records from a business that has closed can sometimes qualify if ownership and d
 
 ## What might a licensing deal be worth?
 
-Depending on the data, a licensing deal may be worth $50K to $3M+. That range is not a guarantee; it depends on the data, its volume and the buyer.
+The buyers I refer to publish payouts from around $50K to over $1M per company. That range is theirs, not a promise; each buyer prices each company on its data, volume and fit.
 
 Treat that framing as a reason to assess fit, not as a valuation of your company. The buyer needs to understand what is actually available, what can be licensed and what remains useful after exclusions and cleaning. A large raw archive can become a much smaller usable dataset.
 

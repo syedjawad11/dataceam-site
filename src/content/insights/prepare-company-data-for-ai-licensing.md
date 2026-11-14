@@ -28,7 +28,7 @@ To prepare company data for AI training, agree which records you can license, ex
 
 ## What does preparing actually involve?
 
-I work with several vetted AI data buyers. As an independent scout, I help establish whether your records might fit before anyone starts moving files. A useful first email describes the tools, the period covered and who owns the work. It does not need attachments containing customer or employee information.
+I take part in the referral programmes of a small number of AI-data buyers. As an independent referrer, I help establish whether your records might fit before anyone starts moving files. A useful first email describes the tools, the period covered and who owns the work. It does not need attachments containing customer or employee information.
 
 Preparation has three jobs: agree the scope, export each tool, and hand over the approved material for cleaning and review. Each job needs an owner. In a small company that might be the founder and an IT administrator; elsewhere it may involve operations, security and the person responsible for privacy.
 

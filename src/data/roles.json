@@ -1,0 +1,1252 @@
+[
+  {
+    "id": "legal-employment-labor",
+    "title": "Legal Expert (Employment & Labor Law)",
+    "domain": "law",
+    "pay": "$80–130/hr",
+    "payMax": 130,
+    "skills": ["Employment law", "Labor law", "Employment litigation"],
+    "terms": [
+      "employment attorney",
+      "labor and employment",
+      "labour law",
+      "employment counsel",
+      "wrongful termination",
+      "attorney",
+      "lawyer",
+      "litigation",
+      "bar admission",
+      "juris doctor"
+    ],
+    "posted": "2026-11-13",
+    "listingUrl": "https://jobs.micro1.ai/post/6422f784-daa4-41a6-8614-7de3f9025dee",
+    "referralUrl": ""
+  },
+  {
+    "id": "legal-antitrust",
+    "title": "Legal Expert (Antitrust & Competition Law)",
+    "domain": "law",
+    "pay": "$80–130/hr",
+    "payMax": 130,
+    "skills": ["Antitrust law", "Competition law", "Antitrust litigation"],
+    "terms": [
+      "antitrust",
+      "competition counsel",
+      "merger control",
+      "cartel",
+      "attorney",
+      "lawyer",
+      "litigation",
+      "bar admission"
+    ],
+    "posted": "2026-11-13",
+    "listingUrl": "https://jobs.micro1.ai/post/5faf40c0-a291-4ca9-bb45-be75d2dde2ed",
+    "referralUrl": ""
+  },
+  {
+    "id": "legal-environmental",
+    "title": "Legal Expert (Environmental Law)",
+    "domain": "law",
+    "pay": "$80–130/hr",
+    "payMax": 130,
+    "skills": [
+      "Environmental law",
+      "Environmental counsel",
+      "Environmental litigation"
+    ],
+    "terms": [
+      "environmental attorney",
+      "environmental compliance",
+      "epa",
+      "permitting",
+      "attorney",
+      "lawyer",
+      "litigation"
+    ],
+    "posted": "2026-11-13",
+    "listingUrl": "https://jobs.micro1.ai/post/25101ed1-9065-439f-aea5-ce77efeb4ef4",
+    "referralUrl": ""
+  },
+  {
+    "id": "legal-civil-rights",
+    "title": "Legal Expert (Civil Rights Law)",
+    "domain": "law",
+    "pay": "$80–130/hr",
+    "payMax": 130,
+    "skills": [
+      "Civil rights law",
+      "Civil rights litigation",
+      "Civil liberties"
+    ],
+    "terms": [
+      "civil rights attorney",
+      "civil liberties",
+      "discrimination law",
+      "constitutional law",
+      "attorney",
+      "lawyer",
+      "litigation"
+    ],
+    "posted": "2026-11-13",
+    "listingUrl": "https://jobs.micro1.ai/post/7eba9484-46ef-4914-a284-2159b2ccbd00",
+    "referralUrl": ""
+  },
+  {
+    "id": "legal-entertainment",
+    "title": "Legal Expert (Entertainment Law)",
+    "domain": "law",
+    "pay": "$80–130/hr",
+    "payMax": 130,
+    "skills": [
+      "Entertainment contracts",
+      "Content licensing",
+      "Talent agreements"
+    ],
+    "terms": [
+      "entertainment law",
+      "media law",
+      "intellectual property",
+      "licensing agreements",
+      "contract drafting",
+      "attorney",
+      "lawyer"
+    ],
+    "posted": "2026-11-13",
+    "listingUrl": "https://jobs.micro1.ai/post/22682b99-ae27-4f3b-be90-188da60d44d2",
+    "referralUrl": ""
+  },
+  {
+    "id": "legal-structured-finance",
+    "title": "Structured Finance Attorney",
+    "domain": "law",
+    "pay": "$140–400/hr",
+    "payMax": 400,
+    "skills": [
+      "Structured finance law",
+      "Contract review and drafting",
+      "Regulatory compliance"
+    ],
+    "terms": [
+      "structured finance",
+      "securitization",
+      "securitisation",
+      "capital markets",
+      "cmbs",
+      "attorney",
+      "lawyer",
+      "banking law"
+    ],
+    "posted": "2026-10-22",
+    "listingUrl": "https://jobs.micro1.ai/post/114d9490-fbb0-4533-b891-73d0ee1c859d",
+    "referralUrl": ""
+  },
+  {
+    "id": "legal-federal-contracts",
+    "title": "Contract Specialist (Federal Contracting)",
+    "domain": "law",
+    "pay": "$60–80/hr",
+    "payMax": 80,
+    "skills": [
+      "Federal contracting",
+      "Contract negotiation",
+      "Pre-award and post-award procedures"
+    ],
+    "terms": [
+      "dfars",
+      "government contracts",
+      "procurement",
+      "contracting officer",
+      "contract administration",
+      "contracts manager"
+    ],
+    "posted": "2026-11-13",
+    "listingUrl": "https://jobs.micro1.ai/post/446f05ac-d089-4214-ada6-02df5f1c12fe",
+    "referralUrl": ""
+  },
+  {
+    "id": "sw-backend",
+    "title": "Software Engineer (Backend)",
+    "domain": "software",
+    "pay": "$50–100/hr",
+    "payMax": 100,
+    "skills": ["Python", "Java", "Rust"],
+    "terms": [
+      "backend",
+      "back-end",
+      "api",
+      "microservices",
+      "software engineer",
+      "software developer",
+      "sql",
+      "docker",
+      "kubernetes",
+      "aws"
+    ],
+    "posted": "2026-11-11",
+    "listingUrl": "https://jobs.micro1.ai/post/e5a0105a-1535-4ea8-97ff-d6ff43441e42",
+    "referralUrl": ""
+  },
+  {
+    "id": "sw-fullstack-senior",
+    "title": "Senior Full-Stack Software Engineer",
+    "domain": "software",
+    "pay": "$50–100/hr",
+    "payMax": 100,
+    "skills": ["Python", "React", "JavaScript"],
+    "terms": [
+      "full-stack",
+      "full stack",
+      "typescript",
+      "node.js",
+      "nodejs",
+      "frontend",
+      "backend",
+      "web development",
+      "software engineer"
+    ],
+    "posted": "2026-11-11",
+    "listingUrl": "https://jobs.micro1.ai/post/03ef0cc7-8c09-466f-9b37-b4d8b3c97de5",
+    "referralUrl": ""
+  },
+  {
+    "id": "sw-senior",
+    "title": "Senior Software Engineer",
+    "domain": "software",
+    "pay": "$80–120/hr",
+    "payMax": 120,
+    "skills": ["Python", "Java", "Rust"],
+    "terms": [
+      "senior software engineer",
+      "software architecture",
+      "system design",
+      "code review",
+      "tech lead",
+      "backend",
+      "distributed systems"
+    ],
+    "posted": "2026-11-08",
+    "listingUrl": "https://jobs.micro1.ai/post/4576465c-1e27-4f52-b18b-be3c85a9fc10",
+    "referralUrl": ""
+  },
+  {
+    "id": "sw-frontend",
+    "title": "Frontend / UI Engineer",
+    "domain": "software",
+    "pay": "$70–100/hr",
+    "payMax": 100,
+    "skills": ["React", "TypeScript", "Frontend"],
+    "terms": [
+      "front-end",
+      "ui engineer",
+      "javascript",
+      "css",
+      "html",
+      "next.js",
+      "vue",
+      "web development"
+    ],
+    "posted": "2026-11-05",
+    "listingUrl": "https://jobs.micro1.ai/post/526b27c6-df46-441e-b04d-97dbeb4f5904",
+    "referralUrl": ""
+  },
+  {
+    "id": "sw-open-source",
+    "title": "Software Engineer (Open-Source Contributions)",
+    "domain": "software",
+    "pay": "$50–100/hr",
+    "payMax": 100,
+    "skills": ["Python", "Java", "Rust"],
+    "terms": [
+      "open source",
+      "open-source",
+      "github",
+      "pull requests",
+      "maintainer",
+      "software engineer"
+    ],
+    "posted": "2026-11-10",
+    "listingUrl": "https://jobs.micro1.ai/post/f773a48d-1b5f-4bb6-8b56-a6d72f3fb9c5",
+    "referralUrl": ""
+  },
+  {
+    "id": "sw-3d-engine",
+    "title": "Software Engineer (3D Game Engine)",
+    "domain": "software",
+    "pay": "$70–130/hr",
+    "payMax": 130,
+    "skills": ["C++", "Python", "Game engines"],
+    "terms": [
+      "c++",
+      "o3de",
+      "unreal engine",
+      "unity",
+      "game development",
+      "graphics programming",
+      "3d engine"
+    ],
+    "posted": "2026-11-03",
+    "listingUrl": "https://jobs.micro1.ai/post/9f83ac6b-9f94-4abc-87b7-d6d60cc9a70c",
+    "referralUrl": ""
+  },
+  {
+    "id": "sw-backend-node",
+    "title": "Senior Backend Engineer (Node.js, TypeScript, Rust)",
+    "domain": "software",
+    "pay": "$50–80/hr",
+    "payMax": 80,
+    "skills": ["Node.js", "TypeScript", "Rust"],
+    "terms": [
+      "nodejs",
+      "node.js",
+      "typescript",
+      "rust",
+      "backend",
+      "api",
+      "postgresql",
+      "software engineer"
+    ],
+    "posted": "2026-11-14",
+    "listingUrl": "https://work.mercor.com/jobs/list_AAABoYOO8zQtYcKO699P24Q1",
+    "referralUrl": ""
+  },
+  {
+    "id": "sw-open-source-maintainer",
+    "title": "Open-Source Maintainer / Core Contributor",
+    "domain": "software",
+    "pay": "$150/hr",
+    "payMax": 150,
+    "skills": [
+      "Open-source maintenance",
+      "Code review",
+      "Software engineering"
+    ],
+    "terms": [
+      "open source",
+      "open-source",
+      "maintainer",
+      "core contributor",
+      "github",
+      "pull requests",
+      "release management"
+    ],
+    "posted": "2026-11-14",
+    "listingUrl": "https://work.mercor.com/jobs/list_AAABoZ5Af5H0GMoyXaBBDKW2",
+    "referralUrl": ""
+  },
+  {
+    "id": "ai-ml-junior",
+    "title": "Machine Learning Engineer (Junior)",
+    "domain": "ai-data",
+    "pay": "$60–120/hr",
+    "payMax": 120,
+    "skills": ["Machine learning", "Python", "Model training"],
+    "terms": [
+      "machine learning",
+      "deep learning",
+      "pytorch",
+      "tensorflow",
+      "scikit-learn",
+      "neural networks",
+      "ml engineer"
+    ],
+    "posted": "2026-11-12",
+    "listingUrl": "https://jobs.micro1.ai/post/7fc07dfa-1d0e-4795-b8b2-805d3d41a48a",
+    "referralUrl": ""
+  },
+  {
+    "id": "ai-trainer-ml-eng",
+    "title": "AI Trainer (ML Engineering)",
+    "domain": "ai-data",
+    "pay": "$60–120/hr",
+    "payMax": 120,
+    "skills": ["ML engineering", "AI training", "Programming"],
+    "terms": [
+      "machine learning",
+      "mlops",
+      "pytorch",
+      "llm",
+      "large language models",
+      "model evaluation",
+      "python"
+    ],
+    "posted": "2026-11-09",
+    "listingUrl": "https://jobs.micro1.ai/post/1f738cfe-c245-4f5c-991e-eb3bedc55705",
+    "referralUrl": ""
+  },
+  {
+    "id": "ai-mlops-llm",
+    "title": "MLOps Engineer, LLM Performance",
+    "domain": "ai-data",
+    "pay": "$90–120/hr",
+    "payMax": 120,
+    "skills": ["GPU kernels", "Profiling", "Model serving"],
+    "terms": [
+      "mlops",
+      "cuda",
+      "triton",
+      "inference",
+      "llm serving",
+      "vllm",
+      "gpu",
+      "performance optimization",
+      "profiling"
+    ],
+    "posted": "2026-11-14",
+    "listingUrl": "https://work.mercor.com/jobs/list_AAABoWUVTB6QpgVqdb5Nkon1",
+    "referralUrl": ""
+  },
+  {
+    "id": "ai-data-science-sme",
+    "title": "Data Science & Analytics Methodology Expert",
+    "domain": "ai-data",
+    "pay": "$60–100/hr",
+    "payMax": 100,
+    "skills": ["Data analytics", "LLMs", "Pipeline integration"],
+    "terms": [
+      "data science",
+      "data scientist",
+      "statistics",
+      "python",
+      "sql",
+      "analytics",
+      "data pipelines",
+      "experimentation"
+    ],
+    "posted": "2026-10-22",
+    "listingUrl": "https://jobs.micro1.ai/post/0db2a044-3c6c-47e9-b610-292eddd305d2",
+    "referralUrl": ""
+  },
+  {
+    "id": "ai-data-analyst-eval",
+    "title": "Data Analyst (AI Evaluation)",
+    "domain": "ai-data",
+    "pay": "$30–60/hr",
+    "payMax": 60,
+    "skills": ["Data analysis", "Data review", "Attention to detail"],
+    "terms": [
+      "data analyst",
+      "excel",
+      "sql",
+      "power bi",
+      "tableau",
+      "reporting",
+      "dashboards",
+      "quality assurance"
+    ],
+    "posted": "2026-11-02",
+    "listingUrl": "https://jobs.micro1.ai/post/9e458805-3508-4fba-b7c7-2429565ea971",
+    "referralUrl": ""
+  },
+  {
+    "id": "ai-data-privacy",
+    "title": "Data Privacy Specialist",
+    "domain": "ai-data",
+    "pay": "$30–60/hr",
+    "payMax": 60,
+    "skills": ["Data privacy", "Data protection", "Information governance"],
+    "terms": [
+      "gdpr",
+      "ccpa",
+      "privacy",
+      "data protection officer",
+      "dpo",
+      "information governance",
+      "compliance",
+      "records management"
+    ],
+    "posted": "2026-11-09",
+    "listingUrl": "https://jobs.micro1.ai/post/76ed9340-2606-4218-9729-67424f90bacc",
+    "referralUrl": ""
+  },
+  {
+    "id": "ai-charts-expert",
+    "title": "Data & Charts Expert",
+    "domain": "ai-data",
+    "pay": "$25–50/hr",
+    "payMax": 50,
+    "skills": [
+      "Chart interpretation",
+      "Quantitative reasoning",
+      "Question design"
+    ],
+    "terms": [
+      "data visualization",
+      "data visualisation",
+      "charts",
+      "quantitative",
+      "excel",
+      "statistics",
+      "reporting"
+    ],
+    "posted": "2026-10-26",
+    "listingUrl": "https://jobs.micro1.ai/post/20fa6ad3-5691-4b61-9e33-27aad6b1bd6d",
+    "referralUrl": ""
+  },
+  {
+    "id": "ai-imagery-analyst",
+    "title": "Imagery Analyst (AI Training Data)",
+    "domain": "ai-data",
+    "pay": "$35–80/hr",
+    "payMax": 80,
+    "skills": ["Data labeling", "Data annotation", "Labeling accuracy"],
+    "terms": [
+      "imagery analysis",
+      "image analysis",
+      "gis",
+      "remote sensing",
+      "satellite imagery",
+      "annotation",
+      "labeling",
+      "labelling"
+    ],
+    "posted": "2026-10-29",
+    "listingUrl": "https://jobs.micro1.ai/post/448f7fb3-a4cf-44e8-9a13-de2de0f257a1",
+    "referralUrl": ""
+  },
+  {
+    "id": "ai-annotation-generalist",
+    "title": "Generalist for Data Annotation",
+    "domain": "ai-data",
+    "pay": "$21–45/hr",
+    "payMax": 45,
+    "skills": [
+      "Image annotation",
+      "Attention to detail",
+      "Written communication"
+    ],
+    "terms": [
+      "annotation",
+      "data labeling",
+      "data labelling",
+      "data entry",
+      "quality checking",
+      "content moderation"
+    ],
+    "posted": "2026-11-06",
+    "listingUrl": "https://jobs.micro1.ai/post/3cc943d0-b584-42ea-8342-3e5f77f9504f",
+    "referralUrl": ""
+  },
+  {
+    "id": "fin-accounting-expert",
+    "title": "Finance & Accounting Expert",
+    "domain": "finance",
+    "pay": "$40–90/hr",
+    "payMax": 90,
+    "skills": ["Reconciliations", "Error diagnosis", "Task and grading design"],
+    "terms": [
+      "accounting",
+      "accountant",
+      "reconciliation",
+      "accounts payable",
+      "accounts receivable",
+      "general ledger",
+      "month-end close",
+      "acca",
+      "cpa",
+      "ifrs",
+      "gaap",
+      "bookkeeping"
+    ],
+    "posted": "2026-10-24",
+    "listingUrl": "https://jobs.micro1.ai/post/00ad74df-491a-4327-a38c-5dc7d484ad77",
+    "referralUrl": ""
+  },
+  {
+    "id": "fin-modeling",
+    "title": "Corporate Finance & Financial Modeling Expert",
+    "domain": "finance",
+    "pay": "$60–120/hr",
+    "payMax": 120,
+    "skills": ["Financial modeling", "Corporate finance", "CPA or equivalent"],
+    "terms": [
+      "financial modeling",
+      "financial modelling",
+      "dcf",
+      "valuation",
+      "corporate finance",
+      "fp&a",
+      "cpa",
+      "cfa",
+      "investment banking"
+    ],
+    "posted": "2026-10-28",
+    "listingUrl": "https://jobs.micro1.ai/post/644f3f12-c2a2-4fb9-8652-57263a807c5e",
+    "referralUrl": ""
+  },
+  {
+    "id": "fin-due-diligence",
+    "title": "Financial Due Diligence & Transaction Accounting",
+    "domain": "finance",
+    "pay": "$60–120/hr",
+    "payMax": 120,
+    "skills": ["Due diligence", "Transaction accounting", "CPA or equivalent"],
+    "terms": [
+      "due diligence",
+      "transaction services",
+      "quality of earnings",
+      "m&a",
+      "mergers and acquisitions",
+      "audit",
+      "big four",
+      "cpa",
+      "aca",
+      "acca"
+    ],
+    "posted": "2026-10-28",
+    "listingUrl": "https://jobs.micro1.ai/post/9a802ec5-4080-45e1-bb58-b97c36ac38d9",
+    "referralUrl": ""
+  },
+  {
+    "id": "fin-research",
+    "title": "Finance Research Expert",
+    "domain": "finance",
+    "pay": "$30–85/hr",
+    "payMax": 85,
+    "skills": ["Equity research", "FP&A", "Corporate finance"],
+    "terms": [
+      "equity research",
+      "fp&a",
+      "financial analysis",
+      "financial analyst",
+      "investment analysis",
+      "budgeting",
+      "forecasting"
+    ],
+    "posted": "2026-11-02",
+    "listingUrl": "https://jobs.micro1.ai/post/006906b8-8418-4c24-ba6c-bf5bb2f751c4",
+    "referralUrl": ""
+  },
+  {
+    "id": "fin-consultant",
+    "title": "Independent Consultant (Finance, Data & Engineering)",
+    "domain": "finance",
+    "pay": "$60–120/hr",
+    "payMax": 120,
+    "skills": [
+      "Finance and accounting",
+      "Data analysis",
+      "Software engineering"
+    ],
+    "terms": [
+      "consultant",
+      "entrepreneur",
+      "founder",
+      "self-employed",
+      "freelance",
+      "finance",
+      "data analysis"
+    ],
+    "posted": "2026-11-11",
+    "listingUrl": "https://jobs.micro1.ai/post/74769642-30f7-4b92-a185-de399d703aa1",
+    "referralUrl": ""
+  },
+  {
+    "id": "fin-underwriter",
+    "title": "Senior Commercial Underwriter",
+    "domain": "finance",
+    "pay": "$50–80/hr",
+    "payMax": 80,
+    "skills": [
+      "Commercial underwriting",
+      "Risk assessment",
+      "Insurance pricing"
+    ],
+    "terms": [
+      "underwriting",
+      "underwriter",
+      "insurance",
+      "commercial lines",
+      "risk assessment",
+      "actuarial"
+    ],
+    "posted": "2026-11-12",
+    "listingUrl": "https://jobs.micro1.ai/post/4ea412b2-4f96-4e39-8d18-3f1d28a53fd8",
+    "referralUrl": ""
+  },
+  {
+    "id": "fin-economics-research",
+    "title": "Economics Research Expert",
+    "domain": "finance",
+    "pay": "$150–160/hr",
+    "payMax": 160,
+    "skills": ["Economics", "Research", "Econometrics"],
+    "terms": [
+      "economics",
+      "economist",
+      "econometrics",
+      "macroeconomics",
+      "microeconomics",
+      "phd"
+    ],
+    "posted": "2026-11-14",
+    "listingUrl": "https://work.mercor.com/jobs/list_AAABoOppU3x5v3XMbLRHP4rK",
+    "referralUrl": ""
+  },
+  {
+    "id": "med-doctor",
+    "title": "Medical Doctor",
+    "domain": "medicine",
+    "pay": "",
+    "payMax": 0,
+    "skills": ["Medical knowledge", "Clinical reasoning", "Analytical skills"],
+    "terms": [
+      "physician",
+      "doctor",
+      "mbbs",
+      "residency",
+      "clinical",
+      "patient care",
+      "medicine"
+    ],
+    "posted": "2026-11-11",
+    "listingUrl": "https://jobs.micro1.ai/post/c05fd04c-2a07-44b0-973c-9271f7f4d5d2",
+    "referralUrl": ""
+  },
+  {
+    "id": "med-hematology",
+    "title": "Hematology Physician",
+    "domain": "medicine",
+    "pay": "$150–180/hr",
+    "payMax": 180,
+    "skills": ["Hematology", "EHR", "Chemotherapy cycles"],
+    "terms": [
+      "hematology",
+      "haematology",
+      "hematologist",
+      "oncology",
+      "physician",
+      "board certified"
+    ],
+    "posted": "2026-11-13",
+    "listingUrl": "https://jobs.micro1.ai/post/b72e8b41-eadc-4b75-ba24-60fb852792c1",
+    "referralUrl": ""
+  },
+  {
+    "id": "med-oncology",
+    "title": "Medical Oncologist",
+    "domain": "medicine",
+    "pay": "$150–180/hr",
+    "payMax": 180,
+    "skills": ["Medical oncology", "Clinical documentation", "EHR systems"],
+    "terms": [
+      "oncology",
+      "oncologist",
+      "cancer",
+      "chemotherapy",
+      "physician",
+      "board certified"
+    ],
+    "posted": "2026-11-10",
+    "listingUrl": "https://jobs.micro1.ai/post/868d0dba-30bc-411e-baff-43b0c90e42ba",
+    "referralUrl": ""
+  },
+  {
+    "id": "med-radiology",
+    "title": "Radiologist",
+    "domain": "medicine",
+    "pay": "$350/hr",
+    "payMax": 350,
+    "skills": [
+      "Diagnostic radiology",
+      "Imaging interpretation",
+      "Clinical reporting"
+    ],
+    "terms": [
+      "radiology",
+      "radiologist",
+      "mri",
+      "imaging",
+      "physician",
+      "board certified"
+    ],
+    "posted": "2026-11-14",
+    "listingUrl": "https://work.mercor.com/jobs/list_AAABoWtwzY78zzncm-FELrjZ",
+    "referralUrl": ""
+  },
+  {
+    "id": "med-ophthalmology",
+    "title": "Ophthalmologist",
+    "domain": "medicine",
+    "pay": "$175/hr",
+    "payMax": 175,
+    "skills": ["Ophthalmology", "Clinical diagnosis", "Clinical reporting"],
+    "terms": [
+      "ophthalmology",
+      "ophthalmologist",
+      "eye surgery",
+      "retina",
+      "physician",
+      "board certified"
+    ],
+    "posted": "2026-11-14",
+    "listingUrl": "https://work.mercor.com/jobs/list_AAABoWtwCj4E5CDOjQ1KxL5m",
+    "referralUrl": ""
+  },
+  {
+    "id": "med-psychiatry",
+    "title": "Psychiatrist",
+    "domain": "medicine",
+    "pay": "$150/hr",
+    "payMax": 150,
+    "skills": ["Psychiatry", "Clinical assessment", "Treatment planning"],
+    "terms": [
+      "psychiatry",
+      "psychiatrist",
+      "mental health",
+      "physician",
+      "board certified"
+    ],
+    "posted": "2026-11-14",
+    "listingUrl": "https://work.mercor.com/jobs/list_AAABoWtv330pzH8496dGyKTt",
+    "referralUrl": ""
+  },
+  {
+    "id": "med-coder",
+    "title": "Medical Records Coder",
+    "domain": "medicine",
+    "pay": "$50–70/hr",
+    "payMax": 70,
+    "skills": ["ICD-10-CM", "ICD-10-PCS", "CPT"],
+    "terms": [
+      "medical coding",
+      "medical coder",
+      "icd-10",
+      "cpt",
+      "hcpcs",
+      "cpc",
+      "ccs",
+      "health information",
+      "rhit",
+      "rhia"
+    ],
+    "posted": "2026-11-03",
+    "listingUrl": "https://jobs.micro1.ai/post/964398f8-9537-46b3-94a6-1623cebde5ec",
+    "referralUrl": ""
+  },
+  {
+    "id": "med-chart-reviewer",
+    "title": "Medical Chart Reviewer",
+    "domain": "medicine",
+    "pay": "$50–70/hr",
+    "payMax": 70,
+    "skills": ["ICD-10-CM", "ICD-10-PCS", "MS-DRG"],
+    "terms": [
+      "chart review",
+      "clinical documentation",
+      "cdi",
+      "ms-drg",
+      "medical coding",
+      "utilization review",
+      "nurse"
+    ],
+    "posted": "2026-11-03",
+    "listingUrl": "https://jobs.micro1.ai/post/cf3c106c-d085-4a9c-b640-7ebe6828db7f",
+    "referralUrl": ""
+  },
+  {
+    "id": "med-imaging-segmentation",
+    "title": "Medical Imaging & Segmentation Specialist",
+    "domain": "medicine",
+    "pay": "$60–112/hr",
+    "payMax": 112,
+    "skills": ["3D Slicer", "Medical imaging", "Segmentation"],
+    "terms": [
+      "medical imaging",
+      "segmentation",
+      "3d slicer",
+      "dicom",
+      "radiography",
+      "biomedical engineering"
+    ],
+    "posted": "2026-11-03",
+    "listingUrl": "https://jobs.micro1.ai/post/f9531b9a-4649-4bb5-a4ab-ddac2339a887",
+    "referralUrl": ""
+  },
+  {
+    "id": "eng-pcb",
+    "title": "Electronics Engineer (PCB Design)",
+    "domain": "engineering",
+    "pay": "$63–122/hr",
+    "payMax": 122,
+    "skills": ["PCB design", "DesignSpark PCB", "Electronics engineering"],
+    "terms": [
+      "pcb",
+      "electronics",
+      "altium",
+      "kicad",
+      "schematic capture",
+      "circuit design",
+      "electrical engineering"
+    ],
+    "posted": "2026-11-11",
+    "listingUrl": "https://jobs.micro1.ai/post/778a5a12-8b98-41d7-a0a4-6d23f0ee76cc",
+    "referralUrl": ""
+  },
+  {
+    "id": "eng-phd",
+    "title": "Engineering PhD",
+    "domain": "engineering",
+    "pay": "$80–95/hr",
+    "payMax": 95,
+    "skills": ["PhD", "Mechanical engineering", "Electrical engineering"],
+    "terms": [
+      "phd",
+      "doctorate",
+      "mechanical engineering",
+      "electrical engineering",
+      "thermodynamics",
+      "control systems"
+    ],
+    "posted": "2026-11-03",
+    "listingUrl": "https://jobs.micro1.ai/post/ab7c2d1d-bee1-4e0d-9735-e9f86f054fde",
+    "referralUrl": ""
+  },
+  {
+    "id": "eng-ai-trainer-sciences",
+    "title": "AI Trainer (Engineering Sciences)",
+    "domain": "engineering",
+    "pay": "$60–120/hr",
+    "payMax": 120,
+    "skills": ["Mechanical engineering", "Aerodynamics", "Hardware"],
+    "terms": [
+      "mechanical engineering",
+      "aerospace",
+      "aerodynamics",
+      "cad",
+      "solidworks",
+      "fluid dynamics",
+      "hardware"
+    ],
+    "posted": "2026-11-09",
+    "listingUrl": "https://jobs.micro1.ai/post/0e0727e3-482b-4c4a-a26e-ef8ade369688",
+    "referralUrl": ""
+  },
+  {
+    "id": "eng-mbse",
+    "title": "MBSE Engineer (SysML v2)",
+    "domain": "engineering",
+    "pay": "$55–120/hr",
+    "payMax": 120,
+    "skills": ["SysML v2", "Systems engineering", "Requirements engineering"],
+    "terms": [
+      "sysml",
+      "mbse",
+      "systems engineering",
+      "requirements engineering",
+      "cameo",
+      "defense",
+      "aerospace"
+    ],
+    "posted": "2026-11-06",
+    "listingUrl": "https://jobs.micro1.ai/post/8548e534-fc89-4789-887e-7622d6f4ca86",
+    "referralUrl": ""
+  },
+  {
+    "id": "eng-metrology",
+    "title": "Dimensional Metrology Quality Engineer",
+    "domain": "engineering",
+    "pay": "$50–100/hr",
+    "payMax": 100,
+    "skills": ["GD&T", "CMM measurement", "3D scanning and inspection"],
+    "terms": [
+      "gd&t",
+      "cmm",
+      "metrology",
+      "quality engineer",
+      "first article inspection",
+      "manufacturing",
+      "iso 9001"
+    ],
+    "posted": "2026-11-08",
+    "listingUrl": "https://jobs.micro1.ai/post/e51a861c-6900-4fc8-ae07-507a47956698",
+    "referralUrl": ""
+  },
+  {
+    "id": "eng-protection",
+    "title": "Senior Protection Engineer (Medium Voltage)",
+    "domain": "engineering",
+    "pay": "$40–100/hr",
+    "payMax": 100,
+    "skills": [
+      "Protective relaying",
+      "Relay settings",
+      "Medium-voltage distribution"
+    ],
+    "terms": [
+      "power systems",
+      "protection engineering",
+      "relay",
+      "substation",
+      "utility",
+      "electrical engineering",
+      "etap"
+    ],
+    "posted": "2026-11-04",
+    "listingUrl": "https://jobs.micro1.ai/post/a4ff5ab3-735d-474b-a5ed-46a460aae0a4",
+    "referralUrl": ""
+  },
+  {
+    "id": "sci-physics-phd",
+    "title": "Physics Expert (PhD / Postdoc)",
+    "domain": "science",
+    "pay": "$100–170/hr",
+    "payMax": 170,
+    "skills": ["Physics", "Theoretical physics", "Mathematical physics"],
+    "terms": [
+      "physics",
+      "physicist",
+      "postdoc",
+      "phd",
+      "quantum mechanics",
+      "theoretical physics"
+    ],
+    "posted": "2026-11-14",
+    "listingUrl": "https://jobs.micro1.ai/post/94cc73a6-b8fe-496a-a8ad-4a3466db76f4",
+    "referralUrl": ""
+  },
+  {
+    "id": "sci-physics-quantum-optics",
+    "title": "Physics Expert (Quantum Optics & Atomic Physics)",
+    "domain": "science",
+    "pay": "$100–170/hr",
+    "payMax": 170,
+    "skills": ["Quantum optics", "Atomic physics", "Quantum sensing"],
+    "terms": [
+      "quantum optics",
+      "atomic physics",
+      "laser physics",
+      "photonics",
+      "quantum sensing",
+      "physics",
+      "phd"
+    ],
+    "posted": "2026-11-14",
+    "listingUrl": "https://jobs.micro1.ai/post/72c41508-c619-471f-acb1-3ea0c5231254",
+    "referralUrl": ""
+  },
+  {
+    "id": "sci-math-stats-trainer",
+    "title": "AI Trainer (Mathematics & Statistics)",
+    "domain": "science",
+    "pay": "$60–120/hr",
+    "payMax": 120,
+    "skills": ["Mathematics", "Statistics", "Programming"],
+    "terms": [
+      "mathematics",
+      "statistics",
+      "statistician",
+      "probability",
+      "r programming",
+      "python",
+      "econometrics"
+    ],
+    "posted": "2026-11-09",
+    "listingUrl": "https://jobs.micro1.ai/post/36e76ca9-8c78-4508-ad3a-817e9a12dfea",
+    "referralUrl": ""
+  },
+  {
+    "id": "sci-math-expert",
+    "title": "Mathematics Expert (MSc / PhD)",
+    "domain": "science",
+    "pay": "$60–120/hr",
+    "payMax": 120,
+    "skills": ["Mathematics", "Python", "Proof writing"],
+    "terms": [
+      "mathematics",
+      "mathematician",
+      "pure mathematics",
+      "applied mathematics",
+      "msc",
+      "phd",
+      "proofs",
+      "calculus",
+      "linear algebra"
+    ],
+    "posted": "2026-10-22",
+    "listingUrl": "https://jobs.micro1.ai/post/9701abf9-febd-4f13-9183-80257478f22a",
+    "referralUrl": ""
+  },
+  {
+    "id": "lang-english-gb",
+    "title": "English Language Expert (Great Britain)",
+    "domain": "language",
+    "pay": "$20–45/hr",
+    "payMax": 45,
+    "skills": ["British English", "Dialect", "Linguistics"],
+    "terms": [
+      "british english",
+      "linguistics",
+      "editing",
+      "proofreading",
+      "copywriting",
+      "teaching english",
+      "united kingdom"
+    ],
+    "posted": "2026-11-13",
+    "listingUrl": "https://jobs.micro1.ai/post/df76c277-0561-43be-8df3-b252cf468d92",
+    "referralUrl": ""
+  },
+  {
+    "id": "lang-english-us",
+    "title": "English Language Expert (United States)",
+    "domain": "language",
+    "pay": "$20–45/hr",
+    "payMax": 45,
+    "skills": ["American English", "Dialect", "Linguistics"],
+    "terms": [
+      "american english",
+      "linguistics",
+      "editing",
+      "proofreading",
+      "copywriting",
+      "writing",
+      "united states"
+    ],
+    "posted": "2026-11-13",
+    "listingUrl": "https://jobs.micro1.ai/post/182d7d1f-0eaf-40bc-bb55-6d5c98272e1f",
+    "referralUrl": ""
+  },
+  {
+    "id": "lang-english-ie",
+    "title": "English Language Expert (Ireland)",
+    "domain": "language",
+    "pay": "$20–45/hr",
+    "payMax": 45,
+    "skills": ["Irish English", "Dialect", "Linguistics"],
+    "terms": [
+      "irish english",
+      "linguistics",
+      "editing",
+      "proofreading",
+      "writing",
+      "ireland"
+    ],
+    "posted": "2026-11-13",
+    "listingUrl": "https://jobs.micro1.ai/post/7f7715e0-d3ca-4518-8f1a-2b922fa7ecc8",
+    "referralUrl": ""
+  },
+  {
+    "id": "lang-english-ca",
+    "title": "English Language Expert (Canada)",
+    "domain": "language",
+    "pay": "$20–45/hr",
+    "payMax": 45,
+    "skills": ["Canadian English", "Dialect", "Linguistics"],
+    "terms": [
+      "canadian english",
+      "linguistics",
+      "editing",
+      "proofreading",
+      "writing",
+      "canada"
+    ],
+    "posted": "2026-11-14",
+    "listingUrl": "https://jobs.micro1.ai/post/8f706310-56b8-4dec-acac-8101def703ab",
+    "referralUrl": ""
+  },
+  {
+    "id": "biz-gtm-revops",
+    "title": "Go-to-Market & Revenue Operations Specialist",
+    "domain": "business",
+    "pay": "$50–90/hr",
+    "payMax": 90,
+    "skills": [
+      "Go-to-market strategy",
+      "Revenue operations",
+      "Sales operations"
+    ],
+    "terms": [
+      "revops",
+      "revenue operations",
+      "sales operations",
+      "go-to-market",
+      "salesforce",
+      "hubspot",
+      "crm",
+      "pipeline management"
+    ],
+    "posted": "2026-11-12",
+    "listingUrl": "https://jobs.micro1.ai/post/9c309c3b-f730-410a-9b7c-12821fde6e05",
+    "referralUrl": ""
+  },
+  {
+    "id": "biz-strategy-consultant",
+    "title": "Independent Consultant (Sales, Marketing & Strategy)",
+    "domain": "business",
+    "pay": "$40–120/hr",
+    "payMax": 120,
+    "skills": ["Sales strategy", "Marketing strategy", "Business strategy"],
+    "terms": [
+      "business strategy",
+      "management consulting",
+      "consultant",
+      "founder",
+      "entrepreneur",
+      "marketing strategy",
+      "sales strategy"
+    ],
+    "posted": "2026-11-11",
+    "listingUrl": "https://jobs.micro1.ai/post/a5a8e66f-5037-4773-ab96-4baf6d40883f",
+    "referralUrl": ""
+  },
+  {
+    "id": "biz-enterprise-sales",
+    "title": "Enterprise Sales Expert (AE / Sales Leader)",
+    "domain": "business",
+    "pay": "$50–70/hr",
+    "payMax": 70,
+    "skills": ["Enterprise sales", "Account management", "Sales leadership"],
+    "terms": [
+      "account executive",
+      "enterprise sales",
+      "b2b sales",
+      "saas sales",
+      "quota",
+      "sales manager",
+      "business development"
+    ],
+    "posted": "2026-11-14",
+    "listingUrl": "https://work.mercor.com/jobs/list_AAABoc3i1VY8MNT4obtJuJhY",
+    "referralUrl": ""
+  },
+  {
+    "id": "biz-sales-marketing",
+    "title": "Sales & Marketing Expert",
+    "domain": "business",
+    "pay": "$60–70/hr",
+    "payMax": 70,
+    "skills": ["Sales", "Marketing", "Campaign strategy"],
+    "terms": [
+      "marketing",
+      "digital marketing",
+      "sales",
+      "seo",
+      "content marketing",
+      "campaigns"
+    ],
+    "posted": "2026-11-14",
+    "listingUrl": "https://work.mercor.com/jobs/list_AAABn4KNStkBMy2K25lN2ati",
+    "referralUrl": ""
+  },
+  {
+    "id": "biz-film-video",
+    "title": "Film & Video Craft Expert",
+    "domain": "business",
+    "pay": "$70–100/hr",
+    "payMax": 100,
+    "skills": ["Camera", "VFX", "Editing"],
+    "terms": [
+      "film",
+      "video production",
+      "cinematography",
+      "vfx",
+      "video editing",
+      "premiere pro",
+      "davinci resolve",
+      "after effects"
+    ],
+    "posted": "2026-11-14",
+    "listingUrl": "https://work.mercor.com/jobs/list_AAABoUYJgC6FFGQLBmRFJZvf",
+    "referralUrl": ""
+  }
+]

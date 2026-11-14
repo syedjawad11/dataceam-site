@@ -1,0 +1,301 @@
+---
+import Base from '../layouts/Base.astro';
+import Ledger from '../components/Ledger.astro';
+import { site } from '../config/site';
+import { applyUrl, domains, roles, rolesCheckedOn } from '../data/roles';
+import type { DomainKey } from '../data/roles';
+
+// Copy source: content/experts.md
+const title =
+  'AI-training jobs for experts: match your résumé to open roles | Dataceam';
+const description =
+  'Paste or upload your résumé and see which open remote AI-training contract roles fit your background. Matching runs in your browser. Your résumé is never uploaded.';
+
+const sorted = [...roles].sort(
+  (a, b) =>
+    Object.keys(domains).indexOf(a.domain) -
+      Object.keys(domains).indexOf(b.domain) ||
+    b.payMax - a.payMax ||
+    a.title.localeCompare(b.title),
+);
+const counts = Object.fromEntries(
+  (Object.keys(domains) as DomainKey[]).map((key) => [
+    key,
+    roles.filter((role) => role.domain === key).length,
+  ]),
+) as Record<DomainKey, number>;
+const usedDomains = (Object.keys(domains) as DomainKey[]).filter(
+  (key) => counts[key] > 0,
+);
+const checked = new Intl.DateTimeFormat('en-GB', {
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric',
+  timeZone: 'UTC',
+}).format(new Date(`${rolesCheckedOn}T00:00:00Z`));
+
+const ledgerRows: [string, string][] = [
+  ['Run by', `${site.personName}, independently, from ${site.personLocation}`],
+  ['What I do', 'List open roles and match them to your résumé'],
+  ["What I don't do", 'Hire, screen or pay anyone, or see your résumé'],
+  ['Who pays me', "The platform: a referral bonus, only if you're hired"],
+  ['What you pay', 'Nothing'],
+];
+
+// Only what the in-browser matcher needs.
+const matcherData = JSON.stringify(
+  sorted.map((role) => ({
+    id: role.id,
+    title: role.title,
+    domain: role.domain,
+    domainLabel: domains[role.domain],
+    pay: role.pay,
+    skills: role.skills,
+    terms: role.terms,
+    href: applyUrl(role),
+  })),
+).replace(/</g, '\\u003c');
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: title,
+  description,
+  url: new URL('/experts/', site.url).href,
+  isPartOf: { '@id': `${site.url}/#organization` },
+};
+---
+
+<Base
+  page="experts"
+  title={title}
+  description={description}
+  jsonLd={jsonLd}
+  analytics={false}
+>
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="shell hero-grid">
+      <div class="hero-copy">
+        <p class="badge">For experts</p>
+        <h1 id="hero-heading">
+          Find paid AI-training work that fits what you already know
+        </h1>
+        <p class="lead">
+          AI labs pay lawyers, engineers, doctors, analysts and other
+          specialists, usually through training platforms, to write, review and
+          grade the work their models learn from. Paste or upload your résumé to
+          see which open roles fit, each with a link to apply.
+        </p>
+        <ul class="stats" role="list">
+          <li>
+            <b>{roles.length}</b>
+            <span>open roles</span>
+          </li>
+          <li>
+            <b>{usedDomains.length}</b>
+            <span>areas of expertise</span>
+          </li>
+          <li>
+            <b>Remote</b>
+            <span>contract work</span>
+          </li>
+        </ul>
+        <p class="note">List last checked {checked}.</p>
+        <p class="private-note">
+          <strong>Your résumé never leaves this page.</strong> It's read and
+          matched in your browser. Nothing is uploaded, stored or emailed, and
+          this page's security settings block it from sending data to any other
+          site.
+        </p>
+        <div class="button-row">
+          <a class="button button-primary" href="#match">
+            Match my résumé
+          </a>
+          <a class="button button-quiet" href="#roles">
+            Browse all roles
+          </a>
+        </div>
+      </div>
+      <Ledger
+        headingId="ledger-heading"
+        rows={ledgerRows}
+        foot="Dataceam is a referrer only. You apply, and work, directly with the platform."
+      />
+    </div>
+  </section>
+
+  <section
+    id="match"
+    class="band"
+    aria-labelledby="match-heading"
+    tabindex="-1"
+  >
+    <div class="shell stack">
+      <div class="section-head">
+        <h2 id="match-heading">Match your résumé</h2>
+        <p>
+          Matching compares your résumé with the skills each role asks for. It
+          runs on your device; nothing is sent anywhere.
+        </p>
+      </div>
+      <form class="matcher" id="matcher" novalidate>
+        <fieldset>
+          <legend>1. Your résumé</legend>
+          <div class="dropzone" id="dropzone">
+            <label for="resume-file">Choose a PDF or text file</label>
+            <input
+              id="resume-file"
+              name="resume-file"
+              type="file"
+              accept=".pdf,.txt,.md,application/pdf,text/plain"
+              aria-describedby="file-hint"
+            />
+            <span class="hint" id="file-hint">
+              Or drop it here. Word files aren't supported yet. Paste the text
+              instead.
+            </span>
+          </div>
+          <label class="field-label" for="resume-text">
+            Or paste your résumé text
+          </label>
+          <textarea
+            id="resume-text"
+            name="resume-text"
+            spellcheck="false"
+            autocomplete="off"
+            placeholder="Paste your résumé or a summary of your experience and skills…"
+          ></textarea>
+        </fieldset>
+        <fieldset>
+          <legend>2. Referral links</legend>
+          <div class="consent">
+            <input id="consent" name="consent" type="checkbox" />
+            <label for="consent">
+              I understand the apply links are referral links. If I'm hired
+              through one, Dataceam may earn a referral bonus from the platform,
+              at no cost to me.
+            </label>
+          </div>
+        </fieldset>
+        <p class="form-error" id="form-error" role="alert" hidden></p>
+        <p class="form-status" id="form-status" aria-live="polite"></p>
+        <button class="button button-primary" type="submit">
+          Show matching roles
+        </button>
+      </form>
+
+      <div class="results" id="results" hidden>
+        <h2 id="results-heading" tabindex="-1">
+          Roles that fit your résumé
+        </h2>
+        <p class="note" id="results-summary"></p>
+        <ol class="role-list" id="results-list" role="list"></ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="roles" class="band" aria-labelledby="roles-heading">
+    <div class="shell stack">
+      <div class="section-head">
+        <h2 id="roles-heading">All open roles</h2>
+        <p>
+          Each link opens the role on the hiring platform's own site. Pay
+          figures come from the platforms' public listings and can change.
+        </p>
+      </div>
+      <ul class="filters" role="list" aria-label="Filter roles by area">
+        <li>
+          <button type="button" data-filter="all" aria-pressed="true">
+            All<span>{roles.length}</span>
+          </button>
+        </li>
+        {usedDomains.map((key) => (
+          <li>
+            <button type="button" data-filter={key} aria-pressed="false">
+              {domains[key]}
+              <span>{counts[key]}</span>
+            </button>
+          </li>
+        ))}
+      </ul>
+      <p class="sr-only" id="filter-status" aria-live="polite"></p>
+      <ul class="role-list" id="all-roles" role="list">
+        {sorted.map((role) => (
+          <li class="role" data-domain={role.domain}>
+            <div class="role-body">
+              <h3>{role.title}</h3>
+              <p class="role-meta">
+                <span>{domains[role.domain]}</span>
+                <span class="role-pay">
+                  {role.pay || 'Pay shown on the listing'}
+                </span>
+              </p>
+              <ul class="role-skills" role="list" aria-label="Skills">
+                {role.skills.map((skill) => (
+                  <li>{skill}</li>
+                ))}
+              </ul>
+            </div>
+            <a
+              class="button button-quiet"
+              href={applyUrl(role)}
+              target="_blank"
+              rel="sponsored noopener"
+            >
+              View and apply
+              <span class="sr-only">
+                : {role.title} (opens the platform's site in a new tab)
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="how-heading">
+    <div class="shell stack">
+      <div class="section-head">
+        <h2 id="how-heading">How it works</h2>
+      </div>
+      <ol class="steps steps-3" role="list">
+        <li>
+          <strong>You add your résumé.</strong>
+          It's read in your browser and scored against the skills each role asks
+          for.
+        </li>
+        <li>
+          <strong>You pick a role.</strong>
+          Each link opens the role on the hiring platform's own site.
+        </li>
+        <li>
+          <strong>You apply there.</strong>
+          The platform screens, hires and pays you under its own terms.
+        </li>
+      </ol>
+      <p class="disclosure">
+        Dataceam doesn't hire anyone. These roles are posted by third-party
+        AI-training platforms, which run all screening, hiring and payment. The
+        links on this page are referral links. If you're hired through one, the
+        platform may pay me a referral bonus. The platform pays it; it costs you
+        nothing. Pay figures come from the platforms' public listings and can
+        change, and nothing here promises an interview, a role or a rate.
+      </p>
+    </div>
+  </section>
+
+  <script
+    type="application/json"
+    id="roles-data"
+    is:inline
+    set:html={matcherData}
+  />
+</Base>
+
+<script>
+  import { initMatcher } from '../scripts/matcher';
+  import { initRoleFilters } from '../scripts/role-filters';
+
+  initMatcher();
+  initRoleFilters();
+</script>

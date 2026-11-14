@@ -1,50 +1,74 @@
 ---
 page: privacy
-status: APPROVED — Jawad's brief, 2026-11-08 (not legal advice)
+status: DRAFT v2 — referrer-only relaunch (T-017, 2026-11-14), awaiting Jawad's approval (not legal advice)
 title: "Privacy policy — Dataceam"
-description: "How dataceam.com handles your information. We only make introductions. We never store, clean or sell company data, and deals are between buyer and seller."
-lastUpdated: "8 November 2026"
+description: "How dataceam.com handles your information. Dataceam is a referrer only, run by Syed Jawad in Malta. The résumé matcher runs in your browser and never uploads your résumé."
+lastUpdated: "14 November 2026"
 ---
 
 # Privacy policy
 
-Last updated: 8 November 2026
+Last updated: 14 November 2026
+
+## Who runs this site
+
+dataceam.com is run by Syed Jawad, an individual based in Malta, trading as Dataceam ("I", "me"). I'm the controller of the personal data described on this page. You can reach me at [hello@dataceam.com](mailto:hello@dataceam.com).
 
 ## What Dataceam does
 
-Dataceam introduces companies that hold years of business records to vetted AI data buyers, who may license a de-identified copy of that data. We explain how the process works and make the introduction. That is all we do.
+Dataceam is a referrer only. I introduce companies that hold business records to AI-data buyers, and I point experts to open roles on AI-training platforms. I'm not a party to any deal or contract between you and them.
 
-## What we don't do
+## What I don't do
 
-- We never receive, store, clean or sell your company's data. If a deal goes ahead, the data goes from you straight to the buyer.
-- We don't sell your personal data, and we don't use it for automated decision-making.
+- I never receive, store, clean or sell your company's data. If a deal goes ahead, the data goes from you straight to the buyer.
+- I never receive your résumé. The matcher runs in your browser (see below).
+- I don't sell your personal data, and I don't use it for automated decision-making.
 
-## Deals are between the buyer and the seller
+## The résumé matcher
 
-Any deal is agreed directly between the buyer and the seller, on terms they set between themselves. Dataceam is not a party to that agreement. To the fullest extent the law allows, we are not responsible for the deal: its terms, the data export, de-identification, payment, or how the buyer handles the data. Please take your own legal, tax and data protection advice before you sign anything. Nothing on this site is legal, tax or financial advice.
+When you add a résumé on the [experts page](/experts/), it's read by code running in your own browser. The text is compared with a list of open roles that your browser downloads from this site, and the results are shown on the page. Your résumé, and anything taken from it, is never sent to me, to my hosting provider or to anyone else. It's held in your browser's memory and discarded when you close or reload the tab.
 
-## What we collect
+If you choose a PDF, your browser uses an open-source PDF reader (PDF.js) served from this site to extract the text on your device. The page's security policy blocks it from sending data to any other site, and analytics aren't loaded on that page.
 
-- **Emails you send us.** Your name, your email address and what you tell us. We use them only to reply and, if you ask, to arrange an introduction.
-- **Website analytics.** We use Cloudflare Web Analytics. It sets no cookies and doesn't identify you. It records only aggregate figures, such as page views, referrers and country.
+The checkbox you tick before matching is only checked on the page. It isn't recorded or sent anywhere.
+
+## Deals are between you and the buyer or platform
+
+Any deal is agreed directly between the buyer and the seller, and any work is agreed directly between you and the platform, on terms they set. Dataceam is not a party to those agreements. To the fullest extent the law allows, I'm not responsible for them: their terms, the data export, de-identification, hiring, payment, or how the buyer or platform handles data. Please take your own legal, tax and data-protection advice before you sign anything. Nothing on this site is legal, tax or financial advice.
+
+## What I collect
+
+- **Emails you send me.** Your name, your email address and what you tell me. I use them only to reply and, if you ask, to arrange an introduction.
+- **Website analytics.** On pages other than the experts page, I may use Cloudflare Web Analytics. It sets no cookies and doesn't identify you. It records only aggregate figures, such as page views, referrers and country.
+- **Server logs.** My hosting provider, Cloudflare, automatically records standard request information (such as IP address, time, browser type and the page requested) to keep the site secure and online.
 
 This site sets no cookies.
 
-## Who we share it with
+## Referral links
 
-- The services that run this site and our email: Cloudflare and Google Workspace.
-- An AI data buyer, only with your agreement, when you've asked to be introduced. We share just your contact details and what you've agreed we can pass on.
+Some links on this site are referral links. When you click one, you go to the buyer's or platform's own site. The link carries my referral code, not your details. From then on, that company's privacy policy applies.
 
-Some of these services may process data outside the UK. Where they do, they rely on appropriate safeguards, such as the UK International Data Transfer Agreement or adequacy regulations.
+## Who I share data with
 
-## How long we keep it
+- The services that run this site and my email: Cloudflare and Google Workspace.
+- An AI-data buyer, only with your agreement, when you've asked to be introduced. I share just your contact details and what you've agreed I can pass on.
 
-We keep emails only for as long as we need them to reply to you and follow up on an introduction. Ask at any time and we'll delete them.
+Some of these services may process data outside the EU and EEA. Where they do, they rely on appropriate safeguards, such as the European Commission's standard contractual clauses or adequacy decisions.
+
+## Why I'm allowed to use it
+
+- Replying to your emails and arranging an introduction you've asked for: steps you've asked me to take, and my legitimate interest in answering enquiries.
+- Analytics and server logs: my legitimate interest in keeping the site secure and understanding how it's used, in aggregate.
+- Passing your details to a buyer: your consent, which you can withdraw at any time before the introduction.
+
+## How long I keep it
+
+I keep emails only as long as I need them to reply and follow up on an introduction, and no longer than 12 months after our last exchange unless an introduction is still in progress. Ask at any time and I'll delete them.
 
 ## Your rights
 
-You can ask us to access, correct or delete your personal data, to restrict or object to how we use it, or to send you a copy in a portable format. Email [hello@dataceam.com](mailto:hello@dataceam.com) and we'll reply within one month.
+You can ask me to access, correct or delete your personal data, to restrict or object to how I use it, or to send you a copy in a portable format. Email [hello@dataceam.com](mailto:hello@dataceam.com) and I'll reply within one month. You can also complain to Malta's Information and Data Protection Commissioner (IDPC), or to the data protection authority where you live or work.
 
 ## Changes
 
-If anything changes, we'll update this page and the "last updated" date.
+If anything changes, I'll update this page and the "last updated" date.

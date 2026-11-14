@@ -1,394 +1,362 @@
 ---
 import Base from '../layouts/Base.astro';
 import EmailCta from '../components/EmailCta.astro';
+import Ledger from '../components/Ledger.astro';
 import { site } from '../config/site';
 
-const title =
-  "Dataceam — What your company's records could be worth to AI developers";
+// Copy source: content/home.md
+const title = "Dataceam — License your company's records to AI-data buyers";
 const description =
-  'Dataceam connects companies that hold years of business records with vetted AI data buyers who review, clean and license them. Free to you.';
-const tools = [
-  'Slack',
-  'GitHub',
-  'Salesforce',
-  'Zendesk',
-  'Google Drive',
-  'QuickBooks',
-  'Jira',
-  'Notion',
-  'HubSpot',
+  'Dataceam is a referral service run by Syed Jawad. I introduce companies that hold years of business records to AI-data buyers who pay to license them. Free to you.';
+
+const ledgerRows: [string, string][] = [
+  ['Run by', `${site.personName}, independently, from ${site.personLocation}`],
+  [
+    'What I do',
+    "Check whether your company fits a buyer's published criteria, then introduce you",
+  ],
+  [
+    "What I don't do",
+    'Buy, store, clean or sell data, or sign anything for a buyer',
+  ],
+  ['Who pays me', 'The buyer: a referral fee, only if a deal goes ahead'],
+  ['What you pay', 'Nothing'],
 ];
-const dataCards = [
+
+const kinds = [
   [
     'Conversations',
-    'Team threads and email where work gets agreed, with the reasoning along the way',
-    'Slack, Microsoft Teams, Gmail, Outlook',
+    'Team threads and email where work gets agreed',
+    'Slack, Teams, Gmail, Outlook',
   ],
   [
     'Code and engineering',
-    'Repositories with their history, pull requests, bug tracking and technical docs',
-    'GitHub, GitLab, Bitbucket, Linear',
+    'Repositories with their history, pull requests and bug tracking',
+    'GitHub, GitLab, Jira, Linear',
   ],
   [
-    'Documents and files',
-    'Contracts, reports, SOPs, policies, decks and knowledge bases',
-    'Google Drive, SharePoint, Notion, Dropbox',
+    'Documents',
+    'SOPs, policies, reports and knowledge bases',
+    'Google Drive, SharePoint, Notion',
   ],
-  [
-    'Sales and CRM',
-    'Deals, pipelines, playbooks and the customer lifecycle',
-    'Salesforce, HubSpot',
-  ],
+  ['Sales and CRM', 'Deals, pipelines and playbooks', 'Salesforce, HubSpot'],
   [
     'Finance and accounting',
-    'Invoices, ledgers, reconciliations, approvals and reporting workflows',
-    'QuickBooks, NetSuite',
+    'Invoices, reconciliations, approvals and reporting',
+    'QuickBooks, NetSuite, Xero',
   ],
   [
-    'Support and tickets',
-    'Each request from first message to resolution, with every step in between',
-    'Zendesk, Jira, ServiceNow',
+    'Support',
+    'Each ticket from first message to resolution',
+    'Zendesk, ServiceNow, Freshdesk',
   ],
   [
     'Operations and logistics',
-    'Fulfilment, inventory, orders and internal process docs',
+    'Orders, fulfilment and inventory',
     'ERP and order systems',
   ],
   [
     'Legal and compliance',
-    'Contract review, governance and compliance procedures',
-    'Document and contract tools',
+    'Contract review and governance procedures',
+    'Contract and document tools',
   ],
 ];
-const steps = [
-  [
-    'A free review by email.',
-    'Tell us which tools you use, how many years of records you hold and roughly how big your team is. No data changes hands.',
-  ],
-  [
-    'An introduction to the right buyer.',
-    'We match you with a vetted AI data buyer whose requirements fit your company, and introduce you directly.',
-  ],
-  [
-    'The buyer reviews, cleans and packages your data.',
-    'They connect read-only to the sources you approve, strip out names, contact details and other identifiers, and package the data so AI labs can judge its quality. You get an offer before you commit to anything.',
-  ],
-  [
-    'You approve, sign and get paid.',
-    'Nothing is licensed without your written sign-off. Once a deal closes, the buyer pays you directly.',
-  ],
+
+const tiers = [
+  ['$50K+', 'A focused set of records from one or two systems'],
+  ['$500K+', 'Years of records across several teams and functions'],
+  ['$1M+', "Rare operational data that's hard to find anywhere else"],
 ];
-const pricing = [
-  [
-    'Starter',
-    '$50K – $500K',
-    'A focused set of records from one or two systems, often a 30+ person company',
-  ],
-  [
-    'Established',
-    '$500K – $3M',
-    'Years of records across several teams and business functions',
-  ],
-  [
-    'Exceptional',
-    '$3M+',
-    'Rare, proprietary operational data of high value to frontier AI',
-  ],
-];
-const protections = [
-  [
-    'You choose the sources.',
-    'You approve every system and dataset, and sign the terms first.',
-  ],
-  [
-    'Read-only, encrypted access.',
-    'Buyers copy data; they never change anything in your tools.',
-  ],
-  [
-    'Personal details removed.',
-    'Names, emails, customer details and account numbers are stripped before data leaves processing.',
-  ],
-  [
-    'Nothing released unpaid.',
-    'Buyers see redacted samples only until a deal is paid.',
-  ],
-  [
-    'Never sold to competitors.',
-    'Data is licensed to AI labs and research teams under contract, and never published.',
-  ],
-  [
-    'Kept separate, then deleted.',
-    "Your data is stored apart from other companies' data, and raw copies are deleted on an agreed schedule.",
-  ],
-];
+
 const criteria = [
-  ['Team size:', '20+ staff is ideal; some buyers accept teams from 10.'],
+  [
+    'Team size:',
+    '30 or more staff for most programmes; some European buyers start at 10 to 20.',
+  ],
   [
     'History:',
-    'several years of records, ideally 5+, spread across more than one system.',
+    'several years of records, ideally five or more, across more than one system.',
   ],
-  [
-    'Language:',
-    'mainly English, though some buyers accept other European languages.',
-  ],
+  ['Language:', 'mostly English; some buyers accept other European languages.'],
   [
     'Ownership:',
     'the data is yours to license, not held for clients under contract.',
   ],
   [
-    'Strong sectors:',
-    'software and IT services, agencies, logistics, manufacturing, wholesale and B2B services.',
+    'Running or closed:',
+    'records from a company that has shut down or is in liquidation can qualify. The liquidator or trustee usually has to approve.',
   ],
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  '@id': `${site.url}/#organization`,
-  name: site.name,
-  url: site.url,
-  logo: new URL('/favicon.svg', site.url).href,
-  sameAs: [`https://x.com/${site.xHandle.replace(/^@/, '')}`],
-};
+const steps = [
+  [
+    'You email me.',
+    'A few lines: what the company does, roughly how many staff, which tools you use and for how long. No data changes hands.',
+  ],
+  [
+    "I tell you if there's a fit, and with whom.",
+    "If a buyer's published criteria fit, I name the buyer and explain its process. If nothing fits, I say so.",
+  ],
+  [
+    'I introduce you, with your OK.',
+    'Depending on the buyer, you register through my referral link or I submit your company by name. From then on you deal with the buyer directly.',
+  ],
+  [
+    'The buyer reviews and decides.',
+    'Buyers run their own checks, often a short interview and then a call about your data. Any agreement, price and payment is between you and them.',
+  ],
+];
+
+const inWriting = [
+  'Who owns the data afterwards',
+  'Exactly which systems and date ranges are in scope',
+  'How personal details are removed, and by whom',
+  "Read-only access, and how it's switched off",
+  'Samples you can review before anything is used',
+  "How long copies are kept, and when they're deleted",
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': `${site.url}/#organization`,
+    name: site.name,
+    url: site.url,
+    logo: new URL('/favicon.svg', site.url).href,
+    email: site.email,
+    founder: { '@id': `${site.url}/#person` },
+    sameAs: [`https://x.com/${site.xHandle.replace(/^@/, '')}`],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': `${site.url}/#person`,
+    name: site.personName,
+    homeLocation: { '@type': 'Place', name: site.personLocation },
+    worksFor: { '@id': `${site.url}/#organization` },
+  },
+];
 ---
 
 <Base page="home" title={title} description={description} jsonLd={jsonLd}>
-  <section class="home-section home-hero" aria-labelledby="hero-heading">
-    <div class="shell home-hero-grid">
-      <div class="home-stack">
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="shell hero-grid">
+      <div class="hero-copy">
+        <p class="badge">Independent referral service</p>
         <h1 id="hero-heading">
-          Could your company's records be licensed for AI?
+          Your company's records may be worth money to an AI lab
         </h1>
-        <p class="home-hero-answer">
-          Yes, and they can earn your company new revenue.
+        <p class="lead">
+          AI developers have used up most of the public web. Now they pay to
+          license something it doesn't hold: the record of how real businesses
+          work. A small number of buyers run programmes that pay companies for
+          it. I find companies that may qualify and introduce them. That's the
+          whole job.
         </p>
-        <p class="home-hero-amount">
-          Depending on the data, a licensing deal may be worth{' '}
-          <strong>$50K to $3M+</strong>.
+        <p class="hero-figures">
+          The buyers I refer to publish payouts from around{' '}
+          <strong>$50,000 to over $1 million</strong> per company. That's their
+          range, not a promise: each buyer prices each company itself.
         </p>
-        <p class="home-lead">
-          AI labs have run out of public internet to learn from. What they need
-          now is the record of how real businesses work. Dataceam connects
-          companies that hold that data with vetted buyers who review it, clean
-          it and license it.
-        </p>
-        <EmailCta label="See what your data could be worth" href="#contact" />
-        <p>Free to you. You keep your data, your business and the final say.</p>
+        <div class="button-row">
+          <a class="button button-primary" href={`mailto:${site.email}`}>
+            Email me about your company
+          </a>
+          <a class="button button-quiet" href="/experts/">
+            Looking for AI-training work?
+          </a>
+        </div>
       </div>
-      <div class="home-mosaic" aria-hidden="true">
-        {tools.map((tool) => (
-          <div class="home-mosaic-tile">{tool}</div>
-        ))}
-      </div>
+      <Ledger
+        headingId="ledger-heading"
+        rows={ledgerRows}
+        foot="Dataceam is a referrer only. Every deal is made directly between you and the buyer."
+      />
     </div>
   </section>
-  <section class="home-section" aria-labelledby="why-value">
-    <div class="shell home-split">
-      <div class="home-section-heading">
-        <p class="home-eyebrow">Why your data has value</p>
-        <h2 id="why-value">The trail is what's worth paying for</h2>
-      </div>
-      <div class="home-stack">
+
+  <section class="band" aria-labelledby="what-buyers-pay-for">
+    <div class="shell split">
+      <div class="section-head">
+        <p class="kicker">What buyers pay for</p>
+        <h2 id="what-buyers-pay-for">The record of how work gets done</h2>
         <p>
-          Every ticket closed, deal logged and decision made in a thread leaves
-          a record: what was asked, the steps someone took, what they checked,
-          and how it ended. Your tools have been keeping that trail for years.
+          Buyers aren't after your customer list or your product. They want the
+          trail your tools have kept for years: what was asked, the steps
+          someone took, what they checked and how it ended. They turn those
+          records into worked examples that teach and test AI models.
         </p>
-        <p>
-          AI developers turn those records into worked examples. A model studies
-          thousands of them, practises the same tasks, and is then tested on
-          real work it has never seen. That kind of data doesn't exist on the
-          public web, which is why buyers pay for it.
-        </p>
-        <p>
-          You're selling a licensed, cleaned copy. Your original data stays
-          where it is, and nothing about how you work changes.
+        <p class="note">
+          You license a copy. Your original data stays where it is, and nothing
+          about how you work changes.
         </p>
       </div>
-    </div>
-  </section>
-  <section class="home-section" aria-labelledby="data-kinds">
-    <div class="shell home-stack">
-      <div class="home-section-heading">
-        <p class="home-eyebrow">What kinds of data qualify</p>
-        <h2 id="data-kinds">
-          Data from almost every part of a business can count
-        </h2>
-      </div>
-      <p class="home-intro">
-        If your team has worked in the same tools for years, you likely already
-        hold what buyers look for.
-      </p>
-      <div class="home-grid home-data-grid">
-        {dataCards.map(([title, coverage, sources]) => (
-          <article class="home-card home-data-card">
-            <span class="home-card-mark" aria-hidden="true">
-              {title.slice(0, 1)}
-            </span>
-            <h3>{title}</h3>
-            <p>{coverage}</p>
-            <div class="home-sources">
-              <p>Typical sources</p>
-              <ul class="data-pills" role="list">
-                {sources.split(', ').map((source, index, all) => (
-                  <li>
-                    {source}
-                    {index < all.length - 1 && <span class="sr-only">,</span>}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </article>
-        ))}
-      </div>
-      <p class="home-callout">
-        <strong>It doesn't have to be a company that's still trading.</strong>{' '}
-        Records from a business that has shut down, closed, gone bankrupt or
-        been liquidated can also qualify, as long as they meet the buyer's
-        criteria and data-protection rules such as GDPR. In a bankruptcy or
-        liquidation, the trustee or liquidator usually needs to approve the
-        deal. These archives are often available for a limited time before the
-        software accounts are shut down.
-      </p>
-    </div>
-  </section>
-  <section class="home-section" aria-labelledby="how-it-works">
-    <div class="shell home-stack">
-      <div class="home-section-heading">
-        <p class="home-eyebrow">How it works</p>
-        <h2 id="how-it-works">From first email to payment, in four steps</h2>
-      </div>
-      <ol class="home-grid home-steps" role="list">
-        {steps.map(([title, text]) => (
-          <li class="home-card">
-            <strong>{title}</strong> {text}
-          </li>
-        ))}
-      </ol>
-    </div>
-  </section>
-  <section class="home-section" aria-labelledby="data-worth">
-    <div class="shell home-stack">
-      <div class="home-section-heading">
-        <p class="home-eyebrow">What it could be worth</p>
-        <h2 id="data-worth">Payouts range from $50K to $3M+</h2>
-      </div>
-      <p class="home-intro">
-        Buyers price data on its quality, how unique it is, and how much of it
-        there is.
-      </p>
-      <div class="home-grid home-pricing">
-        {pricing.map(([name, range, profile]) => (
-          <article
-            class:list={[
-              'home-card',
-              { 'home-price-featured': name === 'Established' },
-            ]}
-          >
+      <ul class="kinds" role="list">
+        {kinds.map(([name, covers, sources]) => (
+          <li class="kind">
             <h3>{name}</h3>
-            <p class="home-price">{range}</p>
-            <p>{profile}</p>
-          </article>
-        ))}
-      </div>
-      <p class="home-price-note">
-        These are typical ranges from current buyers, not a guarantee. The final
-        figure depends on your data and is agreed with the buyer before you
-        sign.
-      </p>
-    </div>
-  </section>
-  <section class="home-section" aria-labelledby="privacy-control">
-    <div class="shell home-stack">
-      <div class="home-section-heading">
-        <p class="home-eyebrow">Privacy and control</p>
-        <h2 id="privacy-control">
-          You decide what goes, and it's all in writing
-        </h2>
-      </div>
-      <p class="home-intro">
-        We only introduce companies to buyers who commit to the protections
-        below. Each one is confirmed in your contract before anything is shared.
-      </p>
-      <ul class="home-grid home-protections" role="list">
-        {protections.map(([title, text]) => (
-          <li class="home-card">
-            <svg
-              class="home-card-mark"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.75"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path d="M12 3 4 6v6c0 4 5 8 8 9 3-1 8-5 8-9V6l-8-3Z" />
-              <path d="m8 12 3 3 5-6" />
-            </svg>
-            <p>
-              <strong>{title}</strong> {text}
+            <p>{covers}</p>
+            <p class="sources">
+              <span class="sr-only">Typical sources: </span>
+              {sources}
             </p>
           </li>
         ))}
       </ul>
     </div>
   </section>
-  <section class="home-section" aria-labelledby="who-qualifies">
-    <div class="shell home-split">
-      <div class="home-section-heading">
-        <p class="home-eyebrow">Who qualifies</p>
-        <h2 id="who-qualifies">A good fit usually looks like this</h2>
+
+  <section class="band" aria-labelledby="what-buyers-say">
+    <div class="shell stack">
+      <div class="section-head">
+        <p class="kicker">What buyers say they pay</p>
+        <h2 id="what-buyers-say">Published tiers</h2>
       </div>
-      <div class="home-stack">
-        <ul class="home-grid home-criteria" role="list">
-          {criteria.map(([label, text]) => (
-            <li class="home-card">
-              <strong>{label}</strong> {text}
-            </li>
-          ))}
-        </ul>
+      <ol class="scale" role="list">
+        {tiers.map(([tier, profile]) => (
+          <li>
+            <span class="tier">{tier}</span>
+            <span>{profile}</span>
+          </li>
+        ))}
+      </ol>
+      <p class="note">
+        These tiers come from the buyers' own public pages. They're indicative,
+        not an offer to your company. The buyer decides whether you qualify and
+        what your data is worth, and you see any offer before you agree to
+        anything.
+      </p>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="who-qualifies">
+    <div class="shell split">
+      <div class="section-head">
+        <p class="kicker">Who usually qualifies</p>
+        <h2 id="who-qualifies">A likely fit</h2>
         <p>
-          Not sure? <a href="#contact">Send us a short email</a> and we'll tell
-          you.
+          Strong sectors: software and IT services, agencies, logistics,
+          manufacturing, wholesale and B2B services.
+        </p>
+        <p>
+          Not sure? <a href={`mailto:${site.email}`}>Email me</a> and I'll tell
+          you straight.
+        </p>
+      </div>
+      <ul class="checklist" role="list">
+        {criteria.map(([label, text]) => (
+          <li>
+            <strong>{label}</strong> {text}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="how-it-works">
+    <div class="shell stack">
+      <div class="section-head">
+        <p class="kicker">How an introduction works</p>
+        <h2 id="how-it-works">From one email to the buyer's decision</h2>
+      </div>
+      <ol class="steps steps-4" role="list">
+        {steps.map(([lead, text]) => (
+          <li>
+            <strong>{lead}</strong>
+            {text}
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="in-writing">
+    <div class="shell split">
+      <div class="section-head">
+        <p class="kicker">Before you sign</p>
+        <h2 id="in-writing">Get these in writing</h2>
+        <p>
+          I'm not a party to any deal, so I can't promise how a buyer will
+          handle your data. Buyers publish commitments like these. Make sure
+          they're in your contract.
+        </p>
+        <p class="note">
+          Take your own legal and data-protection advice before you sign.
+        </p>
+      </div>
+      <ul class="checklist two-col" role="list">
+        {inWriting.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="who-runs">
+    <div class="shell split">
+      <div class="section-head">
+        <p class="kicker">Who runs Dataceam</p>
+        <h2 id="who-runs">One person, working independently</h2>
+      </div>
+      <div class="stack">
+        <p>
+          I'm {site.personName}, based in {site.personLocation}, and I run
+          Dataceam on my own. I take part in the referral programmes of a small
+          number of AI-data buyers and AI-training platforms. I'm not employed
+          by any of them, I don't speak or sign for them, and I can't promise
+          you anything on their behalf.
+        </p>
+        <p>
+          I don't name the buyers on this site because the list changes as
+          programmes open and close. Before any introduction I'll tell you
+          exactly which company it is, and you decide.
+        </p>
+        <p class="disclosure">
+          <strong>How I'm paid:</strong> If a company I introduce signs with a
+          buyer, the buyer may pay me a referral fee. You pay nothing for my
+          help.
         </p>
       </div>
     </div>
   </section>
-  <section class="home-section" aria-labelledby="about-dataceam">
-    <div class="shell home-split">
-      <div class="home-section-heading">
-        <p class="home-eyebrow">About Dataceam</p>
-        <h2 id="about-dataceam">An independent scout, not a data broker</h2>
-      </div>
-      <div class="home-stack">
-        <p>
-          We at Dataceam help companies find value in data they're already
-          sitting on. We research AI data buyers, check their terms, and only
-          introduce you to buyers we've vetted. We're independent and don't
-          represent any single buyer, so we can point you to whichever one fits
-          your company best.
-        </p>
-        <p class="home-callout">
-          <strong>How we're paid:</strong> The buyer pays us a referral fee when
-          a deal closes. You pay nothing for our help.
-        </p>
+
+  <section class="band" aria-labelledby="for-experts">
+    <div class="shell">
+      <div class="crosslink">
+        <div class="stack">
+          <h2 id="for-experts" class="sr-only">
+            For experts
+          </h2>
+          <p>
+            Not here for a company? If you're a lawyer, engineer, doctor,
+            analyst or other specialist, see which paid AI-training roles fit
+            your background.
+          </p>
+        </div>
+        <a class="button button-primary" href="/experts/">
+          Match my résumé
+        </a>
       </div>
     </div>
   </section>
+
   <section
     id="contact"
-    class="home-section home-contact"
+    class="band"
     aria-labelledby="contact-heading"
     tabindex="-1"
   >
-    <div class="shell home-inner home-stack">
-      <h2 id="contact-heading">Find out what your data is worth</h2>
-      <p class="home-lead">
-        Email us a few lines about your company. We'll reply with whether your
-        company qualifies, which buyers fit, and roughly what range to expect.
-        No commitment, and no data shared.
-      </p>
-      <EmailCta label="Email us" noteId="contact-email-note" prominent />
+    <div class="shell stack">
+      <div class="section-head">
+        <h2 id="contact-heading">Ask whether your company fits</h2>
+        <p class="lead">
+          Email me a few lines about your company. I'll reply with whether a
+          buyer is likely to fit, which one, and what it publishes. No
+          commitment, and no data shared.
+        </p>
+      </div>
+      <EmailCta label="Email me" noteId="contact-email-note" prominent />
     </div>
   </section>
 </Base>

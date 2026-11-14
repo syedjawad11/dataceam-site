@@ -1,139 +1,123 @@
 ---
 page: home
-status: APPROVED — copy supplied by Jawad 2026-11-07 (verbatim); hero + closed-company callout revised per Jawad 2026-11-07 (T-011)
-title: "Dataceam — What your company's records could be worth to AI developers"
-description: "Dataceam connects companies that hold years of business records with vetted AI data buyers who review, clean and license them. Free to you."
+status: DRAFT v3 — referrer-only relaunch (T-017, 2026-11-14), awaiting Jawad's approval
+title: "Dataceam — License your company's records to AI-data buyers"
+description: "Dataceam is a referral service run by Syed Jawad. I introduce companies that hold years of business records to AI-data buyers who pay to license them. Free to you."
 ---
 
-<!-- Copy is Jawad's own wording. Use it verbatim. Layout notes are in [brackets]. -->
+<!-- Source of truth for Home copy. Layout notes are in [brackets]. -->
 
 ## Hero
 
-# Could your company's records be licensed for AI?
+[Badge:] Independent referral service
 
-[Answer line — large, directly under the h1:] Yes, and they can earn your company new revenue.
+# Your company's records may be worth money to an AI lab
 
-[Amount line — figures in bold:] Depending on the data, a licensing deal may be worth **$50K to $3M+**.
+AI developers have used up most of the public web. Now they pay to license something it doesn't hold: the record of how real businesses work. A small number of buyers run programmes that pay companies for it. I find companies that may qualify and introduce them. That's the whole job.
 
-AI labs have run out of public internet to learn from. What they need now is the record of how real businesses work. Dataceam connects companies that hold that data with vetted buyers who review it, clean it and license it.
+[Figures line:] The buyers I refer to publish payouts from around **$50,000 to over $1 million** per company. That's their range, not a promise: each buyer prices each company itself.
 
-[Button: See what your data could be worth → #contact]
+[Buttons:] Email me about your company (mailto) · Looking for AI-training work? (/experts/)
 
-Free to you. You keep your data, your business and the final say.
+## Ledger card — "Dataceam, plainly"
 
-[Visual: a mosaic of square tiles naming typical source tools — Slack, GitHub, Salesforce, Zendesk, Google Drive, QuickBooks, Jira, Notion, HubSpot — decorative, aria-hidden.]
+| Row | Text |
+|---|---|
+| Run by | Syed Jawad, independently, from Malta |
+| What I do | Check whether your company fits a buyer's published criteria, then introduce you |
+| What I don't do | Buy, store, clean or sell data, or sign anything for a buyer |
+| Who pays me | The buyer: a referral fee, only if a deal goes ahead |
+| What you pay | Nothing |
 
-## Why your data has value
+[Card footer, bold:] Dataceam is a referrer only. Every deal is made directly between you and the buyer.
 
-Eyebrow: Why your data has value
+## What buyers pay for
 
-### The trail is what's worth paying for
+### The record of how work gets done
 
-Every ticket closed, deal logged and decision made in a thread leaves a record: what was asked, the steps someone took, what they checked, and how it ended. Your tools have been keeping that trail for years.
+Buyers aren't after your customer list or your product. They want the trail your tools have kept for years: what was asked, the steps someone took, what they checked and how it ended. They turn those records into worked examples that teach and test AI models.
 
-AI developers turn those records into worked examples. A model studies thousands of them, practises the same tasks, and is then tested on real work it has never seen. That kind of data doesn't exist on the public web, which is why buyers pay for it.
-
-You're selling a licensed, cleaned copy. Your original data stays where it is, and nothing about how you work changes.
-
-## What kinds of data qualify
-
-Eyebrow: What kinds of data qualify
-
-### Data from almost every part of a business can count
-
-If your team has worked in the same tools for years, you likely already hold what buyers look for.
-
-[8 cards: title / what it covers / typical sources]
-
-| Card title | What it covers | Typical sources |
+| Kind | What it covers | Typical sources |
 |---|---|---|
-| Conversations | Team threads and email where work gets agreed, with the reasoning along the way | Slack, Microsoft Teams, Gmail, Outlook |
-| Code and engineering | Repositories with their history, pull requests, bug tracking and technical docs | GitHub, GitLab, Bitbucket, Linear |
-| Documents and files | Contracts, reports, SOPs, policies, decks and knowledge bases | Google Drive, SharePoint, Notion, Dropbox |
-| Sales and CRM | Deals, pipelines, playbooks and the customer lifecycle | Salesforce, HubSpot |
-| Finance and accounting | Invoices, ledgers, reconciliations, approvals and reporting workflows | QuickBooks, NetSuite |
-| Support and tickets | Each request from first message to resolution, with every step in between | Zendesk, Jira, ServiceNow |
-| Operations and logistics | Fulfilment, inventory, orders and internal process docs | ERP and order systems |
-| Legal and compliance | Contract review, governance and compliance procedures | Document and contract tools |
+| Conversations | Team threads and email where work gets agreed | Slack, Teams, Gmail, Outlook |
+| Code and engineering | Repositories with their history, pull requests and bug tracking | GitHub, GitLab, Jira, Linear |
+| Documents | SOPs, policies, reports and knowledge bases | Google Drive, SharePoint, Notion |
+| Sales and CRM | Deals, pipelines and playbooks | Salesforce, HubSpot |
+| Finance and accounting | Invoices, reconciliations, approvals and reporting | QuickBooks, NetSuite, Xero |
+| Support | Each ticket from first message to resolution | Zendesk, ServiceNow, Freshdesk |
+| Operations and logistics | Orders, fulfilment and inventory | ERP and order systems |
+| Legal and compliance | Contract review and governance procedures | Contract and document tools |
 
-[Callout box:] **It doesn't have to be a company that's still trading.** Records from a business that has shut down, closed, gone bankrupt or been liquidated can also qualify, as long as they meet the buyer's criteria and data-protection rules such as GDPR. In a bankruptcy or liquidation, the trustee or liquidator usually needs to approve the deal. These archives are often available for a limited time before the software accounts are shut down.
+You license a copy. Your original data stays where it is, and nothing about how you work changes.
 
-## How it works
+## What buyers say they pay
 
-Eyebrow: How it works
+### Published tiers
 
-### From first email to payment, in four steps
+| Tier | Typical profile |
+|---|---|
+| $50K+ | A focused set of records from one or two systems |
+| $500K+ | Years of records across several teams and functions |
+| $1M+ | Rare operational data that's hard to find anywhere else |
 
-1. **A free review by email.** Tell us which tools you use, how many years of records you hold and roughly how big your team is. No data changes hands.
-2. **An introduction to the right buyer.** We match you with a vetted AI data buyer whose requirements fit your company, and introduce you directly.
-3. **The buyer reviews, cleans and packages your data.** They connect read-only to the sources you approve, strip out names, contact details and other identifiers, and package the data so AI labs can judge its quality. You get an offer before you commit to anything.
-4. **You approve, sign and get paid.** Nothing is licensed without your written sign-off. Once a deal closes, the buyer pays you directly.
+These tiers come from the buyers' own public pages. They're indicative, not an offer to your company. The buyer decides whether you qualify and what your data is worth, and you see any offer before you agree to anything.
 
-## What it could be worth
+## Who usually qualifies
 
-Eyebrow: What it could be worth
+### A likely fit
 
-### Payouts range from $50K to $3M+
-
-Buyers price data on its quality, how unique it is, and how much of it there is.
-
-[3 cards: name / range / typical profile]
-
-| Card | Range | Typical profile |
-|---|---|---|
-| Starter | $50K – $500K | A focused set of records from one or two systems, often a 30+ person company |
-| Established | $500K – $3M | Years of records across several teams and business functions |
-| Exceptional | $3M+ | Rare, proprietary operational data of high value to frontier AI |
-
-These are typical ranges from current buyers, not a guarantee. The final figure depends on your data and is agreed with the buyer before you sign.
-
-## Privacy and control
-
-Eyebrow: Privacy and control
-
-### You decide what goes, and it's all in writing
-
-We only introduce companies to buyers who commit to the protections below. Each one is confirmed in your contract before anything is shared.
-
-- **You choose the sources.** You approve every system and dataset, and sign the terms first.
-- **Read-only, encrypted access.** Buyers copy data; they never change anything in your tools.
-- **Personal details removed.** Names, emails, customer details and account numbers are stripped before data leaves processing.
-- **Nothing released unpaid.** Buyers see redacted samples only until a deal is paid.
-- **Never sold to competitors.** Data is licensed to AI labs and research teams under contract, and never published.
-- **Kept separate, then deleted.** Your data is stored apart from other companies' data, and raw copies are deleted on an agreed schedule.
-
-## Who qualifies
-
-Eyebrow: Who qualifies
-
-### A good fit usually looks like this
-
-- **Team size:** 20+ staff is ideal; some buyers accept teams from 10.
-- **History:** several years of records, ideally 5+, spread across more than one system.
-- **Language:** mainly English, though some buyers accept other European languages.
+- **Team size:** 30 or more staff for most programmes; some European buyers start at 10 to 20.
+- **History:** several years of records, ideally five or more, across more than one system.
+- **Language:** mostly English; some buyers accept other European languages.
 - **Ownership:** the data is yours to license, not held for clients under contract.
-- **Strong sectors:** software and IT services, agencies, logistics, manufacturing, wholesale and B2B services.
+- **Running or closed:** records from a company that has shut down or is in liquidation can qualify. The liquidator or trustee usually has to approve.
 
-Not sure? Send us a short email and we'll tell you.
+Strong sectors: software and IT services, agencies, logistics, manufacturing, wholesale and B2B services.
 
-## About Dataceam
+Not sure? Email me and I'll tell you straight.
 
-Eyebrow: About Dataceam
+## How an introduction works
 
-### An independent scout, not a data broker
+1. **You email me.** A few lines: what the company does, roughly how many staff, which tools you use and for how long. No data changes hands.
+2. **I tell you if there's a fit, and with whom.** If a buyer's published criteria fit, I name the buyer and explain its process. If nothing fits, I say so.
+3. **I introduce you, with your OK.** Depending on the buyer, you register through my referral link or I submit your company by name. From then on you deal with the buyer directly.
+4. **The buyer reviews and decides.** Buyers run their own checks, often a short interview and then a call about your data. Any agreement, price and payment is between you and them.
 
-We at Dataceam help companies find value in data they're already sitting on. We research AI data buyers, check their terms, and only introduce you to buyers we've vetted. We're independent and don't represent any single buyer, so we can point you to whichever one fits your company best.
+## Before you sign
 
-**How we're paid:** The buyer pays us a referral fee when a deal closes. You pay nothing for our help.
+### Get these in writing
 
-[Keep this disclosure visible — not fine print.]
+I'm not a party to any deal, so I can't promise how a buyer will handle your data. Buyers publish commitments like these. Make sure they're in your contract.
 
-## Final call to action
+- Who owns the data afterwards
+- Exactly which systems and date ranges are in scope
+- How personal details are removed, and by whom
+- Read-only access, and how it's switched off
+- Samples you can review before anything is used
+- How long copies are kept, and when they're deleted
 
-### Find out what your data is worth
+Take your own legal and data-protection advice before you sign.
 
-Email us a few lines about your company. We'll reply with whether your company qualifies, which buyers fit, and roughly what range to expect. No commitment, and no data shared.
+## Who runs Dataceam
 
-[Button: Email us → mailto]
+### One person, working independently
 
-Or write directly to [contact email — `site.email`, placeholder until supplied]
+I'm Syed Jawad, based in Malta, and I run Dataceam on my own. I take part in the referral programmes of a small number of AI-data buyers and AI-training platforms. I'm not employed by any of them, I don't speak or sign for them, and I can't promise you anything on their behalf.
+
+I don't name the buyers on this site because the list changes as programmes open and close. Before any introduction I'll tell you exactly which company it is, and you decide.
+
+[Disclosure, visible:] **How I'm paid:** If a company I introduce signs with a buyer, the buyer may pay me a referral fee. You pay nothing for my help.
+
+## Experts band
+
+Not here for a company? If you're a lawyer, engineer, doctor, analyst or other specialist, see which paid AI-training roles fit your background.
+
+[Button: Match my résumé → /experts/]
+
+## Contact
+
+### Ask whether your company fits
+
+Email me a few lines about your company. I'll reply with whether a buyer is likely to fit, which one, and what it publishes. No commitment, and no data shared.
+
+[Button: Email me] Or write directly to [site.email]

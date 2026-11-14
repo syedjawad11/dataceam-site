@@ -27,11 +27,15 @@ codex exec -C "$(git rev-parse --show-toplevel)" -s workspace-write "<task spec>
 - `npm run check:full` — `check` + Lighthouse CI + axe + gitleaks. Run by `/ship`.
 
 ## Content rules (hard)
-- No buyer logos or names (micro1, DataFactor, Lodex or others).
-- Never claim to be a buyer's partner, agent or representative. Say: *"I work with several vetted AI data buyers."*
-- No promised or guaranteed amounts. Ranges only, worded with "may" and "depends on the data".
-- No urgency or get-rich language.
-- Referral-fee disclosure on Home: *"The buyer pays us a referral fee when a deal closes. You pay nothing for our help."* On FAQ: *"I'm paid a referral fee by the buyer. It costs you nothing."* (Jawad's Home v2 copy, 2026-11-07.)
-- No LinkedIn links anywhere.
-- Never use the term "data broker" — except Jawad's own negation on Home: "An independent scout, not a data broker".
-- Amounts: Jawad's Home v2 copy states ranges ($50K–$3M+) with the "not a guarantee" disclaimer; keep that disclaimer next to any figure.
+Positioning (Jawad, 2026-11-14, T-017): **Dataceam is a referrer only**, run openly by a named person (Syed Jawad, Malta), with no buyer or platform named on the site.
+- No buyer or platform logos or names (micro1, Mercor, DataFactor, Lodex or others) in visible copy. Referral and listing URLs in links and in `src/data/roles.json` are fine; content-lint masks URLs for this rule only.
+- Never claim to be a buyer's or platform's partner, agent or representative, and never imply Dataceam hires, screens or pays anyone. Say: *"I take part in the referral programmes of a small number of AI-data buyers and AI-training platforms."*
+- Never describe buyers as "vetted", "our buyers" or "current buyers", and never describe data handling Dataceam doesn't do (cleaning, PII stripping, encrypted access). Buyer commitments are framed as "get these in writing".
+- "Dataceam is a referrer only." must appear on Home, /experts/ and FAQ.
+- Referral disclosures (exact, enforced by content-lint):
+  - Home: *"If a company I introduce signs with a buyer, the buyer may pay me a referral fee. You pay nothing for my help."*
+  - /experts/: *"If you're hired through one, the platform may pay me a referral bonus."*
+  - FAQ: *"If a deal or a hire happens, the buyer or platform may pay me a referral fee. It costs you nothing."*
+- Amounts: only the buyers' published tiers ($50K+ / $500K+ / $1M+; "from around $50,000 to over $1 million"), always next to "not a promise" / "each buyer prices each company itself". No promised or guaranteed amounts.
+- /experts/: role pay comes from the platforms' public listings; say it can change. The résumé matcher must stay fully client-side (no network calls, no analytics on that page, CSP in `public/_headers`); the privacy policy describes this, so keep them in sync.
+- No urgency or get-rich language. No LinkedIn links anywhere. Never use the term "data broker".
