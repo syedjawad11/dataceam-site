@@ -206,10 +206,17 @@
     list-style: none;
   }
 
-  .footer-links a {
+  .site-footer .footer-links a {
     display: inline-flex;
     min-height: 44px;
     align-items: center;
+    color: var(--color-body);
+    text-decoration: none;
+  }
+
+  .site-footer .footer-links a:hover,
+  .site-footer .footer-links a:focus-visible {
+    color: var(--color-ink);
   }
 
   /* ---------- Buttons ---------- */
