@@ -133,6 +133,6 @@ The [guide to eligible business data](/insights/what-business-data-ai-companies-
 
 ## Want to know if your records qualify?
 
-[Email me](/#contact) with a short description of the business, its tools and the current sale stage. Mention whether an LOI has been signed. Keep confidential transaction documents and personal records out of the initial message.
+[Email me](/companies/#contact) with a short description of the business, its tools and the current sale stage. Mention whether an LOI has been signed. Keep confidential transaction documents and personal records out of the initial message.
 
 I'm paid a referral fee by the buyer. It costs you nothing.

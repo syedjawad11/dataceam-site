@@ -1,6 +1,6 @@
 ---
 page: jobs
-status: DRAFT v2 — moved from /experts/ to /jobs/, "we" voice and new disclosure line (T-021, 2026-11-21), for Jawad's approval in the PR. Structure APPROVED by Jawad 2026-11-14 (T-017): info and links only, one referral link per platform, consent box
+status: "DRAFT v2 — moved from /experts/ to /jobs/, \"we\" voice and new disclosure line (T-021, 2026-11-21), for Jawad's approval in the PR. Structure APPROVED by Jawad 2026-11-14 (T-017): info and links only, one referral link per platform, consent box"
 title: "AI jobs: paid AI-training work, what it pays and where to apply | Dataceam"
 description: "Remote AI-training contract work for engineers, analysts, lawyers, doctors and other specialists: the kinds of work on offer, typical pay, and links to the platforms' role boards."
 ---

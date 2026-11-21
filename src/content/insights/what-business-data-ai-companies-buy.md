@@ -131,6 +131,6 @@ You should review the cleaned result too. Confirm the scope, the handling of con
 
 ## Want to know if your records qualify?
 
-[Email me](/#contact) with the tools you use, the history available and a short description of the work recorded. Mention known client ownership or privacy restrictions. I can help assess whether a buyer's requirements justify the next step, starting with a description rather than a transfer of records.
+[Email me](/companies/#contact) with the tools you use, the history available and a short description of the work recorded. Mention known client ownership or privacy restrictions. I can help assess whether a buyer's requirements justify the next step, starting with a description rather than a transfer of records.
 
 I'm paid a referral fee by the buyer. It costs you nothing.

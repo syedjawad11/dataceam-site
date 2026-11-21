@@ -4,7 +4,7 @@
 /*
   Dataceam v3 — "plainly stated".
   Light page, one blue signal colour, expressive headings, and a plain
-  independent-referrer disclosure in the footer of every page.
+  referral disclosure linked from every footer.
 */
 
 @theme {
@@ -117,7 +117,7 @@
 
 @layer components {
   .shell {
-    width: min(calc(100% - 2rem), var(--container-shell));
+    width: min(calc(100% - 3rem), var(--container-shell));
     margin-inline: auto;
   }
 
@@ -199,33 +199,9 @@
     padding-block: 2.5rem;
   }
 
-  .footer-disclosure {
-    max-width: 75ch;
-  }
-
-  .footer-disclosure h2 {
-    margin-block-end: 0.5rem;
-    color: var(--color-ink);
-    font-size: 1rem;
-    letter-spacing: 0;
-  }
-
-  .footer-disclosure p + p {
-    margin-block-start: 0.6rem;
-  }
-
-  .footer-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem 2rem;
-  }
-
   .footer-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 1.5rem;
+    display: grid;
+    gap: 0.25rem;
     padding: 0;
     list-style: none;
   }
@@ -996,7 +972,7 @@
   }
 }
 
-/* ---------- Experts: work areas, consent, platforms ---------- */
+/* ---------- Jobs: work areas, consent, platforms ---------- */
 
 @layer components {
   .area-pay {
@@ -1045,7 +1021,7 @@
     font-size: 1.3rem;
   }
 
-  a.button[aria-disabled='true'] {
+  button.button:disabled {
     color: var(--color-muted);
     border-color: var(--color-rule-strong);
     border-style: dashed;
@@ -1102,7 +1078,7 @@
     font-weight: 650;
   }
 
-  .prose .learning-grid {
+  :is(.prose, .page-main) .learning-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
     gap: 1.5rem;
@@ -1299,5 +1275,133 @@
     .learning-hero > * {
       margin-block-start: 0;
     }
+  }
+}
+
+@layer components {
+  .wordmark-dot {
+    color: var(--color-signal);
+  }
+  .header-content nav {
+    min-width: 0;
+  }
+  .nav-links .button {
+    padding-inline: 1rem;
+  }
+  .footer-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+    gap: 2rem;
+  }
+  .footer-columns h2 {
+    font-size: 1rem;
+    margin-block-end: 0.5rem;
+  }
+  .home-hero {
+    display: grid;
+    gap: 3rem;
+    align-items: center;
+  }
+  .home-path {
+    display: grid;
+    position: relative;
+    gap: 1rem;
+    padding: 0;
+    list-style: none;
+  }
+  .home-path::before {
+    content: '';
+    position: absolute;
+    inset: 1rem auto 1rem 2rem;
+    width: 1px;
+    background: var(--color-rule-strong);
+  }
+  .home-path li {
+    position: relative;
+    padding: 1.5rem;
+    border: 1px solid var(--color-rule);
+    border-radius: 14px;
+    background: var(--color-surface);
+  }
+  .home-path h2 {
+    font-size: 1.5rem;
+    margin-block-end: 0.5rem;
+  }
+  .home-path .home-earn {
+    background: var(--color-surface-tint);
+    border-color: var(--color-signal);
+  }
+  .home-providers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+  .home-latest {
+    padding: 0;
+    list-style: none;
+  }
+  .home-latest li {
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .home-latest a {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 2rem;
+    padding-block: 1rem;
+    min-height: 44px;
+  }
+  [data-consent-control] {
+    display: inline-flex;
+  }
+  [data-consent-control] .button {
+    font: inherit;
+    font-weight: 650;
+    line-height: 1.2;
+  }
+  @media (min-width: 64rem) {
+    .home-hero {
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    }
+  }
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 16mm;
+  }
+  header,
+  footer,
+  nav,
+  .skip-link {
+    display: none !important;
+  }
+  [data-page='track'] main header {
+    display: block !important;
+  }
+  [data-page='track'] main a[href]::after {
+    content: ' (' attr(href) ')';
+    overflow-wrap: anywhere;
+    font-size: 0.8em;
+  }
+  *,
+  *::before,
+  *::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  [data-page='track'] main {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+  }
+  [data-page='track'] .learning-hero,
+  [data-page='track'] .learning-grid {
+    display: block;
+  }
+  [data-page='track'] .learning-course-list > li {
+    break-inside: avoid;
   }
 }

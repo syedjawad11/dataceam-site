@@ -2,12 +2,17 @@ export const site = {
   name: 'Dataceam',
   url: 'https://dataceam.com',
   xHandle: '@dataceam',
+  social: {
+    x: 'https://x.com/dataceam',
+    instagram: 'https://www.instagram.com/dataceam_ai/',
+    facebook: null, // Filled later when the Facebook Page URL is available.
+  },
   email: 'hello@dataceam.com',
   personName: 'Syed Jawad',
 } as const;
 
 /**
- * Jawad's general referral links for the AI-training platforms on /experts/.
+ * Jawad's general referral links for the AI-training platforms on /jobs/.
  * The platforms are not named on the site (see CLAUDE.md content rules), so
  * the page labels them "Platform 1" and "Platform 2".
  */

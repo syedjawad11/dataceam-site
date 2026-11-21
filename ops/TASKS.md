@@ -416,7 +416,7 @@ Acceptance:
 - [ ] `check` passes; CC runs `check:full`
 
 ## T-021 — Information architecture switch + short links, PDFs, freshness scripts (T-022 merged in)
-Status: in progress · Branch `task/021-ia-switch-and-tooling` · Jawad (2026-11-21): merge T-021 and T-022 into one task and finish it. Skeleton scope: newsletter block and Facebook show "Coming soon" (no form, no dead link).
+Status: in review (preview) · Branch `task/021-ia-switch-and-tooling` · Codex gpt-6.1-sol, 2 attempts · Jawad (2026-11-21): merge T-021 and T-022 into one task and finish it. Skeleton scope: newsletter block and Facebook show "Coming soon" (no form, no dead link).
 Goal: flip the site to the new structure in one PR, and add the §7 tooling.
 Files:
 - new `src/pages/index.astro` (brief §3.1)

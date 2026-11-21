@@ -3,10 +3,12 @@ import type { CollectionEntry } from 'astro:content';
 import { courseCount, isLive, totalHours } from '../lib/learning';
 interface Props {
   track: CollectionEntry<'tracks'>;
+  linkSoon?: boolean;
   heading?: 'h2' | 'h3';
 }
 const {
   track: { data },
+  linkSoon = true,
   heading: Heading = 'h3',
 } = Astro.props;
 ---
@@ -21,7 +23,11 @@ const {
     {isLive(data) ? 'Live' : 'Coming soon'}
   </span>
   <Heading>
-    <a href={`/tracks/${data.slug}/`}>{data.role}</a>
+    {isLive(data) || linkSoon ? (
+      <a href={`/tracks/${data.slug}/`}>{data.role}</a>
+    ) : (
+      data.role
+    )}
   </Heading>
   <p>{data.who}</p>
   {isLive(data) && (

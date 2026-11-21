@@ -1,12 +1,9 @@
 ---
+import { frontmatter } from '../../content/jobs.md';
 import Base from '../layouts/Base.astro';
 import { expertPlatforms, site } from '../config/site';
 
-// Copy source: content/experts.md
-const title =
-  'AI-training work for experts: what it pays and where to apply | Dataceam';
-const description =
-  "Remote AI-training contract work for lawyers, engineers, doctors, analysts and other specialists: the kinds of work on offer, typical pay, and links to the platforms' role boards.";
+const { title, description } = frontmatter;
 
 const areas = [
   [
@@ -61,12 +58,12 @@ const jsonLd = {
   '@type': 'WebPage',
   name: title,
   description,
-  url: new URL('/experts/', site.url).href,
+  url: new URL('/jobs/', site.url).href,
   isPartOf: { '@id': `${site.url}/#organization` },
 };
 ---
 
-<Base page="experts" title={title} description={description} jsonLd={jsonLd}>
+<Base page="jobs" title={title} description={description} jsonLd={jsonLd}>
   <section class="hero" aria-labelledby="hero-heading">
     <div class="shell">
       <div class="hero-copy">
@@ -75,7 +72,7 @@ const jsonLd = {
           Find paid AI-training work that fits what you already know
         </h1>
         <p class="lead">
-          AI labs pay lawyers, engineers, doctors, analysts, linguists and other
+          AI labs pay engineers, analysts, lawyers, doctors, linguists and other
           specialists, usually through training platforms, to write, review and
           grade the work their models learn from. Below are the kinds of work on
           offer and what they typically pay. When you're ready, open a
@@ -160,21 +157,31 @@ const jsonLd = {
           <li class="platform">
             <h3>{platform.label}</h3>
             <p>{platform.summary}</p>
-            <a
-              class="button button-primary"
-              href={platform.href}
-              target="_blank"
-              rel="sponsored noopener"
-              data-consent-link
+            <span
+              data-consent-control
+              data-href={platform.href}
+              data-label={platform.label}
             >
-              Open the role board
-              <span class="sr-only">
-                : {platform.label} (opens in a new tab)
-              </span>
-            </a>
+              <button
+                class="button button-primary"
+                type="button"
+                disabled
+                aria-disabled="true"
+                aria-describedby="consent-hint"
+              >
+                Open the role board
+                <span class="sr-only">
+                  : {platform.label} (opens in a new tab)
+                </span>
+              </button>
+            </span>
           </li>
         ))}
       </ul>
+      <p class="hint">
+        Referral links: we may earn a fee if you join through them.{' '}
+        <a href="/disclosure/">Referral disclosure</a>
+      </p>
     </div>
   </section>
 
@@ -186,7 +193,7 @@ const jsonLd = {
       <ol class="steps steps-3" role="list">
         <li>
           <strong>Tick the box and pick a platform.</strong>
-          Its role board opens in a new tab, with my referral code in the link.
+          Its role board opens in a new tab, with our referral code in the link.
         </li>
         <li>
           <strong>Find a role and apply there.</strong>
@@ -194,16 +201,26 @@ const jsonLd = {
         </li>
         <li>
           <strong>The platform decides.</strong>
-          It screens, hires and pays you. I'm not involved after the link.
+          It screens, hires and pays you. We're not involved after the link.
         </li>
       </ol>
+    </div>
+  </section>
+  <section class="band" aria-labelledby="disclosure-heading">
+    <div class="shell stack">
+      <h2 id="disclosure-heading">Disclosure</h2>
       <p class="disclosure">
+        Dataceam is a referrer only. If you're hired through one of these links,
+        the platform may pay us a referral bonus. You pay nothing.
+      </p>
+      <p>
         Dataceam doesn't hire anyone. The roles are posted by third-party
-        AI-training platforms, which run all screening, hiring and payment. The
-        links on this page are referral links. If you're hired through one, the
-        platform may pay me a referral bonus. The platform pays it; it costs you
-        nothing. Pay figures come from the platforms' public listings and can
-        change, and nothing here promises an interview, a role or a rate.
+        AI-training platforms, which run all screening, hiring and payment. Pay
+        figures come from the platforms' public listings and can change, and
+        nothing here promises an interview, a role or a rate.
+      </p>
+      <p>
+        <a href="/disclosure/">Referral disclosure</a>
       </p>
     </div>
   </section>

@@ -1,0 +1,345 @@
+---
+import { getCollection } from 'astro:content';
+import { frontmatter } from '../../content/companies.md';
+import Base from '../layouts/Base.astro';
+import EmailCta from '../components/EmailCta.astro';
+import { site } from '../config/site';
+
+const { title, description } = frontmatter;
+const insights = await getCollection('insights', ({ data }) => !data.draft);
+const insightOrder = [
+  'what-business-data-ai-companies-buy',
+  'prepare-company-data-for-ai-licensing',
+  'license-company-data-before-selling-business',
+];
+const kinds = [
+  [
+    'Conversations',
+    'Team threads and email where work gets agreed',
+    'Slack, Teams, Gmail, Outlook',
+  ],
+  [
+    'Code and engineering',
+    'Repositories with their history, pull requests and bug tracking',
+    'GitHub, GitLab, Jira, Linear',
+  ],
+  [
+    'Documents',
+    'SOPs, policies, reports and knowledge bases',
+    'Google Drive, SharePoint, Notion',
+  ],
+  ['Sales and CRM', 'Deals, pipelines and playbooks', 'Salesforce, HubSpot'],
+  [
+    'Finance and accounting',
+    'Invoices, reconciliations, approvals and reporting',
+    'QuickBooks, NetSuite, Xero',
+  ],
+  [
+    'Support',
+    'Each ticket from first message to resolution',
+    'Zendesk, ServiceNow, Freshdesk',
+  ],
+  [
+    'Operations and logistics',
+    'Orders, fulfilment and inventory',
+    'ERP and order systems',
+  ],
+  [
+    'Legal and compliance',
+    'Contract review and governance procedures',
+    'Contract and document tools',
+  ],
+];
+
+const tiers = [
+  ['$50K+', 'A focused set of records from one or two systems'],
+  ['$500K+', 'Years of records across several teams and functions'],
+  ['$1M+', "Rare operational data that's hard to find anywhere else"],
+];
+
+const criteria = [
+  [
+    'Team size:',
+    '30 or more staff for most programmes; some European buyers start at 10 to 20.',
+  ],
+  [
+    'History:',
+    'several years of records, ideally five or more, across more than one system.',
+  ],
+  ['Language:', 'mostly English; some buyers accept other European languages.'],
+  [
+    'Ownership:',
+    'the data is yours to license, not held for clients under contract.',
+  ],
+  [
+    'Running or closed:',
+    'records from a company that has shut down or is in liquidation can qualify. The liquidator or trustee usually has to approve.',
+  ],
+];
+
+const steps = [
+  [
+    'You email us.',
+    'A few lines: what the company does, roughly how many staff, which tools you use and for how long. No data changes hands.',
+  ],
+  [
+    "We tell you if there's a fit, and with whom.",
+    "If a buyer's published criteria fit, we name the buyer and explain its process. If nothing fits, we say so.",
+  ],
+  [
+    'We introduce you, with your OK.',
+    'Depending on the buyer, you register through our referral link or we submit your company by name. From then on you deal with the buyer directly.',
+  ],
+  [
+    'The buyer reviews and decides.',
+    'Buyers run their own checks, often a short interview and then a call about your data. Any agreement, price and payment is between you and them.',
+  ],
+];
+
+const inWriting = [
+  'Who owns the data afterwards',
+  'Exactly which systems and date ranges are in scope',
+  'How personal details are removed, and by whom',
+  "Read-only access, and how it's switched off",
+  'Samples you can review before anything is used',
+  "How long copies are kept, and when they're deleted",
+];
+---
+
+<Base page="companies" title={title} description={description}>
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="shell">
+      <div class="hero-copy">
+        <p class="badge">Independent referrer</p>
+        <h1 id="hero-heading">
+          Your company's records may be worth money to an AI lab
+        </h1>
+        <p class="lead">
+          AI developers have used up most of the public web. Now they pay to
+          license something it doesn't hold: the record of how real businesses
+          work. A small number of buyers run programmes that pay companies for
+          it. We find companies that may qualify and introduce them. That's the
+          whole job.
+        </p>
+        <p class="hero-figures">
+          The buyers we refer to publish payouts from around{' '}
+          <strong>$50,000 to over $1 million</strong> per company. That's their
+          range, not a promise: each buyer prices each company itself.
+        </p>
+        <div class="button-row">
+          <a class="button button-primary" href={`mailto:${site.email}`}>
+            Email us about your company
+          </a>
+          <a class="button button-quiet" href="/jobs/">
+            Looking for AI-training work?
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="what-buyers-pay-for">
+    <div class="shell split">
+      <div class="section-head">
+        <p class="kicker">What buyers pay for</p>
+        <h2 id="what-buyers-pay-for">The record of how work gets done</h2>
+        <p>
+          Buyers aren't after your customer list or your product. They want the
+          trail your tools have kept for years: what was asked, the steps
+          someone took, what they checked and how it ended. They turn those
+          records into worked examples that teach and test AI models.
+        </p>
+        <p class="note">
+          You license a copy. Your original data stays where it is, and nothing
+          about how you work changes.
+        </p>
+      </div>
+      <ul class="kinds" role="list">
+        {kinds.map(([name, covers, sources]) => (
+          <li class="kind">
+            <h3>{name}</h3>
+            <p>{covers}</p>
+            <p class="sources">
+              <span class="sr-only">Typical sources: </span>
+              {sources}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="what-buyers-say">
+    <div class="shell stack">
+      <div class="section-head">
+        <p class="kicker">What buyers say they pay</p>
+        <h2 id="what-buyers-say">Published tiers</h2>
+      </div>
+      <ol class="scale" role="list">
+        {tiers.map(([tier, profile]) => (
+          <li>
+            <span class="tier">{tier}</span>
+            <span>{profile}</span>
+          </li>
+        ))}
+      </ol>
+      <p class="note">
+        These tiers come from the buyers' own public pages. They're indicative,
+        not an offer to your company. The buyer decides whether you qualify and
+        what your data is worth, and you see any offer before you agree to
+        anything.
+      </p>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="who-qualifies">
+    <div class="shell split">
+      <div class="section-head">
+        <p class="kicker">Who usually qualifies</p>
+        <h2 id="who-qualifies">A likely fit</h2>
+        <p>
+          Strong sectors: software and IT services, agencies, logistics,
+          manufacturing, wholesale and B2B services.
+        </p>
+        <p>
+          Not sure? <a href={`mailto:${site.email}`}>Email us</a> and we'll tell
+          you straight.
+        </p>
+      </div>
+      <ul class="checklist" role="list">
+        {criteria.map(([label, text]) => (
+          <li>
+            <strong>{label}</strong> {text}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="how-it-works">
+    <div class="shell stack">
+      <div class="section-head">
+        <h2 id="how-it-works">How an introduction works</h2>
+      </div>
+      <ol class="steps steps-4" role="list">
+        {steps.map(([lead, text]) => (
+          <li>
+            <strong>{lead}</strong>
+            {text}
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="in-writing">
+    <div class="shell split">
+      <div class="section-head">
+        <p class="kicker">Before you sign</p>
+        <h2 id="in-writing">Get these in writing</h2>
+        <p>
+          We're not a party to any deal, so we can't promise how a buyer will
+          handle your data. Buyers publish commitments like these. Make sure
+          they're in your contract.
+        </p>
+        <p class="note">
+          Take your own legal and data-protection advice before you sign.
+        </p>
+      </div>
+      <ul class="checklist two-col" role="list">
+        {inWriting.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="how-paid">
+    <div class="shell split">
+      <div class="section-head">
+        <p class="kicker">How we're paid</p>
+        <h2 id="how-paid">An independent referrer</h2>
+      </div>
+      <div class="stack">
+        <p>
+          We take part in the referral programmes of a small number of AI-data
+          buyers and AI-training platforms. We're not employed by any of them,
+          we don't speak or sign for them, and we can't promise you anything on
+          their behalf.
+        </p>
+        <p>
+          We don't name the buyers on this site because the list changes as
+          programmes open and close. Before any introduction we'll tell you
+          exactly which company it is, and you decide.
+        </p>
+        <p class="disclosure">
+          Dataceam is a referrer only. If a company we introduce signs with a
+          buyer, the buyer may pay us a referral fee. You pay nothing for the
+          introduction.
+        </p>
+        <p>
+          <a href="/disclosure/">Referral disclosure</a>
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="band" aria-labelledby="company-guides">
+    <div class="shell stack">
+      <h2 id="company-guides">Guides for companies</h2>
+      <div class="learning-grid">
+        {insightOrder.map((id) => {
+          const post = insights.find((entry) => entry.id === id)!;
+          return (
+            <article class="insight-card learning-card">
+              <h3>
+                <a href={`/insights/${post.id}/`}>{post.data.title}</a>
+              </h3>
+            </article>
+          );
+        })}
+      </div>
+      <p>
+        <a href="/insights/">All insights</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="for-jobs">
+    <div class="shell">
+      <div class="crosslink">
+        <div class="stack">
+          <h2 id="for-jobs" class="sr-only">
+            AI jobs
+          </h2>
+          <p>
+            Not here for a company? If you're a lawyer, engineer, doctor,
+            analyst or other specialist, see what paid AI-training work is on
+            offer and what it pays.
+          </p>
+        </div>
+        <a class="button button-primary" href="/jobs/">
+          See AI-training work
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="contact"
+    class="band"
+    aria-labelledby="contact-heading"
+    tabindex="-1"
+  >
+    <div class="shell stack">
+      <div class="section-head">
+        <h2 id="contact-heading">Ask whether your company fits</h2>
+        <p class="lead">
+          Email us a few lines about your company. We'll reply with whether a
+          buyer is likely to fit, which one, and what it publishes. No
+          commitment, and no data shared.
+        </p>
+      </div>
+      <EmailCta label="Email us" noteId="contact-email-note" prominent />
+    </div>
+  </section>
+</Base>
