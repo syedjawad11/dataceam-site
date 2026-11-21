@@ -416,7 +416,7 @@ Acceptance:
 - [ ] `check` passes; CC runs `check:full`
 
 ## T-021 — Information architecture switch + short links, PDFs, freshness scripts (T-022 merged in)
-Status: in review (preview) · Branch `task/021-ia-switch-and-tooling` · Codex gpt-6.1-sol, 2 attempts · Jawad (2026-11-21): merge T-021 and T-022 into one task and finish it. Skeleton scope: newsletter block and Facebook show "Coming soon" (no form, no dead link).
+Status: **done** (PR #24, approved by Jawad 2026-11-21) · Branch `task/021-ia-switch-and-tooling` · Codex gpt-6.1-sol, 2 attempts · Jawad (2026-11-21): merge T-021 and T-022 into one task and finish it. Skeleton scope: newsletter block and Facebook show "Coming soon" (no form, no dead link).
 Goal: flip the site to the new structure in one PR, and add the §7 tooling.
 Files:
 - new `src/pages/index.astro` (brief §3.1)
@@ -440,7 +440,7 @@ Acceptance:
 - [ ] Jawad approves the copy changes in the preview before merge
 
 ## T-022 — Short links, PDFs, freshness scripts
-Status: merged into T-021 (Jawad, 2026-11-21). Scope below is delivered on the T-021 branch.
+Status: **done** — merged into T-021 (PR #24, 2026-11-21). Scope below is delivered on the T-021 branch.
 Goal: the tooling from brief §7, plus `/free/<keyword>` short links.
 - A build step generates `dist/_redirects` from content frontmatter `shortlink` values (`/free/<keyword>  /<page>?utm_source=social&utm_medium=shortlink&utm_campaign=<keyword>  302`), merged with the static redirects.
 - Plus `scripts/refresh-repos.mjs`, `links:external` and `pdfs` (brief §7).
