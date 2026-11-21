@@ -3,7 +3,7 @@
 
 /*
   Dataceam v3 — "plainly stated".
-  Dark navy page, one blue signal colour, expressive headings, and a plain
+  Light page, one blue signal colour, expressive headings, and a plain
   independent-referrer disclosure in the footer of every page.
 */
 
@@ -12,15 +12,24 @@
     system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Bricolage Grotesque Variable', var(--font-sans);
 
-  --color-night: #0b1222;
-  --color-deck: #121b30;
-  --color-deck-2: #18233c;
-  --color-rule: #26324d;
-  --color-paper: #eaf0fa;
-  --color-slate: #a3b1c9;
-  --color-signal: #5b9bff;
-  --color-signal-strong: #8bb8ff;
-  --color-on-signal: #07111f;
+  --color-page: #f6f8fc;
+  --color-surface: #ffffff;
+  --color-surface-tint: #eef3ff;
+  --color-rule: #d9e0ec;
+  --color-rule-strong: #c5cfdf;
+  --color-ink: #0b1222;
+  --color-body: #44506a;
+  --color-muted: #5f6b85;
+  --color-signal: #2563eb;
+  --color-signal-strong: #1d4ed8;
+  --color-on-signal: #ffffff;
+  --color-free-bg: #dcfce7;
+  --color-free-text: #166534;
+  --color-soon-bg: #eef1f6;
+  --color-soon-text: #44506a;
+  --color-stage-1: #93c5fd;
+  --color-stage-2: #2563eb;
+  --color-stage-3: #1e3a8a;
 
   --container-prose: 70ch;
   --container-shell: 72rem;
@@ -30,11 +39,11 @@
   html {
     font-family: var(--font-sans);
     font-size: 106.25%;
-    color: var(--color-slate);
-    background: var(--color-night);
+    color: var(--color-body);
+    background: var(--color-page);
     line-height: 1.65;
     overflow-wrap: break-word;
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   body {
@@ -42,9 +51,7 @@
     min-height: 100vh;
     min-height: 100svh;
     flex-direction: column;
-    background:
-      radial-gradient(60rem 32rem at 78% -8rem, #2b5fd91f, transparent 70%),
-      var(--color-night);
+    background: var(--color-page);
   }
 
   a {
@@ -65,14 +72,14 @@
   }
 
   strong {
-    color: var(--color-paper);
+    color: var(--color-ink);
     font-weight: 650;
   }
 
   h1,
   h2,
   h3 {
-    color: var(--color-paper);
+    color: var(--color-ink);
     font-family: var(--font-display);
     font-weight: 650;
     letter-spacing: -0.02em;
@@ -124,7 +131,7 @@
 
   .site-header {
     border-bottom: 1px solid var(--color-rule);
-    background: #0b1222e6;
+    background: var(--color-surface);
   }
 
   .header-content {
@@ -137,7 +144,10 @@
   }
 
   .site-name {
-    color: var(--color-paper);
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    color: var(--color-ink);
     font-family: var(--font-display);
     font-size: 1.5rem;
     font-weight: 750;
@@ -146,7 +156,7 @@
   }
 
   .site-name:hover {
-    color: var(--color-paper);
+    color: var(--color-ink);
   }
 
   .nav-links {
@@ -159,23 +169,27 @@
   }
 
   .nav-links a {
-    display: inline-block;
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
     padding-block: 0.35rem;
     border-bottom: 2px solid transparent;
-    color: var(--color-slate);
+    color: var(--color-body);
     font-size: 0.95rem;
     text-decoration: none;
   }
 
   .nav-links a:hover,
   .nav-links a[aria-current='page'] {
-    color: var(--color-paper);
+    color: var(--color-ink);
     border-bottom-color: var(--color-signal);
   }
 
   .site-footer {
     margin-block-start: auto;
     border-top: 1px solid var(--color-rule);
+    background: var(--color-surface);
     font-size: 0.92rem;
   }
 
@@ -191,7 +205,7 @@
 
   .footer-disclosure h2 {
     margin-block-end: 0.5rem;
-    color: var(--color-paper);
+    color: var(--color-ink);
     font-size: 1rem;
     letter-spacing: 0;
   }
@@ -216,16 +230,23 @@
     list-style: none;
   }
 
+  .footer-links a {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+  }
+
   /* ---------- Buttons ---------- */
 
   .button {
     display: inline-flex;
-    min-height: 2.9rem;
+    min-width: 44px;
+    min-height: 49px;
     align-items: center;
     justify-content: center;
     padding: 0.7rem 1.35rem;
     border: 1.5px solid transparent;
-    border-radius: 0.6rem;
+    border-radius: 10px;
     font-weight: 650;
     line-height: 1.2;
     text-align: center;
@@ -245,14 +266,14 @@
   }
 
   a.button-quiet {
-    color: var(--color-paper);
+    color: var(--color-ink);
     border-color: var(--color-rule);
-    background: transparent;
+    background: var(--color-surface);
   }
 
   a.button-quiet:hover {
-    color: var(--color-paper);
-    border-color: var(--color-slate);
+    color: var(--color-ink);
+    border-color: var(--color-rule-strong);
   }
 
   .button-row {
@@ -279,10 +300,10 @@
     display: inline-block;
     max-width: 100%;
     padding: 0.2rem 0.5rem;
-    border: 1px dashed var(--color-slate);
+    border: 1px dashed var(--color-rule-strong);
     border-radius: 0.25rem;
-    color: var(--color-paper);
-    background: var(--color-deck);
+    color: var(--color-ink);
+    background: var(--color-surface);
     font-family: ui-monospace, monospace;
     font-size: 0.9rem;
     overflow-wrap: anywhere;
@@ -325,14 +346,14 @@
 
   .lead {
     max-width: 60ch;
-    color: var(--color-slate);
+    color: var(--color-body);
     font-size: 1.12rem;
     line-height: 1.7;
   }
 
   .note {
     max-width: 64ch;
-    color: var(--color-slate);
+    color: var(--color-muted);
     font-size: 0.95rem;
   }
 
@@ -372,9 +393,9 @@
     padding: 0.3rem 0.8rem;
     border: 1px solid var(--color-rule);
     border-radius: 999px;
-    color: var(--color-paper);
-    background: var(--color-deck);
-    font-size: 0.88rem;
+    color: var(--color-ink);
+    background: var(--color-surface);
+    font-size: 14px;
     font-weight: 600;
   }
 
@@ -428,7 +449,7 @@
   }
 
   .kind .sources {
-    color: #7f8ea9;
+    color: var(--color-muted);
     font-size: 0.88rem;
   }
 
@@ -456,7 +477,7 @@
     height: 0.8rem;
     border: 2px solid var(--color-signal);
     border-radius: 50%;
-    background: var(--color-night);
+    background: var(--color-page);
     content: '';
   }
 
@@ -482,7 +503,7 @@
   }
 
   .tier {
-    color: var(--color-paper);
+    color: var(--color-ink);
     font-family: var(--font-display);
     font-size: clamp(2rem, 4vw, 2.8rem);
     font-weight: 700;
@@ -580,8 +601,8 @@
     padding: 1.1rem 1.25rem;
     border: 1px solid var(--color-rule);
     border-inline-start: 4px solid var(--color-signal);
-    border-radius: 0.5rem;
-    background: var(--color-deck);
+    border-radius: 14px;
+    background: var(--color-surface);
   }
 
   .home-disclosure {
@@ -594,8 +615,8 @@
     gap: 1.25rem;
     padding: clamp(1.5rem, 4vw, 2.5rem);
     border: 1px solid var(--color-rule);
-    border-radius: 0.75rem;
-    background: var(--color-deck);
+    border-radius: 14px;
+    background: var(--color-surface-tint);
   }
 
   @media (min-width: 48rem) {
@@ -607,30 +628,35 @@
 
   .crosslink p {
     max-width: 56ch;
-    color: var(--color-paper);
+    color: var(--color-ink);
     font-size: 1.1rem;
   }
 
   /* ---------- Shared form bits ---------- */
 
   .hint {
-    color: #8e9cb6;
+    color: var(--color-muted);
     font-size: 0.88rem;
   }
 
   .consent {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
+    display: flex;
     gap: 0.75rem;
-    align-items: start;
+    align-items: center;
     font-size: 0.95rem;
   }
 
   .consent input {
-    width: 1.2rem;
-    height: 1.2rem;
-    margin-block-start: 0.2rem;
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
     accent-color: var(--color-signal);
+  }
+
+  .consent label {
+    min-height: 44px;
+    align-content: center;
+    cursor: pointer;
   }
 
   [hidden] {
@@ -681,7 +707,7 @@
   .faq-list summary {
     display: list-item;
     padding: 1.15rem 0.5rem;
-    color: var(--color-paper);
+    color: var(--color-ink);
     font-size: 1.08rem;
     font-weight: 650;
     cursor: pointer;
@@ -698,7 +724,7 @@
 
   .faq-list summary:hover,
   .faq-list summary:focus-visible {
-    background: var(--color-deck);
+    background: var(--color-surface);
   }
 
   .faq-answer {
@@ -767,7 +793,7 @@
 
   .article-lede {
     max-width: 65ch;
-    color: var(--color-slate);
+    color: var(--color-body);
     font-size: 1.2rem;
   }
 
@@ -775,7 +801,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem 1.25rem;
-    color: #8e9cb6;
+    color: var(--color-muted);
     font-size: 0.875rem;
   }
 
@@ -793,7 +819,7 @@
 
   .breadcrumbs li + li::before {
     margin-inline-end: 0.5rem;
-    color: #8e9cb6;
+    color: var(--color-muted);
     content: '›';
   }
 
@@ -842,13 +868,41 @@
     vertical-align: top;
   }
 
+  .prose blockquote {
+    padding: 1rem 1.25rem;
+    border-inline-start: 3px solid var(--color-signal);
+    color: var(--color-body);
+    background: var(--color-surface);
+  }
+
+  .prose :not(pre) > code {
+    padding: 0.1rem 0.3rem;
+    border: 1px solid var(--color-rule);
+    border-radius: 0.25rem;
+    color: var(--color-ink);
+    background: var(--color-surface);
+  }
+
+  .prose pre {
+    overflow-x: auto;
+    padding: 1rem;
+    border: 1px solid var(--color-rule);
+    border-radius: 14px;
+    color: var(--color-ink);
+    background: var(--color-surface);
+  }
+
+  .article-body table {
+    background: var(--color-surface);
+  }
+
   .article-body th {
-    color: var(--color-paper);
-    background: var(--color-deck);
+    color: var(--color-ink);
+    background: var(--color-surface);
   }
 
   .article-body tbody tr:nth-child(even) {
-    background: #0f182b;
+    background: var(--color-surface-tint);
   }
 
   .article-body img {
@@ -861,7 +915,7 @@
 
   .article-body p:has(> img) + p:has(> em:only-child) {
     margin-block-start: 0.5rem;
-    color: #8e9cb6;
+    color: var(--color-muted);
     font-size: 0.875rem;
   }
 
@@ -886,8 +940,8 @@
     min-width: 0;
     padding: 1.4rem;
     border: 1px solid var(--color-rule);
-    border-radius: 0.75rem;
-    background: var(--color-deck);
+    border-radius: 14px;
+    background: var(--color-surface);
   }
 
   .insight-card > * + * {
@@ -906,7 +960,7 @@
   }
 
   .insight-card :is(h2, h3) a {
-    color: var(--color-paper);
+    color: var(--color-ink);
     text-decoration-color: var(--color-signal);
   }
 
@@ -916,8 +970,8 @@
     margin-block-start: 3.5rem;
     padding: clamp(1.5rem, 5vw, 2.5rem);
     border: 1px solid var(--color-rule);
-    border-radius: 0.75rem;
-    background: var(--color-deck);
+    border-radius: 14px;
+    background: var(--color-surface-tint);
   }
 
   @media (min-width: 48rem) {
@@ -937,7 +991,7 @@
 
 @layer components {
   .area-pay {
-    color: var(--color-paper);
+    color: var(--color-ink);
     font-size: 0.95rem;
     font-weight: 600;
     font-variant-numeric: tabular-nums;
@@ -949,8 +1003,8 @@
     max-width: 52rem;
     padding: 1.1rem 1.25rem;
     border: 1px solid var(--color-rule);
-    border-radius: 0.6rem;
-    background: var(--color-deck);
+    border-radius: 14px;
+    background: var(--color-surface-tint);
   }
 
   .platforms {
@@ -974,7 +1028,8 @@
     min-width: 0;
     padding: clamp(1.25rem, 3vw, 1.75rem);
     border: 1px solid var(--color-rule);
-    border-radius: 0.75rem;
+    border-radius: 14px;
+    background: var(--color-surface);
   }
 
   .platform h3 {
@@ -982,9 +1037,10 @@
   }
 
   a.button[aria-disabled='true'] {
-    color: var(--color-slate);
-    border-color: var(--color-rule);
-    background: transparent;
+    color: var(--color-muted);
+    border-color: var(--color-rule-strong);
+    border-style: dashed;
+    background: var(--color-surface);
     cursor: not-allowed;
   }
 }

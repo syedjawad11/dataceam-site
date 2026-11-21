@@ -368,5 +368,91 @@ Changes:
 Waiting on Jawad: confirm hello@dataceam.com; fill FAQ timing placeholders.
 
 ## T-018 — Simpler hero + footer disclosure (like hkrefer.online)
-Status: **review** · Branch `task/018-simple-disclosure` · Implemented directly by Claude (claude.ai cloud session, 2026-11-14) at Jawad's request.
+Status: **done** (PR #21, merged) · Branch `task/018-simple-disclosure` · Implemented directly by Claude (claude.ai cloud session, 2026-11-14) at Jawad's request.
 Changes: removed the "Dataceam, plainly" statement box from the Home and /experts/ heroes (and `Ledger.astro`); badge on both pages now reads "Independent referrer"; footer on every page now carries the full "Independent referrer disclosure" (run independently by Syed Jawad, not affiliated with any buyer or platform, referral fee at no cost to you, decisions made by the buyers/platforms, figures not a promise); location removed from visible copy (kept only in the privacy policy as controller identity).
+
+---
+
+# Redesign (Nov 2026): learning hub + light theme
+Brief: `ops/REDESIGN-2026-11.md` (approved by Jawad, 2026-11-21). The brief wins where it disagrees with the current content rules; T-021 updates `CLAUDE.md`.
+
+## T-019 — Light theme
+Status: **done** (PR #22, approved by Jawad 2026-11-21) · Branch `task/019-light-theme` · Codex gpt-6.1-sol, 2 attempts. Known: Lighthouse SEO 0.92 on /experts/ (consent-locked links have no href; already on main, resolved with T-021).
+Goal: switch the whole current site to the brief §4 palette. No structural or copy changes.
+Files:
+- `src/styles/global.css` (tokens renamed and recoloured; component styles updated)
+- any component with hard-coded colours
+- `scripts/build-og.mjs` (light OG cards; run `npm run og`)
+
+Acceptance:
+- [ ] no dark backgrounds remain
+- [ ] all text pairs meet AA
+- [ ] focus states visible
+- [ ] Insights SVG infographics still readable
+- [ ] `npm run check` passes; CC runs `check:full`
+- [ ] CC sends Jawad screenshots at 375 px and 1280 px of Home, `/experts/` and an Insights article
+
+## T-020 — Content collections and templates (tracks, repos, guides)
+Status: todo
+Goal: the three collections from brief §5, with their index and detail pages, live but not yet in the header navigation.
+Files:
+- `src/content.config.ts`
+- `src/pages/{tracks,repos,guides}/…`
+- components: `TrackCard`, `CourseItem`, `WeeklyPlan`, `RepoCard`, `GuideCard`, `TopicTile`, `ProviderLogo`
+- `src/assets/logos/`
+
+Content (CC writes):
+- `tracks/ai-engineer.md`, fully verified (brief §8)
+- `repos/microsoft-ai-agents-for-beginners.md`, with quickstart tested by CC
+- `guides/*.md` for all 14 explainers
+
+Acceptance:
+- [ ] pages match brief §3.2–3.4
+- [ ] totals and weekly plan computed, not typed
+- [ ] exactly one h1 per page; unique title and description
+- [ ] JSON-LD valid
+- [ ] `<video>` uses `preload="none"`
+- [ ] no horizontal scroll at 375 px
+- [ ] `check` passes; CC runs `check:full`
+
+## T-021 — Information architecture switch
+Status: todo
+Goal: flip the site to the new structure in one PR.
+Files:
+- new `src/pages/index.astro` (brief §3.1)
+- `src/pages/companies.astro` (moved Home, §3.6); `content/home.md` → `content/companies.md`
+- `src/pages/jobs.astro` (moved `/experts/`, §3.5), plus a `301` from `/experts/`
+- `src/pages/disclosure.astro` and `content/disclosure.md` (§3.7)
+- Header and Footer (§2); Person JSON-LD moved to the disclosure page
+- FAQ copy (§6); `scripts/content-lint.mjs` (§6)
+
+CC also does (control files):
+- updates `CLAUDE.md` content rules per brief §6
+- updates `ops/STATUS.md`
+
+Acceptance:
+- [ ] every old URL still resolves (`/experts/` redirects)
+- [ ] the full disclosure is gone from the footer and lives on `/disclosure/`
+- [ ] referral notice lines are present wherever referral links appear
+- [ ] "Syed Jawad" appears only on `/disclosure/` and `/privacy/`
+- [ ] content-lint self-tests updated and green
+- [ ] `check:full` green
+- [ ] Jawad approves the copy changes in the preview before merge
+
+## T-022 — Short links, PDFs, freshness scripts
+Status: todo
+Goal: the tooling from brief §7, plus `/free/<keyword>` short links.
+- A build step generates `dist/_redirects` from content frontmatter `shortlink` values (`/free/<keyword>  /<page>?utm_source=social&utm_medium=shortlink&utm_campaign=<keyword>  302`), merged with the static redirects.
+- Plus `scripts/refresh-repos.mjs`, `links:external` and `pdfs` (brief §7).
+
+Acceptance:
+- [ ] each script has a dry-run flag and a clear report
+- [ ] `check` passes
+
+## T-023 — Later (blocked on Jawad)
+Status: blocked
+- Newsletter sign-up: provider choice; privacy policy update.
+- Cloudflare Web Analytics token (`PUBLIC_CF_BEACON_TOKEN`), needed to measure the short links.
+- Facebook Page URL for the footer and `sameAs`.
+- `/news/` once daily news reels run.
+- Insights articles to "we".
