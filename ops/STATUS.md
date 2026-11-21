@@ -63,3 +63,4 @@ Brief: `ops/REDESIGN-2026-11.md` (approved by Jawad, 2026-11-21). Tasks T-019 to
 - linkinator `--skip` must not match localhost.
 - Screenshots need `astro preview`, not `file://` (absolute `/_astro` paths).
 - The Cloudflare GitHub app has to be granted access to the repo, or pushes won't trigger builds.
+- Cloudflare truncates preview aliases to 28 characters (`task-020-collections-skeleto…`). Take the URL from the PR comment, not from the branch name.
