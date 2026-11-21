@@ -6,7 +6,7 @@ Owner/approver: **Jawad**. Implementer: **Codex CLI**. Full spec: `../dataceam-d
 ## Rules
 1. Read `ops/TASKS.md` and the content rules below before starting any work.
 2. **Never write application code.** Every code change (pages, components, styles, scripts, config, tests, `package.json` scripts) goes to Codex as a task spec, review feedback included.
-   - Carve-out: CC writes control files only: `CLAUDE.md`, `AGENTS.md`, `ops/*`, `.claude/*`, and page copy in `content/*.md`.
+   - Carve-out: CC writes control files only: `CLAUDE.md`, `AGENTS.md`, `ops/*`, `.claude/*`, page copy in `content/*.md`, and entries (data and copy only, never code) in `src/content/{tracks,repos,guides}/` (Jawad, 2026-11-21).
 3. One task = one branch = one PR. Branch name: `task/<id>-<slug>`.
 4. After every Codex attempt: review the diff against the spec, then run `npm run check`.
 5. At most **3 Codex attempts** per task. After that, stop and report to Jawad with the diff, the errors and a proposed fix.

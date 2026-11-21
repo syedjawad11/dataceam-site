@@ -1,0 +1,184 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import TrackCard from '../../components/TrackCard.astro';
+import GuideCard from '../../components/GuideCard.astro';
+import { breadcrumbs, formatDate, isLive, repoSlug } from '../../lib/learning';
+import { isLearningPageIndexable } from '../../lib/learning-indexing';
+export const getStaticPaths = (async () =>
+  (await getCollection('repos')).map((repo) => ({
+    params: { slug: repoSlug(repo.data) },
+    props: { repo },
+  }))) satisfies GetStaticPaths;
+interface Props {
+  repo: CollectionEntry<'repos'>;
+}
+const { repo } = Astro.props;
+const { data } = repo;
+const live = isLive(data);
+const title = `${data.owner} / ${data.name}`;
+const tracks = await getCollection('tracks', ({ data: track }) =>
+  data.tracks.includes(track.slug),
+);
+const guides = live
+  ? await getCollection('guides', ({ data: guide }) =>
+      guide.tracks.some((track) => data.tracks.includes(track)),
+    )
+  : [];
+const { Content } = await render(repo);
+const jsonLd = breadcrumbs(
+  [
+    { name: 'Repos', path: '/repos/' },
+    { name: title, path: `/repos/${repoSlug(data)}/` },
+  ],
+  Astro.site!,
+);
+---
+
+<Base
+  page="repo"
+  title={`${title} setup guide | Dataceam`}
+  description={data.description}
+  noindex={!isLearningPageIndexable(Astro.url.pathname)}
+  jsonLd={jsonLd}
+>
+  <header class="learning-stack">
+    <nav aria-label="Breadcrumb" class="breadcrumbs">
+      <ol>
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/repos/">Repos</a>
+        </li>
+        <li aria-current="page">{title}</li>
+      </ol>
+    </nav>
+    <h1>{title}</h1>
+    <p class="article-lede">{data.description}</p>
+    {live && data.stats && (
+      <>
+        <ul class="learning-chips" aria-label="Repository details">
+          <li class="badge learning-chip">
+            {data.stats.stars.toLocaleString('en-GB')} stars
+          </li>
+          <li class="badge learning-chip">
+            {data.stats.forks.toLocaleString('en-GB')} forks
+          </li>
+          <li class="badge learning-chip">{data.stats.license}</li>
+          <li class="badge learning-chip">{data.stats.language}</li>
+          <li class="badge learning-chip">
+            Last push {formatDate(data.stats.pushedAt)}
+          </li>
+        </ul>
+        <p class="hint">
+          GitHub figures as of {formatDate(data.stats.fetchedAt)}
+        </p>
+      </>
+    )}
+    <p>
+      <a
+        class="button button-quiet"
+        href={data.url}
+        target="_blank"
+        rel="noopener"
+      >
+        View on GitHub ↗<span class="sr-only"> (opens in a new tab)</span>
+      </a>
+    </p>
+  </header>
+  {live ? (
+    <>
+      <div class="prose learning-body">
+        <Content />
+      </div>
+      {data.quickstart && (
+        <section
+          class="learning-section learning-stack"
+          aria-labelledby="quickstart"
+        >
+          <h2 id="quickstart">Quickstart</h2>
+          <pre class="learning-code"><code>{data.quickstart.commands}</code></pre>
+          <p class="hint">
+            Tested by us on {formatDate(data.quickstart.testedOn)} (
+            {data.quickstart.environment})
+          </p>
+        </section>
+      )}
+      {data.needs?.length ? (
+        <section
+          class="learning-section learning-stack"
+          aria-labelledby="needs"
+        >
+          <h2 id="needs">What it needs</h2>
+          <ul class="learning-bullets">
+            {data.needs.map((need) => (
+              <li>{need}</li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+      {data.gotchas?.length ? (
+        <section
+          class="learning-section learning-stack"
+          aria-labelledby="gotchas"
+        >
+          <h2 id="gotchas">Where it broke for us</h2>
+          <ul class="learning-bullets">
+            {data.gotchas.map((gotcha) => (
+              <li>{gotcha}</li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+      {data.alternatives?.length ? (
+        <section
+          class="learning-section learning-stack"
+          aria-labelledby="alternatives"
+        >
+          <h2 id="alternatives">Alternatives</h2>
+          <ul class="learning-bullets">
+            {data.alternatives.map((alternative) => (
+              <li>
+                <a href={alternative.url}>{alternative.name}</a> —{' '}
+                {alternative.why}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+    </>
+  ) : (
+    <aside class="insight-card learning-notice">
+      <p>
+        <strong>Coming soon.</strong> We're running the quickstart ourselves
+        before we publish this guide.
+      </p>
+    </aside>
+  )}
+  {tracks.length > 0 && (
+    <section class="learning-section" aria-labelledby="related-tracks">
+      <h2 id="related-tracks">Related tracks</h2>
+      <ul class="learning-grid">
+        {tracks.map((track) => (
+          <li>
+            <TrackCard track={track} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+  {guides.length > 0 && (
+    <section class="learning-section" aria-labelledby="related-guides">
+      <h2 id="related-guides">Related guides</h2>
+      <ul class="learning-grid">
+        {guides.map((guide) => (
+          <li>
+            <GuideCard guide={guide} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</Base>

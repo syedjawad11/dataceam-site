@@ -1,0 +1,37 @@
+---
+import { stageHours, weeksAt, type Track } from '../lib/learning';
+interface Props {
+  track: Track;
+}
+const { track } = Astro.props;
+const stages = stageHours(track);
+---
+
+<aside
+  class="insight-card learning-stack"
+  aria-labelledby="weekly-plan-heading"
+>
+  <h2 id="weekly-plan-heading">Your weekly plan</h2>
+  <p>5 hours a week → {weeksAt(track, 5)} weeks</p>
+  <p>10 hours a week → {weeksAt(track, 10)} weeks</p>
+  <div class="stage-bar" aria-hidden="true">
+    {stages.map((stage, index) => (
+      <span
+        class={`stage-colour-${(index % 3) + 1}`}
+        style={{ flex: stage.hours }}
+      />
+    ))}
+  </div>
+  <ul class="stage-legend">
+    {stages.map((stage, index) => (
+      <li>
+        <span
+          class={`stage-swatch stage-colour-${(index % 3) + 1}`}
+          aria-hidden="true"
+        />
+        {stage.name}: {stage.hours} hours
+      </li>
+    ))}
+  </ul>
+  <p class="hint">Based on each provider's own time estimates.</p>
+</aside>

@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import TrackCard from '../../components/TrackCard.astro';
+import { isLearningPageIndexable } from '../../lib/learning-indexing';
+const tracks = await getCollection('tracks');
+const intro =
+  'Free courses, in order, for one AI role at a time. We check every link, price and time estimate before a track goes live.';
+---
+
+<Base
+  page="tracks"
+  title="Career tracks | Dataceam"
+  description={intro}
+  noindex={!isLearningPageIndexable(Astro.url.pathname)}
+>
+  <header class="learning-stack">
+    <h1>Career tracks</h1>
+    <p class="article-lede">{intro}</p>
+  </header>
+  <ul class="learning-grid" aria-label="Career tracks">
+    {tracks.map((track) => (
+      <li>
+        <TrackCard track={track} heading="h2" />
+      </li>
+    ))}
+  </ul>
+</Base>

@@ -1,0 +1,40 @@
+---
+import { topicLabels, type Topic } from '../lib/learning';
+interface Props {
+  topic: Topic;
+  count: number;
+  liveCount: number;
+}
+const { topic, count, liveCount } = Astro.props;
+const icons: Record<Topic, string> = {
+  'llm-basics': 'M4 5h16v14H4z M8 9h8 M8 13h5',
+  'retrieval-rag': 'M4 4h11v11H4z M14 14l6 6 M8 8h3 M8 11h3',
+  agents: 'M5 7h14v13H5z M12 3v4 M8 12h1 M15 12h1 M9 16h6',
+  'prompting-safety': 'M12 3l8 4v6c0 4-8 8-8 8s-8-4-8-8V7z M8 12l3 3 5-6',
+  hardware:
+    'M6 6h12v12H6z M9 9h6v6H9z M9 2v4 M15 2v4 M9 18v4 M15 18v4 M2 9h4 M18 9h4 M2 15h4 M18 15h4',
+};
+---
+
+<li class="insight-card learning-card">
+  <svg
+    width="28"
+    height="28"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.5"
+    aria-hidden="true"
+  >
+    <path d={icons[topic]} />
+  </svg>
+  <h2>
+    <a href={`/guides/topic/${topic}/`}>{topicLabels[topic].label}</a>
+  </h2>
+  <p>
+    {count} {count === 1 ? 'guide' : 'guides'}
+  </p>
+  {liveCount === 0 && (
+    <span class="badge learning-chip learning-soon">Coming soon</span>
+  )}
+</li>

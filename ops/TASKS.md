@@ -393,7 +393,7 @@ Acceptance:
 - [ ] CC sends Jawad screenshots at 375 px and 1280 px of Home, `/experts/` and an Insights article
 
 ## T-020 — Content collections and templates (tracks, repos, guides)
-Status: todo
+Status: in review (preview) · Branch `task/020-collections-skeleton` · Codex gpt-6.1-sol, 2 attempts · Scope cut by Jawad (2026-11-21): skeleton first. Templates are built in full; entries ship as `status: soon` ("Coming soon", noindex, not in the sitemap). Verified track, tested repo quickstart and the 14 guide texts follow in later PRs; logos (official SVGs) are added with the first live track.
 Goal: the three collections from brief §5, with their index and detail pages, live but not yet in the header navigation.
 Files:
 - `src/content.config.ts`
