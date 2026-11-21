@@ -18,11 +18,12 @@ const rules = [
 ];
 const REFERRER_ONLY = 'Dataceam is a referrer only.';
 const disclosures = {
-  home: 'If a company I introduce signs with a buyer, the buyer may pay me a referral fee. You pay nothing for my help.',
-  faq: 'If a deal or a hire happens, the buyer or platform may pay me a referral fee. It costs you nothing.',
-  experts:
-    "If you're hired through one, the platform may pay me a referral bonus.",
+  companies:
+    'Dataceam is a referrer only. If a company we introduce signs with a buyer, the buyer may pay us a referral fee. You pay nothing for the introduction.',
+  jobs: "Dataceam is a referrer only. If you're hired through one of these links, the platform may pay us a referral bonus. You pay nothing.",
+  faq: 'If a deal or a hire happens, the buyer or platform may pay us a referral fee. It costs you nothing.',
 };
+const NOTICE = 'Referral links: we may earn a fee if you join through them.';
 const allowedPhrases = [
   'not a data broker',
   'not a guarantee',
@@ -71,20 +72,45 @@ function lintSource(filename, source) {
     }
   }
 
+  const normalized = filename.split(path.sep).join('/');
   const page = new Map([
-    [path.join('dist', 'index.html'), 'home'],
-    [path.join('dist', 'faq', 'index.html'), 'faq'],
-    [path.join('dist', 'experts', 'index.html'), 'experts'],
-  ]).get(filename);
-  const disclosure = disclosures[page];
-  if (page && new RegExp(`\\bdata-page\\s*=\\s*["']${page}["']`).test(source)) {
-    for (const required of [disclosure, REFERRER_ONLY]) {
-      if (!source.includes(required)) {
+    ['dist/companies/index.html', 'companies'],
+    ['dist/jobs/index.html', 'jobs'],
+    ['dist/faq/index.html', 'faq'],
+  ]).get(normalized);
+  const text = metadataText(source.replace(/<[^>]*>/g, ' '));
+  if (page) {
+    for (const required of new Set([disclosures[page], REFERRER_ONLY])) {
+      if (!text.includes(required))
         errors.push(
           `${filename}: missing required disclosure ${JSON.stringify(required)}`,
         );
-      }
     }
+  }
+  const dataPage = source.match(/\bdata-page\s*=\s*["']([^"']+)["']/)?.[1];
+  if (
+    ['home', 'track', 'companies', 'jobs'].includes(dataPage) &&
+    !/\bhref\s*=\s*(["'])\/disclosure\/\1/.test(source)
+  ) {
+    errors.push(`${filename}: missing link to /disclosure/`);
+  }
+  if (['home', 'jobs'].includes(dataPage) && !text.includes(NOTICE)) {
+    errors.push(
+      `${filename}: missing required notice ${JSON.stringify(NOTICE)}`,
+    );
+  }
+  if (
+    /Syed\s+Jawad/i.test(text) &&
+    ![
+      'dist/disclosure/index.html',
+      'dist/privacy/index.html',
+      'content/disclosure.md',
+      'content/privacy.md',
+    ].includes(normalized)
+  ) {
+    errors.push(
+      `${filename}: Syed Jawad may appear only on disclosure and privacy pages`,
+    );
   }
   return errors;
 }
@@ -209,29 +235,94 @@ function selfTest() {
     assert.equal(errors.length, 1);
     assert.ok(errors[0].startsWith(`${filename}:2:`));
   }
-  for (const page of ['home', 'faq', 'experts']) {
-    const file = path.join(
-      'dist',
-      ...(page === 'home' ? [] : [page]),
-      'index.html',
-    );
+  for (const page of ['companies', 'jobs', 'faq']) {
+    const file = path.join('dist', page, 'index.html');
     for (const quote of ['"', "'"]) {
-      const marker = `<main data-page=${quote}${page}${quote}>`;
-      assert.equal(lintSource(file, marker).length, 2);
+      const marker = `<body data-page=${quote}${page}${quote}>`;
+      const extras = `<a href=${quote}/disclosure/${quote}>Referral disclosure</a> ${NOTICE}`;
       assert.deepEqual(
-        lintSource(file, `${marker}${REFERRER_ONLY}${disclosures[page]}`),
+        lintSource(
+          file,
+          `${marker}${disclosures[page]} ${REFERRER_ONLY}${extras}`,
+        ),
         [],
       );
-      assert.equal(lintSource(file, `${marker}${disclosures[page]}`).length, 1);
-      const otherPage = page === 'home' ? 'faq' : 'home';
+      assert.ok(
+        lintSource(file, `${marker}${extras}`).some((error) =>
+          error.includes('missing required disclosure'),
+        ),
+      );
+      const otherPage = page === 'companies' ? 'jobs' : 'companies';
+      assert.ok(
+        lintSource(
+          file,
+          `${marker}${REFERRER_ONLY}${disclosures[otherPage]}${extras}`,
+        ).some((error) => error.includes('missing required disclosure')),
+      );
+      assert.deepEqual(
+        lintSource(
+          file,
+          `${marker}${disclosures[page].replaceAll(' ', '\n')} ${REFERRER_ONLY}${extras}`,
+        ),
+        [],
+      );
+      if (page !== 'faq')
+        assert.ok(
+          lintSource(file, `${marker}${disclosures[page]} ${NOTICE}`).some(
+            (error) => error.includes('missing link'),
+          ),
+        );
+    }
+    assert.ok(
+      lintSource(file, '<main>Placeholder</main>').some((error) =>
+        error.includes('missing required disclosure'),
+      ),
+    );
+  }
+  for (const page of ['home', 'track', 'companies', 'jobs']) {
+    const file = path.join('dist', 'fixture.html');
+    const marker = `<body data-page="${page}">`;
+    const needsNotice = ['home', 'jobs'].includes(page);
+    assert.equal(lintSource(file, marker).length, needsNotice ? 2 : 1);
+    assert.deepEqual(
+      lintSource(
+        file,
+        `${marker}<a href="/disclosure/">Referral disclosure</a> ${needsNotice ? NOTICE : ''}`,
+      ),
+      [],
+    );
+    if (needsNotice)
       assert.equal(
-        lintSource(file, `${marker}${REFERRER_ONLY}${disclosures[otherPage]}`)
+        lintSource(file, `${marker}<a href="/disclosure/">Disclosure</a>`)
           .length,
         1,
       );
-    }
-    assert.deepEqual(lintSource(file, '<main>Placeholder</main>'), []);
   }
+  for (const file of [
+    'dist/disclosure/index.html',
+    'dist/privacy/index.html',
+    'content/disclosure.md',
+    'content/privacy.md',
+  ]) {
+    assert.deepEqual(lintSource(file, 'Syed Jawad'), []);
+  }
+  for (const file of [
+    'dist/index.html',
+    'dist/insights/example/index.html',
+    'content/fixture.md',
+  ]) {
+    assert.equal(lintSource(file, 'Syed Jawad').length, 1);
+    assert.equal(lintSource(file, 'Syed&#32;Jawad').length, 1);
+  }
+  // Home and the removed experts route no longer require company disclosures.
+  assert.deepEqual(
+    lintSource('dist/index.html', '<main>Learning hub</main>'),
+    [],
+  );
+  assert.deepEqual(
+    lintSource('dist/experts/index.html', '<main>Legacy</main>'),
+    [],
+  );
   const seen = new Map();
   const home = path.join('dist', 'index.html');
   const missing = path.join('dist', '404.html');

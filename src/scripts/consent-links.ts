@@ -1,33 +1,35 @@
 /**
- * Keeps the referral links on /experts/ switched off until the visitor ticks
- * the consent box. Nothing is stored or sent: the box is only read here.
- * Without JavaScript the links simply work, with the disclosure beside them.
+ * Keeps /jobs/ referral controls disabled until consent is ticked.
+ * Nothing is stored or sent. Without JavaScript the buttons stay disabled.
  */
 export function initConsentLinks(): void {
   const consent = document.querySelector<HTMLInputElement>('#consent');
-  const links = [
-    ...document.querySelectorAll<HTMLAnchorElement>('[data-consent-link]'),
+  const controls = [
+    ...document.querySelectorAll<HTMLElement>('[data-consent-control]'),
   ];
-  if (!consent || links.length === 0) return;
-
-  for (const link of links) {
-    link.dataset.href = link.getAttribute('href') ?? '';
-  }
+  if (!consent || controls.length === 0) return;
 
   const update = () => {
-    for (const link of links) {
-      if (consent.checked) {
-        link.setAttribute('href', link.dataset.href ?? '');
-        link.removeAttribute('aria-disabled');
-        link.removeAttribute('tabindex');
+    for (const control of controls) {
+      const current = control.firstElementChild;
+      if (!current || (current.tagName === 'A') === consent.checked) continue;
+      const next = document.createElement(consent.checked ? 'a' : 'button');
+      next.className = current.className;
+      next.append(...current.childNodes);
+      if (next instanceof HTMLAnchorElement) {
+        next.href = control.dataset.href ?? '';
+        next.target = '_blank';
+        next.rel = 'sponsored noopener';
+        next.dataset.consentLink = '';
       } else {
-        link.removeAttribute('href');
-        link.setAttribute('aria-disabled', 'true');
-        link.setAttribute('tabindex', '-1');
+        next.type = 'button';
+        next.disabled = true;
+        next.setAttribute('aria-disabled', 'true');
+        next.setAttribute('aria-describedby', 'consent-hint');
       }
+      current.replaceWith(next);
     }
   };
-
   consent.addEventListener('change', update);
   update();
 }

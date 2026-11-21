@@ -40,7 +40,7 @@ for (const url of soonPages) {
       page.locator(
         '.site-header a[href^="/tracks"], .site-header a[href^="/repos"], .site-header a[href^="/guides"]',
       ),
-    ).toHaveCount(0);
+    ).toHaveCount(3);
   });
 }
 
@@ -55,7 +55,7 @@ test('the track preview shows stages without a weekly plan or next step', async 
     page.getByRole('heading', { name: 'Your weekly plan' }),
   ).toHaveCount(0);
   await expect(
-    page.locator('a[href="/jobs/"], a[download], #course-list'),
+    page.locator('main a[href="/jobs/"], main a[download], #course-list'),
   ).toHaveCount(0);
   const jsonLd = JSON.parse(
     (await page.locator('script[type="application/ld+json"]').textContent())!,

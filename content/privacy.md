@@ -24,9 +24,9 @@ Dataceam is a referrer only. I introduce companies that hold business records to
 - I never collect résumés or job applications. You apply directly on the platform's site.
 - I don't sell your personal data, and I don't use it for automated decision-making.
 
-## The experts page
+## The AI jobs page
 
-The [experts page](/experts/) has no forms or uploads. Before its referral links work, you tick a box to confirm you've read this policy and understand how referral links work. The box is only checked by your browser; it isn't recorded or sent anywhere.
+The [AI jobs page](/jobs/) has no forms or uploads. Before its referral links work, you tick a box to confirm you've read this policy and understand how referral links work. The box is only checked by your browser; it isn't recorded or sent anywhere.
 
 ## Deals are between you and the buyer or platform
 

@@ -1,340 +1,256 @@
 ---
+import { getCollection } from 'astro:content';
+import { frontmatter } from '../../content/home.md';
 import Base from '../layouts/Base.astro';
-import EmailCta from '../components/EmailCta.astro';
+import TrackCard from '../components/TrackCard.astro';
+import TopicTile from '../components/TopicTile.astro';
+import RepoCard from '../components/RepoCard.astro';
+import ProviderLogo from '../components/ProviderLogo.astro';
+import { isLive, topicLabels, type Topic } from '../lib/learning';
 import { site } from '../config/site';
 
-// Copy source: content/home.md
-const title = "Dataceam — License your company's records to AI-data buyers";
-const description =
-  'Dataceam is a referral service run by Syed Jawad. I introduce companies that hold years of business records to AI-data buyers who pay to license them. Free to you.';
-
-const kinds = [
-  [
-    'Conversations',
-    'Team threads and email where work gets agreed',
-    'Slack, Teams, Gmail, Outlook',
-  ],
-  [
-    'Code and engineering',
-    'Repositories with their history, pull requests and bug tracking',
-    'GitHub, GitLab, Jira, Linear',
-  ],
-  [
-    'Documents',
-    'SOPs, policies, reports and knowledge bases',
-    'Google Drive, SharePoint, Notion',
-  ],
-  ['Sales and CRM', 'Deals, pipelines and playbooks', 'Salesforce, HubSpot'],
-  [
-    'Finance and accounting',
-    'Invoices, reconciliations, approvals and reporting',
-    'QuickBooks, NetSuite, Xero',
-  ],
-  [
-    'Support',
-    'Each ticket from first message to resolution',
-    'Zendesk, ServiceNow, Freshdesk',
-  ],
-  [
-    'Operations and logistics',
-    'Orders, fulfilment and inventory',
-    'ERP and order systems',
-  ],
-  [
-    'Legal and compliance',
-    'Contract review and governance procedures',
-    'Contract and document tools',
-  ],
+const tracks = await getCollection('tracks');
+const guides = await getCollection('guides');
+const liveGuides = guides.filter(({ data }) => isLive(data));
+const latestGuides = [...guides]
+  .sort(
+    (a, b) =>
+      b.data.pubDate.getTime() - a.data.pubDate.getTime() ||
+      a.id.localeCompare(b.id),
+  )
+  .slice(0, 5);
+const repos = (await getCollection('repos', ({ data }) => isLive(data)))
+  .sort(
+    (a, b) =>
+      b.data.stats!.fetchedAt.getTime() - a.data.stats!.fetchedAt.getTime(),
+  )
+  .slice(0, 3);
+const firstTrack = tracks.find(({ data }) => isLive(data));
+const providers = [
+  ...new Map(
+    tracks
+      .filter(({ data }) => isLive(data))
+      .flatMap(({ data }) => data.courses)
+      .filter((course) => course.provider && course.logo)
+      .map((course) => [
+        course.provider!,
+        { provider: course.provider!, logo: course.logo! },
+      ]),
+  ).values(),
 ];
-
-const tiers = [
-  ['$50K+', 'A focused set of records from one or two systems'],
-  ['$500K+', 'Years of records across several teams and functions'],
-  ['$1M+', "Rare operational data that's hard to find anywhere else"],
-];
-
-const criteria = [
-  [
-    'Team size:',
-    '30 or more staff for most programmes; some European buyers start at 10 to 20.',
-  ],
-  [
-    'History:',
-    'several years of records, ideally five or more, across more than one system.',
-  ],
-  ['Language:', 'mostly English; some buyers accept other European languages.'],
-  [
-    'Ownership:',
-    'the data is yours to license, not held for clients under contract.',
-  ],
-  [
-    'Running or closed:',
-    'records from a company that has shut down or is in liquidation can qualify. The liquidator or trustee usually has to approve.',
-  ],
-];
-
-const steps = [
-  [
-    'You email me.',
-    'A few lines: what the company does, roughly how many staff, which tools you use and for how long. No data changes hands.',
-  ],
-  [
-    "I tell you if there's a fit, and with whom.",
-    "If a buyer's published criteria fit, I name the buyer and explain its process. If nothing fits, I say so.",
-  ],
-  [
-    'I introduce you, with your OK.',
-    'Depending on the buyer, you register through my referral link or I submit your company by name. From then on you deal with the buyer directly.',
-  ],
-  [
-    'The buyer reviews and decides.',
-    'Buyers run their own checks, often a short interview and then a call about your data. Any agreement, price and payment is between you and them.',
-  ],
-];
-
-const inWriting = [
-  'Who owns the data afterwards',
-  'Exactly which systems and date ranges are in scope',
-  'How personal details are removed, and by whom',
-  "Read-only access, and how it's switched off",
-  'Samples you can review before anything is used',
-  "How long copies are kept, and when they're deleted",
-];
-
-const jsonLd = [
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    '@id': `${site.url}/#organization`,
-    name: site.name,
-    url: site.url,
-    logo: new URL('/favicon.svg', site.url).href,
-    email: site.email,
-    founder: { '@id': `${site.url}/#person` },
-    sameAs: [`https://x.com/${site.xHandle.replace(/^@/, '')}`],
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
-    '@id': `${site.url}/#person`,
-    name: site.personName,
-    worksFor: { '@id': `${site.url}/#organization` },
-  },
-];
+const topics = Object.keys(topicLabels) as Topic[];
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${site.url}/#organization`,
+  name: site.name,
+  url: site.url,
+  logo: new URL('/favicon.svg', site.url).href,
+  email: site.email,
+  sameAs: [site.social.x, site.social.instagram],
+};
 ---
 
-<Base page="home" title={title} description={description} jsonLd={jsonLd}>
+<Base
+  page="home"
+  title={frontmatter.title}
+  description={frontmatter.description}
+  jsonLd={jsonLd}
+>
   <section class="hero" aria-labelledby="hero-heading">
-    <div class="shell">
+    <div class="shell home-hero">
       <div class="hero-copy">
-        <p class="badge">Independent referrer</p>
+        <p class="badge">Free AI learning, plainly explained</p>
         <h1 id="hero-heading">
-          Your company's records may be worth money to an AI lab
+          Learn AI for free. Build with it. Get paid for it.
         </h1>
         <p class="lead">
-          AI developers have used up most of the public web. Now they pay to
-          license something it doesn't hold: the record of how real businesses
-          work. A small number of buyers run programmes that pay companies for
-          it. I find companies that may qualify and introduce them. That's the
-          whole job.
-        </p>
-        <p class="hero-figures">
-          The buyers I refer to publish payouts from around{' '}
-          <strong>$50,000 to over $1 million</strong> per company. That's their
-          range, not a promise: each buyer prices each company itself.
+          Visual guides, free course tracks and tested GitHub repos for people
+          building a career in AI. When you're ready, we point you to paid
+          AI-training work.
         </p>
         <div class="button-row">
-          <a class="button button-primary" href={`mailto:${site.email}`}>
-            Email me about your company
+          <a
+            class="button button-primary"
+            href={firstTrack ? `/tracks/${firstTrack.data.slug}/` : '/tracks/'}
+          >
+            Start a career track
           </a>
-          <a class="button button-quiet" href="/experts/">
-            Looking for AI-training work?
+          <a class="button button-quiet" href="/guides/">
+            Browse guides
+          </a>
+          <a class="button button-quiet" href="/repos/">
+            Repos this week
           </a>
         </div>
       </div>
+      <ol class="home-path" aria-label="Learn, Build, Earn">
+        <li>
+          <h2>Learn</h2>
+          <p>Guides and free course tracks</p>
+        </li>
+        <li>
+          <h2>Build</h2>
+          <p>Open-source repos we've run ourselves</p>
+        </li>
+        <li class="home-earn">
+          <h2>Earn</h2>
+          <p>Paid AI-training work</p>
+        </li>
+      </ol>
     </div>
   </section>
-
-  <section class="band" aria-labelledby="what-buyers-pay-for">
-    <div class="shell split">
-      <div class="section-head">
-        <p class="kicker">What buyers pay for</p>
-        <h2 id="what-buyers-pay-for">The record of how work gets done</h2>
-        <p>
-          Buyers aren't after your customer list or your product. They want the
-          trail your tools have kept for years: what was asked, the steps
-          someone took, what they checked and how it ended. They turn those
-          records into worked examples that teach and test AI models.
-        </p>
-        <p class="note">
-          You license a copy. Your original data stays where it is, and nothing
-          about how you work changes.
-        </p>
-      </div>
-      <ul class="kinds" role="list">
-        {kinds.map(([name, covers, sources]) => (
-          <li class="kind">
-            <h3>{name}</h3>
-            <p>{covers}</p>
-            <p class="sources">
-              <span class="sr-only">Typical sources: </span>
-              {sources}
-            </p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <section class="band" aria-labelledby="what-buyers-say">
+  <section class="band" aria-labelledby="career-tracks">
     <div class="shell stack">
       <div class="section-head">
-        <p class="kicker">What buyers say they pay</p>
-        <h2 id="what-buyers-say">Published tiers</h2>
+        <p class="kicker">Career tracks</p>
+        <h2 id="career-tracks">Free courses, in the right order</h2>
+        <p>
+          Each track lists free courses from the companies that make the tools,
+          from first steps to advanced, with hours and a weekly plan. Where an
+          exam exists, it's optional.
+        </p>
       </div>
-      <ol class="scale" role="list">
-        {tiers.map(([tier, profile]) => (
-          <li>
-            <span class="tier">{tier}</span>
-            <span>{profile}</span>
-          </li>
+      <div class="learning-grid">
+        {tracks.map((track) => (
+          <TrackCard track={track} linkSoon={false} />
         ))}
-      </ol>
-      <p class="note">
-        These tiers come from the buyers' own public pages. They're indicative,
-        not an offer to your company. The buyer decides whether you qualify and
-        what your data is worth, and you see any offer before you agree to
-        anything.
+      </div>
+      {providers.length > 0 && (
+        <div class="home-providers">
+          <p>Courses from</p>
+          {providers.map((provider) => (
+            <ProviderLogo {...provider} />
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+  <section class="band" aria-labelledby="guides-heading">
+    <div class="shell stack">
+      <div class="section-head">
+        <p class="kicker">Guides</p>
+        <h2 id="guides-heading">One idea, one picture</h2>
+        <p>
+          Short visual explainers of how AI actually works, each with a
+          one-minute video and its sources.
+        </p>
+      </div>
+      <p>
+        <a href="/guides/">All {guides.length} guides</a>
       </p>
-    </div>
-  </section>
-
-  <section class="band" aria-labelledby="who-qualifies">
-    <div class="shell split">
-      <div class="section-head">
-        <p class="kicker">Who usually qualifies</p>
-        <h2 id="who-qualifies">A likely fit</h2>
-        <p>
-          Strong sectors: software and IT services, agencies, logistics,
-          manufacturing, wholesale and B2B services.
-        </p>
-        <p>
-          Not sure? <a href={`mailto:${site.email}`}>Email me</a> and I'll tell
-          you straight.
-        </p>
-      </div>
-      <ul class="checklist" role="list">
-        {criteria.map(([label, text]) => (
-          <li>
-            <strong>{label}</strong> {text}
-          </li>
+      <ul class="learning-grid" aria-label="Guide topics">
+        {topics.map((topic) => (
+          <TopicTile
+            topic={topic}
+            count={guides.filter(({ data }) => data.topic === topic).length}
+            liveCount={
+              liveGuides.filter(({ data }) => data.topic === topic).length
+            }
+          />
         ))}
       </ul>
+      <h3>Latest guides</h3>
+      {latestGuides.length > 0 ? (
+        <ul class="home-latest">
+          {latestGuides.map(({ id, data }) => (
+            <li>
+              <a href={`/guides/${id}/`}>
+                <span>{data.title}</span>
+                <span class="hint">{topicLabels[data.topic].label}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="hint">Coming soon</p>
+      )}
     </div>
   </section>
-
-  <section class="band" aria-labelledby="how-it-works">
+  <section class="band" aria-labelledby="repos-heading">
     <div class="shell stack">
       <div class="section-head">
-        <p class="kicker">How an introduction works</p>
-        <h2 id="how-it-works">From one email to the buyer's decision</h2>
+        <h2 id="repos-heading">Repos worth your time this week</h2>
+        <p>
+          We pick open-source repos, run the quickstart ourselves, and write
+          down what it needs and where it breaks.
+        </p>
       </div>
-      <ol class="steps steps-4" role="list">
-        {steps.map(([lead, text]) => (
-          <li>
-            <strong>{lead}</strong>
-            {text}
-          </li>
-        ))}
-      </ol>
+      {repos.length > 0 ? (
+        <div class="learning-grid">
+          {repos.map((repo) => (
+            <RepoCard repo={repo} />
+          ))}
+        </div>
+      ) : (
+        <p>
+          Coming soon. We're running the first quickstarts ourselves before we
+          publish them. <a href="/repos/">See what's coming</a>
+        </p>
+      )}
     </div>
   </section>
-
-  <section class="band" aria-labelledby="in-writing">
-    <div class="shell split">
-      <div class="section-head">
-        <p class="kicker">Before you sign</p>
-        <h2 id="in-writing">Get these in writing</h2>
-        <p>
-          I'm not a party to any deal, so I can't promise how a buyer will
-          handle your data. Buyers publish commitments like these. Make sure
-          they're in your contract.
-        </p>
-        <p class="note">
-          Take your own legal and data-protection advice before you sign.
-        </p>
-      </div>
-      <ul class="checklist two-col" role="list">
-        {inWriting.map((item) => (
-          <li>{item}</li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <section class="band" aria-labelledby="who-runs">
-    <div class="shell split">
-      <div class="section-head">
-        <p class="kicker">Who runs Dataceam</p>
-        <h2 id="who-runs">One person, working independently</h2>
-      </div>
-      <div class="stack">
-        <p>
-          I'm {site.personName}, and I run Dataceam on my own. I take part in
-          the referral programmes of a small number of AI-data buyers and
-          AI-training platforms. I'm not employed by any of them, I don't speak
-          or sign for them, and I can't promise you anything on their behalf.
-        </p>
-        <p>
-          I don't name the buyers on this site because the list changes as
-          programmes open and close. Before any introduction I'll tell you
-          exactly which company it is, and you decide.
-        </p>
-        <p class="disclosure">
-          <strong>How I'm paid:</strong> If a company I introduce signs with a
-          buyer, the buyer may pay me a referral fee. You pay nothing for my
-          help.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="band" aria-labelledby="for-experts">
+  <section class="band" aria-labelledby="jobs-heading">
     <div class="shell">
-      <div class="crosslink">
+      <div class="crosslink learning-next">
         <div class="stack">
-          <h2 id="for-experts" class="sr-only">
-            For experts
-          </h2>
+          <p class="kicker">AI jobs</p>
+          <h2 id="jobs-heading">Ready to get paid for AI work?</h2>
           <p>
-            Not here for a company? If you're a lawyer, engineer, doctor,
-            analyst or other specialist, see what paid AI-training work is on
-            offer and what it pays.
+            AI companies pay engineers, analysts and subject experts to train
+            and test their models. We list the platforms we refer people to,
+            with typical pay from public listings.
+          </p>
+          <p class="hint">
+            Referral links: we may earn a fee if you join through them.{' '}
+            <a href="/disclosure/">Referral disclosure</a>
           </p>
         </div>
-        <a class="button button-primary" href="/experts/">
+        <a class="button button-primary" href="/jobs/">
           See AI-training work
         </a>
       </div>
     </div>
   </section>
-
+  <section class="band" aria-labelledby="newsletter-heading">
+    <div class="shell">
+      <div class="insight-card learning-card">
+        <span class="badge learning-chip learning-soon">Coming soon</span>
+        <h2 id="newsletter-heading">Newsletter: coming soon</h2>
+        <p>
+          One short email with new guides, career tracks and repos. Sign-up
+          isn't open yet.
+        </p>
+      </div>
+    </div>
+  </section>
   <section
     id="contact"
     class="band"
-    aria-labelledby="contact-heading"
+    aria-labelledby="companies-heading"
     tabindex="-1"
   >
-    <div class="shell stack">
-      <div class="section-head">
-        <h2 id="contact-heading">Ask whether your company fits</h2>
-        <p class="lead">
-          Email me a few lines about your company. I'll reply with whether a
-          buyer is likely to fit, which one, and what it publishes. No
-          commitment, and no data shared.
-        </p>
+    <div class="shell crosslink">
+      <div class="stack">
+        <h2 class="hint" id="companies-heading">
+          For companies
+        </h2>
+        <p>Your company's records may be worth money to an AI lab.</p>
       </div>
-      <EmailCta label="Email me" noteId="contact-email-note" prominent />
+      <a class="button button-quiet" href="/companies/">
+        See how data licensing works
+      </a>
     </div>
   </section>
 </Base>
+
+<style>
+  .home-latest a {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 40%);
+    column-gap: 1rem;
+  }
+  .home-latest .hint {
+    text-align: right;
+  }
+</style>

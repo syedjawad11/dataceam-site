@@ -1,45 +1,73 @@
 ---
 import { site } from '../config/site';
-
 const year = new Date().getUTCFullYear();
-const xUrl = `https://x.com/${site.xHandle.replace(/^@/, '')}`;
+const columns = [
+  {
+    title: 'Learn',
+    links: [
+      ['Guides', '/guides/'],
+      ['Career tracks', '/tracks/'],
+      ['Repos', '/repos/'],
+    ],
+  },
+  {
+    title: 'Work',
+    links: [
+      ['AI jobs', '/jobs/'],
+      ['For companies', '/companies/'],
+      ['Insights', '/insights/'],
+    ],
+  },
+  {
+    title: 'Dataceam',
+    links: [
+      ['FAQ', '/faq/'],
+      ['Privacy', '/privacy/'],
+      ['Referral disclosure', '/disclosure/'],
+      [site.email, `mailto:${site.email}`],
+    ],
+  },
+];
 ---
 
 <footer class="site-footer">
   <div class="shell footer-content">
-    <section class="footer-disclosure" aria-labelledby="disclosure-heading">
-      <h2 id="disclosure-heading">Independent referrer disclosure</h2>
-      <p>
-        Dataceam is a referrer only. This website is run independently by{' '}
-        {site.personName} and is not affiliated with, endorsed by, sponsored by
-        or acting on behalf of any AI-data buyer, AI-training platform or other
-        company it refers to. I take part in open referral programmes and may
-        earn a referral fee if you sign up, are hired or sign a deal through my
-        links or introductions, at no cost to you.
-      </p>
-      <p>
-        All applications, screening, hiring, pricing and payment decisions are
-        made solely by the buyers and platforms, under their own terms. Nothing
-        on this site promises an interview, a placement, a pay rate, a deal or a
-        price. Pay and payout figures come from the buyers' and platforms' own
-        public pages and are not a promise of earnings.
-      </p>
-    </section>
-    <div class="footer-row">
-      <ul class="footer-links">
-        <li>
-          <a href={`mailto:${site.email}`}>{site.email}</a>
-        </li>
-        <li>
-          <a href={xUrl}>X</a>
-        </li>
-        <li>
-          <a href="/privacy/">Privacy</a>
-        </li>
-      </ul>
-      <p>
-        © {year} {site.name}
-      </p>
+    <div>
+      <a class="site-name" href="/" aria-label="Dataceam">
+        dataceam<span class="wordmark-dot">.</span>
+      </a>
+      <p>Free AI learning, plainly explained.</p>
     </div>
+    <div class="footer-columns">
+      {columns.map(({ title, links }) => (
+        <section aria-label={title}>
+          <h2>{title}</h2>
+          <ul class="footer-links">
+            {links.map(([label, href]) => (
+              <li>
+                <a href={href}>{label}</a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+      <section aria-label="Follow">
+        <h2>Follow</h2>
+        <ul class="footer-links">
+          <li>
+            <a href={site.social.x} rel="me noopener">
+              X
+            </a>
+          </li>
+          <li>
+            <a href={site.social.instagram} rel="me noopener">
+              Instagram
+            </a>
+          </li>
+          <li>Facebook (coming soon)</li>
+        </ul>
+      </section>
+    </div>
+    <p>© {year} Dataceam</p>
   </div>
 </footer>

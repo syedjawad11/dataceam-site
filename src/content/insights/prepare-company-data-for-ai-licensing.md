@@ -127,6 +127,6 @@ If a business sale is approaching, start the scope discussion alongside your sal
 
 ## Want to know if your records qualify?
 
-[Email me](/#contact) with your tools, the history available and any known ownership restrictions. Keep the first message descriptive; there is no need to send records. I can help identify the next sensible question before your team starts exporting.
+[Email me](/companies/#contact) with your tools, the history available and any known ownership restrictions. Keep the first message descriptive; there is no need to send records. I can help identify the next sensible question before your team starts exporting.
 
 I'm paid a referral fee by the buyer. It costs you nothing.

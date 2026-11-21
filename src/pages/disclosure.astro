@@ -1,0 +1,30 @@
+---
+import { Content, frontmatter } from '../../content/disclosure.md';
+import Base from '../layouts/Base.astro';
+import { site } from '../config/site';
+import { formatDate } from '../lib/learning';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': `${site.url}/#person`,
+  name: site.personName,
+  worksFor: { '@id': `${site.url}/#organization` },
+};
+---
+
+<Base
+  page="disclosure"
+  title={frontmatter.title}
+  description={frontmatter.description}
+  jsonLd={jsonLd}
+>
+  <article class="privacy-policy">
+    <Content />
+    <p>
+      Last updated{' '}
+      <time datetime={String(frontmatter.updated).slice(0, 10)}>
+        {formatDate(new Date(frontmatter.updated))}
+      </time>
+    </p>
+  </article>
+</Base>

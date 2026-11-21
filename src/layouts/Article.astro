@@ -60,9 +60,7 @@ const jsonLd: Record<string, unknown>[] = [
     dateModified: modifiedTime,
     mainEntityOfPage: canonical,
     keywords: keywords ?? [],
-    ...(site.personName.startsWith('TODO_')
-      ? {}
-      : { author: { '@type': 'Person', name: site.personName } }),
+    author: { '@type': 'Organization', name: 'Dataceam' },
     publisher: {
       '@type': 'Organization',
       name: 'Dataceam',
@@ -193,6 +191,6 @@ const jsonLd: Record<string, unknown>[] = [
   )}
   <section class="article-cta" aria-labelledby="article-cta-heading">
     <h2 id="article-cta-heading">Want to know if your records qualify?</h2>
-    <EmailCta label="Email me about your records" href="/#contact" />
+    <EmailCta label="Email us about your records" href="/companies/#contact" />
   </section>
 </Base>

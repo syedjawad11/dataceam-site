@@ -21,7 +21,12 @@ if (pages.length === 0)
   throw new Error('No built HTML pages found. Run npm run build first.');
 
 for (const filename of pages) {
-  const url = `/${path.relative(dist, filename).split(path.sep).map(encodeURIComponent).join('/')}`;
+  const relative = path
+    .relative(dist, filename)
+    .split(path.sep)
+    .map(encodeURIComponent)
+    .join('/');
+  const url = `/${relative === 'index.html' ? '' : relative.replace(/\/index\.html$/, '/')}`;
 
   test(`${url} has no serious or critical accessibility violations`, async ({
     page,

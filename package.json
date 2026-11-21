@@ -7,16 +7,19 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/build-redirects.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "lint": "eslint . && prettier --check .",
     "format": "prettier --write .",
     "og": "node scripts/build-og.mjs",
+    "repos:refresh": "node scripts/refresh-repos.mjs",
+    "links:external": "node scripts/check-external-links.mjs",
+    "pdfs": "node scripts/build-track-pdfs.mjs",
     "content-lint": "node scripts/content-lint.mjs",
     "content-lint:test": "node scripts/content-lint.mjs --self-test",
     "links": "linkinator dist --recurse --skip '^https?://(?!(localhost|127\\.0\\.0\\.1|\\[::1\\]))'",
-    "check": "astro check && astro build && npm run lint && npm run content-lint:test && npm run content-lint && npm run links",
+    "check": "astro check && npm run build && npm run lint && npm run content-lint:test && npm run content-lint && npm run links",
     "check:full": "npm run check && lhci autorun && playwright test && gitleaks git --no-banner --redact && gitleaks git --staged --no-banner --redact"
   },
   "dependencies": {
