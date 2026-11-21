@@ -1,6 +1,6 @@
 # Project status — dataceam.com
 
-Last updated: 2026-11-14
+Last updated: 2026-11-21
 
 ## Live
 - https://dataceam.com: Cloudflare Pages project `dataceam-site`, built from `main` via the GitHub integration.
@@ -28,6 +28,17 @@ New dark design, named operator (Syed Jawad, Malta), no buyer/platform names, an
 - To change a referral link, edit `expertPlatforms` in `src/config/site.ts`.
 - Pay ranges on /experts/ are dated November 2026; refresh them every few months.
 - Repo visibility: GitHub reports `syedjawad11/dataceam-site` as **public** (this file used to say private). `ops/` notes are visible to anyone.
+
+## T-018 (2026-11-14): merged (PR #21)
+"Independent referrer" badge on Home and /experts/; full disclosure in the footer of every page.
+
+## Redesign (Nov 2026)
+Brief: `ops/REDESIGN-2026-11.md` (approved by Jawad, 2026-11-21). Tasks T-019 to T-023 in `ops/TASKS.md`.
+- Light theme replaces the dark design (T-019, **in progress**, branch `task/019-light-theme`).
+- Home becomes a learning hub: Guides, Career tracks, Repos, AI jobs; the company pitch moves to `/companies/` (T-020, T-021).
+- Voice "we, Dataceam"; the full referral disclosure moves to `/disclosure/`, with a short notice next to every referral-link block (T-021).
+- Referral links stay only on `/jobs/` (today's `/experts/`), behind the consent box.
+- Open questions for Jawad (block T-020/T-021, not T-019): disclosure wording (brief §6, §3.7); Facebook Page URL; newsletter yes/no and provider; CC writing entries in `src/content/{tracks,repos,guides}/`.
 
 ## Waiting on Jawad (all placeholders on the live site)
 - [x] Contact email: `hello@dataceam.com` (Google Workspace), filled in T-012 (2026-11-08)
