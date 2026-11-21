@@ -29,3 +29,6 @@ Escalate to Jawad if first-pass rate < ~60% or the same failure type repeats 3+ 
 | 2026-11-08 | T-013 | 1 | all (check green; linkinator re-run outside sandbox) | CC fixed 2 ungrammatical meta descriptions (copy only) | ~15m | pass |
 | 2026-11-08 | T-014 | 1 | all (check green; linkinator re-run outside sandbox) | none — CC wrote privacy copy per Jawad's brief | ~1m | pass |
 | 2026-11-10 | T-016 | 1 | all (check green) | none | ~30s | pass |
+| 2026-11-21 | T-019 | 0 | none | gpt-6.2-sol rejected by the ChatGPT-plan Codex account ("model not supported"); no changes; switched to gpt-6.1-sol | <1m | n/a |
+| 2026-11-21 | T-019 | 1 | all (check green; linkinator re-run outside sandbox) | gpt-6.1-sol. Reviews (gpt-6.1-sol read-only + Sonnet subagent): PASS on contrast/spec; screenshots showed uneven nav/footer spacing and an oversized consent checkbox from new 44px min-width rules | ~6m | fix |
+| 2026-11-21 | T-019 | 2 | all (check green; screenshots re-taken) | gpt-6.1-sol. None | ~2m | pass |

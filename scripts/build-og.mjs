@@ -79,12 +79,13 @@ for (const filename of (await readdir(insightsDirectory)).sort()) {
   const title = parseTitle(rawTitle);
   const lines = wrapTitle(title);
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-    <rect width="1200" height="630" fill="#0B0F19"/>
-    <rect x="64" y="68" width="8" height="48" rx="4" fill="#2563EB"/>
+    <rect width="1200" height="630" fill="#f6f8fc"/>
+    <rect x="32" y="32" width="1136" height="566" rx="24" fill="#ffffff" stroke="#d9e0ec"/>
+    <rect x="64" y="68" width="8" height="48" rx="4" fill="#2563eb"/>
     <g font-family="Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
-      <text x="96" y="103" font-size="28" font-weight="700" letter-spacing="5" fill="#DBEAFE">INSIGHTS</text>
-      <text x="64" y="240" font-size="64" font-weight="700" fill="#FFFFFF">${lines.map((line, index) => `<tspan x="64" dy="${index === 0 ? 0 : 82}">${escapeXml(line)}</tspan>`).join('')}</text>
-      <text x="64" y="560" font-size="28" fill="#DBEAFE">dataceam.com</text>
+      <text x="96" y="103" font-size="28" font-weight="700" letter-spacing="5" fill="#2563eb">INSIGHTS</text>
+      <text x="64" y="240" font-size="64" font-weight="700" fill="#0b1222">${lines.map((line, index) => `<tspan x="64" dy="${index === 0 ? 0 : 82}">${escapeXml(line)}</tspan>`).join('')}</text>
+      <text x="64" y="560" font-size="28" fill="#2563eb">dataceam.com</text>
     </g>
   </svg>`;
   const slug = filename.slice(0, -3);
