@@ -1,119 +1,85 @@
 ---
 page: home
-status: DRAFT v3 — referrer-only relaunch (T-017, 2026-11-14), approved to ship by Jawad 2026-11-14
-title: "Dataceam — License your company's records to AI-data buyers"
-description: "Dataceam is a referral service run by Syed Jawad. I introduce companies that hold years of business records to AI-data buyers who pay to license them. Free to you."
+status: DRAFT v1 — learning hub (T-021, 2026-11-21, brief §3.1), skeleton with "Coming soon" sections, for Jawad's approval in the PR
+title: "Dataceam: free AI learning, plainly explained"
+description: "Visual guides, free course tracks and tested GitHub repos for people building a career in AI, plus pointers to paid AI-training work."
 ---
 
-<!-- Source of truth for Home copy. Layout notes are in [brackets]. -->
+<!-- Source of truth for Home copy. Layout notes are in [brackets]. The company pitch moved to content/companies.md. -->
 
 ## Hero
 
-[Badge:] Independent referrer
+[Pill badge:] Free AI learning, plainly explained
 
-# Your company's records may be worth money to an AI lab
+# Learn AI for free. Build with it. Get paid for it.
 
-AI developers have used up most of the public web. Now they pay to license something it doesn't hold: the record of how real businesses work. A small number of buyers run programmes that pay companies for it. I find companies that may qualify and introduce them. That's the whole job.
+Visual guides, free course tracks and tested GitHub repos for people building a career in AI. When you're ready, we point you to paid AI-training work.
 
-[Figures line:] The buyers I refer to publish payouts from around **$50,000 to over $1 million** per company. That's their range, not a promise: each buyer prices each company itself.
+[Buttons:] Start a career track (primary; first live track, else /tracks/) · Browse guides (/guides/) · Repos this week (/repos/)
 
-[Buttons:] Email me about your company (mailto) · Looking for AI-training work? (/experts/)
+[Right column, three stacked cards joined by a thin vertical line:]
+- **Learn**: Guides and free course tracks
+- **Build**: Open-source repos we've run ourselves
+- **Earn**: Paid AI-training work [highlighted]
 
-## What buyers pay for
+## Career tracks
 
-### The record of how work gets done
+[Eyebrow:] Career tracks
 
-Buyers aren't after your customer list or your product. They want the trail your tools have kept for years: what was asked, the steps someone took, what they checked and how it ended. They turn those records into worked examples that teach and test AI models.
+### Free courses, in the right order
 
-| Kind | What it covers | Typical sources |
-|---|---|---|
-| Conversations | Team threads and email where work gets agreed | Slack, Teams, Gmail, Outlook |
-| Code and engineering | Repositories with their history, pull requests and bug tracking | GitHub, GitLab, Jira, Linear |
-| Documents | SOPs, policies, reports and knowledge bases | Google Drive, SharePoint, Notion |
-| Sales and CRM | Deals, pipelines and playbooks | Salesforce, HubSpot |
-| Finance and accounting | Invoices, reconciliations, approvals and reporting | QuickBooks, NetSuite, Xero |
-| Support | Each ticket from first message to resolution | Zendesk, ServiceNow, Freshdesk |
-| Operations and logistics | Orders, fulfilment and inventory | ERP and order systems |
-| Legal and compliance | Contract review and governance procedures | Contract and document tools |
+Each track lists free courses from the companies that make the tools, from first steps to advanced, with hours and a weekly plan. Where an exam exists, it's optional.
 
-You license a copy. Your original data stays where it is, and nothing about how you work changes.
+[One card per track: role, who it's for, "N free courses · H hours" (live only), chip "Live" or "Coming soon". Coming-soon cards are not links.]
 
-## What buyers say they pay
+[Under the cards, only when a live track has courses:] Courses from [provider logos and names]
 
-### Published tiers
+## Guides
 
-| Tier | Typical profile |
-|---|---|
-| $50K+ | A focused set of records from one or two systems |
-| $500K+ | Years of records across several teams and functions |
-| $1M+ | Rare operational data that's hard to find anywhere else |
+[Eyebrow:] Guides
 
-These tiers come from the buyers' own public pages. They're indicative, not an offer to your company. The buyer decides whether you qualify and what your data is worth, and you see any offer before you agree to anything.
+### One idea, one picture
 
-## Who usually qualifies
+Short visual explainers of how AI actually works, each with a one-minute video and its sources.
 
-### A likely fit
+[Link:] All N guides (/guides/)
 
-- **Team size:** 30 or more staff for most programmes; some European buyers start at 10 to 20.
-- **History:** several years of records, ideally five or more, across more than one system.
-- **Language:** mostly English; some buyers accept other European languages.
-- **Ownership:** the data is yours to license, not held for clients under contract.
-- **Running or closed:** records from a company that has shut down or is in liquidation can qualify. The liquidator or trustee usually has to approve.
+[Topic tiles: line icon, topic name, guide count; "Coming soon" when the topic has no live guide]
 
-Strong sectors: software and IT services, agencies, logistics, manufacturing, wholesale and B2B services.
+[Latest guides, 5 rows: title left, topic right]
 
-Not sure? Email me and I'll tell you straight.
+## Repos
 
-## How an introduction works
+### Repos worth your time this week
 
-1. **You email me.** A few lines: what the company does, roughly how many staff, which tools you use and for how long. No data changes hands.
-2. **I tell you if there's a fit, and with whom.** If a buyer's published criteria fit, I name the buyer and explain its process. If nothing fits, I say so.
-3. **I introduce you, with your OK.** Depending on the buyer, you register through my referral link or I submit your company by name. From then on you deal with the buyer directly.
-4. **The buyer reviews and decides.** Buyers run their own checks, often a short interview and then a call about your data. Any agreement, price and payment is between you and them.
+We pick open-source repos, run the quickstart ourselves, and write down what it needs and where it breaks.
 
-## Before you sign
+[Up to 3 live repo cards. While no repo is live, show instead:] Coming soon. We're running the first quickstarts ourselves before we publish them. [Link:] See what's coming (/repos/)
 
-### Get these in writing
+## AI jobs strip
 
-I'm not a party to any deal, so I can't promise how a buyer will handle your data. Buyers publish commitments like these. Make sure they're in your contract.
+[Eyebrow:] AI jobs
 
-- Who owns the data afterwards
-- Exactly which systems and date ranges are in scope
-- How personal details are removed, and by whom
-- Read-only access, and how it's switched off
-- Samples you can review before anything is used
-- How long copies are kept, and when they're deleted
+### Ready to get paid for AI work?
 
-Take your own legal and data-protection advice before you sign.
+AI companies pay engineers, analysts and subject experts to train and test their models. We list the platforms we refer people to, with typical pay from public listings.
 
-## Who runs Dataceam
+[Notice line:] Referral links: we may earn a fee if you join through them. [Link:] Referral disclosure (/disclosure/)
 
-### One person, working independently
+[Button:] See AI-training work (/jobs/)
 
-I'm Syed Jawad, and I run Dataceam on my own. I take part in the referral programmes of a small number of AI-data buyers and AI-training platforms. I'm not employed by any of them, I don't speak or sign for them, and I can't promise you anything on their behalf.
+## Newsletter
 
-I don't name the buyers on this site because the list changes as programmes open and close. Before any introduction I'll tell you exactly which company it is, and you decide.
+[Card, no form, no email field:]
 
-[Disclosure, visible:] **How I'm paid:** If a company I introduce signs with a buyer, the buyer may pay me a referral fee. You pay nothing for my help.
+### Newsletter: coming soon
 
-## Experts band
+One short email with new guides, career tracks and repos. Sign-up isn't open yet.
 
-Not here for a company? If you're a lawyer, engineer, doctor, analyst or other specialist, see what paid AI-training work is on offer and what it pays.
+## For companies strip
 
-[Button: See AI-training work → /experts/]
+[Small grey label:] For companies
 
-## Contact
+Your company's records may be worth money to an AI lab.
 
-### Ask whether your company fits
-
-Email me a few lines about your company. I'll reply with whether a buyer is likely to fit, which one, and what it publishes. No commitment, and no data shared.
-
-[Button: Email me] Or write directly to [site.email]
-
-## Footer disclosure (every page, from src/components/Footer.astro)
-
-**Independent referrer disclosure**
-
-Dataceam is a referrer only. This website is run independently by Syed Jawad and is not affiliated with, endorsed by, sponsored by or acting on behalf of any AI-data buyer, AI-training platform or other company it refers to. I take part in open referral programmes and may earn a referral fee if you sign up, are hired or sign a deal through my links or introductions, at no cost to you.
-
-All applications, screening, hiring, pricing and payment decisions are made solely by the buyers and platforms, under their own terms. Nothing on this site promises an interview, a placement, a pay rate, a deal or a price. Pay and payout figures come from the buyers' and platforms' own public pages and are not a promise of earnings.
+[Outlined button:] See how data licensing works (/companies/)

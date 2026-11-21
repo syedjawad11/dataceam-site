@@ -40,6 +40,8 @@ Brief: `ops/REDESIGN-2026-11.md` (approved by Jawad, 2026-11-21). Tasks T-019 to
 - Referral links stay only on `/jobs/` (today's `/experts/`), behind the consent box.
 - Jawad's answers (2026-11-21): disclosure wording approved; CC may write entries in `src/content/{tracks,repos,guides}/`; newsletter yes (provider and any Cloudflare database planned in a separate session); Facebook URL to come. Until then: build skeletons with "Coming soon" placeholders (no sign-up form, no dead social link). SEO polish deferred.
 - T-020 done (PR #23, 2026-11-21) as a skeleton: templates + "Coming soon" entries (`status: soon`, noindex, out of the sitemap). Real track/repo/guide content follows in later PRs.
+- T-021 in progress, with T-022 merged in (Jawad, 2026-11-21): new Home, `/companies/`, `/jobs/` (301 from `/experts/`), `/disclosure/`, new header/footer, newsletter "Coming soon" block, `/free/` short links, freshness and PDF scripts.
+- Next session (2026-11-22): T-023 with Jawad — newsletter provider and any Cloudflare database, analytics token, Facebook URL.
 
 ## Waiting on Jawad (all placeholders on the live site)
 - [x] Contact email: `hello@dataceam.com` (Google Workspace), filled in T-012 (2026-11-08)
