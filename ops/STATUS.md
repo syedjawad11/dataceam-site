@@ -34,7 +34,7 @@ New dark design, named operator (Syed Jawad, Malta), no buyer/platform names, an
 
 ## Redesign (Nov 2026)
 Brief: `ops/REDESIGN-2026-11.md` (approved by Jawad, 2026-11-21). Tasks T-019 to T-023 in `ops/TASKS.md`.
-- Light theme replaces the dark design (T-019, **in progress**, branch `task/019-light-theme`).
+- Light theme replaces the dark design (T-019, **done**, PR #22, 2026-11-21).
 - Home becomes a learning hub: Guides, Career tracks, Repos, AI jobs; the company pitch moves to `/companies/` (T-020, T-021).
 - Voice "we, Dataceam"; the full referral disclosure moves to `/disclosure/`, with a short notice next to every referral-link block (T-021).
 - Referral links stay only on `/jobs/` (today's `/experts/`), behind the consent box.

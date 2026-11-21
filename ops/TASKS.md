@@ -377,7 +377,7 @@ Changes: removed the "Dataceam, plainly" statement box from the Home and /expert
 Brief: `ops/REDESIGN-2026-11.md` (approved by Jawad, 2026-11-21). The brief wins where it disagrees with the current content rules; T-021 updates `CLAUDE.md`.
 
 ## T-019 — Light theme
-Status: **in progress** · Branch `task/019-light-theme`
+Status: **done** (PR #22, approved by Jawad 2026-11-21) · Branch `task/019-light-theme` · Codex gpt-6.1-sol, 2 attempts. Known: Lighthouse SEO 0.92 on /experts/ (consent-locked links have no href; already on main, resolved with T-021).
 Goal: switch the whole current site to the brief §4 palette. No structural or copy changes.
 Files:
 - `src/styles/global.css` (tokens renamed and recoloured; component styles updated)
