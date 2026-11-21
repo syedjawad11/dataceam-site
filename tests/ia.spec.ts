@@ -30,9 +30,12 @@ for (const url of ['/', '/jobs/', '/companies/']) {
     ).toBe(true);
     const footer = page.locator('.site-footer');
     await expect(footer).not.toContainText('Independent referrer disclosure');
-    await expect(
-      footer.getByRole('link', { name: 'Referral disclosure' }),
-    ).toHaveAttribute('href', '/disclosure/');
+    const footerLink = footer.getByRole('link', {
+      name: 'Referral disclosure',
+    });
+    await expect(footerLink).toHaveAttribute('href', '/disclosure/');
+    await expect(footerLink).toHaveCSS('text-decoration-line', 'none');
+    await expect(footerLink).toHaveCSS('color', 'rgb(68, 80, 106)');
     await expect(
       footer.getByText('Facebook (coming soon)', { exact: true }),
     ).toBeVisible();

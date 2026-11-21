@@ -456,3 +456,11 @@ Status: blocked · Planned for the next session (2026-11-22), with Jawad: newsle
 - Facebook Page URL for the footer and `sameAs`.
 - `/news/` once daily news reels run.
 - Insights articles to "we".
+
+## T-024 — Footer links: grey, no underline
+Status: **done** (PR #25, approved by Jawad 2026-11-21) · Branch `task/024-footer-links` · Codex gpt-6.1-sol, 1 attempt · Requested by Jawad 2026-11-21.
+Goal: footer menu links show in grey with no underline instead of blue and underlined.
+Acceptance:
+- [ ] footer links (including the email) use `--color-body` with no underline; hover/focus go to `--color-ink`, with the focus ring kept
+- [ ] links elsewhere on the site are unchanged
+- [ ] `check` and Playwright green
