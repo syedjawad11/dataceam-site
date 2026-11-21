@@ -1,0 +1,171 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { Image } from 'astro:assets';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import TrackCard from '../../components/TrackCard.astro';
+import GuideCard from '../../components/GuideCard.astro';
+import {
+  breadcrumbs,
+  formatDate,
+  isLive,
+  topicLabels,
+} from '../../lib/learning';
+import { isLearningPageIndexable } from '../../lib/learning-indexing';
+export const getStaticPaths = (async () =>
+  (await getCollection('guides')).map((guide) => ({
+    params: { slug: guide.id },
+    props: { guide },
+  }))) satisfies GetStaticPaths;
+interface Props {
+  guide: CollectionEntry<'guides'>;
+}
+const { guide } = Astro.props;
+const { data } = guide;
+const live = isLive(data);
+const tracks = await getCollection('tracks', ({ data: track }) =>
+  data.tracks.includes(track.slug),
+);
+const related = live
+  ? await getCollection(
+      'guides',
+      ({ id, data: other }) => id !== guide.id && other.topic === data.topic,
+    )
+  : [];
+const { Content } = await render(guide);
+const jsonLd = breadcrumbs(
+  [
+    { name: 'Guides', path: '/guides/' },
+    {
+      name: topicLabels[data.topic].label,
+      path: `/guides/topic/${data.topic}/`,
+    },
+    { name: data.title, path: `/guides/${guide.id}/` },
+  ],
+  Astro.site!,
+);
+---
+
+<Base
+  page="guide"
+  title={`${data.title} | Dataceam`}
+  description={data.description}
+  noindex={!isLearningPageIndexable(Astro.url.pathname)}
+  jsonLd={jsonLd}
+>
+  <article class="learning-stack">
+    <header class="learning-stack">
+      <nav aria-label="Breadcrumb" class="breadcrumbs">
+        <ol>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/guides/">Guides</a>
+          </li>
+          <li>
+            <a href={`/guides/topic/${data.topic}/`}>
+              {topicLabels[data.topic].label}
+            </a>
+          </li>
+          <li aria-current="page">{data.title}</li>
+        </ol>
+      </nav>
+      <h1>{data.title}</h1>
+      <p class="article-lede">{data.description}</p>
+    </header>
+    {live ? (
+      <>
+        {data.image && (
+          <Image
+            class="learning-media"
+            src={data.image}
+            alt={data.imageAlt ?? ''}
+            loading="eager"
+          />
+        )}
+        {data.video && (
+          <video
+            class="learning-media"
+            controls
+            preload="none"
+            poster={data.video.poster}
+            width="1280"
+            height="720"
+            aria-label={data.title}
+          >
+            <source src={data.video.src} type="video/mp4" />
+            {data.video.captions && (
+              <track
+                kind="captions"
+                src={data.video.captions}
+                srclang={data.video.captionsLang}
+                label={data.video.captionsLang}
+                default
+              />
+            )}
+            <p>
+              <a href={data.video.src}>Watch the video</a>
+            </p>
+          </video>
+        )}
+        <div class="prose learning-body">
+          <Content />
+        </div>
+        {data.sources?.length ? (
+          <section
+            class="learning-section learning-stack"
+            aria-labelledby="sources"
+          >
+            <h2 id="sources">Sources</h2>
+            <ul class="learning-bullets">
+              {data.sources.map((source) => (
+                <li>
+                  <a href={source.url}>{source.title}</a>
+                  <span class="hint">
+                    {' '}
+                    · Checked{' '}
+                    <time datetime={source.checked.toISOString()}>
+                      {formatDate(source.checked)}
+                    </time>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+      </>
+    ) : (
+      <aside class="insight-card learning-notice">
+        <p>
+          <strong>Coming soon.</strong> We're turning our one-minute video into
+          a short written guide with sources.
+        </p>
+      </aside>
+    )}
+  </article>
+  {related.length > 0 && (
+    <section class="learning-section" aria-labelledby="related-guides">
+      <h2 id="related-guides">Related guides</h2>
+      <ul class="learning-grid">
+        {related.map((other) => (
+          <li>
+            <GuideCard guide={other} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+  {tracks.length > 0 && (
+    <section class="learning-section" aria-labelledby="related-tracks">
+      <h2 id="related-tracks">Related tracks</h2>
+      <ul class="learning-grid">
+        {tracks.map((track) => (
+          <li>
+            <TrackCard track={track} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</Base>

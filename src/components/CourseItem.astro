@@ -1,0 +1,45 @@
+---
+import type { Course } from '../lib/learning';
+import ProviderLogo from './ProviderLogo.astro';
+interface Props {
+  course: Course;
+  number: number;
+}
+const { course, number } = Astro.props;
+---
+
+<li class="insight-card course-item">
+  <span class="course-number" aria-label={`Course ${number}`}>
+    {number}
+  </span>
+  <div class="learning-stack">
+    <ProviderLogo logo={course.logo} provider={course.provider} />
+    <h3>
+      <a href={course.url} target="_blank" rel="noopener">
+        {course.title}
+        <span class="sr-only"> (opens in a new tab)</span>
+      </a>
+    </h3>
+    <p>{course.skills}</p>
+    <ul class="learning-chips" aria-label="Course details">
+      <li class="badge learning-chip learning-live">
+        {course.cost.exam ? 'Free to study' : 'Free'}
+      </li>
+      <li class="badge learning-chip">{course.level}</li>
+      <li class="badge learning-chip">{course.hours} hrs</li>
+      <li class="badge learning-chip">
+        {course.cost.exam
+          ? `Exam optional: ${course.cost.exam.price}`
+          : course.credential}
+      </li>
+    </ul>
+    <a
+      class="button button-quiet"
+      href={course.url}
+      rel="noopener"
+      target="_blank"
+    >
+      Open course ↗<span class="sr-only"> (opens in a new tab)</span>
+    </a>
+  </div>
+</li>

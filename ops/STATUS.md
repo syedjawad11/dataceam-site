@@ -38,7 +38,8 @@ Brief: `ops/REDESIGN-2026-11.md` (approved by Jawad, 2026-11-21). Tasks T-019 to
 - Home becomes a learning hub: Guides, Career tracks, Repos, AI jobs; the company pitch moves to `/companies/` (T-020, T-021).
 - Voice "we, Dataceam"; the full referral disclosure moves to `/disclosure/`, with a short notice next to every referral-link block (T-021).
 - Referral links stay only on `/jobs/` (today's `/experts/`), behind the consent box.
-- Open questions for Jawad (block T-020/T-021, not T-019): disclosure wording (brief §6, §3.7); Facebook Page URL; newsletter yes/no and provider; CC writing entries in `src/content/{tracks,repos,guides}/`.
+- Jawad's answers (2026-11-21): disclosure wording approved; CC may write entries in `src/content/{tracks,repos,guides}/`; newsletter yes (provider and any Cloudflare database planned in a separate session); Facebook URL to come. Until then: build skeletons with "Coming soon" placeholders (no sign-up form, no dead social link). SEO polish deferred.
+- T-020 done (PR #23, 2026-11-21) as a skeleton: templates + "Coming soon" entries (`status: soon`, noindex, out of the sitemap). Real track/repo/guide content follows in later PRs.
 
 ## Waiting on Jawad (all placeholders on the live site)
 - [x] Contact email: `hello@dataceam.com` (Google Workspace), filled in T-012 (2026-11-08)
@@ -62,3 +63,4 @@ Brief: `ops/REDESIGN-2026-11.md` (approved by Jawad, 2026-11-21). Tasks T-019 to
 - linkinator `--skip` must not match localhost.
 - Screenshots need `astro preview`, not `file://` (absolute `/_astro` paths).
 - The Cloudflare GitHub app has to be granted access to the repo, or pushes won't trigger builds.
+- Cloudflare truncates preview aliases to 28 characters (`task-020-collections-skeleto…`). Take the URL from the PR comment, not from the branch name.

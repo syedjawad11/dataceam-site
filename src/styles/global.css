@@ -817,6 +817,15 @@
     list-style: none;
   }
 
+  .breadcrumbs li {
+    display: flex;
+    min-width: 0;
+    min-height: 44px;
+    align-items: center;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+
   .breadcrumbs li + li::before {
     margin-inline-end: 0.5rem;
     color: var(--color-muted);
@@ -1042,5 +1051,253 @@
     border-style: dashed;
     background: var(--color-surface);
     cursor: not-allowed;
+  }
+}
+
+/* ---------- Learning collections ---------- */
+
+@layer components {
+  /* Extend Base's prose default only for these new pages. */
+  :is(
+      [data-page='tracks'],
+      [data-page='track'],
+      [data-page='repos'],
+      [data-page='repo'],
+      [data-page='guides'],
+      [data-page='guide'],
+      [data-page='guide-topic']
+    )
+    > main {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: var(--container-shell);
+    min-width: 0;
+    padding: clamp(3rem, 7vw, 6rem) 24px;
+  }
+
+  :is(
+      [data-page='tracks'],
+      [data-page='track'],
+      [data-page='repos'],
+      [data-page='repo'],
+      [data-page='guides'],
+      [data-page='guide'],
+      [data-page='guide-topic']
+    )
+    main
+    a:not(.button) {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    overflow-wrap: anywhere;
+  }
+
+  .learning-stack > * + * {
+    margin-block-start: 1rem;
+  }
+
+  .learning-eyebrow {
+    color: var(--color-signal);
+    font-size: 0.875rem;
+    font-weight: 650;
+  }
+
+  .prose .learning-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+    gap: 1.5rem;
+    margin-block-start: 2rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .learning-grid > *,
+  .learning-hero > * {
+    min-width: 0;
+  }
+
+  .learning-card {
+    height: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .learning-card > :is(span, svg) {
+    vertical-align: middle;
+  }
+
+  .prose .learning-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .learning-chip::before {
+    content: none;
+  }
+
+  .learning-soon {
+    color: var(--color-soon-text);
+    background: var(--color-soon-bg);
+  }
+
+  .learning-live {
+    color: var(--color-free-text);
+    background: var(--color-free-bg);
+  }
+
+  .provider-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .provider-logo img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+
+  .learning-section {
+    margin-block-start: 3rem;
+    padding-block-start: clamp(3rem, 7vw, 6rem);
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .learning-stage + .learning-stage {
+    margin-block-start: 3rem;
+  }
+
+  .learning-stage > * + * {
+    margin-block-start: 1rem;
+  }
+
+  .prose .learning-course-list {
+    display: grid;
+    gap: 1rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .course-item {
+    display: flex;
+    align-items: start;
+    gap: 1rem;
+  }
+
+  .course-item > div {
+    min-width: 0;
+    margin: 0;
+  }
+
+  .course-number {
+    display: grid;
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    place-items: center;
+    border-radius: 50%;
+    color: var(--color-on-signal);
+    background: var(--color-signal);
+    font-weight: 650;
+  }
+
+  .stage-bar {
+    display: flex;
+    height: 1rem;
+    overflow: hidden;
+    border-radius: 999px;
+  }
+
+  .stage-colour-1 {
+    background: var(--color-stage-1);
+  }
+  .stage-colour-2 {
+    background: var(--color-stage-2);
+  }
+  .stage-colour-3 {
+    background: var(--color-stage-3);
+  }
+
+  .prose .stage-legend {
+    padding: 0;
+    list-style: none;
+    font-size: 0.875rem;
+  }
+
+  .stage-swatch {
+    display: inline-block;
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-inline-end: 0.5rem;
+    border-radius: 50%;
+  }
+
+  .prose .learning-stage-preview {
+    display: grid;
+    gap: 1.5rem;
+    margin-block: 2.5rem;
+    padding-inline-start: 1.5rem;
+    list-style: decimal;
+  }
+
+  .learning-stage-preview h2 {
+    margin-block-end: 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  .learning-notice {
+    max-width: 70ch;
+    margin-block-start: 2rem;
+  }
+
+  .learning-next {
+    border-color: var(--color-signal);
+  }
+
+  .learning-related {
+    margin-block-start: 3rem;
+  }
+
+  .learning-body.prose {
+    padding-block: 2rem 0;
+  }
+
+  .learning-body h2 {
+    margin-block-start: 2rem;
+  }
+
+  .learning-code {
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .learning-media {
+    display: block;
+    width: 100%;
+    max-width: 70ch;
+    height: auto;
+    border: 1px solid var(--color-rule);
+    border-radius: 14px;
+  }
+
+  .learning-bullets > li + li {
+    margin-block-start: 0.75rem;
+  }
+
+  @media (min-width: 48rem) {
+    .learning-hero {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 23rem), 1fr));
+      align-items: start;
+      gap: 2rem;
+    }
+
+    .learning-hero > * {
+      margin-block-start: 0;
+    }
   }
 }

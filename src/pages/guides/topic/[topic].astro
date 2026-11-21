@@ -1,0 +1,50 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import GuideCard from '../../../components/GuideCard.astro';
+import { compareGuides, topicLabels, type Topic } from '../../../lib/learning';
+import { isLearningPageIndexable } from '../../../lib/learning-indexing';
+export const getStaticPaths = (async () => {
+  const all = (await getCollection('guides')).sort(compareGuides);
+  return [...new Set(all.map(({ data }) => data.topic))].map((topic) => ({
+    params: { topic },
+    props: { topic, guides: all.filter(({ data }) => data.topic === topic) },
+  }));
+}) satisfies GetStaticPaths;
+interface Props {
+  topic: Topic;
+  guides: CollectionEntry<'guides'>[];
+}
+const { topic, guides } = Astro.props;
+const { label, description } = topicLabels[topic];
+---
+
+<Base
+  page="guide-topic"
+  title={`${label} guides | Dataceam`}
+  description={description}
+  noindex={!isLearningPageIndexable(Astro.url.pathname)}
+>
+  <header class="learning-stack">
+    <nav aria-label="Breadcrumb" class="breadcrumbs">
+      <ol>
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/guides/">Guides</a>
+        </li>
+        <li aria-current="page">{label}</li>
+      </ol>
+    </nav>
+    <h1>{label}</h1>
+  </header>
+  <ul class="learning-grid" aria-label={`${label} guides`}>
+    {guides.map((guide) => (
+      <li>
+        <GuideCard guide={guide} heading="h2" />
+      </li>
+    ))}
+  </ul>
+</Base>

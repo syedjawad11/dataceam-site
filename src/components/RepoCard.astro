@@ -1,0 +1,43 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatDate, isLive, repoSlug } from '../lib/learning';
+import ProviderLogo from './ProviderLogo.astro';
+interface Props {
+  repo: CollectionEntry<'repos'>;
+  heading?: 'h2' | 'h3';
+}
+const {
+  repo: { data },
+  heading: Heading = 'h3',
+} = Astro.props;
+---
+
+<article class="insight-card learning-card" data-repo-card>
+  <ProviderLogo logo="github" provider="GitHub" />
+  {!isLive(data) && (
+    <span class="badge learning-chip learning-soon">Coming soon</span>
+  )}
+  <Heading>
+    <a href={`/repos/${repoSlug(data)}/`}>
+      {data.owner} / {data.name}
+    </a>
+  </Heading>
+  <p>{data.description}</p>
+  {isLive(data) && data.stats && (
+    <>
+      <ul class="learning-chips" aria-label="Repository details">
+        <li class="badge learning-chip">
+          {data.stats.stars.toLocaleString('en-GB')} stars
+        </li>
+        <li class="badge learning-chip">{data.stats.license}</li>
+        <li class="badge learning-chip">{data.stats.language}</li>
+      </ul>
+      <p class="hint">
+        GitHub figures as of {formatDate(data.stats.fetchedAt)}
+      </p>
+      <p>
+        <a href={`/repos/${repoSlug(data)}/`}>Read our setup guide</a>
+      </p>
+    </>
+  )}
+</article>

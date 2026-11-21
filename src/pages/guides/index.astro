@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import GuideCard from '../../components/GuideCard.astro';
+import TopicTile from '../../components/TopicTile.astro';
+import {
+  compareGuides,
+  isLive,
+  topicLabels,
+  type Topic,
+} from '../../lib/learning';
+import { isLearningPageIndexable } from '../../lib/learning-indexing';
+const guides = (await getCollection('guides')).sort(compareGuides);
+const topics = (Object.keys(topicLabels) as Topic[]).filter((topic) =>
+  guides.some(({ data }) => data.topic === topic),
+);
+const intro =
+  'One-minute explainers on how AI works, each with a diagram and a short read.';
+---
+
+<Base
+  page="guides"
+  title="Guides | Dataceam"
+  description={intro}
+  noindex={!isLearningPageIndexable(Astro.url.pathname)}
+>
+  <header class="learning-stack">
+    <h1>Guides</h1>
+    <p class="article-lede">{intro}</p>
+  </header>
+  <ul class="learning-grid learning-topics" aria-label="Guide topics">
+    {topics.map((topic) => (
+      <TopicTile
+        topic={topic}
+        count={guides.filter(({ data }) => data.topic === topic).length}
+        liveCount={
+          guides.filter(({ data }) => data.topic === topic && isLive(data))
+            .length
+        }
+      />
+    ))}
+  </ul>
+  <section class="learning-section" aria-labelledby="all-guides">
+    <h2 id="all-guides">All guides</h2>
+    <ul class="learning-grid" aria-label="All guides">
+      {guides.map((guide) => (
+        <li>
+          <GuideCard guide={guide} />
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>

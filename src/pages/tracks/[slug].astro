@@ -1,0 +1,227 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import CourseItem from '../../components/CourseItem.astro';
+import WeeklyPlan from '../../components/WeeklyPlan.astro';
+import GuideCard from '../../components/GuideCard.astro';
+import RepoCard from '../../components/RepoCard.astro';
+import { courseSchema } from '../../content.config';
+import {
+  breadcrumbs,
+  courseCount,
+  formatDate,
+  isLive,
+  totalHours,
+} from '../../lib/learning';
+import { isLearningPageIndexable } from '../../lib/learning-indexing';
+
+export const getStaticPaths = (async () =>
+  (await getCollection('tracks')).map((track) => ({
+    params: { slug: track.data.slug },
+    props: { track },
+  }))) satisfies GetStaticPaths;
+interface Props {
+  track: CollectionEntry<'tracks'>;
+}
+const { track } = Astro.props;
+const { data } = track;
+const live = isLive(data);
+const courses = live
+  ? data.courses.map((course) => courseSchema.parse(course))
+  : [];
+const levels = (['Beginner', 'Intermediate', 'Advanced'] as const).filter(
+  (level) => courses.some((course) => course.level === level),
+);
+const levelRange =
+  levels.length > 1
+    ? `${levels[0]} to ${levels.at(-1)!.toLowerCase()}`
+    : levels[0];
+const guides = live
+  ? await getCollection('guides', ({ data: guide }) =>
+      guide.tracks.includes(data.slug),
+    )
+  : [];
+const repos = live
+  ? await getCollection('repos', ({ data: repo }) =>
+      repo.tracks.includes(data.slug),
+    )
+  : [];
+const jsonLd: Record<string, unknown>[] = [
+  breadcrumbs(
+    [
+      { name: 'Career tracks', path: '/tracks/' },
+      { name: data.role, path: `/tracks/${data.slug}/` },
+    ],
+    Astro.site!,
+  ),
+];
+if (live)
+  jsonLd.push({
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: courses.map((course, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Course',
+        name: course.title,
+        description: course.skills,
+        provider: { '@type': 'Organization', name: course.provider },
+        url: course.url,
+        isAccessibleForFree: true,
+      },
+    })),
+  });
+---
+
+<Base
+  page="track"
+  title={`${data.role} career track | Dataceam`}
+  description={data.summary}
+  noindex={!isLearningPageIndexable(Astro.url.pathname)}
+  jsonLd={jsonLd}
+>
+  <nav aria-label="Breadcrumb" class="breadcrumbs">
+    <ol>
+      <li>
+        <a href="/">Home</a>
+      </li>
+      <li>
+        <a href="/tracks/">Career tracks</a>
+      </li>
+      <li aria-current="page">{data.role}</li>
+    </ol>
+  </nav>
+  <div class:list={['learning-stack', live && 'learning-hero']}>
+    <header class="learning-stack">
+      <p class="learning-eyebrow">Career track</p>
+      <h1>{data.role}</h1>
+      <p class="article-lede">{data.summary}</p>
+      <p>{data.who}</p>
+      {live && (
+        <>
+          <ul class="learning-chips" aria-label="Track details">
+            <li class="badge learning-chip">{courseCount(data)} courses</li>
+            <li class="badge learning-chip">
+              {totalHours(data)} hours in total
+            </li>
+            <li class="badge learning-chip">{levelRange}</li>
+            <li class="badge learning-chip">
+              Last checked {formatDate(data.updated)}
+            </li>
+          </ul>
+          <div class="button-row">
+            {data.pdf && (
+              <a class="button button-primary" href={data.pdf} download>
+                Download the PDF
+              </a>
+            )}
+            <a class="button button-quiet" href="#course-list">
+              Start with course 1
+            </a>
+          </div>
+        </>
+      )}
+    </header>
+    {live && <WeeklyPlan track={data} />}
+  </div>
+  {live ? (
+    <>
+      <div id="course-list" class="learning-section">
+        {data.stages.map((stage, index) =>
+          courses.some((course) => course.stage === stage.key) ? (
+            <section
+              class="learning-stage"
+              aria-labelledby={`stage-${stage.key}`}
+            >
+              <p class="learning-eyebrow">Stage {index + 1}</p>
+              <h2 id={`stage-${stage.key}`}>{stage.name}</h2>
+              <p>{stage.desc}</p>
+              <ol class="learning-course-list">
+                {courses.map(
+                  (course, courseIndex) =>
+                    course.stage === stage.key && (
+                      <CourseItem course={course} number={courseIndex + 1} />
+                    ),
+                )}
+              </ol>
+            </section>
+          ) : null,
+        )}
+      </div>
+      <p class="hint">
+        We check every link and price once a month. Last checked:{' '}
+        <time datetime={data.updated.toISOString()}>
+          {formatDate(data.updated)}
+        </time>
+        . Something out of date?{' '}
+        <a href="mailto:hello@dataceam.com">Tell us.</a>
+      </p>
+      <section
+        class="crosslink learning-next learning-section"
+        aria-labelledby="next-step"
+      >
+        <div class="learning-stack">
+          <p class="learning-eyebrow">Next step</p>
+          <h2 id="next-step">Finished the track? Get paid for AI work.</h2>
+          <p>
+            Platforms pay engineers to write, review and test AI training data.
+            We list the ones we refer people to.
+          </p>
+          <p class="hint">
+            Referral links: we may earn a fee if you join through them.{' '}
+            <a href="/disclosure/">Referral disclosure</a>
+          </p>
+        </div>
+        <a class="button button-primary" href="/jobs/">
+          See AI-training work
+        </a>
+      </section>
+      <div class="learning-grid learning-related">
+        {guides.length > 0 && (
+          <section aria-labelledby="track-guides">
+            <h2 id="track-guides">Guides for this track</h2>
+            <ul class="learning-grid">
+              {guides.map((guide) => (
+                <li>
+                  <GuideCard guide={guide} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+        {repos.length > 0 && (
+          <section aria-labelledby="track-repos">
+            <h2 id="track-repos">Repos for this track</h2>
+            <ul class="learning-grid">
+              {repos.map((repo) => (
+                <li>
+                  <RepoCard repo={repo} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+      </div>
+    </>
+  ) : (
+    <>
+      <ol class="learning-stage-preview">
+        {data.stages.map((stage) => (
+          <li>
+            <h2>{stage.name}</h2>
+            <p>{stage.desc}</p>
+          </li>
+        ))}
+      </ol>
+      <aside class="insight-card learning-notice">
+        <p>
+          <strong>Coming soon.</strong> We're checking every course on this
+          track (that it's free, how long it takes, and what any exam costs)
+          before we publish it.
+        </p>
+      </aside>
+    </>
+  )}
+</Base>

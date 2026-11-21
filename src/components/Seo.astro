@@ -11,6 +11,7 @@ export interface Props {
   modifiedTime?: string;
   ogImageAlt?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  noindex?: boolean;
 }
 
 const {
@@ -23,6 +24,7 @@ const {
   modifiedTime,
   ogImageAlt,
   jsonLd,
+  noindex = false,
 } = Astro.props;
 const siteUrl = Astro.site ?? new URL(site.url);
 const canonicalUrl = new URL(canonical ?? Astro.url.pathname, siteUrl);
@@ -39,6 +41,7 @@ const structuredData = jsonLd
 
 <title>{title}</title>
 <meta name="description" content={description} />
+{noindex && <meta name="robots" content="noindex" />}
 <link rel="canonical" href={canonicalUrl.href} />
 <meta property="og:type" content={ogType} />
 {publishedTime && (

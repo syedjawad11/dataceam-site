@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import RepoCard from '../../components/RepoCard.astro';
+import { isLearningPageIndexable } from '../../lib/learning-indexing';
+const repos = (await getCollection('repos')).sort(
+  (a, b) =>
+    (b.data.stats?.fetchedAt.getTime() ?? -Infinity) -
+    (a.data.stats?.fetchedAt.getTime() ?? -Infinity),
+);
+const intro =
+  'Open-source AI repos we run ourselves, with the exact commands and where they broke for us.';
+---
+
+<Base
+  page="repos"
+  title="Repos | Dataceam"
+  description={intro}
+  noindex={!isLearningPageIndexable(Astro.url.pathname)}
+>
+  <header class="learning-stack">
+    <h1>Repos</h1>
+    <p class="article-lede">{intro}</p>
+  </header>
+  <ul class="learning-grid" aria-label="Repos">
+    {repos.map((repo) => (
+      <li>
+        <RepoCard repo={repo} heading="h2" />
+      </li>
+    ))}
+  </ul>
+</Base>

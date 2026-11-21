@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { isLive, topicLabels } from '../lib/learning';
+interface Props {
+  guide: CollectionEntry<'guides'>;
+  heading?: 'h2' | 'h3';
+}
+const {
+  guide: { id, data },
+  heading: Heading = 'h3',
+} = Astro.props;
+---
+
+<article class="insight-card learning-card" data-guide-card>
+  {isLive(data) && data.image && (
+    <Image src={data.image} alt={data.imageAlt ?? ''} loading="lazy" />
+  )}
+  <p class="hint">{topicLabels[data.topic].label}</p>
+  {!isLive(data) && (
+    <span class="badge learning-chip learning-soon">Coming soon</span>
+  )}
+  <Heading>
+    <a href={`/guides/${id}/`}>{data.title}</a>
+  </Heading>
+  <p>{data.description}</p>
+  {isLive(data) && data.video && <p class="hint">1-min video</p>}
+</article>

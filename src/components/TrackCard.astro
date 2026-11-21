@@ -1,0 +1,32 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { courseCount, isLive, totalHours } from '../lib/learning';
+interface Props {
+  track: CollectionEntry<'tracks'>;
+  heading?: 'h2' | 'h3';
+}
+const {
+  track: { data },
+  heading: Heading = 'h3',
+} = Astro.props;
+---
+
+<article class="insight-card learning-card" data-track-card>
+  <span
+    class:list={[
+      'badge learning-chip',
+      isLive(data) ? 'learning-live' : 'learning-soon',
+    ]}
+  >
+    {isLive(data) ? 'Live' : 'Coming soon'}
+  </span>
+  <Heading>
+    <a href={`/tracks/${data.slug}/`}>{data.role}</a>
+  </Heading>
+  <p>{data.who}</p>
+  {isLive(data) && (
+    <p class="hint">
+      {courseCount(data)} free courses · {totalHours(data)} hours
+    </p>
+  )}
+</article>
