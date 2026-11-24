@@ -1,0 +1,98 @@
+{
+  "slug": "what-is-an-llm",
+  "theme": "daylight",
+  "images": [
+    {
+      "file": "cover",
+      "layout": "cover",
+      "title": "What is a large language model?",
+      "highlight": "large language model",
+      "kicker": "LLM basics",
+      "subtitle": "A program that predicts the next word, over and over, until an answer appears.",
+      "icons": [
+        "chat",
+        "book",
+        "brain"
+      ]
+    },
+    {
+      "file": "keyboard-vs-clerk",
+      "layout": "analogy",
+      "title": "An LLM is autocomplete with a whole library behind it",
+      "highlight": "autocomplete",
+      "left": {
+        "heading": "Phone keyboard",
+        "icon": "pencil"
+      },
+      "right": {
+        "heading": "Large language model",
+        "icon": "brain"
+      },
+      "pairs": [
+        {
+          "left": "Learns from text people typed",
+          "right": "Learns from a huge library of text"
+        },
+        {
+          "left": "Suggests the next word",
+          "right": "Predicts the next piece of text"
+        },
+        {
+          "left": "You tap one word at a time",
+          "right": "Repeats the guess to write whole answers"
+        }
+      ],
+      "note": "Same job, very different scale."
+    },
+    {
+      "file": "next-word-loop",
+      "layout": "steps",
+      "title": "Each word is picked one at a time",
+      "highlight": "one at a time",
+      "items": [
+        {
+          "icon": "pencil",
+          "label": "Start",
+          "text": "Please find attached the invoice for ..."
+        },
+        {
+          "icon": "chart",
+          "label": "Score",
+          "text": "March 40%, your 25%, the 15%, others 20%."
+        },
+        {
+          "icon": "dice",
+          "label": "Pick one",
+          "text": "Take the top word or pick by chance, say \"your\"."
+        },
+        {
+          "icon": "refresh",
+          "label": "Repeat",
+          "text": "Add it to the text and score the next word."
+        }
+      ],
+      "note": "The percentages are made up to show the idea."
+    },
+    {
+      "file": "model-app-company",
+      "layout": "layers",
+      "title": "The model, the app and the company are three things",
+      "highlight": "three things",
+      "items": [
+        {
+          "label": "The company",
+          "text": "Builds and runs the model and the app."
+        },
+        {
+          "label": "The chat app",
+          "text": "The window you type into, with settings and saved chats."
+        },
+        {
+          "label": "The model (LLM)",
+          "text": "The engine that predicts the next piece of text."
+        }
+      ],
+      "note": "AI is the wider field. An LLM is one kind of AI."
+    }
+  ]
+}
