@@ -38,7 +38,7 @@
         "Chat models are further tuned on human examples and rankings to follow instructions",
         "Why fluent answers can still be wrong, and one simple habit for checking them",
         "Examples of what LLMs are good at and not good at in daily work",
-        "A short glossary box pointing to the other guides for tokens, parameters and training"
+        "A short glossary table of token, parameter and training in plain words"
       ],
       "leaveTo": [
         "tokens: what a token is and how text is split (link to /guides/tokens/)",

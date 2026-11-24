@@ -77,8 +77,67 @@ export async function verifyGuide({
       headers: { 'user-agent': 'dataceam-guide-verify' },
       ...init,
     });
+  const pageProblems = async (html) => {
+    const problems = [];
+
+    const redirect = await get(`${base}/guides/${slug}`, {
+      redirect: 'manual',
+    });
+    const location = redirect.headers.get('location');
+    if (
+      ![301, 302, 307, 308].includes(redirect.status) ||
+      !location ||
+      new URL(location, base).pathname !== `/guides/${slug}/`
+    ) {
+      problems.push(
+        `${base}/guides/${slug} (no slash) should redirect to the slash URL, got HTTP ${redirect.status}${location ? ` -> ${location}` : ''}`,
+      );
+    }
+
+    const sitemap = await get(`${base}/sitemap-0.xml?verify=${Date.now()}`);
+    const sitemapText = sitemap.status === 200 ? await sitemap.text() : '';
+    if (sitemap.status !== 200)
+      problems.push(`/sitemap-0.xml returned HTTP ${sitemap.status}`);
+    else if (
+      !sitemapText.includes(`<loc>${SITE}/guides/${slug}/</loc>`) &&
+      !sitemapText.includes(`<loc>${url}</loc>`)
+    ) {
+      problems.push(`${SITE}/guides/${slug}/ is not in /sitemap-0.xml`);
+    }
+
+    const assets = new Set();
+    for (const match of html.matchAll(/<img\b[^>]*?\bsrc=["']([^"']+)["']/gi))
+      assets.add(decode(match[1]));
+    const og =
+      html.match(
+        /<meta[^>]+property=["']og:image["'][^>]*content=["']([^"']+)["']/i,
+      ) ??
+      html.match(
+        /<meta[^>]+content=["']([^"']+)["'][^>]*property=["']og:image["']/i,
+      );
+    if (!og) problems.push('no og:image meta tag');
+    else assets.add(decode(og[1]));
+    for (const src of assets) {
+      if (src.startsWith('data:')) continue;
+      const target = new URL(src, url).toString();
+      try {
+        const response = await get(target);
+        await response.arrayBuffer();
+        if (response.status !== 200)
+          problems.push(`${target} returned HTTP ${response.status}`);
+      } catch (error) {
+        problems.push(`${target} failed: ${error.message}`);
+      }
+    }
+
+    const types = jsonLdTypes(html);
+    for (const type of ['Article', 'FAQPage']) {
+      if (!types.has(type)) problems.push(`JSON-LD has no ${type}`);
+    }
+    return problems;
+  };
+
   const deadline = Date.now() + timeoutMs;
-  let html;
   let lastProblem;
   for (let attempt = 1; ; attempt += 1) {
     try {
@@ -90,81 +149,26 @@ export async function verifyGuide({
         lastProblem = `h1 does not contain the title "${title}"`;
       else if (noindex(text, response.headers)) lastProblem = 'page is noindex';
       else {
-        html = text;
-        break;
+        // Right after a deploy the CDN can serve the page before its images,
+        // so these checks are retried until the deadline too.
+        const problems = await pageProblems(text);
+        if (!problems.length) {
+          log(`LIVE ${url}`);
+          return url;
+        }
+        lastProblem = `up but not right:\n- ${problems.join('\n- ')}`;
       }
     } catch (error) {
       lastProblem = error?.message ?? 'network error';
     }
     if (Date.now() + intervalMs > deadline) {
       throw new GuideToolError(
-        `${url} is not live after ${Math.round(timeoutMs / 1000)}s: ${lastProblem}. Check the Cloudflare Pages deploy.`,
+        `${url} is not live after ${Math.round(timeoutMs / 1000)}s: ${lastProblem}\nCheck the Cloudflare Pages deploy.`,
       );
     }
     log(`waiting (${attempt}): ${lastProblem}`);
     await sleep(intervalMs);
   }
-  const problems = [];
-
-  const redirect = await get(`${base}/guides/${slug}`, { redirect: 'manual' });
-  const location = redirect.headers.get('location');
-  if (
-    ![301, 302, 307, 308].includes(redirect.status) ||
-    !location ||
-    new URL(location, base).pathname !== `/guides/${slug}/`
-  ) {
-    problems.push(
-      `${base}/guides/${slug} (no slash) should redirect to the slash URL, got HTTP ${redirect.status}${location ? ` -> ${location}` : ''}`,
-    );
-  }
-
-  const sitemap = await get(`${base}/sitemap-0.xml?verify=${Date.now()}`);
-  const sitemapText = sitemap.status === 200 ? await sitemap.text() : '';
-  if (sitemap.status !== 200)
-    problems.push(`/sitemap-0.xml returned HTTP ${sitemap.status}`);
-  else if (
-    !sitemapText.includes(`<loc>${SITE}/guides/${slug}/</loc>`) &&
-    !sitemapText.includes(`<loc>${url}</loc>`)
-  ) {
-    problems.push(`${SITE}/guides/${slug}/ is not in /sitemap-0.xml`);
-  }
-
-  const assets = new Set();
-  for (const match of html.matchAll(/<img\b[^>]*?\bsrc=["']([^"']+)["']/gi))
-    assets.add(decode(match[1]));
-  const og =
-    html.match(
-      /<meta[^>]+property=["']og:image["'][^>]*content=["']([^"']+)["']/i,
-    ) ??
-    html.match(
-      /<meta[^>]+content=["']([^"']+)["'][^>]*property=["']og:image["']/i,
-    );
-  if (!og) problems.push('no og:image meta tag');
-  else assets.add(decode(og[1]));
-  for (const src of assets) {
-    if (src.startsWith('data:')) continue;
-    const target = new URL(src, url).toString();
-    try {
-      const response = await get(target);
-      await response.arrayBuffer();
-      if (response.status !== 200)
-        problems.push(`${target} returned HTTP ${response.status}`);
-    } catch (error) {
-      problems.push(`${target} failed: ${error.message}`);
-    }
-  }
-
-  const types = jsonLdTypes(html);
-  for (const type of ['Article', 'FAQPage']) {
-    if (!types.has(type)) problems.push(`JSON-LD has no ${type}`);
-  }
-
-  if (problems.length)
-    throw new GuideToolError(
-      `${url} is up but not right:\n- ${problems.join('\n- ')}`,
-    );
-  log(`LIVE ${url}`);
-  return url;
 }
 
 async function main() {

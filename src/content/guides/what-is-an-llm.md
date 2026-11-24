@@ -118,11 +118,11 @@ A model trained only on next-word prediction would, if you typed a question, oft
 
 ### A small glossary
 
-| Term | Plain meaning | Where to read more |
-|---|---|---|
-| Token | A small chunk of text the model reads and writes | Coming soon: guide on tokens |
-| Parameter | One of the adjustable numbers inside the model | Coming soon: guide on parameters |
-| Training | Learning from text by guessing the next piece and correcting mistakes | Coming soon: guide on training |
+| Term | Plain meaning |
+|---|---|
+| Token | A small chunk of text the model reads and writes |
+| Parameter | One of the adjustable numbers inside the model |
+| Training | Learning from text by guessing the next piece and correcting mistakes |
 
 > **In short:** An LLM learns patterns from huge amounts of text, then gets extra training on human examples and rankings so it follows instructions.
 
@@ -187,6 +187,6 @@ Try it yourself in two minutes. Paste a paragraph you know well into a chatbot a
 
 ## Where to go next
 
-The [LLM basics topic page](/guides/topic/llm-basics/) will show the upcoming guides in this group as they appear, and [the guides overview](/guides/) lists every guide.
+The [LLM basics topic page](/guides/topic/llm-basics/) collects the guides in this group, and [the guides overview](/guides/) lists every guide.
 
 If you want a hands-on step today, run the summary test from the previous section with a text you wrote yourself. Then try asking the same question twice and compare the answers. Seeing the differences first-hand is the quickest way to learn what an LLM can and can't do for you.
