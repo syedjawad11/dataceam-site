@@ -6,19 +6,21 @@ import TrackCard from '../components/TrackCard.astro';
 import TopicTile from '../components/TopicTile.astro';
 import RepoCard from '../components/RepoCard.astro';
 import ProviderLogo from '../components/ProviderLogo.astro';
-import { isLive, topicLabels, type Topic } from '../lib/learning';
+import { isLive, sortGuides, topicLabels, type Topic } from '../lib/learning';
 import { site } from '../config/site';
 
 const tracks = await getCollection('tracks');
 const guides = await getCollection('guides');
 const liveGuides = guides.filter(({ data }) => isLive(data));
-const latestGuides = [...guides]
-  .sort(
-    (a, b) =>
-      b.data.pubDate.getTime() - a.data.pubDate.getTime() ||
-      a.id.localeCompare(b.id),
-  )
-  .slice(0, 5);
+const latestGuides = sortGuides(
+  liveGuides.length > 0
+    ? liveGuides
+    : [...guides].sort(
+        (a, b) =>
+          b.data.pubDate.getTime() - a.data.pubDate.getTime() ||
+          a.id.localeCompare(b.id),
+      ),
+).slice(0, 5);
 const repos = (await getCollection('repos', ({ data }) => isLive(data)))
   .sort(
     (a, b) =>
@@ -44,7 +46,7 @@ const jsonLd = {
   '@type': 'Organization',
   '@id': `${site.url}/#organization`,
   name: site.name,
-  url: site.url,
+  url: new URL('/', site.url).href,
   logo: new URL('/favicon.svg', site.url).href,
   email: site.email,
   sameAs: [site.social.x, site.social.instagram],
@@ -132,8 +134,8 @@ const jsonLd = {
         <p class="kicker">Guides</p>
         <h2 id="guides-heading">One idea, one picture</h2>
         <p>
-          Short visual explainers of how AI actually works, each with a
-          one-minute video and its sources.
+          Plain-English explainers of how AI actually works, each with pictures,
+          examples and its sources.
         </p>
       </div>
       <p>

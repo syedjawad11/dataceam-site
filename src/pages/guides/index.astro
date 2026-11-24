@@ -4,28 +4,28 @@ import Base from '../../layouts/Base.astro';
 import GuideCard from '../../components/GuideCard.astro';
 import TopicTile from '../../components/TopicTile.astro';
 import {
-  compareGuides,
   isLive,
+  sortGuides,
   topicLabels,
   type Topic,
 } from '../../lib/learning';
 import { isLearningPageIndexable } from '../../lib/learning-indexing';
-const guides = (await getCollection('guides')).sort(compareGuides);
+const guides = sortGuides(await getCollection('guides'));
 const topics = (Object.keys(topicLabels) as Topic[]).filter((topic) =>
   guides.some(({ data }) => data.topic === topic),
 );
 const intro =
-  'One-minute explainers on how AI works, each with a diagram and a short read.';
+  'Plain-English guides to how AI works, with pictures, examples and sources. No technical background needed.';
 ---
 
 <Base
   page="guides"
-  title="Guides | Dataceam"
+  title="AI Guides in Plain English | Dataceam"
   description={intro}
   noindex={!isLearningPageIndexable(Astro.url.pathname)}
 >
   <header class="learning-stack">
-    <h1>Guides</h1>
+    <h1>AI guides in plain English</h1>
     <p class="article-lede">{intro}</p>
   </header>
   <ul class="learning-grid learning-topics" aria-label="Guide topics">

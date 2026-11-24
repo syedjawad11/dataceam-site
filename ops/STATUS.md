@@ -1,6 +1,6 @@
 # Project status — dataceam.com
 
-Last updated: 2026-11-21
+Last updated: 2026-11-24
 
 ## Live
 - https://dataceam.com: Cloudflare Pages project `dataceam-site`, built from `main` via the GitHub integration.
@@ -42,6 +42,15 @@ Brief: `ops/REDESIGN-2026-11.md` (approved by Jawad, 2026-11-21). Tasks T-019 to
 - T-020 done (PR #23, 2026-11-21) as a skeleton: templates + "Coming soon" entries (`status: soon`, noindex, out of the sitemap). Real track/repo/guide content follows in later PRs.
 - T-021 done (PR #24, 2026-11-21), with T-022 merged in (Jawad, 2026-11-21): new Home, `/companies/`, `/jobs/` (301 from `/experts/`), `/disclosure/`, new header/footer, newsletter "Coming soon" block, `/free/` short links, freshness and PDF scripts.
 - Next session (2026-11-22): T-023 with Jawad — newsletter provider and any Cloudflare database, analytics token, Facebook URL.
+
+- T-024 done (PR #25, 2026-11-21): footer links grey, no underline.
+
+## Guide articles (Nov 2026)
+- T-025 + T-026: long-form guide template, infographic generator (3 themes, 8 layouts), guide lint, publish guard, enforced trailing slashes, `/llms.txt`.
+- 14 guides are written and published by two cloud routines (01:00 and 14:00 Malta), one article each: runbook `ops/guides/publish-daily.md`, skill `.claude/skills/write-guide/`, queue `ops/guides/queue.json`, log `ops/guides/log.md`.
+- Off switch: commit `ops/guides/PAUSED`. When the queue is empty the routines report `nothing_to_do`; add topics to the queue (plus a `status: soon` guide file) to continue.
+- Failed articles are parked in `ops/guides/parked.json`; after 2 attempts a guide is skipped until its entry is removed.
+- Codex/CC: run `npm install` through npm 10 (`npx npm@10.9 install`) so the lockfile works on Cloudflare and in the cloud routine.
 
 ## Waiting on Jawad (all placeholders on the live site)
 - [x] Contact email: `hello@dataceam.com` (Google Workspace), filled in T-012 (2026-11-08)

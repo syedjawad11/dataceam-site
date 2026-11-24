@@ -3,10 +3,10 @@ import type { GetStaticPaths } from 'astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import GuideCard from '../../../components/GuideCard.astro';
-import { compareGuides, topicLabels, type Topic } from '../../../lib/learning';
+import { sortGuides, topicLabels, type Topic } from '../../../lib/learning';
 import { isLearningPageIndexable } from '../../../lib/learning-indexing';
 export const getStaticPaths = (async () => {
-  const all = (await getCollection('guides')).sort(compareGuides);
+  const all = sortGuides(await getCollection('guides'));
   return [...new Set(all.map(({ data }) => data.topic))].map((topic) => ({
     params: { topic },
     props: { topic, guides: all.filter(({ data }) => data.topic === topic) },
@@ -22,7 +22,7 @@ const { label, description } = topicLabels[topic];
 
 <Base
   page="guide-topic"
-  title={`${label} guides | Dataceam`}
+  title={`${label}: AI Guides in Plain English | Dataceam`}
   description={description}
   noindex={!isLearningPageIndexable(Astro.url.pathname)}
 >
@@ -38,7 +38,7 @@ const { label, description } = topicLabels[topic];
         <li aria-current="page">{label}</li>
       </ol>
     </nav>
-    <h1>{label}</h1>
+    <h1>{label} guides</h1>
   </header>
   <ul class="learning-grid" aria-label={`${label} guides`}>
     {guides.map((guide) => (

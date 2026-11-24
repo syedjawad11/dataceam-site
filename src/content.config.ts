@@ -161,7 +161,17 @@ const guides = defineCollection({
     z
       .object({
         title: text,
+        seoTitle: text.max(49).optional(),
         description: text,
+        primaryKeyword: text.optional(),
+        keywords: z.array(text).optional(),
+        takeaways: z.array(text).optional(),
+        faq: z.array(z.object({ q: text, a: text })).optional(),
+        theme: z.enum(['daylight', 'blueprint', 'paper']).optional(),
+        ogImage: z
+          .string()
+          .regex(/^\/og\/guides\/[a-z0-9-]+\.png$/)
+          .optional(),
         topic: z.enum([
           'llm-basics',
           'retrieval-rag',
@@ -200,12 +210,42 @@ const guides = defineCollection({
               message: `A live guide needs ${field}.`,
             });
         }
-        if (!guide.sources?.length)
-          ctx.addIssue({
-            code: 'custom',
-            path: ['sources'],
-            message: 'A live guide needs at least one source.',
-          });
+        const need = (field: string, ok: boolean, message: string) => {
+          if (!ok) ctx.addIssue({ code: 'custom', path: [field], message });
+        };
+        const between = (
+          value: unknown[] | undefined,
+          min: number,
+          max: number,
+        ) => value !== undefined && value.length >= min && value.length <= max;
+        for (const field of [
+          'seoTitle',
+          'primaryKeyword',
+          'theme',
+          'ogImage',
+        ] as const)
+          need(field, Boolean(guide[field]), `A live guide needs ${field}.`);
+        need(
+          'description',
+          guide.description.length >= 110 && guide.description.length <= 160,
+          'A live guide description must be 110-160 characters.',
+        );
+        need(
+          'keywords',
+          between(guide.keywords, 3, 12),
+          'A live guide needs 3-12 keywords.',
+        );
+        need(
+          'takeaways',
+          between(guide.takeaways, 3, 6),
+          'A live guide needs 3-6 takeaways.',
+        );
+        need('faq', between(guide.faq, 4, 6), 'A live guide needs 4-6 FAQs.');
+        need(
+          'sources',
+          (guide.sources?.length ?? 0) >= 5,
+          'A live guide needs at least 5 sources.',
+        );
       }),
 });
 

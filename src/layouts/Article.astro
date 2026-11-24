@@ -2,6 +2,12 @@
 import { Image } from 'astro:assets';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { site } from '../config/site';
+import {
+  articleJsonLd,
+  dateFormat,
+  faqJsonLd,
+  readingTime,
+} from '../lib/article';
 import EmailCta from '../components/EmailCta.astro';
 import Base from './Base.astro';
 
@@ -33,43 +39,22 @@ const related = (
       a.id.localeCompare(b.id),
   )
   .slice(0, 2);
-const words =
-  (post.body ?? '')
-    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
-    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
-    .match(/[\p{L}\p{N}]+(?:['’–-][\p{L}\p{N}]+)*/gu)?.length ?? 0;
-const readingTime = Math.max(1, Math.ceil(words / 220));
-const dateFormat = new Intl.DateTimeFormat('en-GB', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-  timeZone: 'UTC',
-});
+const readingMinutes = readingTime(post.body);
 const siteUrl = Astro.site ?? new URL(site.url);
 const canonical = new URL(`/insights/${post.id}/`, siteUrl).href;
 const publishedTime = pubDate.toISOString();
 const modifiedTime = (updatedDate ?? pubDate).toISOString();
 const jsonLd: Record<string, unknown>[] = [
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: title,
+  articleJsonLd({
+    title,
     description,
     image: new URL(ogImage ?? '/og-default.png', siteUrl).href,
-    datePublished: publishedTime,
-    dateModified: modifiedTime,
-    mainEntityOfPage: canonical,
+    published: publishedTime,
+    modified: modifiedTime,
+    canonical,
     keywords: keywords ?? [],
-    author: { '@type': 'Organization', name: 'Dataceam' },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Dataceam',
-      logo: {
-        '@type': 'ImageObject',
-        url: new URL('/favicon.svg', siteUrl).href,
-      },
-    },
-  },
+    siteUrl,
+  }),
   {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -84,19 +69,7 @@ const jsonLd: Record<string, unknown>[] = [
       { '@type': 'ListItem', position: 3, name: title, item: canonical },
     ],
   },
-  ...(faq?.length
-    ? [
-        {
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: faq.map(({ q, a }) => ({
-            '@type': 'Question',
-            name: q,
-            acceptedAnswer: { '@type': 'Answer', text: a },
-          })),
-        },
-      ]
-    : []),
+  ...(faq?.length ? [faqJsonLd(faq)] : []),
 ];
 ---
 
@@ -140,7 +113,7 @@ const jsonLd: Record<string, unknown>[] = [
             </time>
           </span>
         )}
-        <span>{readingTime} min read</span>
+        <span>{readingMinutes} min read</span>
       </p>
     </header>
     {heroImage && (

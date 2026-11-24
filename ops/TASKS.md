@@ -464,3 +464,125 @@ Acceptance:
 - [ ] footer links (including the email) use `--color-body` with no underline; hover/focus go to `--color-ink`, with the focus ring kept
 - [ ] links elsewhere on the site are unchanged
 - [ ] `check` and Playwright green
+
+---
+
+# Guide articles (Nov 2026): long-form guides + daily cloud routines
+Approved by Jawad 2026-11-24 (plan: two cloud routines, 01:00 and 14:00 Malta, one article each; setup PR may merge without a second approval if all gates are green). Supersedes the brief's "200-400 words + one-minute video" for guides.
+
+Frontmatter contract for a live guide (both tasks rely on it):
+```yaml
+title: 'H1, the full question'
+seoTitle: 'Browser title, max 49 characters (" | Dataceam" is added)'
+description: '120-155 characters'
+topic: llm-basics
+status: live
+image: ../../assets/guides/<slug>/cover.png
+imageAlt: '...'
+ogImage: /og/guides/<slug>.png
+theme: daylight | blueprint | paper
+primaryKeyword: 'what is a large language model'
+keywords: ['...']          # 3-12
+takeaways: ['...']         # 3-6 one-sentence strings
+faq: [{ q: '...', a: '...' }]   # 4-6, plain text answers
+sources: [{ title, url, checked }]   # 5+
+pubDate: 2026-11-24
+updatedDate: optional
+tracks: [ai-engineer]
+```
+Body images: `![alt](../../assets/guides/<slug>/<file>.png)` followed by a blank line and an italic-only caption paragraph `*Caption.*`. Body has no h1, FAQ or Sources section (the template renders those from frontmatter).
+
+## T-025 — Guide article template, SEO/GEO, slash rule
+Status: in review · Branch `task/025-guide-articles` · Written by a Claude Sonnet subagent (Codex at its usage limit; one-time exception, Jawad 2026-11-24)
+Goal: `/guides/<slug>/` renders a full long-form article well, and every URL ends in a slash, enforced.
+
+1. `src/content.config.ts` (guides): add `seoTitle` (max 49), `primaryKeyword`, `keywords` (array), `takeaways` (array), `faq` ({q,a} array), `theme` (enum daylight/blueprint/paper), `ogImage` (string matching `^/og/guides/[a-z0-9-]+\.png$`). All optional for `soon`; for `live` each is required (superRefine), with takeaways 3-6, faq 4-6, keywords 3-12, sources ≥ 5, description 110-160 characters. `seoTitle` may also be set on soon entries and is used as their <title>.
+2. `src/pages/guides/[slug].astro` for live guides, in this order: breadcrumb; h1; description as lede; meta line ("By Dataceam", Published date, Updated date if set, "N min read"); cover image; "Key takeaways" box (aside with h2); "On this page" contents (a `<nav aria-label="On this page">` with a `<details open>` list of body h2 headings from `render()` plus FAQ and Sources anchors); optional video as today but without hard-coded 1280×720 distortion (keep it working; no guide uses it now); body; FAQ section (native `<details>`, same markup/classes as Article.astro); Sources as a numbered list (`<ol>`) with title link and "Checked <date>"; Related guides: live guides only, same topic first then other topics, max 3; hide the section when there are none; Related tracks only as today.
+   - Title tag: `${seoTitle ?? title} | Dataceam`. Pass canonical ending in `/`, ogType article, publishedTime, modifiedTime, ogImage, ogImageAlt.
+   - JSON-LD for live guides: Article (headline, description, image absolute URL, datePublished, dateModified, mainEntityOfPage, keywords, articleSection = topic label, author and publisher Organization Dataceam with url `https://dataceam.com/`, `citation` = source URLs, inLanguage "en"), BreadcrumbList, FAQPage. Share the reading-time and JSON-LD helpers with `src/layouts/Article.astro` by moving them to `src/lib/article.ts` (no behaviour change for Insights).
+   - `soon` notice text becomes: "**Coming soon.** This guide is being written."
+   - JSON-LD breadcrumb and visible breadcrumb use the title.
+3. `src/styles/global.css`: guide article column centred like Insights (70ch reading column; breadcrumb, h1 and lede in the same column). h1 on guide articles clamps smaller (max about 3rem) since titles are long. `.learning-body` gets the same treatment as `.article-body` for h2/h3 spacing, li spacing, tables (scroll container, zebra, on a 375px screen no page scroll), images (full width, border, radius), italic caption after image, blockquote (used as a callout such as "**In short:** ..."), code, hr. Share selectors, don't duplicate rules. Links inside `.prose` paragraphs, list items, table cells, blockquotes and FAQ answers must be normal inline text links (the 44px inline-flex rule must not apply there); keep 44px targets for cards, nav and contents lists. Style the takeaways box (surface-tint background, signal left border) and contents box.
+4. Lists: one sort helper in `src/lib/learning.ts`, live first, newest pubDate first, then soon by the queue order in `ops/guides/queue.json` if that file exists, else title (do not fail when it is missing; simplest is to keep current pubDate order for soon). Home "Latest guides" shows live guides only when at least one is live, else current behaviour.
+5. Copy (guides no longer have videos): remove every "one-minute"/"1-min"/"a diagram and a short read" claim.
+   - guides index intro/description: "Plain-English guides to how AI works, with pictures, examples and sources. No technical background needed."; title tag "AI Guides in Plain English | Dataceam"; h1 "AI guides in plain English".
+   - Home guides blurb: "Plain-English explainers of how AI actually works, each with pictures, examples and its sources."
+   - topic descriptions in `topicLabels`, all unique: llm-basics "Plain-English guides to how large language models work: tokens, context windows, parameters, training and more."; retrieval-rag "Plain-English guides to embeddings and retrieval-augmented generation (RAG)."; agents "Plain-English guides to AI agents: what they are, how they act and where they go wrong."; prompting-safety "Plain-English guides to prompting, fine-tuning and prompt injection."; hardware "Plain-English guides to the chips and hardware that run AI."
+   - keep "1-min video" on GuideCard only when a video exists (already conditional; fine).
+   - topic page h1: `${label} guides`, title `${label}: AI Guides in Plain English | Dataceam`.
+6. `GuideCard`: shows the cover when live; card link text is the title.
+7. GEO/feeds: `src/pages/llms.txt.ts` → `/llms.txt` (llmstxt.org format: `# Dataceam`, blockquote summary "Free AI-learning guides in plain English, plus referral information for AI-training work and data licensing. Dataceam is a referrer only.", sections "## Guides" (live guides only: `- [title](absolute url with slash): description`; omit the section when none), "## Insights", "## About" (FAQ, AI jobs, For companies, Referral disclosure)). No buyer/platform names. `rss.xml.ts`: include live guides; feed title "Dataceam guides and insights", description "New guides and insights from Dataceam."; update the Base.astro feed title. Sitemap: `lastmod` for guides (updatedDate ?? pubDate) and insights via `serialize` in astro.config.mjs.
+8. Slash rule: `trailingSlash: 'always'`, `build: { format: 'directory' }` in astro.config.mjs (make sure `/rss.xml`, `/llms.txt`, sitemap, 404 and `astro preview` still work). `scripts/content-lint.mjs`: for every built HTML file fail on any internal `href` (root-relative, relative, or absolute https://dataceam.com/ / http / www) whose path has no trailing slash and no file extension in the last segment (ignore pure `#x`, mailto:, tel:), and on canonical/og:url without the slash, and on slashless page URLs inside `<script type="application/ld+json">`, `dist/sitemap-*.xml` and `dist/rss.xml`. `https://dataceam.com` with no path must be written `https://dataceam.com/`. Add self-tests. Also lint `src/content/guides/*.md` and `src/content/insights/*.md` markdown links the same way.
+9. content-lint partner/agent/representative rule: "agent" is a normal word in AI guides. Skip only the `agent` alternative for files under `dist/guides/` and `src/content/guides/` and for the phrase "AI agent" anywhere; `partner` and `representative` still apply everywhere. Self-tests for both.
+10. Tests: `tests/learning.spec.ts` must derive status from `src/content/guides/*.md` (and tracks/repos) frontmatter so that publishing a guide never breaks tests: live page → no noindex, in sitemap, Article+FAQPage+BreadcrumbList JSON-LD, one h1, contents nav, at least 2 body images; soon page → as today. Card counts derived from the files; titles read from files. Keep phone-width overflow checks for a live guide. `lighthouserc.json`: keep all thresholds, but noindex pages must not fail the SEO category (use `assertMatrix` or turn off `is-crawlable`; choose the approach that still fails SEO regressions on indexable pages).
+11. Update the 14 titles and seoTitles? No: Claude Code does that in `src/content/guides/`.
+
+Don't touch: `package.json`, `scripts/build-infographics.mjs`, `scripts/guide-*.mjs`, `ops/` (T-026 and CC own them).
+To verify rendering without publishing, build temporarily with a throwaway live fixture guide and images, then remove it fully before finishing.
+
+Acceptance:
+- [ ] `npm run check` green with all guides soon, and also green with a temporary live fixture
+- [ ] WCAG AA, one h1, no horizontal scroll at 375 px on a live guide with a wide table
+- [ ] Insights pages unchanged except shared helpers
+
+## T-026 — Guide tooling: infographics, guide lint, publish guard
+Status: in review · merged into the T-025 branch/PR · Written by Claude subagents (same exception)
+Installed by CC: `satori`, `@resvg/resvg-js`, `@fontsource/inter`, `@fontsource/bricolage-grotesque`, `sharp` (use the `.woff` latin 400/600/700/800 files; satori cannot read woff2 or variable fonts). Plain Node ESM scripts, Node 22, no other dependency, no browser, no network except where stated.
+
+1. `scripts/build-infographics.mjs` → `npm run guide:images -- <slug> [--out <dir>]`. Reads `ops/guides/infographics/<slug>.json`:
+```json
+{"slug":"...","theme":"daylight|blueprint|paper","images":[
+ {"file":"cover","layout":"cover","kicker":"LLM basics","title":"...","subtitle":"...","icons":["chat","book","chip"]},
+ {"file":"kebab-name","layout":"steps","title":"...","items":[{"icon":"chat","label":"...","text":"..."}],"note":"..."},
+ {"layout":"compare","title":"...","columns":[{"heading":"...","icon":"...","items":["..."]},{"heading":"...","icon":"...","items":["..."]}],"verdict":"..."},
+ {"layout":"cycle","title":"...","center":"...","items":[{"label":"...","text":"..."}]},
+ {"layout":"layers","title":"...","items":[{"label":"...","text":"..."}],"note":"..."},
+ {"layout":"bars","title":"...","items":[{"label":"...","value":12,"display":"12 words"}],"note":"...","source":"..."},
+ {"layout":"cards","title":"...","items":[{"icon":"...","label":"...","text":"..."}]},
+ {"layout":"analogy","title":"...","left":{"heading":"...","icon":"..."},"right":{"heading":"...","icon":"..."},"pairs":[{"left":"...","right":"..."}],"note":"..."}
+]}
+```
+   - Output: cover 1200×675 → `src/assets/guides/<slug>/cover.png`; every other image 1080 px wide, height fits content (min 800, max 1700) → `<file>.png`; plus 1200×630 `public/og/guides/<slug>.png` from the cover data (category kicker, title, dataceam.com). Rendered crisp: body images at 1.5× pixel density at most, PNG optimised with sharp (palette/quality) so body images stay under ~250 KB and the OG under 300 KB.
+   - Type sizes on the 1080 canvas: titles ≥ 54px, labels ≥ 36px, text ≥ 31px (must read on a 375px phone); small "dataceam.com" footer ≥ 24px. Headings Bricolage Grotesque 700/800, text Inter 400/600. Generous padding, consistent grid, rounded cards, connectors/arrows drawn as SVG, number badges. It must look designed (editorial infographic quality), not like a default flow chart: strong hierarchy, icon chips, accent shapes, subtle background texture per theme.
+   - Three themes, the same eight layouts in each (theme tokens drive colour, background texture, border, shape and accent treatment):
+     - daylight: page #f6f8fc, white cards, #2563eb accents, ink #0b1222, soft #eef3ff blocks, dotted corner pattern.
+     - blueprint: deep navy #0b1a3a, fine grid lines, light-blue #93c5fd linework, white text, outlined cards, dashed connectors, small cross marks at corners.
+     - paper: warm off-white #faf6ee, ink #1c1a17 lines 3px, amber #f2b84b and blue #2563eb marker highlights behind key words/badges, offset "sticker" shadows.
+     All text/background pairs meet WCAG AA (export a small contrast assertion in the self-test).
+   - ~28 built-in 2px line icons as SVG paths (chat, book, brain, chip, search, lock, shield, gear, database, document, calculator, dice, bolt, layers, link, user, robot, clock, check, cross, warning, puzzle, scale, target, pencil, eye, cloud, server, cart, mail). Unknown icon → error listing valid names.
+   - Limits validated with clear messages (title ≤ 70 characters, subtitle ≤ 120, label ≤ 34, text ≤ 110, steps 3-6, cycle 3-5, layers 3-6, bars 2-6, cards 3-6, compare 2-6 items per column, analogy pairs 3-5, note/verdict ≤ 140; `file` kebab-case unique; exactly one cover, 2-4 other images). Text must never overflow or be cut: let height grow; fail if height would exceed 1700. Only characters the font supports (fail otherwise); no em dashes.
+   - `--self-test`: renders every layout in every theme from built-in fixtures to a temp dir and checks dimensions, size limits, contrast.
+   - `--samples <dir>`: writes the fixture renders to <dir> for review.
+2. `scripts/guide-lint.mjs` → `npm run guide:lint [-- <slug>]`, with `--self-test`; add to `check` (after `content-lint`, only live guides are linted; passing a slug lints that guide even when soon). Every failure prints file, rule and how to fix. Rules:
+   - frontmatter: title 35-75 chars; seoTitle ≤ 49; description 110-160; primaryKeyword words appear as a phrase (case/punctuation-insensitive, ignoring bracketed abbreviations) in title or seoTitle; all significant primaryKeyword words in the first body paragraph, in the description and in ≥ 1 h2; exact phrase not more than 12 times in the body; image and ogImage files exist; theme matches the infographic JSON; pubDate not in the future (UTC+14 tolerance).
+   - body words (prose, tables, lists; not code, alt text, URLs) 1200-3000; first paragraph 40-90 words before any heading; ≥ 5 h2 and ≥ 2 h2 phrased as questions; no h1; no heading-level jumps; no h2 that duplicates FAQ q; ≥ 1 markdown table; ≥ 1 ordered list or worked-example heading; ≥ 2 blockquote lines starting `**In short:**`.
+   - paragraphs ≤ 110 words; average sentence ≤ 20 words; no sentence > 40 words; Flesch reading ease ≥ 50 (implement with a reasonable syllable counter).
+   - style: no em dash or " -- "; ≤ 2 exclamation marks; banned phrases list (case-insensitive; keep it in `ops/guides/banned-phrases.json`, CC-owned, array of strings/regex strings; fail if the file is missing); curly quotes allowed; no "As an AI"; no first-person singular (I, my, me) outside quotes.
+   - sources: ≥ 5, https, unique, each URL linked at least once in the body; every external body link is listed in sources; `checked` within 400 days.
+   - internal links: ≥ 4 distinct internal page links in the body, trailing slash, and the target exists and is live/indexable (other live guides, live topic pages `/guides/topic/<topic>/` with a live guide, `/guides/`, non-draft `/insights/<slug>/`, or static pages `/`, `/faq/`, `/jobs/`, `/companies/`, `/insights/`, `/disclosure/`); anchor text not "here", "click here", "read more" or a bare URL; a guide may not link to itself. While fewer than 4 other live guides exist, the minimum is 2. Never an external referral platform link.
+   - images: 2-4 body images, each existing file under `src/assets/guides/<slug>/`, alt 40-250 chars, caption line after each, not the cover, spread (no two images adjacent without at least one paragraph between besides the caption).
+   - faq 4-6, answers 25-90 words, questions end with "?".
+   - originality: no shared 10-word sequence with any other live guide body (ignore quoted/link titles).
+3. `scripts/guide-queue.mjs` → `npm run guide:next`: reads `ops/guides/queue.json` (`{guides:[{slug,...}]}`), guide frontmatter status and `ops/guides/parked.json` (`{"<slug>":{"attempts":n,"reason":"...","date":"..."}}`, may be missing). Prints the full brief JSON of the first guide that is not live and has < 2 parked attempts, plus `liveGuides` (slug, title, url) for internal linking; prints `QUEUE_EMPTY` when none. `npm run guide:next -- --list` prints a table.
+4. `scripts/guide-sources.mjs` → `npm run guide:sources -- <slug>`: GETs each source URL (browser-like generic user agent, follow redirects, 20 s timeout) and prints status, final URL, `<title>`; exit 1 on network error/404/410/5xx; 401/403/429 print "BLOCKED: open it with WebFetch".
+5. `scripts/publish-guide.mjs` → `npm run guide:publish -- <slug> [--dry-run]`. The only path by which the routine reaches `main`:
+   - must be on `main`, HEAD equal to or ahead of origin/main only by zero commits (fetch first; `git pull --ff-only` done by the caller), nothing staged beforehand.
+   - changed + untracked files (git status --porcelain -z) must all match: `src/content/guides/<any existing>.md`, `src/assets/guides/<slug>/*.png`, `public/og/guides/<slug>.png`, `ops/guides/infographics/<slug>.json`, `ops/guides/log.md`, `ops/guides/parked.json`. Deletions, renames, symlinks, executable bits and anything else → refuse, listing the files.
+   - exactly one guide changes status: `<slug>` soon → live versus HEAD, with pubDate = today in Europe/Malta. At most 3 other guides may change, all already live; in those only body text may change plus `updatedDate` (title, status, slug, pubDate, sources etc. unchanged), and the body diff must only add markdown links to `/guides/<slug>/` (same text once links to the new guide are unwrapped).
+   - `<slug>` must be in queue.json; its title and topic unchanged from HEAD's frontmatter.
+   - infographics: re-render and compare that the committed PNGs match the JSON (same dimensions and pixel-identical, or re-render in place before committing).
+   - runs `npm run guide:lint -- <slug>` and `npm run check`; any failure → exit 1, nothing committed.
+   - appends a row to `ops/guides/log.md` (date, slug, words, commit left as "this commit"), removes the slug from parked.json if present, stages only the allowed files, commits `content: publish guide <slug>` with trailer `Co-Authored-By: Claude <noreply@anthropic.com>`, pushes `HEAD:main` (never force). If rejected: `git pull --rebase origin main` once, rerun `npm run check`, push again; on a second rejection exit 1 with instructions. Prints `PUSHED <sha>`.
+   - `--dry-run`: all checks, no commit/push.
+   - `npm run guide:publish -- <slug> --park "<reason>"`: requires the only changes to be parked.json after `git checkout` of the rest is done by the caller; increments attempts, commits `ops: park guide <slug>`, pushes the same way. Refuses any other change.
+   - Use `execFileSync`/`spawn` with argument arrays (no shell interpolation); slug must match `^[a-z0-9-]+$`.
+   - `--self-test`: builds throwaway git repos in a temp dir (with a local bare "origin") and proves each refusal: out-of-scope file, second guide going live, edit to another live guide beyond links, wrong branch, deletion, dirty index, unknown slug; and one successful push. `npm run check` must be injectable (e.g. env or flag usable only together with --self-test) so the self-test does not run the real build.
+6. `scripts/verify-guide.mjs` → `npm run guide:verify -- <slug>`: polls `https://dataceam.com/guides/<slug>/` (cache-busting query is fine) every 20 s up to 8 minutes until 200, contains the h1 title text, no `noindex`; then checks that URL without slash redirects to the slash URL, the URL is in `/sitemap-0.xml`, every `<img>` src and the og:image return 200, JSON-LD has Article and FAQPage. Prints `LIVE <url>` or fails.
+7. `package.json` scripts: the names above, plus `check` runs `guide:lint --self-test`, `guide:lint`, and `publish-guide --self-test` (fast, < 20 s) and `build-infographics --self-test` if < 20 s.
+8. `npm run og` (build-og.mjs) must not touch `public/og/guides/`. Fix the default OG text (`src/assets/og.svg`) only if trivial: no, leave it.
+
+Don't touch: `src/**` (T-025 owns it), `ops/**` except nothing, `scripts/content-lint.mjs`.
+
+Acceptance:
+- [ ] all self-tests green; samples rendered for CC's visual review in all 3 themes
+- [ ] publish guard refusals proven by the self-test
