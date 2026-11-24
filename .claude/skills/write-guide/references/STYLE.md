@@ -48,6 +48,8 @@ The lint blocks the obvious ones (`ops/guides/banned-phrases.json`). Passing the
 - Don't tell the reader AI "thinks", "knows" or "understands" without explaining what you mean.
 - Company and product names only as examples or sources. No rankings of products, no endorsements, no claims of partnership.
 
+- No Malta or Maltese places in examples (the site shows no location). Use neutral or US examples.
+
 ## Before and after
 Bad: "Tokens are the fundamental building blocks that empower large language models to seamlessly process text, making them crucial to understand in today's AI landscape."
 Good: "An AI model doesn't read words. It reads tokens, which are small chunks of text. 'Cat' is one token. 'Unbelievable' might be three: un, believ, able."

@@ -46,7 +46,7 @@ pubDate: <today, Europe/Malta>
 Length: 1,200–3,000 words. Aim for 1,600–2,200. Stop when it's explained.
 
 ## Links
-- **Internal:** 4–8 links to live pages (2+ while few guides are live). Always the form `/guides/tokens/`, **with the final slash**. Useful ones: other live guides, the topic page `/guides/topic/<topic>/`, `/guides/`. `/jobs/` only when the text is really about paid AI-training work, and never call it more than "a referrer only". Never link a "coming soon" guide.
+- **Internal:** 4–8 links to live pages (2+ while few guides are live). Always the form `/guides/tokens/`, **with the final slash**. Useful ones: other live guides, the topic page `/guides/topic/<topic>/`, `/guides/`. `/jobs/` only when the text is really about paid AI-training work, and never call it more than "a referrer only". Never link a "coming soon" guide. Never write "coming soon", "upcoming" or "a guide on this will follow" in the text: it goes out of date. Use the plain term instead; a later run turns it into a link.
 - **External:** link the source at the claim it supports. The link text describes the page ("OpenAI's tokenizer guide"), never "here" or a bare URL.
 - Each factual claim a reader could doubt (dates, numbers, sizes, study results, how a product behaves) has a link.
 

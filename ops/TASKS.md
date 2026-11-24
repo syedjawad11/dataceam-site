@@ -493,7 +493,7 @@ tracks: [ai-engineer]
 Body images: `![alt](../../assets/guides/<slug>/<file>.png)` followed by a blank line and an italic-only caption paragraph `*Caption.*`. Body has no h1, FAQ or Sources section (the template renders those from frontmatter).
 
 ## T-025 — Guide article template, SEO/GEO, slash rule
-Status: in review · Branch `task/025-guide-articles` · Written by a Claude Sonnet subagent (Codex at its usage limit; one-time exception, Jawad 2026-11-24)
+Status: **done** (PR #26, 2026-11-24, approved by Jawad in the plan) · Branch `task/025-guide-articles` · Written by a Claude Sonnet subagent (Codex at its usage limit; one-time exception, Jawad 2026-11-24)
 Goal: `/guides/<slug>/` renders a full long-form article well, and every URL ends in a slash, enforced.
 
 1. `src/content.config.ts` (guides): add `seoTitle` (max 49), `primaryKeyword`, `keywords` (array), `takeaways` (array), `faq` ({q,a} array), `theme` (enum daylight/blueprint/paper), `ogImage` (string matching `^/og/guides/[a-z0-9-]+\.png$`). All optional for `soon`; for `live` each is required (superRefine), with takeaways 3-6, faq 4-6, keywords 3-12, sources ≥ 5, description 110-160 characters. `seoTitle` may also be set on soon entries and is used as their <title>.
@@ -526,7 +526,7 @@ Acceptance:
 - [ ] Insights pages unchanged except shared helpers
 
 ## T-026 — Guide tooling: infographics, guide lint, publish guard
-Status: in review · merged into the T-025 branch/PR · Written by Claude subagents (same exception)
+Status: **done** · merged into the T-025 branch/PR · Written by Claude subagents (same exception)
 Installed by CC: `satori`, `@resvg/resvg-js`, `@fontsource/inter`, `@fontsource/bricolage-grotesque`, `sharp` (use the `.woff` latin 400/600/700/800 files; satori cannot read woff2 or variable fonts). Plain Node ESM scripts, Node 22, no other dependency, no browser, no network except where stated.
 
 1. `scripts/build-infographics.mjs` → `npm run guide:images -- <slug> [--out <dir>]`. Reads `ops/guides/infographics/<slug>.json`:
@@ -586,3 +586,10 @@ Don't touch: `src/**` (T-025 owns it), `ops/**` except nothing, `scripts/content
 Acceptance:
 - [ ] all self-tests green; samples rendered for CC's visual review in all 3 themes
 - [ ] publish guard refusals proven by the self-test
+
+## T-027 — Guide routine fixes after the first run
+Status: in review, waiting for Jawad's approve · Branch `task/027-guide-routine-fixes` · Same Claude exception as T-026 (fix to that code)
+Test run 2026-11-24: `what-is-an-llm` written, reviewed (76, 83, then 88 PASS), pushed (aebd0e6) and live. The run still reported PUBLISH_FAILED [5], because the live check did not wait for images to reach the CDN.
+- `guide:verify` retries every live check until the deadline.
+- Duplicate-run window 6 h → 3 h (the test article would have made the next 01:00 run skip).
+- Removed "Coming soon" text from the first article; template forbids it. No Maltese places in examples.
