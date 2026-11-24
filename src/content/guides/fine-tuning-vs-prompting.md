@@ -1,6 +1,7 @@
 ---
-title: 'Fine-tuning or prompting: which do you need?'
-description: 'When a better prompt is enough, and when it''s worth fine-tuning a model.'
+title: 'Fine-Tuning vs Prompt Engineering vs RAG: Which Do You Need?'
+seoTitle: 'Fine-Tuning vs Prompt Engineering vs RAG'
+description: 'Fine-tuning vs prompt engineering vs RAG: what each one changes, what it costs, and a simple guide to which to try first for your own use.'
 topic: prompting-safety
 status: soon
 pubDate: 2026-11-20

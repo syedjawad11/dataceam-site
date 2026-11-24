@@ -1,6 +1,7 @@
 ---
-title: 'Why is AI bad at maths?'
-description: 'Why language models can slip on simple sums, and how tools fix it.'
+title: 'Why Is AI Bad at Math? How Chatbots Get Simple Sums Wrong'
+seoTitle: 'Why Is AI Bad at Math? The Real Reasons'
+description: 'Why is AI bad at math? Chatbots predict text rather than calculate, split numbers into odd pieces and skip steps. See why and how to get right sums.'
 topic: llm-basics
 status: soon
 pubDate: 2026-11-16

@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
 import type { CollectionEntry } from 'astro:content';
 import type { z } from 'astro/zod';
 import type { courseSchema } from '../content.config';
@@ -39,35 +41,66 @@ export const topicLabels: Record<
   'llm-basics': {
     label: 'LLM basics',
     description:
-      'One-minute guides to how large language models work: tokens, context windows, parameters, training and more.',
+      'Plain-English guides to how large language models work: tokens, context windows, parameters, training and more.',
   },
   'retrieval-rag': {
     label: 'Retrieval and RAG',
     description:
-      'One-minute guides to embeddings and retrieval-augmented generation (RAG).',
+      'Plain-English guides to embeddings and retrieval-augmented generation (RAG).',
   },
   agents: {
     label: 'Agents',
     description:
-      'One-minute guides to AI agents: what they are and how they act.',
+      'Plain-English guides to AI agents: what they are, how they act and where they go wrong.',
   },
   'prompting-safety': {
     label: 'Prompting and safety',
     description:
-      'One-minute guides to prompting, fine-tuning and prompt injection.',
+      'Plain-English guides to prompting, fine-tuning and prompt injection.',
   },
   hardware: {
     label: 'Hardware',
-    description: 'One-minute guides to the hardware that runs AI.',
+    description: 'Plain-English guides to the chips and hardware that run AI.',
   },
 };
 
-export const compareGuides = (
-  a: CollectionEntry<'guides'>,
-  b: CollectionEntry<'guides'>,
-): number =>
-  a.data.pubDate.getTime() - b.data.pubDate.getTime() ||
-  a.data.title.localeCompare(b.data.title, 'en');
+// Optional publishing queue (CC-owned). Missing or unreadable means no order.
+function queueOrder(): string[] {
+  try {
+    const queue = JSON.parse(
+      readFileSync(path.join(process.cwd(), 'ops/guides/queue.json'), 'utf8'),
+    ) as { guides?: { slug?: string }[] };
+    return (queue.guides ?? []).map(({ slug }) => String(slug));
+  } catch {
+    return [];
+  }
+}
+
+/** Live guides first (newest first), then soon guides in queue order. */
+export function sortGuides(
+  guides: CollectionEntry<'guides'>[],
+): CollectionEntry<'guides'>[] {
+  const queue = queueOrder();
+  const rank = (id: string) => {
+    const index = queue.indexOf(id);
+    return index === -1 ? Number.MAX_SAFE_INTEGER : index;
+  };
+  return [...guides].sort((a, b) => {
+    const aLive = isLive(a.data);
+    const bLive = isLive(b.data);
+    if (aLive !== bLive) return aLive ? -1 : 1;
+    if (aLive)
+      return (
+        b.data.pubDate.getTime() - a.data.pubDate.getTime() ||
+        a.data.title.localeCompare(b.data.title, 'en')
+      );
+    return (
+      rank(a.id) - rank(b.id) ||
+      a.data.pubDate.getTime() - b.data.pubDate.getTime() ||
+      a.data.title.localeCompare(b.data.title, 'en')
+    );
+  });
+}
 
 export const repoSlug = (repo: { owner: string; name: string }): string =>
   `${repo.owner}-${repo.name}`;

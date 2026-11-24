@@ -40,7 +40,7 @@ Each track lists free courses from the companies that make the tools, from first
 
 ### One idea, one picture
 
-Short visual explainers of how AI actually works, each with a one-minute video and its sources.
+Plain-English explainers of how AI actually works, each with pictures, examples and its sources.
 
 [Link:] All N guides (/guides/)
 

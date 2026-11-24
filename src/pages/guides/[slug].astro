@@ -6,9 +6,16 @@ import Base from '../../layouts/Base.astro';
 import TrackCard from '../../components/TrackCard.astro';
 import GuideCard from '../../components/GuideCard.astro';
 import {
+  articleJsonLd,
+  dateFormat,
+  faqJsonLd,
+  readingTime,
+} from '../../lib/article';
+import {
   breadcrumbs,
   formatDate,
   isLive,
+  sortGuides,
   topicLabels,
 } from '../../lib/learning';
 import { isLearningPageIndexable } from '../../lib/learning-indexing';
@@ -26,34 +33,75 @@ const live = isLive(data);
 const tracks = await getCollection('tracks', ({ data: track }) =>
   data.tracks.includes(track.slug),
 );
+// Live guides only: same topic first, then other topics, newest first.
 const related = live
-  ? await getCollection(
-      'guides',
-      ({ id, data: other }) => id !== guide.id && other.topic === data.topic,
+  ? sortGuides(
+      await getCollection(
+        'guides',
+        ({ id, data: other }) => id !== guide.id && isLive(other),
+      ),
     )
+      .sort(
+        (a, b) =>
+          Number(b.data.topic === data.topic) -
+          Number(a.data.topic === data.topic),
+      )
+      .slice(0, 3)
   : [];
-const { Content } = await render(guide);
-const jsonLd = breadcrumbs(
+const { Content, headings } = await render(guide);
+const contents = headings.filter(({ depth }) => depth === 2);
+const siteUrl = Astro.site!;
+const canonical = new URL(`/guides/${guide.id}/`, siteUrl).href;
+const publishedTime = data.pubDate.toISOString();
+const modifiedTime = (data.updatedDate ?? data.pubDate).toISOString();
+const readingMinutes = readingTime(guide.body);
+const topic = topicLabels[data.topic];
+const breadcrumbLd = breadcrumbs(
   [
     { name: 'Guides', path: '/guides/' },
-    {
-      name: topicLabels[data.topic].label,
-      path: `/guides/topic/${data.topic}/`,
-    },
+    { name: topic.label, path: `/guides/topic/${data.topic}/` },
     { name: data.title, path: `/guides/${guide.id}/` },
   ],
-  Astro.site!,
+  siteUrl,
 );
+const jsonLd = live
+  ? [
+      articleJsonLd({
+        title: data.title,
+        description: data.description,
+        image: new URL(data.ogImage ?? '/og-default.png', siteUrl).href,
+        published: publishedTime,
+        modified: modifiedTime,
+        canonical,
+        keywords: data.keywords ?? [],
+        siteUrl,
+        organizationUrl: 'https://dataceam.com/',
+        extra: {
+          articleSection: topic.label,
+          citation: (data.sources ?? []).map(({ url }) => url),
+          inLanguage: 'en',
+        },
+      }),
+      breadcrumbLd,
+      ...(data.faq?.length ? [faqJsonLd(data.faq)] : []),
+    ]
+  : breadcrumbLd;
 ---
 
 <Base
   page="guide"
-  title={`${data.title} | Dataceam`}
+  title={`${data.seoTitle ?? data.title} | Dataceam`}
   description={data.description}
+  canonical={canonical}
   noindex={!isLearningPageIndexable(Astro.url.pathname)}
   jsonLd={jsonLd}
+  ogType={live ? 'article' : 'website'}
+  publishedTime={live ? publishedTime : undefined}
+  modifiedTime={live ? modifiedTime : undefined}
+  ogImage={live ? data.ogImage : undefined}
+  ogImageAlt={live ? data.imageAlt : undefined}
 >
-  <article class="learning-stack">
+  <article class="guide-article learning-stack">
     <header class="learning-stack">
       <nav aria-label="Breadcrumb" class="breadcrumbs">
         <ol>
@@ -64,15 +112,33 @@ const jsonLd = breadcrumbs(
             <a href="/guides/">Guides</a>
           </li>
           <li>
-            <a href={`/guides/topic/${data.topic}/`}>
-              {topicLabels[data.topic].label}
-            </a>
+            <a href={`/guides/topic/${data.topic}/`}>{topic.label}</a>
           </li>
           <li aria-current="page">{data.title}</li>
         </ol>
       </nav>
       <h1>{data.title}</h1>
       <p class="article-lede">{data.description}</p>
+      {live && (
+        <p class="article-meta">
+          <span>By Dataceam</span>
+          <span>
+            Published{' '}
+            <time datetime={publishedTime}>
+              {dateFormat.format(data.pubDate)}
+            </time>
+          </span>
+          {data.updatedDate && (
+            <span>
+              Updated{' '}
+              <time datetime={modifiedTime}>
+                {dateFormat.format(data.updatedDate)}
+              </time>
+            </span>
+          )}
+          <span>{readingMinutes} min read</span>
+        </p>
+      )}
     </header>
     {live ? (
       <>
@@ -82,16 +148,47 @@ const jsonLd = breadcrumbs(
             src={data.image}
             alt={data.imageAlt ?? ''}
             loading="eager"
+            fetchpriority="high"
           />
         )}
+        {data.takeaways?.length ? (
+          <aside class="guide-takeaways" aria-labelledby="takeaways">
+            <h2 id="takeaways">Key takeaways</h2>
+            <ul>
+              {data.takeaways.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </aside>
+        ) : null}
+        <nav class="guide-contents" aria-label="On this page">
+          <details open>
+            <summary>On this page</summary>
+            <ol>
+              {contents.map(({ slug, text }) => (
+                <li>
+                  <a href={`#${slug}`}>{text}</a>
+                </li>
+              ))}
+              {data.faq?.length ? (
+                <li>
+                  <a href="#faq">Frequently asked questions</a>
+                </li>
+              ) : null}
+              {data.sources?.length ? (
+                <li>
+                  <a href="#sources">Sources</a>
+                </li>
+              ) : null}
+            </ol>
+          </details>
+        </nav>
         {data.video && (
           <video
-            class="learning-media"
+            class="learning-media learning-video"
             controls
             preload="none"
             poster={data.video.poster}
-            width="1280"
-            height="720"
             aria-label={data.title}
           >
             <source src={data.video.src} type="video/mp4" />
@@ -112,13 +209,25 @@ const jsonLd = breadcrumbs(
         <div class="prose learning-body">
           <Content />
         </div>
+        {data.faq?.length ? (
+          <section class="learning-section" aria-labelledby="faq">
+            <h2 id="faq">Frequently asked questions</h2>
+            <div class="faq-list">
+              {data.faq.map(({ q, a }) => (
+                <details>
+                  <summary>{q}</summary>
+                  <div class="faq-answer">
+                    <p>{a}</p>
+                  </div>
+                </details>
+              ))}
+            </div>
+          </section>
+        ) : null}
         {data.sources?.length ? (
-          <section
-            class="learning-section learning-stack"
-            aria-labelledby="sources"
-          >
+          <section class="learning-section" aria-labelledby="sources">
             <h2 id="sources">Sources</h2>
-            <ul class="learning-bullets">
+            <ol class="guide-sources">
               {data.sources.map((source) => (
                 <li>
                   <a href={source.url}>{source.title}</a>
@@ -131,15 +240,14 @@ const jsonLd = breadcrumbs(
                   </span>
                 </li>
               ))}
-            </ul>
+            </ol>
           </section>
         ) : null}
       </>
     ) : (
       <aside class="insight-card learning-notice">
         <p>
-          <strong>Coming soon.</strong> We're turning our one-minute video into
-          a short written guide with sources.
+          <strong>Coming soon.</strong> This guide is being written.
         </p>
       </aside>
     )}
