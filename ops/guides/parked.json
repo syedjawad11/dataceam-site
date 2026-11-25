@@ -1,7 +1,7 @@
 {
   "tokens": {
-    "attempts": 1,
-    "reason": "Two review rounds ended CHANGES (80): example price was a Batch-tier rate not Standard, an unsourced Spanish/Russian token claim, and till-analogy wording; fixes are small",
+    "attempts": 2,
+    "reason": "Two review rounds ended CHANGES (64 then 78): letter-counting opening overclaims a single cause, two writer-to-editor sentences, tier names unexplained for beginners; fixes are small",
     "date": "2026-11-25"
   }
 }
