@@ -3,5 +3,10 @@
     "attempts": 2,
     "reason": "Two review rounds ended CHANGES (64 then 78): letter-counting opening overclaims a single cause, two writer-to-editor sentences, tier names unexplained for beginners; fixes are small",
     "date": "2026-11-25"
+  },
+  "context-window": {
+    "attempts": 1,
+    "reason": "Review failed after 2 fix rounds (84, CHANGES): bigger-window H3 says flat 'No'; forget section states dropping as universal and gives one cause",
+    "date": "2026-11-25"
   }
 }
