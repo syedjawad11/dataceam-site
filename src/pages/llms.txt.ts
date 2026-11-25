@@ -15,7 +15,7 @@ export async function GET(context: APIContext) {
   const lines = [
     '# Dataceam',
     '',
-    '> Free AI-learning guides in plain English, plus referral information for AI-training work and data licensing. Dataceam is a referrer only.',
+    '> Free, easy-to-follow AI-learning guides, plus referral information for AI-training work and data licensing. Dataceam is a referrer only.',
     '',
     ...(guides.length
       ? [

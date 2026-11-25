@@ -165,7 +165,7 @@ test(`guides lists all ${guides.length} linked previews and topic counts`, async
   page,
 }) => {
   await page.goto('/guides/');
-  await expect(page.locator('h1')).toHaveText('AI guides in plain English');
+  await expect(page.locator('h1')).toHaveText('AI guides, made simple');
   await expect(page.locator('[data-guide-card]')).toHaveCount(guides.length);
   await expect(page.locator('[data-guide-card] a')).toHaveCount(guides.length);
   const tiles = page
