@@ -57,11 +57,12 @@ sources:
     url: 'https://www.anthropic.com/research/effective-context-engineering-for-ai-agents'
     checked: 2026-11-25
 pubDate: 2026-11-25
+updatedDate: 2026-11-25
 tracks:
   - ai-engineer
 ---
 
-A context window is the largest amount of text an AI model can work with at one time. It is counted in tokens, which are small chunks of text, often a word or part of one. Your messages, anything you paste and, usually, the model's own answer all have to fit inside it. Once it is full, something has to give.
+A context window is the largest amount of text an AI model can work with at one time. It is counted in [tokens](/guides/tokens/), which are small chunks of text, often a word or part of one. Your messages, anything you paste and, usually, the model's own answer all have to fit inside it. Once it is full, something has to give.
 
 You may have met the limit without knowing its name. You tell a chatbot to answer in short bullet points. An hour later it is back to long paragraphs, as if you never asked. Knowing how the window works helps explain why that can happen and what to try.
 

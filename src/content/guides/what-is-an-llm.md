@@ -62,6 +62,7 @@ sources:
     url: 'https://openai.com/index/why-language-models-hallucinate/'
     checked: 2026-11-24
 pubDate: 2026-11-24
+updatedDate: 2026-11-25
 tracks:
   - ai-engineer
 ---
@@ -88,7 +89,7 @@ The analogy has a limit. A clerk reads for meaning and remembers where they read
 
 ## A worked example: finishing an invoice email
 
-Here is one email sentence, completed step by step. The percentages are made up to show the idea. A real model works with tokens, which are small chunks of text, often a whole word or part of one. We use whole words here to keep it readable.
+Here is one email sentence, completed step by step. The percentages are made up to show the idea. A real model works with [tokens](/guides/tokens/), which are small chunks of text, often a whole word or part of one. We use whole words here to keep it readable.
 
 The start of the sentence: "Please find attached the invoice for ..."
 
