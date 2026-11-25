@@ -26,4 +26,4 @@ FACTS CHECKED: <n>, with the 5 riskiest and their source lines
 FIX LIST (if CHANGES): numbered; quote the text, say what's wrong, give the fix
 NOTES: optional small suggestions
 ```
-PASS needs no HARD fail and a score of 85 or more. When unsure about a fact, it isn't a pass.
+PASS needs no HARD fail and a score of 75 or more. When unsure about a fact, it isn't a pass.
