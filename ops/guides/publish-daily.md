@@ -33,7 +33,7 @@ If `npm run check` fails before you change anything: `PUBLISH_FAILED [1]: <first
 If a guide was already published by an earlier run in the last 3 hours (`git log --since='3 hours ago' --oneline --grep='content: publish guide'`), print `PUBLISH_RESULT: nothing_to_do` with that commit and stop. This keeps a repeated trigger from doubling up. Skip this check only when the trigger prompt says `TEST RUN`.
 
 ## 3. Write, illustrate, review
-Follow `.claude/skills/write-guide/SKILL.md` steps 2–6 exactly for that slug.
+Follow `.claude/skills/write-guide/SKILL.md` steps 2–6 exactly for that slug. If `ops/guides/drafts/<slug>/article.md` exists, step 2 fixes that draft.
 
 ## 4. Publish
 ```bash
@@ -49,12 +49,22 @@ npm run guide:verify -- <slug>     # waits up to 8 minutes for the Cloudflare bu
 If it doesn't go live, run it once more. Still not live: report `PUBLISH_FAILED [5]` with the sha and what it printed. Don't push anything else.
 
 ## Failure path (after 2 review rounds, or a gate you can't satisfy honestly)
+Keep the article: the next attempt fixes it instead of starting again. Run these in this order.
 ```bash
-git checkout -- .
+mkdir -p ops/guides/drafts/<slug>
+cp src/content/guides/<slug>.md ops/guides/drafts/<slug>/article.md
+cp ops/guides/infographics/<slug>.json ops/guides/drafts/<slug>/infographics.json
+```
+Write the last reviewer report, in full, to `ops/guides/drafts/<slug>/review.md` (if a gate failed instead, write what it printed). Skip a file that doesn't exist. Never save an article that is still the `status: soon` stub. Then:
+```bash
+git checkout -- src public ops/guides/infographics ops/guides/log.md
+git checkout -- ops/guides/parked.json
 git clean -fd -- src/content/guides src/assets/guides public/og/guides ops/guides/infographics
+git status --short        # only ops/guides/drafts/<slug>/ may be left
 npm run guide:publish -- <slug> --park "<one-line reason>"
 ```
-After 2 parked attempts, the queue skips that guide until Jawad clears it from `ops/guides/parked.json`.
+Don't use `git checkout -- .`: it would undo a saved draft. Images aren't saved; `guide:images` draws them again from the JSON.
+After 2 parked attempts, the queue skips that guide until Jawad clears it from `ops/guides/parked.json`. Its draft stays.
 
 ## Final message: exactly one block
 ```

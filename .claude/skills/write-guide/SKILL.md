@@ -17,6 +17,7 @@ Read these before you start. They are binding:
 
 1. **Pick.** `npm run guide:next` prints the brief (slug, title, keywords, angle, sources, image ideas) and the live guides you can link to. `QUEUE_EMPTY` means stop. With a slug given, use that brief.
 2. **Write.** Spawn `guide-writer` in the foreground with the full brief and the live-guide list. It researches, writes `src/content/guides/<slug>.md` (status live, pubDate today in Europe/Malta) and `ops/guides/infographics/<slug>.json`, and renders the images.
+   **Parked draft:** if `ops/guides/drafts/<slug>/article.md` exists, don't write a new article. Copy it to `src/content/guides/<slug>.md` and `infographics.json` to `ops/guides/infographics/<slug>.json`. Give the writer the brief and `review.md`, and tell it to fix that draft: every point in the review, pubDate today, every price and date rechecked, nothing rewritten that the review didn't question. `review.md` can be wrong; the writer checks a disputed fact at its source.
 3. **Check it yourself.** Run:
    ```
    npm run guide:images -- <slug>
