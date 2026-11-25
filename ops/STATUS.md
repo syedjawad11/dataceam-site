@@ -1,6 +1,6 @@
 # Project status — dataceam.com
 
-Last updated: 2026-11-24
+Last updated: 2026-11-25
 
 ## Live
 - https://dataceam.com: Cloudflare Pages project `dataceam-site`, built from `main` via the GitHub integration.
@@ -49,6 +49,7 @@ Brief: `ops/REDESIGN-2026-11.md` (approved by Jawad, 2026-11-21). Tasks T-019 to
 - T-025 + T-026: long-form guide template, infographic generator (3 themes, 8 layouts), guide lint, publish guard, enforced trailing slashes, `/llms.txt`.
 - 14 guides are written and published by two cloud routines (01:00 and 14:00 Malta), one article each: runbook `ops/guides/publish-daily.md`, skill `.claude/skills/write-guide/`, queue `ops/guides/queue.json`, log `ops/guides/log.md`.
 - Off switch: commit `ops/guides/PAUSED`. When the queue is empty the routines report `nothing_to_do`; add topics to the queue (plus a `status: soon` guide file) to continue.
+- Reviewer pass mark: 75 with no HARD fail (Jawad, 2026-11-25, T-028; was 85).
 - Failed articles are parked in `ops/guides/parked.json`; after 2 attempts a guide is skipped until its entry is removed.
 - Codex/CC: run `npm install` through npm 10 (`npx npm@10.9 install`) so the lockfile works on Cloudflare and in the cloud routine.
 

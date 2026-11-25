@@ -588,8 +588,14 @@ Acceptance:
 - [ ] publish guard refusals proven by the self-test
 
 ## T-027 — Guide routine fixes after the first run
-Status: in review, waiting for Jawad's approve · Branch `task/027-guide-routine-fixes` · Same Claude exception as T-026 (fix to that code)
+Status: **done** (PR #27, 2026-11-24) · Branch `task/027-guide-routine-fixes` · Same Claude exception as T-026 (fix to that code)
 Test run 2026-11-24: `what-is-an-llm` written, reviewed (76, 83, then 88 PASS), pushed (aebd0e6) and live. The run still reported PUBLISH_FAILED [5], because the live check did not wait for images to reach the CDN.
 - `guide:verify` retries every live check until the deadline.
 - Duplicate-run window 6 h → 3 h (the test article would have made the next 01:00 run skip).
 - Removed "Coming soon" text from the first article; template forbids it. No Maltese places in examples.
+
+## T-028 — Guide pass mark 75, notes for the parked "tokens" guide
+Status: in review, waiting for Jawad's approve · Branch `task/028-guide-pass-mark` · Control files only (CC)
+01:00 run on 2026-11-25: `tokens` written, reviewed twice (78, 80), parked (a9abd4b). Nothing published, draft discarded.
+- Reviewer pass mark 85 → 75 (Jawad, 2026-11-25). A HARD fail still blocks publishing, and the limit stays at 2 review rounds.
+- `reviewNotes` on the `tokens` queue entry, so the retry doesn't repeat the problems. Note: the reviewer's price finding looks wrong ($1/$5 is the Standard rate of gpt-6.1-terra; that row is collapsed on the page).

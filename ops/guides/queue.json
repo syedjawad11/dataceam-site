@@ -155,6 +155,13 @@
           "idea": "A till scanning stock codes: common items one beep, unusual items several beeps, price per beep"
         }
       ],
+      "reviewNotes": [
+        "Price example: name the model, the tier and the check date. On 2026-11-25 OpenAI's pricing page listed gpt-6.1-terra in the Standard tier at $1.00 input and $5.00 output per 1M tokens, and $0.50 / $2.50 in Batch. Some model rows on that page are collapsed: open every row and tier before calling a rate wrong.",
+        "Make no claim that compares languages or scripts (such as Spanish or Russian against English) unless a source you cite says it. A token count you worked out with tiktoken must name the encoding (o200k_base) and be presented as that one example.",
+        "'strawberry' is three tokens on its own (st, raw, berry) but one token with a space in front of it, inside a sentence. Say which case you mean.",
+        "Till analogy: say where it stops working. A till has one price per code; AI providers charge one rate for tokens going in and another for tokens coming out. Figure and text must agree.",
+        "Explain 'encoding', 'endpoint' and 'script' on first use, or leave the words out."
+      ],
       "seedSources": [
         {
           "title": "OpenAI API docs: Key concepts (tokens, rule of thumb for English text)",
