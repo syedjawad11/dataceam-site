@@ -638,3 +638,8 @@ Why: three runs on 2026-11-25 wrote complete articles that passed lint and sourc
 - `guide-writer`: hedge where sources differ, explain price tiers, no notes to the editor.
 - `parked.json` cleared; review notes added for `tokens` and `context-window`.
 Unchanged: publish guard, lint, `npm run check`, content rules.
+
+## T-032 — Routine runs must not freeze on a permission prompt
+Status: in review, waiting for Jawad's approve · Branch `task/032-no-frozen-runs` · Control files only (CC)
+19:44 run on 2026-11-25 (`tokens`): the article was written and lint passed, then the reviewer ran `rm -rf` on a temp folder. `Bash(rm *)` is an "ask" rule, nobody could answer, and the run froze. The runbook's no-`rm` rule only reached the main agent.
+- Both guide agents now carry the rule; the runbook puts it in every subagent prompt and says to stop and replace a stuck agent.
