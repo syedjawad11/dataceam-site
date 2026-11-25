@@ -25,10 +25,16 @@ Read these before you start. They are binding:
    npm run guide:sources -- <slug>
    ```
    Then read the article once from top to bottom and open every PNG. Anything wrong goes back to the writer.
-4. **Review.** Spawn `guide-reviewer` in the foreground with the slug. It can't edit. It returns PASS, or a numbered fix list.
-5. **Fix.** Send the fix list to the writer (same agent if you can, else a new one with the list and the file). Rerun step 3, then review again. **At most 2 review rounds after the first draft.** If it still fails, take the failure path in `ops/guides/publish-daily.md`.
+4. **Review, once.** Spawn `guide-reviewer` in the foreground with the slug and the brief. It can't edit. It returns BLOCKER and FIX points, each with its replacement text.
+5. **Fix, then publish.** The rule: fix the sentence or cut it, then publish. An article is never dropped over wording.
+   - Send **every** point to the writer (same agent if you can, else a new one with the list and the file). Rerun step 3 and check point by point, in the file, that each one was applied. Anything missed, change it yourself with the reviewer's replacement text.
+   - No BLOCKER: go to step 6. Don't review again.
+   - One or more BLOCKERs: ask the reviewer (same agent if you can, else a new one) for a **second look**. Give it the BLOCKER list and `git diff` of the fixes. It checks those and nothing else.
+   - A BLOCKER still NOT RESOLVED: use its replacement text, or cut the sentence, its table row, FAQ item or picture. If the cut leaves a gap, close it with a sentence your sources support. Rerun step 3, then go to step 6. There is no third look.
+   - Reviewer and writer disagree about a fact: open the source yourself. If it's clear, keep what the source says. If not, cut the claim.
+   - Park only for the reasons in the failure path of `ops/guides/publish-daily.md`.
 6. **Link back.** In up to 3 older live guides, find a sentence that already mentions this topic and turn the existing words into a link to `/guides/<slug>/`. Change nothing else in those files except `updatedDate`. Skip it when no sentence fits. Never link inside a heading, caption or existing link.
-7. **Hand over.** `npm run guide:publish -- <slug> --dry-run` must pass. In the cloud routine, the runbook then publishes. In a local session, stop here and show Jawad the result.
+7. **Hand over.** `npm run guide:publish -- <slug> --dry-run` must pass. In the cloud routine, the runbook then publishes. In a local session, stop here and show Jawad the result, unless Jawad has already said to publish this guide.
 
 ## Never
 - Change a guide's `title`, `topic` or file name.

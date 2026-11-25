@@ -628,3 +628,13 @@ Files: `scripts/publish-guide.mjs`, `scripts/guides/publish-guide-selftest.mjs`.
 Acceptance:
 - [ ] `npm run check` green (it runs the self-tests)
 - [ ] no new dependency; no loosening of any existing refusal
+
+## T-031 — Guide review: fix or cut, then publish
+Status: **done** (2026-11-25) · Branch `task/031-review-fix-then-publish` · Control files only (CC)
+Why: three runs on 2026-11-25 wrote complete articles that passed lint and sources, then parked them over one-line wording points (tokens 78/80 and 64/78, context-window 74/82/84). Each round was a new full review that found new points, and any single point counted as a HARD fail. The pass-mark change in T-028 didn't help, because the score wasn't what blocked. One blocker (the tokens price) was the reviewer's own mistake.
+- `guide-reviewer`: one full review; BLOCKER (false with a quoted source, invented, copied, content rule, bad picture, failed gate) or FIX (everything else); every point carries its replacement text; the score is information only; a second look covers only blockers and changed lines.
+- `write-guide` step 5: every point is applied; what stays disputed is cut; then publish.
+- `publish-daily.md`: park only for a failed gate, a blocker that can't be cut, or a topic with no reliable sources.
+- `guide-writer`: hedge where sources differ, explain price tiers, no notes to the editor.
+- `parked.json` cleared; review notes added for `tokens` and `context-window`.
+Unchanged: publish guard, lint, `npm run check`, content rules.

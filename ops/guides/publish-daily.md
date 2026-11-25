@@ -48,7 +48,14 @@ npm run guide:verify -- <slug>     # waits up to 8 minutes for the Cloudflare bu
 ```
 If it doesn't go live, run it once more. Still not live: report `PUBLISH_FAILED [5]` with the sha and what it printed. Don't push anything else.
 
-## Failure path (after 2 review rounds, or a gate you can't satisfy honestly)
+## Failure path
+Only for one of these:
+- `guide:lint`, `guide:sources`, `npm run check` or `guide:publish` still refuses after two honest tries;
+- a BLOCKER can't be cut without taking the article under 1,200 words or losing a `mustCover` point;
+- the topic can't be done honestly (no reliable sources).
+
+Review points about wording, tone, structure or a claim nobody could verify are never a reason to park: fix or cut them and publish (SKILL.md step 5). A low score isn't a reason either.
+
 Keep the article: the next attempt fixes it instead of starting again. Run these in this order.
 ```bash
 mkdir -p ops/guides/drafts/<slug>
@@ -72,7 +79,7 @@ PUBLISH_RESULT: published | parked | nothing_to_do | paused
 slug: <slug>
 url: https://dataceam.com/guides/<slug>/
 commit: <sha>
-words: <n>   sources: <n>   images: <n>   review: <score>, <rounds> round(s)
+words: <n>   sources: <n>   images: <n>   review: <verdict>, <n> blockers, <n> fixes, all applied or cut
 live check: <LIVE line>
 notes: <one line>
 ```
