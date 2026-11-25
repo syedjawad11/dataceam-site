@@ -31,7 +31,7 @@ The **light** row (Home, Career track: AI Engineer, Referral disclosure) is the 
    - Repos
    - AI jobs
    - For companies (a separate audience, an outlined button on the right of the header)
-   AI news comes later, and only once there is daily content for it. Never launch an empty section.
+   **No news section on the website** (Jawad, 22 Nov 2026): news reels never link to the site. Never launch an empty section.
 4. **Voice: "we, Dataceam" everywhere.** The name "Syed Jawad" appears only on the referral disclosure page.
    - Legal exception: the privacy policy must keep naming the data controller. Leave that as it is.
 5. **The full referral disclosure moves out of the footer** into its own page, `/disclosure/`.
@@ -467,7 +467,6 @@ The social workspace sits next to this repo: `../social-media-posting/`.
 - Newsletter sign-up: provider choice; privacy policy update.
 - Cloudflare Web Analytics token (`PUBLIC_CF_BEACON_TOKEN`), needed to measure the short links.
 - Facebook Page URL for the footer and `sameAs`.
-- `/news/` once daily news reels run.
 - Insights articles to "we".
 
 ---
