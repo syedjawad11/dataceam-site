@@ -49,7 +49,7 @@ Brief: `ops/REDESIGN-2026-11.md` (approved by Jawad, 2026-11-21). Tasks T-019 to
 - T-025 + T-026: long-form guide template, infographic generator (3 themes, 8 layouts), guide lint, publish guard, enforced trailing slashes, `/llms.txt`.
 - 14 guides are written and published by two cloud routines (01:00 and 14:00 Malta), one article each: runbook `ops/guides/publish-daily.md`, skill `.claude/skills/write-guide/`, queue `ops/guides/queue.json`, log `ops/guides/log.md`.
 - Off switch: commit `ops/guides/PAUSED`. When the queue is empty the routines report `nothing_to_do`; add topics to the queue (plus a `status: soon` guide file) to continue.
-- Reviewer pass mark: 75 with no HARD fail (Jawad, 2026-11-25, T-028; was 85).
+- Review (Jawad, 2026-11-25, T-031, replaces the pass mark): one full review, every point fixed or cut, then publish. Only BLOCKERs need a second look. Parking is only for failed gates, a blocker that can't be cut, or no reliable sources.
 - T-029: /guides/ is titled "AI guides, made simple"; the words "plain English" are not used anywhere on the site (Jawad, 2026-11-25).
 - Parked articles are kept in `ops/guides/drafts/<slug>/` (article, infographic JSON, reviewer report), and the next attempt fixes that draft (T-030, Jawad 2026-11-25). The repo is public, so drafts can be read on GitHub; they are never on the site.
 - Failed articles are parked in `ops/guides/parked.json`; after 2 attempts a guide is skipped until its entry is removed.

@@ -160,7 +160,10 @@
         "Make no claim that compares languages or scripts (such as Spanish or Russian against English) unless a source you cite says it. A token count you worked out with tiktoken must name the encoding (o200k_base) and be presented as that one example.",
         "'strawberry' is three tokens on its own (st, raw, berry) but one token with a space in front of it, inside a sentence. Say which case you mean.",
         "Till analogy: say where it stops working. A till has one price per code; AI providers charge one rate for tokens going in and another for tokens coming out. Figure and text must agree.",
-        "Explain 'encoding', 'endpoint' and 'script' on first use, or leave the words out."
+        "Explain 'encoding', 'endpoint' and 'script' on first use, or leave the words out.",
+        "Letter counting: tokens are one reason models miscount letters, not the only one. Say 'one reason' or 'part of the reason'. Fu et al. (arXiv 2412.18626): earlier work linked the problem to tokenization, to limits of attention, or to missing character-level training data. They found models can recognize letters but not count them, and errors were most strongly linked to letters that appear more than once in a word; how common the word is had no significant effect.",
+        "Explain Standard and Batch in a few words, or name only the Standard price. Leave out the Fast and Flex tiers.",
+        "No 'we ran' or 'we tested', and no notes to the editor."
       ],
       "seedSources": [
         {
@@ -289,6 +292,12 @@
           "title": "Claude docs: Glossary (tokens, context window, temperature, RAG)",
           "url": "https://platform.claude.com/docs/en/about-claude/glossary"
         }
+      ],
+      "reviewNotes": [
+        "'Do bigger windows give better answers?': answer 'Not always' or 'Not by themselves', never a flat 'No'. Bigger windows help when the material is needed.",
+        "Forgetting has more than one cause: older text dropped, text summarized, or details in the middle missed although still in the window. What happens at the limit depends on the app: write 'in many apps', not 'always'.",
+        "ChatGPT memory: deleting a chat doesn't necessarily delete a saved memory made from it (OpenAI help page). Saved memories are deleted in settings.",
+        "Bar chart title must be true of its numbers. Keep to 5-8 H2s. Mention parameters in one sentence (leaveTo)."
       ]
     },
     {
