@@ -107,7 +107,16 @@ export function parsePorcelain(output) {
 const escapeRegex = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 function pathKind(rel, slug, mode) {
-  if (mode === 'park') return rel === PARKED_PATH ? 'parked' : null;
+  if (mode === 'park') {
+    if (rel === PARKED_PATH) return 'parked';
+    if (
+      ['article.md', 'infographics.json', 'review.md'].some(
+        (name) => rel === `ops/guides/drafts/${slug}/${name}`,
+      )
+    )
+      return 'draft';
+    return null;
+  }
   if (GUIDE_MD.test(rel)) return 'md';
   if (
     new RegExp(
@@ -184,7 +193,7 @@ export function inspectChanges(root, slug, mode) {
   }
   if (bad.length)
     throw new Refusal(
-      `refusing to publish, these changes are not allowed:\n- ${bad.join('\n- ')}`,
+      `refusing to ${mode === 'park' ? 'park' : 'publish'}, these changes are not allowed:\n- ${bad.join('\n- ')}`,
     );
   for (const entry of entries) {
     assertPlainFile(root, entry.path, entry.y === 'M');
@@ -195,12 +204,51 @@ export function inspectChanges(root, slug, mode) {
         throw new Refusal(`${entry.path} is larger than ${LIMITS.png} bytes.`);
       if (!readFileSync(full).subarray(0, 8).equals(PNG_MAGIC))
         throw new Refusal(`${entry.path} is not a PNG file.`);
-    } else if (entry.kind === 'json' && size > LIMITS.json)
+    } else if (
+      (entry.kind === 'json' ||
+        (entry.kind === 'draft' && entry.path.endsWith('.json'))) &&
+      size > LIMITS.json
+    )
       throw new Refusal(`${entry.path} is too large.`);
-    else if (entry.kind === 'md' && size > LIMITS.md)
+    else if (
+      (entry.kind === 'md' ||
+        (entry.kind === 'draft' && entry.path.endsWith('.md'))) &&
+      size > LIMITS.md
+    )
       throw new Refusal(`${entry.path} is too large.`);
+    if (entry.kind === 'draft') validateDraft(root, entry.path, slug);
   }
   return entries;
+}
+
+function validateDraft(root, rel, slug) {
+  const text = readFileSync(path.join(root, rel), 'utf8');
+  if (rel.endsWith('/article.md')) {
+    const guidePath = `src/content/guides/${slug}.md`;
+    const headText = showHead(root, guidePath);
+    if (headText === null)
+      throw new Refusal(
+        `${guidePath} does not exist in HEAD: cannot park ${rel}.`,
+      );
+    const before = parseGuideText(headText, `${guidePath} (HEAD)`);
+    const article = parseGuideText(text, rel);
+    if (article.fm.status !== 'live')
+      throw new Refusal(`${rel}: frontmatter status must be "live".`);
+    for (const key of ['title', 'topic']) {
+      if (article.fm[key] !== before.fm[key])
+        throw new Refusal(
+          `${rel}: frontmatter ${key} must match ${guidePath} in HEAD.`,
+        );
+    }
+  } else if (rel.endsWith('/infographics.json')) {
+    try {
+      if (JSON.parse(text)?.slug !== slug) throw new Error('slug mismatch');
+    } catch {
+      throw new Refusal(`${rel} must be valid JSON with "slug": "${slug}".`);
+    }
+  } else if (!text.trim()) {
+    throw new Refusal(`${rel} must not be empty.`);
+  }
 }
 
 function checkLogAndParked(root, entries) {
@@ -671,20 +719,23 @@ export async function parkGuide({
   const attempts = Number(parked[slug]?.attempts ?? 0) + 1;
   parked[slug] = { attempts, reason: text, date: hooks.today() };
   if (dryRun) {
-    log(`dry run OK: would park "${slug}" (attempt ${attempts}): ${text}`);
+    const paths = [...new Set([PARKED_PATH, ...entries.map((e) => e.path)])];
+    log(
+      `dry run OK: would park "${slug}" (attempt ${attempts}): ${text}\n- ${paths.join('\n- ')}`,
+    );
     return null;
   }
   writeFileSync(
     path.join(root, PARKED_PATH),
     `${JSON.stringify(parked, null, 2)}\n`,
   );
-  inspectChanges(root, slug, 'park');
+  const final = inspectChanges(root, slug, 'park');
   return commitAndPush({
     root,
     slug,
     mode: 'park',
     message: `ops: park guide ${slug}`,
-    paths: [PARKED_PATH],
+    paths: final.map((e) => e.path),
     hooks,
     log,
   });

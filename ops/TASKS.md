@@ -595,13 +595,13 @@ Test run 2026-11-24: `what-is-an-llm` written, reviewed (76, 83, then 88 PASS), 
 - Removed "Coming soon" text from the first article; template forbids it. No Maltese places in examples.
 
 ## T-028 — Guide pass mark 75, notes for the parked "tokens" guide
-Status: in review, waiting for Jawad's approve · Branch `task/028-guide-pass-mark` · Control files only (CC)
+Status: **done** (PR #28, 2026-11-25) · Branch `task/028-guide-pass-mark` · Control files only (CC)
 01:00 run on 2026-11-25: `tokens` written, reviewed twice (78, 80), parked (a9abd4b). Nothing published, draft discarded.
 - Reviewer pass mark 85 → 75 (Jawad, 2026-11-25). A HARD fail still blocks publishing, and the limit stays at 2 review rounds.
 - `reviewNotes` on the `tokens` queue entry, so the retry doesn't repeat the problems. Note: the reviewer's price finding looks wrong ($1/$5 is the Standard rate of gpt-6.1-terra; that row is collapsed on the page).
 
 ## T-029 — "AI guides, made simple": remove "plain English" from the site
-Status: in review, waiting for Jawad's approve · Branch `task/029-guides-made-simple` · Codex
+Status: **done** (PR #29, 2026-11-25) · Branch `task/029-guides-made-simple` · Codex
 Goal: the words "plain English" / "Plain-English" appear nowhere on the built site (Jawad, 2026-11-25). Copy changes only.
 1. `src/pages/guides/index.astro`: h1 "AI guides, made simple"; title "AI Guides Made Simple | Dataceam"; `intro` (also the meta description) "How AI works, explained with pictures, examples and sources. No technical background needed."
 2. `src/pages/guides/topic/[topic].astro`: title `${label}: AI Guides Made Simple | Dataceam`.
@@ -613,3 +613,18 @@ Don't touch: `ops/`, `content/`, `src/content/`, `.claude/`, scripts, fixtures, 
 Acceptance:
 - [ ] `npm run check` green; `npx playwright test tests/learning.spec.ts` green
 - [ ] no match for "plain english" or "plain-english" (any case) in `dist/`
+
+## T-030 — Keep parked articles
+Status: **done** (2026-11-25) · Branch `task/030-keep-parked-drafts` · Codex (script), CC (runbook, skill, CLAUDE.md)
+Goal: parking a guide keeps its article, so the next attempt fixes it instead of writing a new one (Jawad, 2026-11-25). The routine copies the files into `ops/guides/drafts/<slug>/` itself; `--park` only has to accept and commit them.
+Files: `scripts/publish-guide.mjs`, `scripts/guides/publish-guide-selftest.mjs`. Nothing else.
+1. In park mode, also allow exactly these three paths (kind `draft`), new or modified: `ops/guides/drafts/<slug>/article.md`, `ops/guides/drafts/<slug>/infographics.json`, `ops/guides/drafts/<slug>/review.md`. `<slug>` is the slug being parked. Any other path still refuses, including another slug's draft folder, other file names, subfolders, and edits under `src/`.
+2. Publish mode is unchanged: a changed draft path refuses there.
+3. Same file safety as other kinds: plain file, no symlink (file or any parent folder), no executable bit, tracked file must be 100644, deletions and staged or renamed entries refuse. Size limits: `.md` 600,000 bytes, `.json` 300,000 bytes.
+4. Validate before committing: `article.md` must have readable frontmatter whose `status` is `live`, whose `title` and `topic` equal those of `src/content/guides/<slug>.md` in HEAD (which must exist in HEAD). `infographics.json` must be valid JSON with `"slug": "<slug>"`. `review.md` must not be empty. Clear refusal messages.
+5. `--park` commits `parked.json` plus whichever draft files changed, in one commit. Parking with no draft files works as today. `--park --dry-run` validates the drafts, lists the files it would commit and changes nothing.
+6. The refusal text in `inspectChanges` says "refusing to publish"; in park mode say "refusing to park".
+7. Self-tests: park with all three files; with only some; second park that modifies a tracked draft; park with a push race (rebase) keeps the drafts; refusals for other slug, other file name, subfolder, symlinked file, symlinked drafts folder, executable bit, oversized file, deleted draft, article status soon, changed title, changed topic, bad frontmatter, bad JSON, wrong slug in JSON, empty review; publish mode refuses a draft change; dry run changes nothing. All existing self-tests stay and pass.
+Acceptance:
+- [ ] `npm run check` green (it runs the self-tests)
+- [ ] no new dependency; no loosening of any existing refusal

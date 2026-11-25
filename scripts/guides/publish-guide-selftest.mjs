@@ -759,6 +759,30 @@ export async function runSelfTest({ publishGuide, parkGuide, parsePorcelain }) {
   }
 
   // ---- park ----------------------------------------------------------------------
+  const draftPath = (name) => `ops/guides/drafts/${SLUG}/${name}`;
+  const draftContents = {
+    'article.md': md(SLUG, 'live'),
+    'infographics.json': JSON.stringify({ slug: SLUG, images: [] }),
+    'review.md': '# Review\n\nReadability needs another pass.\n',
+  };
+  const writeDrafts = (dir, names = Object.keys(draftContents)) => {
+    for (const name of names) write(dir, draftPath(name), draftContents[name]);
+  };
+  const park = (dir, opts = {}) =>
+    parkGuide({
+      root: dir,
+      slug: SLUG,
+      reason: 'readability kept failing',
+      hooks: makeHooks(),
+      log,
+      ...opts,
+    });
+  const committedFiles = (dir) =>
+    sh(dir, ['show', '--name-only', '--format=', 'HEAD'])
+      .trim()
+      .split('\n')
+      .sort();
+
   {
     resetOrigin();
     const dir = clone();
@@ -786,6 +810,316 @@ export async function runSelfTest({ publishGuide, parkGuide, parsePorcelain }) {
     assert.equal(parked.tokens.date, TODAY);
     console.log('  park OK: attempts 1 -> 2, one file committed');
   }
+  for (const names of [
+    Object.keys(draftContents),
+    ['article.md'],
+    ['infographics.json', 'review.md'],
+  ]) {
+    resetOrigin();
+    const dir = clone();
+    writeDrafts(dir, names);
+    const before = sh(dir, ['rev-parse', 'HEAD']).trim();
+    const sha = await park(dir);
+    assert.equal(sh(origin, ['rev-parse', 'main']).trim(), sha);
+    assert.equal(sh(dir, ['rev-parse', 'HEAD^']).trim(), before);
+    assert.deepEqual(
+      committedFiles(dir),
+      ['ops/guides/parked.json', ...names.map(draftPath)].sort(),
+    );
+    for (const name of names)
+      assert.equal(
+        sh(dir, ['show', `HEAD:${draftPath(name)}`]),
+        draftContents[name],
+      );
+    assert.equal(sh(dir, ['status', '--porcelain']).trim(), '');
+
+    if (names.length === 3) {
+      // A later attempt edits the already tracked article and retains its companions.
+      const revised = `${draftContents['article.md']}\nRevised article.\n`;
+      write(dir, draftPath('article.md'), revised);
+      const second = await park(dir);
+      assert.equal(sh(origin, ['rev-parse', 'main']).trim(), second);
+      assert.equal(sh(dir, ['rev-parse', 'HEAD^']).trim(), sha);
+      assert.deepEqual(
+        committedFiles(dir),
+        [draftPath('article.md'), 'ops/guides/parked.json'].sort(),
+      );
+      assert.equal(
+        sh(dir, ['show', `HEAD:${draftPath('article.md')}`]),
+        revised,
+      );
+      for (const name of ['infographics.json', 'review.md'])
+        assert.equal(
+          sh(dir, ['show', `HEAD:${draftPath(name)}`]),
+          draftContents[name],
+        );
+      assert.equal(
+        JSON.parse(
+          readFileSync(path.join(dir, 'ops/guides/parked.json'), 'utf8'),
+        ).tokens.attempts,
+        3,
+      );
+    }
+  }
+  console.log(
+    '  park drafts: all, subsets and a second tracked edit committed',
+  );
+
+  {
+    resetOrigin();
+    const dir = clone();
+    writeDrafts(dir);
+    let raced = 0;
+    const hooks = makeHooks({
+      beforePush() {
+        raced += 1;
+        if (raced === 1) {
+          const other = clone();
+          write(other, 'README.md', 'park race\n');
+          sh(other, ['add', '-A']);
+          sh(other, ['commit', '-q', '-m', 'park race']);
+          sh(other, ['push', '-q', 'origin', 'main']);
+        }
+      },
+    });
+    const sha = await park(dir, { hooks });
+    assert.equal(raced, 2);
+    assert.equal(sh(origin, ['rev-parse', 'main']).trim(), sha);
+    assert.equal(
+      sh(dir, ['log', '-1', '--format=%s', 'HEAD^']).trim(),
+      'park race',
+    );
+    assert.deepEqual(
+      committedFiles(dir),
+      [
+        'ops/guides/parked.json',
+        ...Object.keys(draftContents).map(draftPath),
+      ].sort(),
+    );
+    for (const [name, content] of Object.entries(draftContents))
+      assert.equal(sh(dir, ['show', `HEAD:${draftPath(name)}`]), content);
+    assert.equal(sh(dir, ['status', '--porcelain']).trim(), '');
+    console.log('  park push race: rebase retained all drafts');
+  }
+
+  {
+    resetOrigin();
+    const dir = clone();
+    writeDrafts(dir);
+    const before = sh(dir, ['rev-parse', 'HEAD']).trim();
+    const remote = sh(origin, ['rev-parse', 'main']).trim();
+    const status = sh(dir, [
+      'status',
+      '--porcelain=v1',
+      '-z',
+      '--untracked-files=all',
+    ]);
+    const paths = [
+      'ops/guides/parked.json',
+      ...Object.keys(draftContents).map(draftPath),
+    ];
+    const contents = paths.map((rel) => readFileSync(path.join(dir, rel)));
+    const messages = [];
+    assert.equal(
+      await park(dir, { dryRun: true, log: (line) => messages.push(line) }),
+      null,
+    );
+    assert.equal(sh(dir, ['rev-parse', 'HEAD']).trim(), before);
+    assert.equal(sh(origin, ['rev-parse', 'main']).trim(), remote);
+    assert.equal(
+      sh(dir, ['status', '--porcelain=v1', '-z', '--untracked-files=all']),
+      status,
+    );
+    assert.equal(sh(dir, ['diff', '--cached', '--name-only']), '');
+    for (const [i, rel] of paths.entries()) {
+      assert.deepEqual(readFileSync(path.join(dir, rel)), contents[i]);
+      assert.ok(messages[0].includes(`\n- ${rel}`), `dry run lists ${rel}`);
+    }
+    console.log(
+      '  park dry run: files listed, contents/index/HEAD/origin unchanged',
+    );
+  }
+
+  const trackDrafts = (dir) => {
+    writeDrafts(dir);
+    sh(dir, ['add', '--', `ops/guides/drafts/${SLUG}`]);
+    sh(dir, ['commit', '-q', '-m', 'existing drafts']);
+    sh(dir, ['push', '-q', 'origin', 'main']);
+  };
+  const parkRefuses = async (name, setup, pattern, opts = {}) => {
+    resetOrigin();
+    const dir = clone();
+    setup(dir);
+    const before = sh(dir, ['rev-parse', 'HEAD']).trim();
+    const remote = sh(origin, ['rev-parse', 'main']).trim();
+    const parked = readFileSync(
+      path.join(dir, 'ops/guides/parked.json'),
+      'utf8',
+    );
+    const index = sh(dir, ['diff', '--cached', '--raw']);
+    await assert.rejects(
+      park(dir, opts),
+      (error) => {
+        assert.match(error.message, pattern, `${name}: ${error.message}`);
+        return true;
+      },
+      name,
+    );
+    assert.equal(sh(dir, ['rev-parse', 'HEAD']).trim(), before, name);
+    assert.equal(sh(origin, ['rev-parse', 'main']).trim(), remote, name);
+    assert.equal(sh(dir, ['diff', '--cached', '--raw']), index, name);
+    assert.equal(
+      readFileSync(path.join(dir, 'ops/guides/parked.json'), 'utf8'),
+      parked,
+      name,
+    );
+  };
+  for (const rel of [
+    'ops/guides/drafts/nextone/article.md',
+    draftPath('other.md'),
+    draftPath('subfolder/article.md'),
+  ]) {
+    await parkRefuses(
+      `park out-of-scope draft ${rel}`,
+      (dir) => write(dir, rel, md(SLUG, 'live')),
+      /refusing to park.*not an allowed path/s,
+    );
+  }
+  for (const [name, setup, pattern] of [
+    [
+      'symlinked draft file',
+      (dir) => {
+        writeDrafts(dir, ['review.md']);
+        symlinkSync('/etc/hosts', path.join(dir, draftPath('article.md')));
+      },
+      /article\.md.*symlink/s,
+    ],
+    [
+      'symlinked drafts folder',
+      (dir) => symlinkSync(seed, path.join(dir, 'ops/guides/drafts')),
+      /refusing to park.*drafts.*not an allowed path/s,
+    ],
+    [
+      'executable draft',
+      (dir) => {
+        writeDrafts(dir);
+        chmodSync(path.join(dir, draftPath('article.md')), 0o755);
+      },
+      /article\.md.*executable bit/s,
+    ],
+    [
+      'tracked draft not 100644 in HEAD',
+      (dir) => {
+        writeDrafts(dir);
+        chmodSync(path.join(dir, draftPath('article.md')), 0o755);
+        sh(dir, ['add', '-A']);
+        sh(dir, ['commit', '-q', '-m', 'executable draft fixture']);
+        sh(dir, ['push', '-q', 'origin', 'main']);
+        chmodSync(path.join(dir, draftPath('article.md')), 0o644);
+      },
+      /article\.md.*not a plain 100644 file in HEAD/s,
+    ],
+    [
+      'deleted draft',
+      (dir) => {
+        trackDrafts(dir);
+        unlinkSync(path.join(dir, draftPath('review.md')));
+      },
+      /refusing to park.*review\.md.*deleted/s,
+    ],
+    [
+      'staged draft',
+      (dir) => {
+        writeDrafts(dir);
+        sh(dir, ['add', '--', draftPath('article.md')]);
+      },
+      /something is already staged/,
+    ],
+    [
+      'renamed draft',
+      (dir) => {
+        trackDrafts(dir);
+        sh(dir, ['mv', draftPath('article.md'), draftPath('other.md')]);
+      },
+      /something is already staged/,
+    ],
+    [
+      'article missing from HEAD',
+      (dir) => {
+        sh(dir, ['rm', `src/content/guides/${SLUG}.md`]);
+        sh(dir, ['commit', '-q', '-m', 'missing guide fixture']);
+        sh(dir, ['push', '-q', 'origin', 'main']);
+        writeDrafts(dir, ['article.md']);
+      },
+      /src\/content\/guides\/tokens\.md does not exist in HEAD/,
+    ],
+  ])
+    await parkRefuses(name, setup, pattern);
+
+  for (const name of Object.keys(draftContents)) {
+    await parkRefuses(
+      `oversized ${name}`,
+      (dir) =>
+        write(
+          dir,
+          draftPath(name),
+          'x'.repeat(name.endsWith('.json') ? 300_001 : 600_001),
+        ),
+      /too large/,
+    );
+  }
+  for (const [name, content, pattern] of [
+    ['article.md', md(SLUG, 'soon'), /article\.md.*status must be "live"/s],
+    [
+      'article.md',
+      md(SLUG, 'live', { title: 'Changed title' }),
+      /article\.md.*title must match.*HEAD/s,
+    ],
+    [
+      'article.md',
+      md(SLUG, 'live', { topic: 'hardware' }),
+      /article\.md.*topic must match.*HEAD/s,
+    ],
+    [
+      'article.md',
+      '---\ntitle: [broken\n---\n',
+      /article\.md has unreadable frontmatter/,
+    ],
+    ['article.md', 'No frontmatter\n', /article\.md.*status must be "live"/s],
+    [
+      'infographics.json',
+      '{broken',
+      /infographics\.json must be valid JSON with "slug": "tokens"/,
+    ],
+    [
+      'infographics.json',
+      '{"slug":"nextone"}',
+      /infographics\.json must be valid JSON with "slug": "tokens"/,
+    ],
+    ['review.md', '', /review\.md must not be empty/],
+    ['review.md', ' \n\t', /review\.md must not be empty/],
+  ]) {
+    const setup = (dir) => write(dir, draftPath(name), content);
+    await parkRefuses(`invalid draft ${name}: ${content}`, setup, pattern);
+    await parkRefuses(
+      `dry run invalid draft ${name}: ${content}`,
+      setup,
+      pattern,
+      { dryRun: true },
+    );
+  }
+  await prove(
+    'publish refuses a draft change',
+    (dir) => {
+      goLive(dir);
+      writeDrafts(dir, ['article.md']);
+    },
+    /refusing to publish.*drafts\/tokens\/article\.md.*not an allowed path/s,
+  );
+  console.log(
+    '  park draft refusals and dry-run validation proven; publish still refuses drafts',
+  );
+
   for (const [name, setup, pattern] of [
     [
       'park with other change',
