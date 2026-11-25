@@ -45,6 +45,7 @@ The lint blocks the obvious ones (`ops/guides/banned-phrases.json`). Passing the
 ## Honesty
 - Facts about models, prices, limits and products change. Say the date or "as of <month year>", link the official page, and prefer explanations that won't go out of date.
 - Separate fact from opinion. Say when something is disputed or unknown.
+- Never use the words "plain English" in a guide, its title or its description (Jawad, 2026-11-25).
 - Don't tell the reader AI "thinks", "knows" or "understands" without explaining what you mean.
 - Company and product names only as examples or sources. No rankings of products, no endorsements, no claims of partnership.
 

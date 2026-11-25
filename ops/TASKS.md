@@ -599,3 +599,17 @@ Status: in review, waiting for Jawad's approve · Branch `task/028-guide-pass-ma
 01:00 run on 2026-11-25: `tokens` written, reviewed twice (78, 80), parked (a9abd4b). Nothing published, draft discarded.
 - Reviewer pass mark 85 → 75 (Jawad, 2026-11-25). A HARD fail still blocks publishing, and the limit stays at 2 review rounds.
 - `reviewNotes` on the `tokens` queue entry, so the retry doesn't repeat the problems. Note: the reviewer's price finding looks wrong ($1/$5 is the Standard rate of gpt-6.1-terra; that row is collapsed on the page).
+
+## T-029 — "AI guides, made simple": remove "plain English" from the site
+Status: in review, waiting for Jawad's approve · Branch `task/029-guides-made-simple` · Codex
+Goal: the words "plain English" / "Plain-English" appear nowhere on the built site (Jawad, 2026-11-25). Copy changes only.
+1. `src/pages/guides/index.astro`: h1 "AI guides, made simple"; title "AI Guides Made Simple | Dataceam"; `intro` (also the meta description) "How AI works, explained with pictures, examples and sources. No technical background needed."
+2. `src/pages/guides/topic/[topic].astro`: title `${label}: AI Guides Made Simple | Dataceam`.
+3. `src/lib/learning.ts`: in the 5 `topicLabels` descriptions, "Plain-English guides to" → "Simple guides to". Nothing else in them changes.
+4. `src/pages/index.astro`: guides blurb "Simple explainers of how AI actually works, each with pictures, examples and its sources."
+5. `src/pages/llms.txt.ts`: summary "> Free, easy-to-follow AI-learning guides, plus referral information for AI-training work and data licensing. Dataceam is a referrer only."
+6. `tests/learning.spec.ts`: expect the new h1. Update any other test that asserts the old copy.
+Don't touch: `ops/`, `content/`, `src/content/`, `.claude/`, scripts, fixtures, `package.json`.
+Acceptance:
+- [ ] `npm run check` green; `npx playwright test tests/learning.spec.ts` green
+- [ ] no match for "plain english" or "plain-english" (any case) in `dist/`

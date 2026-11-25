@@ -38,3 +38,4 @@ Escalate to Jawad if first-pass rate < ~60% or the same failure type repeats 3+ 
 | 2026-11-21 | T-021 | 2 | check green; Playwright 62/62; gitleaks clean | gpt-6.1-sol, high. All 7 review fixes applied; Home lists 5 latest guides; `/free/<kw>/` variants | ~2m | pass |
 | 2026-11-21 | T-024 | 1 | check green; Playwright 62/62 | gpt-6.1-sol, high. Footer links grey (--color-body), no underline; ink on hover/focus | ~2m | pass |
 | 2026-11-24 | T-025, T-026 | 0 | none | gpt-6.1-sol: usage limit reached (resets 21:33 Malta); no changes. Jawad allowed Claude subagents to write both tasks, one time. CC reviewed: check green, Playwright 76/76 (1 skip, needs a live guide), visual review of 3 infographic themes | <1m | n/a |
+| 2026-11-25 | T-029 | 1 | check green and learning tests 29/29 (re-run by CC; Codex sandbox blocks localhost); no "plain English" in dist | gpt-6.1-sol, high. Copy only, matches spec | ~1m | pass |

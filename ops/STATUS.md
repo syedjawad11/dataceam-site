@@ -50,6 +50,7 @@ Brief: `ops/REDESIGN-2026-11.md` (approved by Jawad, 2026-11-21). Tasks T-019 to
 - 14 guides are written and published by two cloud routines (01:00 and 14:00 Malta), one article each: runbook `ops/guides/publish-daily.md`, skill `.claude/skills/write-guide/`, queue `ops/guides/queue.json`, log `ops/guides/log.md`.
 - Off switch: commit `ops/guides/PAUSED`. When the queue is empty the routines report `nothing_to_do`; add topics to the queue (plus a `status: soon` guide file) to continue.
 - Reviewer pass mark: 75 with no HARD fail (Jawad, 2026-11-25, T-028; was 85).
+- T-029: /guides/ is titled "AI guides, made simple"; the words "plain English" are not used anywhere on the site (Jawad, 2026-11-25).
 - Failed articles are parked in `ops/guides/parked.json`; after 2 attempts a guide is skipped until its entry is removed.
 - Codex/CC: run `npm install` through npm 10 (`npx npm@10.9 install`) so the lockfile works on Cloudflare and in the cloud routine.
 

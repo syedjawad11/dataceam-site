@@ -15,17 +15,17 @@ const topics = (Object.keys(topicLabels) as Topic[]).filter((topic) =>
   guides.some(({ data }) => data.topic === topic),
 );
 const intro =
-  'Plain-English guides to how AI works, with pictures, examples and sources. No technical background needed.';
+  'How AI works, explained with pictures, examples and sources. No technical background needed.';
 ---
 
 <Base
   page="guides"
-  title="AI Guides in Plain English | Dataceam"
+  title="AI Guides Made Simple | Dataceam"
   description={intro}
   noindex={!isLearningPageIndexable(Astro.url.pathname)}
 >
   <header class="learning-stack">
-    <h1>AI guides in plain English</h1>
+    <h1>AI guides, made simple</h1>
     <p class="article-lede">{intro}</p>
   </header>
   <ul class="learning-grid learning-topics" aria-label="Guide topics">

@@ -41,26 +41,26 @@ export const topicLabels: Record<
   'llm-basics': {
     label: 'LLM basics',
     description:
-      'Plain-English guides to how large language models work: tokens, context windows, parameters, training and more.',
+      'Simple guides to how large language models work: tokens, context windows, parameters, training and more.',
   },
   'retrieval-rag': {
     label: 'Retrieval and RAG',
     description:
-      'Plain-English guides to embeddings and retrieval-augmented generation (RAG).',
+      'Simple guides to embeddings and retrieval-augmented generation (RAG).',
   },
   agents: {
     label: 'Agents',
     description:
-      'Plain-English guides to AI agents: what they are, how they act and where they go wrong.',
+      'Simple guides to AI agents: what they are, how they act and where they go wrong.',
   },
   'prompting-safety': {
     label: 'Prompting and safety',
     description:
-      'Plain-English guides to prompting, fine-tuning and prompt injection.',
+      'Simple guides to prompting, fine-tuning and prompt injection.',
   },
   hardware: {
     label: 'Hardware',
-    description: 'Plain-English guides to the chips and hardware that run AI.',
+    description: 'Simple guides to the chips and hardware that run AI.',
   },
 };
 
