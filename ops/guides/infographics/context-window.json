@@ -1,0 +1,58 @@
+{
+  "slug": "context-window",
+  "theme": "paper",
+  "images": [
+    {
+      "file": "cover",
+      "layout": "cover",
+      "title": "What is a context window?",
+      "highlight": "context window",
+      "kicker": "LLM basics",
+      "subtitle": "The amount of text an AI can hold in view at once, and what happens when it fills up.",
+      "icons": ["document", "chat", "brain"]
+    },
+    {
+      "file": "whiteboard-and-window",
+      "layout": "analogy",
+      "title": "A context window is a whiteboard with a fixed size",
+      "highlight": "fixed size",
+      "left": { "heading": "Ward whiteboard", "icon": "pencil" },
+      "right": { "heading": "Context window", "icon": "brain" },
+      "pairs": [
+        { "left": "The board never gets bigger", "right": "The token limit is set by the model" },
+        { "left": "Everything for this shift goes on it", "right": "Everything for this request goes in it" },
+        { "left": "Old notes get erased", "right": "Old text may be dropped or summarized" },
+        { "left": "Wiped notes can't be read", "right": "Text outside it can't be seen" }
+      ],
+      "note": "A model takes in the whole board again for every reply."
+    },
+    {
+      "file": "chat-sent-again",
+      "layout": "steps",
+      "title": "The chat is sent again on every turn",
+      "highlight": "sent again",
+      "items": [
+        { "icon": "chat", "label": "Turn 1: 1 piece", "text": "Message 1 goes in. Reply 1 comes out." },
+        { "icon": "layers", "label": "Turn 2: 3 pieces", "text": "Message 1, reply 1 and message 2 go in." },
+        { "icon": "layers", "label": "Turn 3: 5 pieces", "text": "All of that goes in, plus reply 2 and message 3." }
+      ],
+      "note": "The model keeps nothing between turns by itself."
+    },
+    {
+      "file": "window-filling-up",
+      "layout": "bars",
+      "title": "A pasted report can take nearly half the window",
+      "highlight": "nearly half",
+      "items": [
+        { "label": "Pasted report", "value": 900, "display": "900" },
+        { "label": "Model replies", "value": 600, "display": "600" },
+        { "label": "Hidden instructions", "value": 200, "display": "200" },
+        { "label": "Your rule", "value": 100, "display": "100" },
+        { "label": "Later questions", "value": 100, "display": "100" },
+        { "label": "Free space", "value": 100, "display": "100" }
+      ],
+      "note": "Tokens in a 2,000-token window, just before the next reply.",
+      "source": "Worked example in this guide, with made-up numbers"
+    }
+  ]
+}
