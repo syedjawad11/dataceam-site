@@ -1,0 +1,72 @@
+{
+  "slug": "embeddings",
+  "theme": "paper",
+  "images": [
+    {
+      "file": "cover",
+      "layout": "cover",
+      "title": "What are embeddings in AI?",
+      "highlight": "embeddings",
+      "kicker": "Retrieval basics",
+      "subtitle": "Lists of numbers that let a computer tell which pieces of text mean something similar.",
+      "icons": ["search", "list", "target"]
+    },
+    {
+      "file": "supermarket-map",
+      "layout": "analogy",
+      "title": "An embedding is a shelf position on a map of meaning",
+      "highlight": "map of meaning",
+      "left": { "heading": "Supermarket", "icon": "cart" },
+      "right": { "heading": "Embeddings", "icon": "list" },
+      "pairs": [
+        { "left": "Aisle and shelf number", "right": "A list of numbers" },
+        { "left": "Pasta sits near sauce", "right": "Similar meanings sit close" },
+        { "left": "Pasta is far from cat food", "right": "Unrelated meanings sit far apart" },
+        { "left": "Two numbers place a product", "right": "Hundreds or thousands place a text" }
+      ],
+      "note": "Where it stops: a shop has two or three dimensions. Real embeddings have hundreds or thousands."
+    },
+    {
+      "file": "keyword-vs-semantic",
+      "layout": "compare",
+      "title": "Meaning-based search finds what keywords miss",
+      "highlight": "what keywords miss",
+      "columns": [
+        {
+          "heading": "Keyword search",
+          "icon": "search",
+          "items": [
+            "Looks for the exact word you typed",
+            "Query: refund",
+            "Misses a page titled 'Get your money back'",
+            "Finds pages that repeat the word"
+          ]
+        },
+        {
+          "heading": "Semantic search",
+          "icon": "brain",
+          "items": [
+            "Compares the meaning of query and pages",
+            "Query: refund",
+            "Finds 'Get your money back' as a close match",
+            "Can also return loosely related pages"
+          ]
+        }
+      ],
+      "verdict": "Some search tools use both, since exact words help with names and codes."
+    },
+    {
+      "file": "text-to-dot",
+      "layout": "steps",
+      "title": "Text goes in, a dot on the map comes out",
+      "highlight": "a dot on the map",
+      "items": [
+        { "icon": "pencil", "label": "Your text", "text": "A phrase, a paragraph or a product description." },
+        { "icon": "brain", "label": "Embedding model", "text": "A model trained to place text on the map." },
+        { "icon": "list", "label": "List of numbers", "text": "For example 1,536 numbers, such as 0.02, -0.13, 0.07 and so on." },
+        { "icon": "target", "label": "A point on the map", "text": "Close points mean close meaning." }
+      ],
+      "note": "The numbers shown are made up. Real values come from the model."
+    }
+  ]
+}

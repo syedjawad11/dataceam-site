@@ -185,7 +185,7 @@ Most mistakes come from trusting one number too much, such as a rough estimate o
 1. Treating the three-quarters rule as exact. It is an average for English. Code, tables and other languages can be far from it.
 2. Looking only at the input price. The longer the answer, the more the output price matters, and hidden reasoning can count as output.
 3. Comparing two models by price per token alone. OpenAI warns that models can [split the same text differently](https://help.openai.com/en/articles/4936856-understanding-and-counting-tokens), so the cheaper rate may not give the cheaper job.
-4. Thinking that a token holds meaning by itself. It is only a piece with a number. Inside the model, it is turned into a longer list of numbers, called an embedding, that captures how it is used.
+4. Thinking that a token holds meaning by itself. It is only a piece with a number. Inside the model, it is turned into a longer list of numbers, called an [embedding](/guides/embeddings/), that captures how it is used.
 
 ## How to count the tokens in your own text
 
