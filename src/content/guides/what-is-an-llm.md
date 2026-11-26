@@ -62,7 +62,7 @@ sources:
     url: 'https://openai.com/index/why-language-models-hallucinate/'
     checked: 2026-11-24
 pubDate: 2026-11-24
-updatedDate: 2026-11-25
+updatedDate: 2026-11-26
 tracks:
   - ai-engineer
 ---
@@ -115,7 +115,7 @@ The design that made this practical is the transformer, introduced in [a 2017 pa
 
 ### From text finisher to helpful assistant
 
-A model trained only on next-word prediction would, if you typed a question, often just keep writing more questions. Chat models get a second round of training. People write examples of good answers, and then people rank several answers from best to worst. The model is adjusted toward the ranked-higher style. [The InstructGPT paper](https://arxiv.org/abs/2203.02155) describes this. In its tests, people preferred answers from a 1.3-billion-parameter model trained this way over the 175-billion-parameter GPT-3, which has more than 100 times as many parameters.
+A model trained only on next-word prediction would, if you typed a question, often just keep writing more questions. Chat models get a second round of [training](/guides/training/). People write examples of good answers, and then people rank several answers from best to worst. The model is adjusted toward the ranked-higher style. [The InstructGPT paper](https://arxiv.org/abs/2203.02155) describes this. In its tests, people preferred answers from a 1.3-billion-parameter model trained this way over the 175-billion-parameter GPT-3, which has more than 100 times as many parameters.
 
 ### A small glossary
 

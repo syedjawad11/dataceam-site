@@ -1,0 +1,101 @@
+{
+  "slug": "training",
+  "theme": "blueprint",
+  "images": [
+    {
+      "file": "cover",
+      "layout": "cover",
+      "title": "How is an AI model trained?",
+      "highlight": "trained",
+      "kicker": "LLM basics",
+      "subtitle": "From raw text to a chat assistant: practice, feedback and testing, step by step.",
+      "icons": [
+        "book",
+        "chip",
+        "check"
+      ]
+    },
+    {
+      "file": "three-stages",
+      "layout": "steps",
+      "title": "Three stages turn raw text into a chat assistant",
+      "highlight": "chat assistant",
+      "items": [
+        {
+          "icon": "book",
+          "label": "Pre-training",
+          "text": "The model learns language by guessing the next token in huge text collections."
+        },
+        {
+          "icon": "user",
+          "label": "Tuning for chat",
+          "text": "People write good answers and rank outputs, so it follows instructions."
+        },
+        {
+          "icon": "check",
+          "label": "Testing",
+          "text": "Teams run benchmarks and try to break it before release."
+        }
+      ],
+      "note": "After release the numbers are frozen. Chatting does not change them."
+    },
+    {
+      "file": "bookkeeper-and-model",
+      "layout": "analogy",
+      "title": "Training a model is like training a bookkeeper",
+      "highlight": "bookkeeper",
+      "left": {
+        "heading": "Trainee bookkeeper",
+        "icon": "user"
+      },
+      "right": {
+        "heading": "Language model",
+        "icon": "brain"
+      },
+      "pairs": [
+        {
+          "left": "Practices on millions of old ledgers",
+          "right": "Pre-training on trillions of tokens of text"
+        },
+        {
+          "left": "Guesses the next entry, sees the real one",
+          "right": "Guesses the next token, checks the real one"
+        },
+        {
+          "left": "A senior shows good work and ranks drafts",
+          "right": "Humans write answers and rank outputs"
+        },
+        {
+          "left": "Final review before client work",
+          "right": "Testing and safety checks before release"
+        }
+      ],
+      "note": "Where it stops: a trainee remembers and keeps learning. A released model is frozen."
+    },
+    {
+      "file": "training-step",
+      "layout": "cycle",
+      "title": "One training step is guess, compare, nudge",
+      "highlight": "guess, compare, nudge",
+      "center": "Run over trillions of tokens",
+      "items": [
+        {
+          "label": "Show text",
+          "text": "The model sees a piece of text with the next token hidden."
+        },
+        {
+          "label": "Guess",
+          "text": "It gives a score to every possible next token."
+        },
+        {
+          "label": "Compare",
+          "text": "Its score for the real next token shows how wrong it was."
+        },
+        {
+          "label": "Nudge",
+          "text": "Parameters shift slightly so that token scores a little higher."
+        }
+      ]
+    }
+  ]
+}

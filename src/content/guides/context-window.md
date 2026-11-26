@@ -57,7 +57,7 @@ sources:
     url: 'https://www.anthropic.com/research/effective-context-engineering-for-ai-agents'
     checked: 2026-11-25
 pubDate: 2026-11-25
-updatedDate: 2026-11-25
+updatedDate: 2026-11-26
 tracks:
   - ai-engineer
 ---
@@ -76,7 +76,7 @@ Picture the whiteboard on a hospital ward. It has a fixed size. Everything the t
 
 *Nurses may remember a note after it is wiped. A model has only what is still on the board.*
 
-The picture has limits. The app, not the model, decides what gets wiped. And a nurse glances at the board and walks away with the facts in mind. A model takes in the board again from the start for every reply. What it learned in training is stored elsewhere, in its parameters, the billions of numbers that were set before you ever opened the chat. Anthropic draws the same line: the window is a kind of ["working memory"](https://platform.claude.com/docs/en/build-with-claude/context-windows), separate from the training text.
+The picture has limits. The app, not the model, decides what gets wiped. And a nurse glances at the board and walks away with the facts in mind. A model takes in the board again from the start for every reply. What it learned in [training](/guides/training/) is stored elsewhere, in its parameters, the billions of numbers that were set before you ever opened the chat. Anthropic draws the same line: the window is a kind of ["working memory"](https://platform.claude.com/docs/en/build-with-claude/context-windows), separate from the training text.
 
 ### What counts toward the context window?
 
