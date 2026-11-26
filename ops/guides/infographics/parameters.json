@@ -1,0 +1,63 @@
+{
+  "slug": "parameters",
+  "theme": "daylight",
+  "images": [
+    {
+      "file": "cover",
+      "layout": "cover",
+      "title": "What are AI model parameters?",
+      "highlight": "parameters",
+      "kicker": "LLM basics",
+      "subtitle": "The learned numbers behind names like 7B and 70B, and what they mean for memory.",
+      "icons": ["calculator", "brain", "chip"]
+    },
+    {
+      "file": "scorecard-and-model",
+      "layout": "analogy",
+      "title": "A model is a scorecard with billions of weights",
+      "highlight": "billions of weights",
+      "left": { "heading": "Credit scorecard", "icon": "calculator" },
+      "right": { "heading": "Language model", "icon": "brain" },
+      "pairs": [
+        { "left": "3 weights", "right": "Billions of parameters" },
+        { "left": "A person sets each weight", "right": "Training sets each one" },
+        { "left": "Change income weight: new score", "right": "Training nudges weights, answers improve" },
+        { "left": "Each weight has a name", "right": "No single weight has a label" }
+      ],
+      "note": "Where it stops: a scorecard is one sum. A model stacks many steps."
+    },
+    {
+      "file": "memory-by-size",
+      "layout": "bars",
+      "title": "Memory grows in step with parameters",
+      "highlight": "in step with parameters",
+      "items": [
+        { "label": "7B model", "value": 14, "display": "14 GB" },
+        { "label": "8B model", "value": 16, "display": "16 GB" },
+        { "label": "70B model", "value": 140, "display": "140 GB" },
+        { "label": "175B model", "value": 350, "display": "350 GB" }
+      ],
+      "note": "Weights only, at 16-bit: 2 bytes per parameter.",
+      "source": "Hugging Face, Optimizing LLMs for Speed and Memory, checked November 26, 2026"
+    },
+    {
+      "file": "parameters-tokens-settings",
+      "layout": "compare",
+      "title": "Parameters, tokens and settings are different things",
+      "highlight": "different things",
+      "columns": [
+        {
+          "heading": "Parameters",
+          "icon": "gear",
+          "items": ["Learned numbers inside the model", "Set once, in training", "Fixed while you chat"]
+        },
+        {
+          "heading": "Tokens and settings",
+          "icon": "dice",
+          "items": ["Tokens: text pieces going in and out", "Settings: dials like temperature", "Both can change with each request"]
+        }
+      ],
+      "verdict": "Only parameters are learned in training."
+    }
+  ]
+}
