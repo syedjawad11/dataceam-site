@@ -67,6 +67,7 @@ sources:
     url: 'https://arxiv.org/abs/2401.04088'
     checked: 2026-11-26
 pubDate: 2026-11-26
+updatedDate: 2026-11-27
 tracks:
   - ai-engineer
 ---
@@ -182,7 +183,7 @@ Parameters are the learned numbers inside the model. Tokens are the text going i
 
 *Only parameters are learned and kept in the model. Your text and your settings can change with every request.*
 
-IBM puts settings like temperature under hyperparameters, which are set outside the model rather than learned. Temperature changes how adventurous the next-word choice is. It does not change the model's weights. The context window is another limit, and it is not a parameter either: it is how many tokens fit in one request.
+IBM puts settings like temperature under hyperparameters, which are set outside the model rather than learned. [Temperature](/guides/different-answers/) changes how adventurous the next-word choice is. It does not change the model's weights. The context window is another limit, and it is not a parameter either: it is how many tokens fit in one request.
 
 ## Common mistakes about model size
 

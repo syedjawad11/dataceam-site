@@ -62,7 +62,7 @@ sources:
     url: 'https://openai.com/index/why-language-models-hallucinate/'
     checked: 2026-11-24
 pubDate: 2026-11-24
-updatedDate: 2026-11-26
+updatedDate: 2026-11-27
 tracks:
   - ai-engineer
 ---
@@ -94,7 +94,7 @@ Here is one email sentence, completed step by step. The percentages are made up 
 The start of the sentence: "Please find attached the invoice for ..."
 
 1. The model looks at every word so far and gives each possible next word a score. Say "March" gets 40%, "your" gets 25%, "the" gets 15%, and thousands of other words share the remaining 20%. Check: 40 + 25 + 15 + 20 = 100.
-2. It picks one. It may take the top choice, or pick at random in proportion to the scores, which is one reason two answers to the same question can differ. Google's course describes both options, [taking the highest-probability word or choosing at random among the likely ones](https://developers.google.com/machine-learning/resources/intro-llms).
+2. It picks one. It may take the top choice, or pick at random in proportion to the scores, which is one reason [two answers to the same question can differ](/guides/different-answers/). Google's course describes both options, [taking the highest-probability word or choosing at random among the likely ones](https://developers.google.com/machine-learning/resources/intro-llms).
 3. Say it picks "your". The sentence is now "Please find attached the invoice for your ...".
 4. The model scores every word again, this time with "your" included. "Recent" may lead, then "order", then "services".
 5. It picks again, and the loop repeats until the model produces a signal that means "stop".

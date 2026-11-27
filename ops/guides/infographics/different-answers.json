@@ -1,0 +1,54 @@
+{
+  "slug": "different-answers",
+  "theme": "blueprint",
+  "images": [
+    {
+      "file": "cover",
+      "layout": "cover",
+      "title": "Why does AI give different answers?",
+      "highlight": "different answers",
+      "kicker": "LLM basics",
+      "subtitle": "Chance, settings, hidden context and updates all change what a chatbot says.",
+      "icons": ["dice", "chat", "gear"]
+    },
+    {
+      "file": "next-word-odds",
+      "layout": "bars",
+      "title": "The likeliest word still loses half the draws",
+      "highlight": "loses half the draws",
+      "items": [
+        { "label": "eggs", "value": 50, "display": "50%" },
+        { "label": "oatmeal", "value": 30, "display": "30%" },
+        { "label": "yogurt", "value": 15, "display": "15%" },
+        { "label": "durian", "value": 5, "display": "5%" }
+      ],
+      "note": "Next word after: For breakfast, I would suggest",
+      "source": "Made-up example numbers, not from a real model"
+    },
+    {
+      "file": "three-draws",
+      "layout": "steps",
+      "title": "One early draw sends the answer somewhere else",
+      "highlight": "somewhere else",
+      "items": [
+        { "icon": "pencil", "label": "Same start", "text": "For breakfast, I would suggest" },
+        { "icon": "dice", "label": "Run 1 draws eggs", "text": "Eggs and toast, with fruit." },
+        { "icon": "dice", "label": "Run 2 draws oatmeal", "text": "Oatmeal with berries and nuts." },
+        { "icon": "dice", "label": "Run 3 draws yogurt", "text": "Yogurt with granola and honey." }
+      ],
+      "note": "Made-up example. Real models draw from tens of thousands of options."
+    },
+    {
+      "file": "four-causes",
+      "layout": "cards",
+      "title": "Chance is only one of four causes",
+      "highlight": "four causes",
+      "items": [
+        { "icon": "dice", "label": "Random choice", "text": "Each next word is drawn by weighted chance." },
+        { "icon": "chat", "label": "Earlier context", "text": "Past messages and saved memory change what the model reads." },
+        { "icon": "refresh", "label": "Model updates", "text": "The model or its setup changes over time." },
+        { "icon": "layers", "label": "Different products", "text": "Each app has its own model and hidden instructions." }
+      ]
+    }
+  ]
+}
