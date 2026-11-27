@@ -62,6 +62,7 @@ sources:
     url: 'https://arxiv.org/abs/2005.11401'
     checked: 2026-11-26
 pubDate: 2026-11-26
+updatedDate: 2026-11-27
 tracks:
   - ai-engineer
 ---
@@ -170,7 +171,7 @@ Anything that needs "find things like this one" can use them. OpenAI lists searc
 - Grouping (clustering): put similar items into piles, such as sorting thousands of customer comments by topic.
 - Spotting duplicates and odd ones out: two near-identical points are likely duplicates, and a point far from all the others may be unusual.
 - Images and more: images, audio and video can be embedded too. Google's Gemini docs describe a model for text, images, video, audio and documents, and Hugging Face notes that sentence and image embeddings can be compared with each other.
-- Feeding RAG: retrieval-augmented generation, or RAG, finds relevant passages first and hands them to a chat model. The original [2020 RAG paper](https://arxiv.org/abs/2005.11401) used a searchable store of embeddings for Wikipedia passages (the paper calls it a "dense vector index") for this lookup. Because only a few passages are passed on, they fit in the model's [context window](/guides/context-window/).
+- Feeding RAG: [retrieval-augmented generation, or RAG](/guides/rag/), finds relevant passages first and hands them to a chat model. The original [2020 RAG paper](https://arxiv.org/abs/2005.11401) used a searchable store of embeddings for Wikipedia passages (the paper calls it a "dense vector index") for this lookup. Because only a few passages are passed on, they fit in the model's [context window](/guides/context-window/).
 
 ### What is a vector database?
 

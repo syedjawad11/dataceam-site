@@ -1,0 +1,72 @@
+{
+  "slug": "rag",
+  "theme": "daylight",
+  "images": [
+    {
+      "file": "cover",
+      "layout": "cover",
+      "title": "What is RAG in AI?",
+      "highlight": "RAG",
+      "kicker": "Retrieval basics",
+      "subtitle": "How a chatbot looks things up in your documents before it answers, and where that goes wrong.",
+      "icons": ["search", "document", "chat"]
+    },
+    {
+      "file": "receptionist-binder",
+      "layout": "analogy",
+      "title": "RAG is a receptionist who checks the binder first",
+      "highlight": "checks the binder first",
+      "left": { "heading": "Receptionist", "icon": "user" },
+      "right": { "heading": "RAG chatbot", "icon": "robot" },
+      "pairs": [
+        { "left": "Policy binder on the shelf", "right": "Your documents" },
+        { "left": "Flips to the right page", "right": "Search finds close passages" },
+        { "left": "Reads it out, names the page", "right": "Answer with a source" },
+        { "left": "Wrong page, confident answer", "right": "Bad retrieval, wrong answer" }
+      ],
+      "note": "Where it stops: a person notices an odd page. A model usually trusts what it is handed."
+    },
+    {
+      "file": "four-steps",
+      "layout": "steps",
+      "title": "The answer is written from passages found a second ago",
+      "highlight": "passages found a second ago",
+      "items": [
+        { "icon": "document", "label": "Split", "text": "Cut documents into short passages, once, ahead of time." },
+        { "icon": "database", "label": "Index", "text": "Store each passage so it can be searched by meaning." },
+        { "icon": "search", "label": "Retrieve", "text": "Find the passages closest to the question." },
+        { "icon": "chat", "label": "Answer", "text": "Send passages and question to the model. It answers and names the source." }
+      ],
+      "note": "Steps 1 and 2 happen before anyone asks. Steps 3 and 4 happen on every question."
+    },
+    {
+      "file": "memory-vs-lookup",
+      "layout": "compare",
+      "title": "Reading the right page beats answering from memory",
+      "highlight": "beats answering from memory",
+      "columns": [
+        {
+          "heading": "Without RAG",
+          "icon": "brain",
+          "items": [
+            "Answers from what it learned in training",
+            "Knows nothing about your private files",
+            "May be out of date",
+            "No source to check"
+          ]
+        },
+        {
+          "heading": "With RAG",
+          "icon": "book",
+          "items": [
+            "Reads passages found for this question",
+            "Can use your own documents",
+            "Fresh as the documents you store",
+            "Can point to the passage it used"
+          ]
+        }
+      ],
+      "verdict": "RAG is only as good as the passages it finds."
+    }
+  ]
+}

@@ -57,7 +57,7 @@ sources:
     url: 'https://www.anthropic.com/research/effective-context-engineering-for-ai-agents'
     checked: 2026-11-25
 pubDate: 2026-11-25
-updatedDate: 2026-11-26
+updatedDate: 2026-11-27
 tracks:
   - ai-engineer
 ---
@@ -184,7 +184,7 @@ You can get more from any window with five habits and no technical skill.
 - Before a long chat gets unwieldy, ask for a summary of the decisions so far. Read it, correct it and paste it into a new chat.
 - Ask for one section at a time when you want a long piece of writing.
 
-Larger systems use the same ideas. Some search a collection of documents and place only the relevant passages in the window, an approach called retrieval-augmented generation (RAG). AI agents, programs that work through many steps on their own, may keep notes outside the window and read them back when needed.
+Larger systems use the same ideas. Some search a collection of documents and place only the relevant passages in the window, an approach called [retrieval-augmented generation (RAG)](/guides/rag/). AI agents, programs that work through many steps on their own, may keep notes outside the window and read them back when needed.
 
 You can check this for yourself. In a chat you've used for a while, ask "What was the first instruction I gave you?" and compare the reply with the top of the chat. A right answer doesn't prove the whole chat is still in view, but a wrong one is a warning sign. If it is wrong or vague, start fresh with a summary.
 
