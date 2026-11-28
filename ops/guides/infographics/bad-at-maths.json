@@ -1,0 +1,70 @@
+{
+  "slug": "bad-at-maths",
+  "theme": "paper",
+  "images": [
+    {
+      "file": "cover",
+      "layout": "cover",
+      "kicker": "LLM basics",
+      "title": "Why is AI bad at math?",
+      "highlight": "bad at math",
+      "subtitle": "Chatbots estimate sums like a shopkeeper. A calculator adds them exactly.",
+      "icons": ["calculator", "chat", "warning"]
+    },
+    {
+      "file": "shopkeeper-and-till",
+      "layout": "analogy",
+      "title": "A chatbot is the shopkeeper, not the till",
+      "highlight": "not the till",
+      "left": { "heading": "Shopkeeper and till", "icon": "cart" },
+      "right": { "heading": "Chatbot and calculator", "icon": "chat" },
+      "pairs": [
+        { "left": "Glances at a basket and says about forty dollars", "right": "Writes the answer that looks most likely" },
+        { "left": "Learned from thousands of till receipts", "right": "Learned from huge amounts of text" },
+        { "left": "Usually close, sometimes off", "right": "Often right, sometimes wrong in a few digits" },
+        { "left": "The till adds every price, exactly", "right": "A calculator or code tool computes exactly" }
+      ],
+      "note": "Unlike a shopkeeper, a chatbot does not say when it is guessing."
+    },
+    {
+      "file": "number-chunks",
+      "layout": "steps",
+      "title": "Numbers are cut where the rule says, not where you would",
+      "highlight": "not where you would",
+      "items": [
+        { "icon": "pencil", "label": "You type 48172", "text": "To a person it is 48 thousand and 172." },
+        { "icon": "puzzle", "label": "Tokenizer cuts it", "text": "Groups of up to three digits from the left: 481 and 72." },
+        { "icon": "brain", "label": "Model reads chunks", "text": "The chunk 481 mixes thousands and hundreds." },
+        { "icon": "chat", "label": "Answer is written", "text": "Digits are predicted as text, one piece at a time." }
+      ],
+      "note": "Some models cut numbers into single digits instead."
+    },
+    {
+      "file": "ask-versus-run",
+      "layout": "compare",
+      "title": "Let a tool do the adding",
+      "highlight": "tool",
+      "columns": [
+        {
+          "heading": "Ask for the answer",
+          "icon": "chat",
+          "items": [
+            "The model predicts digits as text",
+            "Close in size, maybe wrong in the middle",
+            "Sounds sure either way"
+          ]
+        },
+        {
+          "heading": "Ask for a calculation run",
+          "icon": "calculator",
+          "items": [
+            "The model writes the sum as code",
+            "A tool runs it and returns the result",
+            "You can see the code and check it"
+          ]
+        }
+      ],
+      "verdict": "For figures that matter, let the model explain and the tool compute."
+    }
+  ]
+}

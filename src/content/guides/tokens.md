@@ -65,7 +65,7 @@ sources:
     url: 'https://arxiv.org/abs/2412.18626'
     checked: 2026-11-25
 pubDate: 2026-11-25
-updatedDate: 2026-11-26
+updatedDate: 2026-11-28
 tracks:
   - ai-engineer
 ---
@@ -170,7 +170,7 @@ AI often can count letters, but it makes more mistakes than you'd expect, and to
 
 Tokens aren't the whole story. A 2024 paper by Fu and colleagues lists [several suspected causes](https://arxiv.org/abs/2412.18626): tokenization, limits in attention (how a model weighs the different parts of its input), and too little [training](/guides/training/) on single characters. In their tests, models could recognize the letters but had trouble counting them. The authors concluded that tokenization was probably not the main problem. Errors were most strongly tied to letters that appear more than once in a word. How common the word was made little difference.
 
-Numbers can be cut up too. In o200k_base, the number 4817293650 becomes four pieces (`481` `729` `365` `0`), which is an awkward way to do arithmetic. For exact counts and sums, use a calculator or a spreadsheet, or ask the chatbot to use a code tool if it has one.
+Numbers can be cut up too. In o200k_base, the number 4817293650 becomes four pieces (`481` `729` `365` `0`), which is an awkward way to do [arithmetic](/guides/bad-at-maths/). For exact counts and sums, use a calculator or a spreadsheet, or ask the chatbot to use a code tool if it has one.
 
 ### Do other languages use more tokens than English?
 

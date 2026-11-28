@@ -61,6 +61,7 @@ sources:
     url: 'https://help.openai.com/en/articles/8590148-memory-in-chatgpt'
     checked: 2026-11-27
 pubDate: 2026-11-27
+updatedDate: 2026-11-28
 tracks:
   - ai-engineer
 ---
@@ -167,7 +168,7 @@ Models change over time too. OpenAI's seed guide describes a "system fingerprint
 
 Not by itself. A different answer shows that the model has room in how it words things. It doesn't show which version is right. If two answers clash on a fact, at least one is wrong, but a confident tone won't tell you which.
 
-OpenAI's logprobs guide makes a related point: a model's confidence measures how certain it is, not whether it is correct. A fluent sentence can still contain a made-up date or a wrong total. Calculations are a known weak spot of their own.
+OpenAI's logprobs guide makes a related point: a model's confidence measures how certain it is, not whether it is correct. A fluent sentence can still contain a made-up date or a wrong total. [Calculations are a known weak spot](/guides/bad-at-maths/) of their own.
 
 So if the facts matter, such as a legal deadline, a dose, a tax figure or a quote, check them against a primary source. If two runs disagree on a fact, that is useful: it tells you exactly which line to verify.
 
