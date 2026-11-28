@@ -65,6 +65,7 @@ sources:
     url: 'https://www.copyright.gov/ai/'
     checked: 2026-11-26
 pubDate: 2026-11-26
+updatedDate: 2026-11-28
 tracks:
   - ai-engineer
 ---
@@ -144,7 +145,7 @@ Teams test the result before release. For Llama 3, Meta's paper describes red te
 | Tuning for chat | Human-written answers and rankings | Following instructions, tone, safer replies |
 | Testing | Benchmarks and expert attacks | Where it fails, so problems can be fixed before release |
 
-You can also shape an already trained model yourself, with fine-tuning or with careful prompting. Reasoning models add one more round of reinforcement learning so they work through problems step by step.
+You can also shape an already trained model yourself, with fine-tuning or with careful prompting. [Reasoning models](/guides/reasoning-models/) add one more round of reinforcement learning so they work through problems step by step.
 
 ## How long does AI training take and what does it cost?
 

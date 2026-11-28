@@ -11,3 +11,4 @@
 | 2026-11-27 | rag | 2377 | this commit |
 | 2026-11-27 | different-answers | 2145 | this commit |
 | 2026-11-28 | bad-at-maths | 2230 | this commit |
+| 2026-11-28 | reasoning-models | 2569 | this commit |

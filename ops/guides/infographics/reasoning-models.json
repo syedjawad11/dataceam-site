@@ -1,0 +1,87 @@
+{
+  "slug": "reasoning-models",
+  "theme": "daylight",
+  "images": [
+    {
+      "file": "cover",
+      "layout": "cover",
+      "kicker": "LLM basics",
+      "title": "What are reasoning models?",
+      "highlight": "reasoning models",
+      "subtitle": "AI models that write out their working before they answer, and what that costs.",
+      "icons": ["brain", "pencil", "clock"]
+    },
+    {
+      "file": "nurse-and-model",
+      "layout": "analogy",
+      "title": "A reasoning model works like a nurse writing out a dose",
+      "highlight": "writing out a dose",
+      "left": { "heading": "Nurse checking a dose", "icon": "user" },
+      "right": { "heading": "Reasoning model", "icon": "brain" },
+      "pairs": [
+        { "left": "Glances at an easy case and answers", "right": "A regular chatbot replies straight away" },
+        { "left": "Writes the calculation line by line on paper", "right": "Writes a chain of steps before replying" },
+        { "left": "Rechecks each line before giving the dose", "right": "Checks and corrects steps along the way" },
+        { "left": "Takes longer, so saves it for high stakes", "right": "Uses more time and tokens, so use it when needed" }
+      ],
+      "note": "Unlike the nurse, the model can still write a wrong line with full confidence."
+    },
+    {
+      "file": "fast-or-worked-out",
+      "layout": "compare",
+      "title": "The same question, answered two ways",
+      "highlight": "two ways",
+      "columns": [
+        {
+          "heading": "Regular reply",
+          "icon": "bolt",
+          "items": [
+            "Answer starts at once",
+            "Few tokens, low cost",
+            "Fine for simple questions",
+            "Can miss a slip in a multi-step problem"
+          ]
+        },
+        {
+          "heading": "With reasoning",
+          "icon": "pencil",
+          "items": [
+            "Steps are written first, then the answer",
+            "Many extra tokens, billed as output",
+            "Better for multi-step problems",
+            "Still needs a human check"
+          ]
+        }
+      ],
+      "verdict": "Pay for the extra thinking only when the question is hard enough to need it."
+    },
+    {
+      "file": "how-reasoning-is-trained",
+      "layout": "steps",
+      "title": "Rewards for right answers teach the model to work things out",
+      "highlight": "work things out",
+      "items": [
+        { "icon": "document", "label": "Pick checkable problems", "text": "Math and code, where a final answer can be marked right or wrong." },
+        { "icon": "pencil", "label": "Model writes its steps", "text": "It tries a chain of steps, then gives a final answer." },
+        { "icon": "check", "label": "Answer is checked", "text": "A program marks the final answer correct or not." },
+        { "icon": "refresh", "label": "Reward, then repeat", "text": "Step patterns that led to right answers become more likely." }
+      ],
+      "note": "This is reinforcement learning, repeated over a very large number of problems."
+    },
+    {
+      "file": "use-or-skip",
+      "layout": "cards",
+      "title": "Switch reasoning on for hard problems, skip it for easy ones",
+      "highlight": "hard problems",
+      "items": [
+        { "icon": "calculator", "label": "Use: multi-step math", "text": "Word problems with several linked steps." },
+        { "icon": "code", "label": "Use: code", "text": "Tricky bugs and logic that must hold together." },
+        { "icon": "scale", "label": "Use: careful comparisons", "text": "Weighing several options against rules." },
+        { "icon": "search", "label": "Skip: simple lookups", "text": "Facts and definitions need no long chain." },
+        { "icon": "pencil", "label": "Skip: short rewrites", "text": "Fixing a sentence or an email is quick." },
+        { "icon": "chat", "label": "Skip: casual chat", "text": "Extra waiting adds nothing to small talk." }
+      ],
+      "note": "Even a hard problem still needs checking: reasoning does not remove errors."
+    }
+  ]
+}

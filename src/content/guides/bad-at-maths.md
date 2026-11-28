@@ -60,6 +60,7 @@ sources:
     url: 'https://arxiv.org/abs/2412.18626'
     checked: 2026-11-28
 pubDate: 2026-11-28
+updatedDate: 2026-11-28
 tracks:
   - ai-engineer
 ---
@@ -142,7 +143,7 @@ There is a second reason. If you ask again, you may get another figure, because 
 
 Yes, often. Writing out the steps helps, and using a tool helps more. But how much depends on the model and version, so treat any claim that "AI now does math perfectly" with care.
 
-Step-by-step writing is called chain-of-thought prompting. Researchers at Google showed that giving a model examples with the intermediate steps [improved its results on math word problems](https://arxiv.org/abs/2201.11903), and a very large model (540 billion parameters) set a new best score on a school-level math test called GSM8K. It helps because each small step is easier to get right than a long jump, and the written steps become part of what the model reads next. Some newer models do this on their own before they answer. Reasoning models, which work through a problem in writing before they answer, are built around the same idea.
+Step-by-step writing is called chain-of-thought prompting. Researchers at Google showed that giving a model examples with the intermediate steps [improved its results on math word problems](https://arxiv.org/abs/2201.11903), and a very large model (540 billion parameters) set a new best score on a school-level math test called GSM8K. It helps because each small step is easier to get right than a long jump, and the written steps become part of what the model reads next. Some newer models do this on their own before they answer. [Reasoning models](/guides/reasoning-models/), which work through a problem in writing before they answer, are built around the same idea.
 
 Tools go further. In a method called PAL, short for program-aided language models, the model writes a small program and a normal interpreter (the program that runs code) carries it out. The authors report that this [beat a chain-of-thought model on GSM8K by 15 percentage points](https://arxiv.org/abs/2211.10435) even though the other model was much larger.
 
